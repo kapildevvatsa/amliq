@@ -1,0 +1,1518 @@
+// AMLiq — Core Application Logic
+// Navigation, section rendering, dashboard, state management
+
+const App = {
+
+  currentSection: 'dashboard',
+  countdownInterval: null,
+
+  // ─── INIT ─────────────────────────────────────────────────────────────────
+  init() {
+    this.bindNavLinks();
+    this.renderAllSections();
+    this.navigateTo('dashboard');
+    this.startCountdown();
+    this.updateAllProgress();
+  },
+
+  // ─── NAVIGATION ───────────────────────────────────────────────────────────
+  bindNavLinks() {
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const section = link.dataset.section;
+        this.navigateTo(section);
+        // Close mobile sidebar
+        if (window.innerWidth < 1024) {
+          document.getElementById('sidebar').classList.remove('open');
+        }
+      });
+    });
+  },
+
+  navigateTo(sectionId) {
+    // Hide all sections
+    document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
+    // Show target
+    const target = document.getElementById('section-' + sectionId);
+    if (target) target.classList.remove('hidden');
+
+    // Update nav active state
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    const activeLink = document.querySelector(`.nav-link[data-section="${sectionId}"]`);
+    if (activeLink) activeLink.classList.add('active');
+
+    this.currentSection = sectionId;
+    window.scrollTo(0, 0);
+  },
+
+  // ─── RENDER ALL SECTIONS ──────────────────────────────────────────────────
+  renderAllSections() {
+    this.renderDashboard();
+    this.renderAmIRegulated();
+    this.renderObligationsOverview();
+    this.renderKeyDates();
+    this.renderRiskAssessment();
+    this.renderProgramBuilder();
+    this.renderGovernance();
+    this.renderEnrolment();
+    this.renderCDD();
+    this.renderRedFlags();
+    this.renderReporting();
+    this.renderRecordKeeping();
+    this.renderTraining();
+    this.renderProgramReview();
+    this.renderEvaluation();
+    this.renderFormsLibrary();
+    this.renderGlossary();
+    this.renderFAQ();
+    this.renderAustracLinks();
+  },
+
+  // ─── DASHBOARD ────────────────────────────────────────────────────────────
+  renderDashboard() {
+    const el = document.getElementById('section-dashboard');
+    const today = new Date('2026-02-22');
+    const oblStart = new Date('2026-07-01');
+    const daysToGo = Math.ceil((oblStart - today) / (1000 * 60 * 60 * 24));
+
+    let nudge = '';
+    if (today < new Date('2026-03-31')) {
+      nudge = { icon: '📚', text: 'Focus on understanding your obligations and building your AML/CTF program. Start the Risk Assessment Wizard.', btn: 'Start Risk Assessment', sec: 'risk-assessment' };
+    } else if (today <= new Date('2026-06-30')) {
+      nudge = { icon: '📝', text: 'Enrolment is now open — enrol with AUSTRAC and finalise your program before 1 July 2026.', btn: 'Go to Enrolment Guide', sec: 'enrolment' };
+    } else {
+      nudge = { icon: '⚠️', text: 'Your obligations are now live. Ensure you are conducting CDD on every new customer and monitoring for suspicious activity.', btn: 'CDD Checklists', sec: 'cdd' };
+    }
+
+    el.innerHTML = `
+      <div class="p-6 max-w-5xl mx-auto">
+        <div class="mb-6">
+          <h1 class="text-2xl font-bold text-slate-800">AML/CTF Compliance Dashboard</h1>
+          <p class="text-slate-500 mt-1">Your overview for meeting AUSTRAC's real estate obligations from 1 July 2026.</p>
+        </div>
+
+        <!-- Countdown -->
+        <div class="bg-slate-900 text-white rounded-xl p-5 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <div class="flex-1">
+            <div class="text-sm text-slate-400 mb-1">Obligations commence</div>
+            <div class="text-xl font-bold">1 July 2026</div>
+          </div>
+          <div id="countdown-timer" class="flex gap-3">
+            <div class="time-block"><div class="number" id="cd-days">--</div><div class="label">Days</div></div>
+            <div class="time-block"><div class="number" id="cd-hours">--</div><div class="label">Hours</div></div>
+            <div class="time-block"><div class="number" id="cd-mins">--</div><div class="label">Mins</div></div>
+            <div class="time-block"><div class="number" id="cd-secs">--</div><div class="label">Secs</div></div>
+          </div>
+        </div>
+
+        <!-- Today Nudge -->
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6 flex items-start gap-3">
+          <span class="text-2xl">${nudge.icon}</span>
+          <div class="flex-1">
+            <div class="font-semibold text-blue-800 mb-1">What should I do today?</div>
+            <div class="text-blue-700 text-sm mb-2">${nudge.text}</div>
+            <button onclick="App.navigateTo('${nudge.sec}')" class="bg-blue-600 text-white px-4 py-1.5 rounded-lg text-sm font-medium hover:bg-blue-700">${nudge.btn}</button>
+          </div>
+        </div>
+
+        <!-- Overall Progress -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5 mb-6">
+          <div class="flex items-center justify-between mb-3">
+            <div class="font-semibold text-slate-700">Overall Compliance Readiness</div>
+            <div class="text-2xl font-bold text-blue-600" id="overall-score">0%</div>
+          </div>
+          <div class="w-full bg-slate-100 rounded-full h-3">
+            <div class="progress-bar bg-blue-500 h-3 rounded-full" id="overall-bar" style="width:0%"></div>
+          </div>
+          <div class="text-xs text-slate-400 mt-2">Based on completed checklist items across all phases.</div>
+        </div>
+
+        <!-- Phase Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          ${[
+            { phase: 1, title: 'Understand', icon: '📚', color: 'blue', sections: ['am-i-regulated', 'obligations-overview', 'key-dates'], keys: [] },
+            { phase: 2, title: 'Build Program', icon: '🏗️', color: 'purple', sections: ['risk-assessment', 'program-builder', 'governance', 'enrolment'], keys: ['enrolment', 'riskAssessment', 'governance'] },
+            { phase: 3, title: 'Implement', icon: '⚙️', color: 'amber', sections: ['cdd', 'red-flags', 'reporting', 'record-keeping', 'training'], keys: ['cddProcedures', 'monitoring', 'reporting', 'recordKeeping', 'training'] },
+            { phase: 4, title: 'Maintain', icon: '🔄', color: 'green', sections: ['program-review', 'evaluation'], keys: ['programReview', 'evaluation'] },
+          ].map(p => `
+            <div class="phase-card cursor-pointer" onclick="App.navigateTo('${p.sections[0]}')">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-xl">${p.icon}</span>
+                <div>
+                  <div class="text-xs text-slate-500 font-medium">Phase ${p.phase}</div>
+                  <div class="font-semibold text-slate-700">${p.title}</div>
+                </div>
+              </div>
+              <div class="w-full bg-slate-100 rounded-full h-2 mb-1">
+                <div class="progress-bar bg-${p.color}-500 h-2 rounded-full" id="phase-${p.phase}-bar" style="width:0%"></div>
+              </div>
+              <div class="text-xs text-slate-500"><span id="phase-${p.phase}-pct">0%</span> complete</div>
+            </div>
+          `).join('')}
+        </div>
+
+        <!-- Quick Access -->
+        <div class="mb-4">
+          <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3">Quick Access</h2>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            ${[
+              { icon: '⚠️', title: 'Risk Assessment', sec: 'risk-assessment', color: 'amber' },
+              { icon: '🪪', title: 'CDD Forms', sec: 'cdd', color: 'blue' },
+              { icon: '🚩', title: 'Red Flags', sec: 'red-flags', color: 'red' },
+              { icon: '✅', title: 'Enrolment', sec: 'enrolment', color: 'green' },
+            ].map(q => `
+              <button onclick="App.navigateTo('${q.sec}')" class="bg-white border border-slate-200 rounded-xl p-4 text-left hover:border-${q.color}-400 hover:shadow-sm transition-all">
+                <div class="text-2xl mb-2">${q.icon}</div>
+                <div class="text-sm font-semibold text-slate-700">${q.title}</div>
+              </button>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Key Dates -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h2 class="font-semibold text-slate-700 mb-3">Key Upcoming Dates</h2>
+          <div class="space-y-2">
+            ${[
+              { date: '31 March 2026', event: 'AUSTRAC enrolment opens', status: 'future', badge: 'bg-blue-100 text-blue-700' },
+              { date: '1 July 2026', event: 'AML/CTF obligations commence — all requirements apply from this date', status: 'critical', badge: 'bg-red-100 text-red-700' },
+              { date: '29 July 2026', event: 'Latest enrolment deadline (28 days after obligations commence)', status: 'deadline', badge: 'bg-amber-100 text-amber-700' },
+            ].map(d => `
+              <div class="flex items-start gap-3">
+                <span class="tag ${d.badge} flex-shrink-0">${d.date}</span>
+                <span class="text-sm text-slate-600">${d.event}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="mt-6 text-xs text-slate-400 text-center">
+          AMLiq — Not legal advice. All data stored locally. Last reviewed: February 2026.
+          Always refer to <a href="https://www.austrac.gov.au" target="_blank" class="underline">austrac.gov.au</a> for the most current guidance.
+        </div>
+      </div>
+    `;
+  },
+
+  // ─── COUNTDOWN ────────────────────────────────────────────────────────────
+  startCountdown() {
+    const target = new Date('2026-07-01T00:00:00+10:00');
+    const update = () => {
+      const now = new Date();
+      const diff = target - now;
+      if (diff <= 0) {
+        document.getElementById('cd-days').textContent = '0';
+        document.getElementById('cd-hours').textContent = '0';
+        document.getElementById('cd-mins').textContent = '0';
+        document.getElementById('cd-secs').textContent = '0';
+        return;
+      }
+      const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs  = Math.floor((diff % (1000 * 60)) / 1000);
+      const d = document.getElementById('cd-days');
+      const h = document.getElementById('cd-hours');
+      const m = document.getElementById('cd-mins');
+      const s = document.getElementById('cd-secs');
+      if (d) d.textContent = String(days);
+      if (h) h.textContent = String(hours).padStart(2, '0');
+      if (m) m.textContent = String(mins).padStart(2, '0');
+      if (s) s.textContent = String(secs).padStart(2, '0');
+    };
+    update();
+    this.countdownInterval = setInterval(update, 1000);
+  },
+
+  // ─── PROGRESS TRACKING ────────────────────────────────────────────────────
+  updateAllProgress() {
+    const allKeys = Object.keys(AMLiqData.checklists);
+    let total = 0, done = 0;
+    allKeys.forEach(k => {
+      const items = AMLiqData.checklists[k];
+      items.forEach(item => {
+        total++;
+        if (localStorage.getItem('check_' + item.id) === '1') done++;
+      });
+    });
+    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+    const scoreEl = document.getElementById('overall-score');
+    const barEl = document.getElementById('overall-bar');
+    if (scoreEl) scoreEl.textContent = pct + '%';
+    if (barEl) barEl.style.width = pct + '%';
+
+    // Phase percentages
+    const phaseKeys = [
+      [],
+      ['enrolment', 'riskAssessment', 'governance'],
+      ['cddProcedures', 'monitoring', 'reporting', 'recordKeeping', 'training'],
+      ['programReview', 'evaluation']
+    ];
+    for (let p = 1; p <= 4; p++) {
+      const keys = phaseKeys[p];
+      let pt = 0, pd = 0;
+      keys.forEach(k => {
+        if (!AMLiqData.checklists[k]) return;
+        AMLiqData.checklists[k].forEach(item => {
+          pt++;
+          if (localStorage.getItem('check_' + item.id) === '1') pd++;
+        });
+      });
+      const pp = pt > 0 ? Math.round((pd / pt) * 100) : 0;
+      const bar = document.getElementById(`phase-${p}-bar`);
+      const pctEl = document.getElementById(`phase-${p}-pct`);
+      if (bar) bar.style.width = pp + '%';
+      if (pctEl) pctEl.textContent = pp + '%';
+    }
+  },
+
+  // ─── AM I REGULATED ───────────────────────────────────────────────────────
+  renderAmIRegulated() {
+    const el = document.getElementById('section-am-i-regulated');
+    el.innerHTML = `
+      <div class="p-6 max-w-3xl mx-auto">
+        ${this.pageHeader('Am I Regulated?', 'An interactive decision tree to help you determine if the AML/CTF reforms apply to your business.', '🔍')}
+        <div id="decision-tree-container">
+          ${this.renderDecisionStep(0)}
+        </div>
+      </div>
+    `;
+  },
+
+  decisionTree: [
+    {
+      id: 0,
+      question: 'Do you sell, buy, or transfer real estate on behalf of clients (as an agent)?',
+      hint: 'This includes real estate agents acting for vendors, buyer\'s agents acting for purchasers, and auctioneers acting as selling agents.',
+      yes: { next: 4, note: 'You are likely providing a brokering designated service. Continue to confirm scope.' },
+      no: { next: 1 }
+    },
+    {
+      id: 1,
+      question: 'Do you sell real estate directly to customers (e.g., as a property developer with an in-house sales team)?',
+      hint: 'This includes selling house-and-land packages, off-the-plan apartments, land subdivisions, or any property sale where your business is the vendor and no independent agent is used.',
+      yes: { next: 4, note: 'You are likely providing a direct sales designated service. Continue to confirm scope.' },
+      no: { next: 2 }
+    },
+    {
+      id: 2,
+      question: 'Do you only manage rental properties or commercial leases?',
+      hint: 'Property management (collecting rent, managing tenancies) and commercial leasing are specifically excluded from the designated services.',
+      yes: 'exempt',
+      no: { next: 3 }
+    },
+    {
+      id: 3,
+      question: 'Do you provide conveyancing or legal services in property transactions?',
+      hint: '',
+      yes: 'other-regulated',
+      no: 'not-captured'
+    },
+    {
+      id: 4,
+      question: 'Does the real estate have a geographical link to Australia?',
+      hint: 'The reforms apply to Australian real estate — including fee simple, leasehold over 30 years, and unit trusts/share schemes conferring land use rights.',
+      yes: { next: 5, note: 'Good — the geographic link is satisfied.' },
+      no: 'not-geographic'
+    },
+    {
+      id: 5,
+      question: 'Is the property interest one of: fee simple (standard freehold), leasehold exceeding 30 years, or a unit trust/share scheme that confers entitlements to use or occupy land?',
+      hint: 'Standard residential and commercial property sales typically involve fee simple interests. Most leases under 30 years are NOT captured.',
+      yes: 'regulated',
+      no: 'not-interest'
+    },
+  ],
+
+  renderDecisionStep(stepId, history = []) {
+    const step = this.decisionTree.find(s => s.id === stepId);
+    if (!step) return '';
+
+    const historyHTML = history.length > 0 ? `
+      <div class="mb-4 space-y-1">
+        ${history.map((h, i) => `
+          <div class="flex items-center gap-2 text-sm text-slate-500">
+            <span class="w-5 h-5 rounded-full bg-green-100 text-green-700 flex items-center justify-center text-xs font-bold">${i + 1}</span>
+            <span>${h.q}</span>
+            <span class="ml-auto tag bg-green-100 text-green-700">${h.a}</span>
+          </div>
+        `).join('')}
+      </div>
+    ` : '';
+
+    return `
+      ${historyHTML}
+      <div class="decision-node">
+        <div class="text-xs text-slate-400 uppercase tracking-wider mb-2 font-semibold">Question ${history.length + 1}</div>
+        <p class="text-base font-semibold text-slate-800 mb-2">${step.question}</p>
+        ${step.hint ? `<p class="text-sm text-slate-500 mb-4 italic">${step.hint}</p>` : ''}
+        <div class="flex gap-3 mt-4">
+          <button onclick="App.decisionAnswer(${stepId}, 'yes', ${JSON.stringify(history).replace(/"/g, '&quot;')})"
+            class="flex-1 bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 text-sm">
+            YES
+          </button>
+          <button onclick="App.decisionAnswer(${stepId}, 'no', ${JSON.stringify(history).replace(/"/g, '&quot;')})"
+            class="flex-1 bg-slate-200 text-slate-700 py-2.5 rounded-lg font-semibold hover:bg-slate-300 text-sm">
+            NO
+          </button>
+        </div>
+      </div>
+    `;
+  },
+
+  decisionAnswer(stepId, answer, history) {
+    const step = this.decisionTree.find(s => s.id === stepId);
+    const newHistory = [...history, { q: step.question, a: answer.toUpperCase() }];
+    const outcome = step[answer];
+    const container = document.getElementById('decision-tree-container');
+
+    if (typeof outcome === 'string') {
+      container.innerHTML = this.renderDecisionResult(outcome, newHistory);
+    } else {
+      const note = outcome.note ? `<div class="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg text-sm text-blue-700">${outcome.note}</div>` : '';
+      container.innerHTML = this.renderDecisionStep(outcome.next, newHistory);
+      if (note) container.insertAdjacentHTML('afterbegin', note);
+    }
+  },
+
+  renderDecisionResult(outcome, history) {
+    const configs = {
+      regulated: {
+        cls: 'result-regulated',
+        icon: '⚠️',
+        title: 'Based on your answers, you are likely a Reporting Entity',
+        body: `<p class="text-sm mb-3">You are likely providing a designated service under the AML/CTF Act reforms and will need to comply with all obligations from <strong>1 July 2026</strong>.</p>
+               <p class="text-sm mb-3">This means you must: enrol with AUSTRAC, appoint a compliance officer, develop an AML/CTF program, conduct CDD, screen for PEPs/sanctions, file reports, keep records, and train staff.</p>
+               <div class="flex flex-wrap gap-2 mt-4">
+                 <button onclick="App.navigateTo('obligations-overview')" class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-700">View All Obligations</button>
+                 <button onclick="App.navigateTo('enrolment')" class="bg-slate-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-700">Enrolment Guide</button>
+               </div>`,
+        disclaimer: 'This is a preliminary assessment based on your answers. Confirm your obligations by referring to the official AUSTRAC Real Estate guidance and seek professional advice if unsure.'
+      },
+      exempt: {
+        cls: 'result-exempt',
+        icon: '✅',
+        title: 'Based on your answers, you are likely EXEMPT',
+        body: `<p class="text-sm mb-3">Property management (including residential rentals) and commercial leasing are NOT designated services under the Tranche 2 real estate reforms.</p>
+               <p class="text-sm">However, if your business also conducts property sales or brokering activities, those activities would be captured. Review your full range of services.</p>`,
+        disclaimer: 'Confirm your exempt status directly with AUSTRAC and consider whether any other services you provide may be designated services.'
+      },
+      'other-regulated': {
+        cls: 'result-exempt',
+        icon: '📋',
+        title: 'You may be regulated under a different category',
+        body: `<p class="text-sm mb-3">Conveyancing and legal services in property transactions are regulated under separate designated service categories for conveyancers and the legal profession.</p>
+               <p class="text-sm">Review <a href="https://www.austrac.gov.au" target="_blank" class="underline text-blue-600">AUSTRAC\'s guidance</a> for conveyancers or legal profession obligations.</p>`,
+        disclaimer: 'Seek professional advice to confirm which category applies to your business.'
+      },
+      'not-captured': {
+        cls: 'result-exempt',
+        icon: '🟡',
+        title: 'Based on your answers, you may not be captured',
+        body: `<p class="text-sm mb-3">Your answers suggest you may not be providing a designated real estate service. However, this tool may not cover all possible scenarios.</p>
+               <p class="text-sm">Review AUSTRAC\'s full list of designated services to confirm your position.</p>`,
+        disclaimer: 'This is a preliminary indication only. Always confirm with AUSTRAC and consider professional advice.'
+      },
+      'not-geographic': {
+        cls: 'result-exempt',
+        icon: '🌏',
+        title: 'The reforms may not apply to your activity',
+        body: `<p class="text-sm">If the real estate has no geographical link to Australia, the Australian AML/CTF Act reforms may not apply. However, you may have obligations under the laws of another jurisdiction. Seek professional advice.</p>`,
+        disclaimer: 'Confirm your position with legal advice regarding the geographic scope of the AML/CTF Act.'
+      },
+      'not-interest': {
+        cls: 'result-exempt',
+        icon: '📝',
+        title: 'The interest may not be "real estate" under the Act',
+        body: `<p class="text-sm">The property interest may not fall within the definition of "real estate" under the AML/CTF Act. However, this is a technical legal question. Seek professional advice to confirm.</p>`,
+        disclaimer: 'Confirm the nature of the property interest with legal advice.'
+      },
+    };
+
+    const c = configs[outcome] || configs['not-captured'];
+    const histHTML = history.map((h, i) => `
+      <div class="flex items-center gap-2 text-sm text-slate-500 mb-1">
+        <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center text-xs font-bold">${i + 1}</span>
+        <span>${h.q}</span>
+        <span class="ml-auto tag bg-slate-100 text-slate-600">${h.a}</span>
+      </div>
+    `).join('');
+
+    return `
+      <div class="mb-4 space-y-1">${histHTML}</div>
+      <div class="decision-node ${c.cls}">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-2xl">${c.icon}</span>
+          <h3 class="font-bold text-lg">${c.title}</h3>
+        </div>
+        ${c.body}
+        <div class="mt-4 p-3 bg-white/60 rounded-lg text-xs text-slate-500 border border-slate-200">
+          <strong>Note:</strong> ${c.disclaimer}
+        </div>
+      </div>
+      <button onclick="document.getElementById('decision-tree-container').innerHTML = App.renderDecisionStep(0, [])"
+        class="mt-4 text-sm text-blue-600 hover:underline">← Start again</button>
+    `;
+  },
+
+  // ─── OBLIGATIONS OVERVIEW ─────────────────────────────────────────────────
+  renderObligationsOverview() {
+    const el = document.getElementById('section-obligations-overview');
+    el.innerHTML = `
+      <div class="p-6 max-w-4xl mx-auto">
+        ${this.pageHeader('Obligations Overview', 'What the AML/CTF reforms mean for Australian real estate professionals, in plain English.', '📋')}
+
+        <!-- What Changed -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5 mb-5">
+          <button class="accordion-btn w-full text-left flex items-center justify-between" onclick="App.toggleAccordion(this)">
+            <span class="font-semibold text-slate-800">What Changed?</span>
+            <span class="accordion-chevron text-slate-400">▼</span>
+          </button>
+          <div class="accordion-content mt-3 open">
+            <p class="text-sm text-slate-600 mb-3">Australia's AML/CTF Act (Tranche 2 reforms) extends anti-money laundering obligations to real estate professionals for the first time, effective <strong>1 July 2026</strong>.</p>
+            <p class="text-sm text-slate-600 mb-3">AUSTRAC's 2024 National Risk Assessment rated real estate as a <strong class="text-red-600">HIGH</strong> money laundering risk sector. Real estate is one of the most common property types found in proceeds-of-crime investigations in Australia.</p>
+            <div class="austrac-callout text-sm">
+              <strong class="text-blue-800">AUSTRAC says:</strong> "Real estate professionals are often the first contact point for criminals attempting to launder money through property, making their role in detecting and reporting suspicious activity critical."
+            </div>
+          </div>
+        </div>
+
+        <!-- Who Is Affected -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5 mb-5">
+          <button class="accordion-btn w-full text-left flex items-center justify-between" onclick="App.toggleAccordion(this)">
+            <span class="font-semibold text-slate-800">Who Is Affected?</span>
+            <span class="accordion-chevron text-slate-400">▼</span>
+          </button>
+          <div class="accordion-content mt-3">
+            <div class="overflow-x-auto mb-3">
+              <table class="w-full text-sm">
+                <thead><tr class="bg-slate-50 text-left">
+                  <th class="px-3 py-2 font-semibold text-slate-600 rounded-l">Designated Service</th>
+                  <th class="px-3 py-2 font-semibold text-slate-600 rounded-r">Who Provides It</th>
+                </tr></thead>
+                <tbody>
+                  <tr class="border-t border-slate-100"><td class="px-3 py-2 font-medium">Brokering real estate transactions</td><td class="px-3 py-2 text-slate-600">Real estate agents, buyer's agents, auctioneers acting as selling agents</td></tr>
+                  <tr class="border-t border-slate-100"><td class="px-3 py-2 font-medium">Direct property sales</td><td class="px-3 py-2 text-slate-600">Property developers, businesses selling house-and-land packages, off-the-plan apartments, land subdivisions</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <h4 class="font-semibold text-slate-700 mb-2">What counts as "real estate":</h4>
+            <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside mb-4">
+              <li>Fee simple interests (standard freehold ownership)</li>
+              <li>Leasehold interests exceeding 30 years</li>
+              <li>Unit trusts or share schemes that confer entitlements to use or occupy land</li>
+            </ul>
+            <h4 class="font-semibold text-slate-700 mb-2">What is EXEMPT:</h4>
+            <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside">
+              <li>Property management (residential rentals) — not a designated service</li>
+              <li>Commercial leasing — not a designated service</li>
+              <li>Conveyancing — regulated separately</li>
+              <li>Legal work in property transactions — regulated separately</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 10 Core Obligations -->
+        <div class="mb-5">
+          <h2 class="font-bold text-slate-800 text-lg mb-3">Your 10 Core Obligations</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            ${AMLiqData.obligations.map(o => `
+              <button onclick="App.navigateTo('${o.section}')"
+                class="bg-white border border-slate-200 rounded-xl p-4 text-left hover:border-blue-300 hover:shadow-sm transition-all group">
+                <div class="flex items-start gap-3">
+                  <span class="text-xl flex-shrink-0">${o.icon}</span>
+                  <div>
+                    <div class="font-semibold text-slate-700 text-sm group-hover:text-blue-600">${o.num}. ${o.title}</div>
+                    <div class="text-xs text-slate-500 mt-1">${o.summary}</div>
+                  </div>
+                </div>
+              </button>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Penalties -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <button class="accordion-btn w-full text-left flex items-center justify-between" onclick="App.toggleAccordion(this)">
+            <span class="font-semibold text-slate-800">What Happens If You Don't Comply?</span>
+            <span class="accordion-chevron text-slate-400">▼</span>
+          </button>
+          <div class="accordion-content mt-3">
+            <p class="text-sm text-slate-600 mb-3">AUSTRAC has stated it will take a <strong>proportionate, risk-based approach</strong> to enforcement for newly regulated sectors during the initial implementation period.</p>
+            <p class="text-sm text-slate-600 mb-3">However, AUSTRAC has been clear that enforcement focus will be on entities that <strong>fail to enrol</strong> or <strong>make no meaningful implementation effort</strong>.</p>
+            <div class="austrac-callout text-sm">
+              <strong class="text-blue-800">AUSTRAC's regulatory expectation:</strong> "By 30 June 2026, AUSTRAC expects all Tranche 2 entities to have enrolled, adopted an AML/CTF program, trained staff, and implemented reporting systems."
+            </div>
+            <p class="text-sm text-slate-500 mt-3">For current enforcement information, refer directly to <a href="https://www.austrac.gov.au" target="_blank" class="underline text-blue-600">austrac.gov.au</a>.</p>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  // ─── KEY DATES ────────────────────────────────────────────────────────────
+  renderKeyDates() {
+    const el = document.getElementById('section-key-dates');
+    const dates = [
+      { date: '31 March 2026', label: 'AUSTRAC Enrolment Opens', detail: 'Enrolment via AUSTRAC Online (online.austrac.gov.au) opens for real estate businesses. Begin the enrolment process as soon as possible.', status: 'open', icon: '🟢' },
+      { date: 'Before 1 July 2026', label: 'Complete your AML/CTF Program', detail: 'Your AML/CTF program (risk assessment, policies, processes, governance) should be completed and approved by senior management before obligations commence.', status: 'prep', icon: '🔵' },
+      { date: 'Before 1 July 2026', label: 'Train Your Staff', detail: 'All relevant staff should receive initial AML/CTF training before obligations commence.', status: 'prep', icon: '🔵' },
+      { date: '1 July 2026', label: 'Obligations Commence', detail: 'All AML/CTF obligations are live. You must conduct CDD on every new customer, monitor for suspicious activity, and be ready to file reports.', status: 'critical', icon: '🔴' },
+      { date: 'Within 28 days of first service', label: 'Enrolment Deadline', detail: 'You must enrol with AUSTRAC within 28 days of first providing a designated service. If you first provide a service on 1 July 2026, you must enrol by 29 July 2026.', status: 'deadline', icon: '🟡' },
+      { date: '29 July 2026', label: 'Latest Possible Enrolment Date', detail: 'The absolute latest date to enrol is 29 July 2026 (if your first designated service was provided on 1 July 2026).', status: 'deadline', icon: '🟡' },
+      { date: 'Within 14 days of appointment', label: 'Notify AUSTRAC of Compliance Officer', detail: 'Once you appoint your AML/CTF compliance officer, you must notify AUSTRAC within 14 days via AUSTRAC Online.', status: 'ongoing', icon: '🟠' },
+      { date: 'Annually (minimum)', label: 'Refresher Training', detail: 'AML/CTF training for all relevant staff must be refreshed at least annually.', status: 'ongoing', icon: '🟠' },
+      { date: 'Every 3 years (minimum)', label: 'Independent Evaluation', detail: 'An independent evaluation of your AML/CTF program must be conducted at least once every 3 years.', status: 'ongoing', icon: '🟠' },
+    ];
+
+    el.innerHTML = `
+      <div class="p-6 max-w-3xl mx-auto">
+        ${this.pageHeader('Key Dates & Timeline', 'Important dates for meeting your AML/CTF obligations.', '📅')}
+        <div class="space-y-3">
+          ${dates.map(d => `
+            <div class="bg-white rounded-xl border border-slate-200 p-4 flex items-start gap-4">
+              <span class="text-xl flex-shrink-0">${d.icon}</span>
+              <div class="flex-1">
+                <div class="flex flex-wrap items-center gap-2 mb-1">
+                  <span class="font-semibold text-slate-800 text-sm">${d.label}</span>
+                  <span class="tag ${d.status === 'critical' ? 'bg-red-100 text-red-700' : d.status === 'deadline' ? 'bg-amber-100 text-amber-700' : d.status === 'open' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'}">${d.date}</span>
+                </div>
+                <p class="text-sm text-slate-600">${d.detail}</p>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  },
+
+  // ─── RISK ASSESSMENT ──────────────────────────────────────────────────────
+  renderRiskAssessment() {
+    const el = document.getElementById('section-risk-assessment');
+    el.innerHTML = `
+      <div class="p-6 max-w-4xl mx-auto">
+        ${this.pageHeader('Risk Assessment Wizard', 'Assess your ML/TF/PF risk profile across four categories, aligned to AUSTRAC\'s risk framework.', '⚠️')}
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-5 text-sm text-amber-800">
+          <strong>Context:</strong> AUSTRAC's 2024 National Risk Assessment rated the real estate sector as <strong>HIGH</strong> for money laundering risk. This wizard helps you understand your specific risk profile within that high-risk sector.
+        </div>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-5 text-sm text-amber-700">
+          <strong>Disclaimer:</strong> This wizard helps you understand your risk profile for guidance purposes. It does not replace the formal ML/TF/PF risk assessment required under the AML/CTF Rules. Consider engaging a professional to complete your formal risk assessment.
+        </div>
+        <div id="risk-wizard-container">
+          ${RiskWizard.renderStart()}
+        </div>
+      </div>
+    `;
+  },
+
+  // ─── PROGRAM BUILDER ──────────────────────────────────────────────────────
+  renderProgramBuilder() {
+    const el = document.getElementById('section-program-builder');
+    el.innerHTML = `
+      <div class="p-6 max-w-4xl mx-auto">
+        ${this.pageHeader('AML/CTF Program Builder', 'A comprehensive checklist of everything your AML/CTF program should contain — aligned to AUSTRAC\'s starter kit.', '🏗️')}
+        <div class="austrac-callout mb-5 text-sm">
+          <strong class="text-blue-800">AUSTRAC Starter Kit alignment:</strong> The starter kit contains four core documents: Customise Guide, Risk Assessment, Policy Document, and Process Document. Once customised and approved by senior management, these together form your official AML/CTF program. Use this checklist to track your progress.
+        </div>
+        <div class="mb-4 flex items-center gap-4">
+          <div class="flex-1">
+            <div class="text-sm text-slate-500 mb-1">Overall Program Completion</div>
+            <div class="w-full bg-slate-100 rounded-full h-3">
+              <div class="progress-bar bg-blue-500 h-3 rounded-full" id="program-overall-bar" style="width:0%"></div>
+            </div>
+          </div>
+          <div class="text-xl font-bold text-blue-600" id="program-overall-pct">0%</div>
+          <button onclick="Checklist.exportProgress()" class="text-sm text-blue-600 hover:underline no-print">Export Progress</button>
+        </div>
+        <div id="program-checklist-container">
+          ${Checklist.renderAll()}
+        </div>
+      </div>
+    `;
+    Checklist.updateProgress();
+  },
+
+  // ─── GOVERNANCE ───────────────────────────────────────────────────────────
+  renderGovernance() {
+    const el = document.getElementById('section-governance');
+    el.innerHTML = `
+      <div class="p-6 max-w-4xl mx-auto">
+        ${this.pageHeader('Governance Setup', 'Establish the governance framework for your AML/CTF program.', '👤')}
+
+        <!-- Tabs -->
+        <div class="flex gap-2 mb-5 border-b border-slate-200 flex-wrap">
+          ${['Compliance Officer', 'Roles Assignment', 'Personnel Due Diligence'].map((tab, i) => `
+            <button onclick="App.switchTab('gov-tab', ${i})"
+              class="gov-tab pb-2 px-1 text-sm font-medium ${i === 0 ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-500 hover:text-slate-700'}" data-tab="${i}">
+              ${tab}
+            </button>
+          `).join('')}
+        </div>
+        <div id="gov-tab-0">${Forms.renderComplianceOfficerForm()}</div>
+        <div id="gov-tab-1" class="hidden">${Forms.renderRolesForm()}</div>
+        <div id="gov-tab-2" class="hidden">${Forms.renderPersonnelDDForm()}</div>
+      </div>
+    `;
+  },
+
+  // ─── ENROLMENT ────────────────────────────────────────────────────────────
+  renderEnrolment() {
+    const el = document.getElementById('section-enrolment');
+    el.innerHTML = `
+      <div class="p-6 max-w-3xl mx-auto">
+        ${this.pageHeader('Enrolment Guide', 'Step-by-step guidance for enrolling with AUSTRAC as a reporting entity.', '✅')}
+
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-5 text-sm text-blue-800">
+          <strong>AUSTRAC's regulatory expectation:</strong> By 30 June 2026, AUSTRAC expects all Tranche 2 entities to have enrolled with AUSTRAC, adopted an AML/CTF program, trained staff, and implemented reporting systems.
+        </div>
+
+        <!-- Steps -->
+        <div class="space-y-4 mb-6">
+          ${[
+            { n: 1, title: 'Confirm You Need to Enrol', body: 'Use the <button onclick="App.navigateTo(\'am-i-regulated\')" class="underline text-blue-600">Am I Regulated? decision tree</button> to confirm you are providing a designated service. If you broker property transactions or sell real estate directly, you must enrol.' },
+            { n: 2, title: 'Prepare Your Information', body: '<ul class="list-disc list-inside space-y-1 text-slate-600">'+
+              '<li>Australian Business Number (ABN)</li>'+
+              '<li>Business name and structure (sole trader, partnership, company, trust)</li>'+
+              '<li>Contact person details</li>'+
+              '<li>Compliance officer details (name, role)</li>'+
+              '<li>Description of designated services provided</li>'+
+              '<li>Business address(es)</li>'+
+              '</ul>' },
+            { n: 3, title: 'Enrol via AUSTRAC Online', body: 'Enrolment opens <strong>31 March 2026</strong>. Enrol at <a href="https://online.austrac.gov.au" target="_blank" class="underline text-blue-600">online.austrac.gov.au</a>. You must enrol within 28 days of first providing a designated service.' },
+            { n: 4, title: 'Nominate Your Compliance Officer', body: 'You must notify AUSTRAC of your compliance officer\'s details within <strong>14 days</strong> of their appointment. See the <button onclick="App.navigateTo(\'governance\')" class="underline text-blue-600">Governance Setup</button> section.' },
+            { n: 5, title: 'Confirm and Record', body: 'Save your enrolment confirmation. Record the enrolment date. Add to your record-keeping system and retain for 7 years.' },
+          ].map(s => `
+            <div class="bg-white rounded-xl border border-slate-200 p-5 flex gap-4">
+              <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm flex-shrink-0">${s.n}</div>
+              <div>
+                <div class="font-semibold text-slate-800 mb-2">${s.title}</div>
+                <div class="text-sm text-slate-600">${s.body}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+
+        <!-- Key Dates -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+          ${[
+            { label: 'Enrolment Opens', date: '31 March 2026', color: 'green' },
+            { label: 'Obligations Commence', date: '1 July 2026', color: 'red' },
+            { label: 'Enrolment Deadline', date: '29 July 2026', color: 'amber' },
+          ].map(d => `
+            <div class="bg-${d.color}-50 border border-${d.color}-200 rounded-xl p-3 text-center">
+              <div class="text-xs font-semibold text-${d.color}-700 uppercase tracking-wider">${d.label}</div>
+              <div class="font-bold text-${d.color}-800 text-sm mt-1">${d.date}</div>
+            </div>
+          `).join('')}
+        </div>
+
+        <!-- Checklist -->
+        ${Checklist.renderSection('enrolment', 'Enrolment Checklist')}
+      </div>
+    `;
+    Checklist.updateProgress();
+  },
+
+  // ─── CDD ─────────────────────────────────────────────────────────────────
+  renderCDD() {
+    const el = document.getElementById('section-cdd');
+    el.innerHTML = `
+      <div class="p-6 max-w-4xl mx-auto">
+        ${this.pageHeader('Customer Due Diligence (CDD)', 'Step-by-step guidance on identifying and verifying customers for each entity type.', '🪪')}
+
+        <div class="austrac-callout mb-5 text-sm">
+          <strong class="text-blue-800">Overarching principle:</strong> You must conduct initial CDD <em>before</em> providing a designated service (i.e., before acting for the customer in a property transaction). If CDD cannot be completed satisfactorily, consider whether to decline or cease providing the service.
+        </div>
+
+        <!-- CDD Tabs -->
+        <div class="flex gap-2 mb-5 overflow-x-auto border-b border-slate-200">
+          ${['Individual', 'Company', 'Trust', 'Partnership', 'Foreign', 'EDD', 'Ongoing CDD', 'PEP/Sanctions'].map((tab, i) => `
+            <button onclick="App.switchTab('cdd-tab', ${i})"
+              class="cdd-tab pb-2 px-2 text-sm font-medium whitespace-nowrap ${i === 0 ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-500 hover:text-slate-700'}" data-tab="${i}">
+              ${tab}
+            </button>
+          `).join('')}
+        </div>
+        <div id="cdd-tab-0">${Forms.renderCDDIndividual()}</div>
+        <div id="cdd-tab-1" class="hidden">${Forms.renderCDDCompany()}</div>
+        <div id="cdd-tab-2" class="hidden">${Forms.renderCDDTrust()}</div>
+        <div id="cdd-tab-3" class="hidden">${Forms.renderCDDPartnership()}</div>
+        <div id="cdd-tab-4" class="hidden">${Forms.renderCDDForeign()}</div>
+        <div id="cdd-tab-5" class="hidden">${Forms.renderEDD()}</div>
+        <div id="cdd-tab-6" class="hidden">${Checklist.renderSection('ongoingCDD', 'Ongoing CDD Review Checklist')}</div>
+        <div id="cdd-tab-7" class="hidden">${Forms.renderPEPScreening()}</div>
+      </div>
+    `;
+    Checklist.updateProgress();
+  },
+
+  // ─── RED FLAGS ────────────────────────────────────────────────────────────
+  renderRedFlags() {
+    const el = document.getElementById('section-red-flags');
+    const categories = [
+      { id: 'all', label: 'All Red Flags' },
+      { id: 'customer', label: 'Customer Risk' },
+      { id: 'transaction', label: 'Transaction Risk' },
+      { id: 'delivery', label: 'Delivery Channel' },
+      { id: 'jurisdiction', label: 'Jurisdiction Risk' },
+    ];
+    el.innerHTML = `
+      <div class="p-6 max-w-4xl mx-auto">
+        ${this.pageHeader('Red Flags & Suspicious Activity Indicators', 'Recognise the warning signs of money laundering in real estate — aligned to AUSTRAC\'s 4 risk categories.', '🚩')}
+
+        <div class="tipping-off-warning mb-5">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-red-600 font-bold text-lg">🚫 TIPPING-OFF PROHIBITION</span>
+          </div>
+          <p class="text-sm text-red-800"><strong>If you identify a red flag, DO NOT tell the customer about your concerns.</strong> Disclosing that you have filed or intend to file a Suspicious Matter Report (SMR) is a criminal offence known as "tipping off." Document, escalate, and report — in silence.</p>
+        </div>
+
+        <!-- Action Guidance -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-5">
+          <div class="font-semibold text-slate-700 mb-2 text-sm">What to do when you spot a red flag:</div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            ${[['1. STOP', 'Do not tip off the customer'], ['2. DOCUMENT', 'Record your observations in writing'], ['3. ESCALATE', 'Report to your AML/CTF compliance officer'], ['4. ASSESS', 'Compliance officer decides on SMR'], ['5. REPORT', 'File SMR within required timeframe'], ['6. MONITOR', 'Continue monitoring the relationship']].map(([step, desc]) => `
+              <div class="bg-white rounded-lg border border-slate-200 p-2 text-center">
+                <div class="font-bold text-blue-600 text-xs">${step}</div>
+                <div class="text-xs text-slate-500 mt-0.5">${desc}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          ${categories.map(c => `
+            <button onclick="App.filterRedFlags('${c.id}')"
+              class="rf-filter px-3 py-1.5 rounded-lg text-sm font-medium border transition-all ${c.id === 'all' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-600 border-slate-200 hover:border-blue-300'}"
+              data-category="${c.id}">
+              ${c.label}
+            </button>
+          `).join('')}
+        </div>
+
+        <!-- Search -->
+        <input type="text" id="rf-search" placeholder="Search red flags..." onkeyup="App.searchRedFlags()"
+          class="w-full border border-slate-200 rounded-lg px-4 py-2 text-sm mb-4 focus:outline-none focus:border-blue-400">
+
+        <!-- Cards -->
+        <div id="red-flags-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          ${AMLiqData.redFlags.map(rf => `
+            <div class="rf-card red-flag-card ${rf.severity === 'red' ? 'severity-red' : ''} bg-white rounded-xl border border-slate-200 p-4 cursor-pointer hover:shadow-sm transition-shadow"
+              data-category="${rf.category}" onclick="App.toggleRedFlagDetail('${rf.id}')">
+              <div class="flex items-start justify-between gap-2 mb-1">
+                <div class="font-semibold text-sm text-slate-800">${rf.title}</div>
+                <span class="tag flex-shrink-0 ${rf.severity === 'red' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'}">${rf.severity === 'red' ? 'Escalate' : 'Alert'}</span>
+              </div>
+              <div id="rf-detail-${rf.id}" class="text-sm text-slate-600 hidden mt-2 pt-2 border-t border-slate-100">
+                ${rf.detail}
+                <button onclick="event.stopPropagation(); App.navigateTo('reporting')"
+                  class="mt-2 text-xs text-blue-600 hover:underline block">View Reporting Guide →</button>
+              </div>
+              <div class="text-xs text-slate-400 mt-1">${{ customer: 'Customer Risk', transaction: 'Transaction Risk', delivery: 'Delivery Channel', jurisdiction: 'Jurisdiction Risk' }[rf.category]}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  },
+
+  filterRedFlags(category) {
+    document.querySelectorAll('.rf-filter').forEach(btn => {
+      btn.className = btn.className.replace('bg-blue-600 text-white border-blue-600', 'bg-white text-slate-600 border-slate-200 hover:border-blue-300');
+    });
+    const activeBtn = document.querySelector(`.rf-filter[data-category="${category}"]`);
+    if (activeBtn) activeBtn.className = activeBtn.className.replace('bg-white text-slate-600 border-slate-200 hover:border-blue-300', 'bg-blue-600 text-white border-blue-600');
+
+    document.querySelectorAll('.rf-card').forEach(card => {
+      if (category === 'all' || card.dataset.category === category) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  },
+
+  searchRedFlags() {
+    const q = document.getElementById('rf-search').value.toLowerCase();
+    document.querySelectorAll('.rf-card').forEach(card => {
+      const text = card.textContent.toLowerCase();
+      card.style.display = text.includes(q) ? '' : 'none';
+    });
+  },
+
+  toggleRedFlagDetail(id) {
+    const el = document.getElementById('rf-detail-' + id);
+    if (el) el.classList.toggle('hidden');
+  },
+
+  // ─── REPORTING ────────────────────────────────────────────────────────────
+  renderReporting() {
+    const el = document.getElementById('section-reporting');
+    el.innerHTML = `
+      <div class="p-6 max-w-4xl mx-auto">
+        ${this.pageHeader('Reporting to AUSTRAC', 'When and how to file Suspicious Matter Reports (SMRs), Threshold Transaction Reports (TTRs), and IFTIs.', '📤')}
+
+        <div class="tipping-off-warning mb-5">
+          <div class="flex items-center gap-2 mb-2"><span class="text-red-600 font-bold">🚫 TIPPING-OFF PROHIBITION — APPLIES TO ALL REPORTING</span></div>
+          <p class="text-sm text-red-800">You MUST NOT tell the customer, or any other person who doesn't need to know, that you have filed or intend to file an SMR, or that you have any suspicion about them. This is a criminal offence.</p>
+        </div>
+
+        <div class="flex gap-2 mb-5 border-b border-slate-200 flex-wrap">
+          ${['SMRs', 'TTRs', 'IFTIs', 'Escalation Guide'].map((tab, i) => `
+            <button onclick="App.switchTab('rep-tab', ${i})"
+              class="rep-tab pb-2 px-2 text-sm font-medium ${i === 0 ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-500 hover:text-slate-700'}" data-tab="${i}">
+              ${tab}
+            </button>
+          `).join('')}
+        </div>
+        <div id="rep-tab-0">${this.renderSMRGuide()}</div>
+        <div id="rep-tab-1" class="hidden">${this.renderTTRGuide()}</div>
+        <div id="rep-tab-2" class="hidden">${this.renderIFTIGuide()}</div>
+        <div id="rep-tab-3" class="hidden">${this.renderEscalationGuide()}</div>
+      </div>
+    `;
+  },
+
+  renderSMRGuide() {
+    return `
+      <div class="space-y-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">When Must You File an SMR?</h3>
+          <p class="text-sm text-slate-600 mb-3">You must submit an SMR if you suspect, on <strong>reasonable grounds</strong>, that:</p>
+          <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+            <li>A person is committing or planning money laundering or terrorism financing using a designated service</li>
+            <li>A customer (or future customer or their agent) is not who they claim to be</li>
+            <li>You have information relevant to the investigation of money laundering, terrorism financing, tax evasion, fraud, or drug trafficking</li>
+          </ul>
+          <div class="austrac-callout mt-4 text-sm">
+            <strong class="text-blue-800">"Reasonable grounds"</strong> = an objective standard. Would a reasonable person with similar knowledge and experience reach the same suspicion based on available facts? You do NOT need to be certain — suspicion on reasonable grounds is sufficient.
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-red-50 border border-red-200 rounded-xl p-4">
+            <div class="font-bold text-red-700 mb-2">⏰ Terrorism Financing</div>
+            <div class="text-2xl font-black text-red-600">24 hours</div>
+            <div class="text-sm text-red-700 mt-1">If suspicion relates to terrorism financing</div>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+            <div class="font-bold text-amber-700 mb-2">⏰ All Other Suspicions</div>
+            <div class="text-2xl font-black text-amber-600">3 business days</div>
+            <div class="text-sm text-amber-700 mt-1">From forming the suspicion</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">What to Include in an SMR</h3>
+          <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside">
+            <li>Customer details (as known)</li>
+            <li>Description of the suspicious activity</li>
+            <li>Your grounds for suspicion (what triggered it)</li>
+            <li>Relevant transaction details</li>
+            <li>Any supporting documents</li>
+            <li>References to previous SMRs on the same person (if any)</li>
+          </ul>
+          <div class="mt-3 p-3 bg-slate-50 rounded-lg text-sm text-slate-600 border border-slate-200">
+            <strong>How to file:</strong> Via <a href="https://online.austrac.gov.au" target="_blank" class="underline text-blue-600">AUSTRAC Online</a>. File a <strong>separate SMR</strong> each time you form a new suspicion about a customer.
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">Real Estate Example</h3>
+          <div class="text-sm text-slate-600 bg-amber-50 border border-amber-200 rounded-lg p-3 italic">
+            A buyer insists on paying a $200,000 deposit in physical cash. They are evasive when asked about the source of funds and provide ID with a different address than on the contract. The agent escalates internally, and the compliance officer determines an SMR should be filed within 3 business days.
+          </div>
+        </div>
+
+        <!-- SMR Decision Tool -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">Should I File an SMR? — Quick Decision</h3>
+          <div id="smr-decision" class="space-y-3">
+            <p class="text-sm text-slate-600">Answer these questions to help assess whether an SMR may be warranted:</p>
+            ${[
+              'Do I have a genuine suspicion (not just a concern) about this customer or transaction?',
+              'Could a reasonable person with the same information share my suspicion?',
+              'Is the suspicion related to money laundering, terrorism financing, or another serious offence?',
+              'Have I documented the red flags or suspicious indicators?',
+            ].map((q, i) => `
+              <div class="flex items-start gap-3 text-sm">
+                <input type="checkbox" id="smr-q${i}" class="mt-0.5 h-4 w-4 rounded border-slate-300" onchange="App.updateSMRDecision()">
+                <label for="smr-q${i}" class="text-slate-700 cursor-pointer">${q}</label>
+              </div>
+            `).join('')}
+            <div id="smr-result" class="hidden mt-3 p-3 rounded-lg text-sm"></div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  updateSMRDecision() {
+    const checks = [0,1,2,3].map(i => document.getElementById('smr-q'+i)?.checked);
+    const count = checks.filter(Boolean).length;
+    const result = document.getElementById('smr-result');
+    if (result) {
+      result.className = result.className.replace('hidden', '');
+      if (count >= 3) {
+        result.className = 'mt-3 p-3 rounded-lg text-sm bg-amber-50 border border-amber-300 text-amber-800';
+        result.innerHTML = '<strong>An SMR is likely warranted.</strong> Escalate to your compliance officer immediately. Remember: you do not need certainty, only reasonable suspicion.';
+      } else if (count >= 2) {
+        result.className = 'mt-3 p-3 rounded-lg text-sm bg-blue-50 border border-blue-200 text-blue-800';
+        result.innerHTML = '<strong>Consider escalating internally.</strong> Discuss with your compliance officer and document your observations.';
+      } else {
+        result.className = 'mt-3 p-3 rounded-lg text-sm bg-green-50 border border-green-200 text-green-800';
+        result.innerHTML = '<strong>An SMR may not be required at this stage.</strong> Continue monitoring the relationship and document any future concerns.';
+      }
+    }
+  },
+
+  renderTTRGuide() {
+    return `
+      <div class="space-y-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">When Is a TTR Required?</h3>
+          <div class="bg-red-50 border border-red-200 rounded-xl p-4 mb-4 text-center">
+            <div class="text-sm text-red-700 font-semibold">Physical cash payment of</div>
+            <div class="text-3xl font-black text-red-600 my-1">$10,000 or more</div>
+            <div class="text-sm text-red-700">in Australian or foreign equivalent currency (banknotes and coins)</div>
+          </div>
+          <p class="text-sm text-slate-600 mb-3"><strong>Physical currency only</strong> — TTR does NOT apply to:</p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            ${['Electronic bank transfers', 'Cheques', 'Credit/debit cards', 'Cryptocurrency'].map(x => `
+              <div class="bg-green-50 border border-green-200 rounded-lg p-2 text-center text-xs text-green-700 font-medium">✓ Not TTR: ${x}</div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
+          <div class="font-bold text-amber-700">Filing Deadline</div>
+          <div class="text-2xl font-black text-amber-600">10 business days</div>
+          <div class="text-sm text-amber-700">after the transaction</div>
+        </div>
+
+        <!-- TTR Calculator -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">TTR Calculator</h3>
+          <div class="flex items-center gap-3">
+            <div class="form-field flex-1">
+              <label>Cash amount received (AUD)</label>
+              <input type="number" id="ttr-amount" placeholder="e.g. 15000" oninput="App.calcTTR()">
+            </div>
+          </div>
+          <div id="ttr-result" class="hidden mt-3 p-3 rounded-lg text-sm"></div>
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-2">Structuring Warning</h3>
+          <div class="bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-red-800">
+            <strong>Structuring is a criminal offence.</strong> If a customer breaks cash payments into amounts just under $10,000 to avoid the TTR threshold, this is called "structuring" and is itself a criminal offence. This should <em>also</em> trigger an SMR.
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">Real Estate Example</h3>
+          <div class="text-sm text-slate-600 bg-amber-50 border border-amber-200 rounded-lg p-3 italic">
+            A customer pays a real estate agent $21,250 in cash as a deposit on a property. The agent must file a TTR within 10 business days. If the remaining settlement amount is paid by electronic bank transfer, no TTR is required for that payment.
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  calcTTR() {
+    const amount = parseFloat(document.getElementById('ttr-amount').value);
+    const result = document.getElementById('ttr-result');
+    if (!result) return;
+    if (isNaN(amount)) { result.className = 'hidden'; return; }
+    result.className = result.className.replace('hidden', '');
+    if (amount >= 10000) {
+      result.className = 'mt-3 p-3 rounded-lg text-sm bg-red-50 border border-red-300 text-red-800';
+      result.innerHTML = `<strong>TTR required.</strong> $${amount.toLocaleString()} exceeds the $10,000 threshold. File a Threshold Transaction Report via <a href="https://online.austrac.gov.au" target="_blank" class="underline">AUSTRAC Online</a> within 10 business days.`;
+    } else {
+      result.className = 'mt-3 p-3 rounded-lg text-sm bg-green-50 border border-green-200 text-green-800';
+      result.innerHTML = `<strong>No TTR required</strong> for $${amount.toLocaleString()} (below $10,000 threshold). However, if you suspect structuring or the transaction is otherwise suspicious, consider whether an SMR is warranted.`;
+    }
+  },
+
+  renderIFTIGuide() {
+    return `
+      <div class="bg-white rounded-xl border border-slate-200 p-5 space-y-3">
+        <h3 class="font-bold text-slate-800">International Fund Transfer Instructions (IFTIs)</h3>
+        <p class="text-sm text-slate-600">An IFTI report is required when you are involved in <strong>sending or receiving international electronic fund transfers</strong>.</p>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
+          <div class="font-bold text-amber-700">Filing Deadline</div>
+          <div class="text-2xl font-black text-amber-600">10 business days</div>
+          <div class="text-sm text-amber-700">after the transfer instruction</div>
+        </div>
+        <div class="austrac-callout text-sm">
+          <strong class="text-blue-800">Note for real estate agents:</strong> In most real estate transactions, the real estate agent is not directly involved in the fund transfer — the bank handles this. However, if you are directly involved in receiving or arranging international transfers, you have IFTI reporting obligations.
+        </div>
+        <p class="text-sm text-slate-600">File IFTIs via <a href="https://online.austrac.gov.au" target="_blank" class="underline text-blue-600">AUSTRAC Online</a>.</p>
+      </div>
+    `;
+  },
+
+  renderEscalationGuide() {
+    return `
+      <div class="space-y-4">
+        <h3 class="font-bold text-slate-800">Internal Escalation Process</h3>
+        <div class="space-y-3">
+          ${[
+            { step: 1, who: 'Sales Agent / Staff', action: 'Identifies a red flag or suspicious behaviour', detail: 'Document your observation immediately. Note the date, time, customer details, what you observed, and why it concerned you.', color: 'blue' },
+            { step: 2, who: 'Sales Agent / Staff', action: 'Stop — do not tip off the customer', detail: 'Continue behaving normally with the customer. Do not indicate your concern. Do not ask probing questions that might alert them.', color: 'red' },
+            { step: 3, who: 'Sales Agent / Staff', action: 'Escalate to AML/CTF Compliance Officer', detail: 'Report your observations to the designated escalation point (compliance officer or escalation lead). Submit your written documentation.', color: 'amber' },
+            { step: 4, who: 'Compliance Officer', action: 'Assess the suspicion', detail: 'The compliance officer reviews the information, assesses the risk level, and decides whether grounds exist to file an SMR.', color: 'purple' },
+            { step: 5, who: 'Compliance Officer', action: 'File SMR if warranted', detail: 'If reasonable grounds for suspicion exist, file an SMR via AUSTRAC Online within the required timeframe (24 hours for terrorism; 3 business days otherwise).', color: 'green' },
+            { step: 6, who: 'Compliance Officer', action: 'Document the decision', detail: 'Whether or not an SMR is filed, document the decision and reasons. This is your SMR Decision Record.', color: 'slate' },
+          ].map(s => `
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-full bg-${s.color}-100 text-${s.color}-700 flex items-center justify-center font-bold text-sm flex-shrink-0">${s.step}</div>
+              <div class="bg-white rounded-xl border border-slate-200 p-4 flex-1">
+                <div class="text-xs text-slate-500 font-semibold uppercase tracking-wider">${s.who}</div>
+                <div class="font-semibold text-slate-800 mb-1">${s.action}</div>
+                <div class="text-sm text-slate-600">${s.detail}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  },
+
+  // ─── RECORD KEEPING ───────────────────────────────────────────────────────
+  renderRecordKeeping() {
+    const el = document.getElementById('section-record-keeping');
+    const recordTypes = [
+      { cat: 'Customer ID records', examples: 'CDD forms, copies of ID documents, beneficial owner records, PEP/TFS screening results' },
+      { cat: 'Transaction records', examples: 'Contracts of sale, deposit receipts, settlement statements, payment records' },
+      { cat: 'AML/CTF program documentation', examples: 'Risk assessment, policy document, process document, governance records' },
+      { cat: 'Reporting records', examples: 'Internal copies of SMRs, TTRs, IFTIs filed; internal escalation records' },
+      { cat: 'Training records', examples: 'Attendance records, training materials, quiz results, training dates' },
+      { cat: 'Personnel records', examples: 'Due diligence records for AML/CTF roles, compliance officer appointment records' },
+      { cat: 'Review and evaluation records', examples: 'Program review records, independent evaluation reports, change logs' },
+      { cat: 'Correspondence', examples: 'Communications with AUSTRAC, internal memos on compliance matters' },
+    ];
+    el.innerHTML = `
+      <div class="p-6 max-w-4xl mx-auto">
+        ${this.pageHeader('Record Keeping', 'What to keep, how to keep it, and for how long.', '🗂️')}
+
+        <div class="bg-red-50 border border-red-200 rounded-xl p-4 mb-5 text-center">
+          <div class="text-sm font-semibold text-red-700">Minimum retention period for ALL AML/CTF records</div>
+          <div class="text-3xl font-black text-red-600 my-1">7 years</div>
+          <div class="text-sm text-red-600">from when the record was made or the business relationship ended (whichever is later)</div>
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200 p-5 mb-5">
+          <h3 class="font-bold text-slate-800 mb-3">What Records to Keep</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead><tr class="bg-slate-50 text-left">
+                <th class="px-3 py-2 font-semibold text-slate-600">Record Type</th>
+                <th class="px-3 py-2 font-semibold text-slate-600">Examples</th>
+              </tr></thead>
+              <tbody>
+                ${recordTypes.map((r, i) => `
+                  <tr class="${i % 2 === 1 ? 'bg-slate-50' : ''}">
+                    <td class="px-3 py-2 font-medium text-slate-700">${r.cat}</td>
+                    <td class="px-3 py-2 text-slate-600">${r.examples}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
+          ${[
+            { icon: '🔒', title: 'Stored Securely', desc: 'Protection against unauthorised access, loss, or damage. Digital records must be backed up.' },
+            { icon: '🔍', title: 'Retrievable', desc: 'Must be accessible within a reasonable timeframe if AUSTRAC requests them.' },
+            { icon: '🔐', title: 'Privacy Compliant', desc: 'Must comply with Australian Privacy Principles (APP) under the Privacy Act 1988.' },
+          ].map(c => `
+            <div class="bg-white rounded-xl border border-slate-200 p-4 text-center">
+              <div class="text-2xl mb-2">${c.icon}</div>
+              <div class="font-semibold text-slate-700 mb-1">${c.title}</div>
+              <div class="text-xs text-slate-500">${c.desc}</div>
+            </div>
+          `).join('')}
+        </div>
+
+        ${Checklist.renderSection('recordAudit', 'Record Keeping Self-Audit Checklist')}
+      </div>
+    `;
+    Checklist.updateProgress();
+  },
+
+  // ─── TRAINING ─────────────────────────────────────────────────────────────
+  renderTraining() {
+    const el = document.getElementById('section-training');
+    el.innerHTML = `
+      <div class="p-6 max-w-4xl mx-auto">
+        ${this.pageHeader('Staff Training & Awareness', 'Plan, deliver, and track AML/CTF training for your team.', '🎓')}
+
+        <div class="flex gap-2 mb-5 border-b border-slate-200">
+          ${['Training Plan', 'Training Modules', 'Attendance Record', 'Knowledge Quiz'].map((tab, i) => `
+            <button onclick="App.switchTab('tr-tab', ${i})"
+              class="tr-tab pb-2 px-2 text-sm font-medium ${i === 0 ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-500 hover:text-slate-700'}" data-tab="${i}">
+              ${tab}
+            </button>
+          `).join('')}
+        </div>
+        <div id="tr-tab-0">${Forms.renderTrainingPlan()}</div>
+        <div id="tr-tab-1" class="hidden">${this.renderTrainingModules()}</div>
+        <div id="tr-tab-2" class="hidden">${Forms.renderAttendanceRecord()}</div>
+        <div id="tr-tab-3" class="hidden"><div id="quiz-container">${Quiz.render()}</div></div>
+      </div>
+    `;
+  },
+
+  renderTrainingModules() {
+    const modules = [
+      { n: 1, title: 'ML/TF/PF Overview', content: 'What is money laundering, terrorism financing, and proliferation financing? Why is real estate a target?', audience: 'All staff' },
+      { n: 2, title: 'Legal Obligations', content: 'Overview of AML/CTF Act obligations for real estate professionals under the Tranche 2 reforms.', audience: 'All staff' },
+      { n: 3, title: 'Your AML/CTF Program', content: 'Walk through your agency\'s specific program — risk assessment, policies, and processes.', audience: 'All staff' },
+      { n: 4, title: 'Customer Due Diligence', content: 'How to perform initial CDD for individuals, companies, trusts, and partnerships. How to verify identity documents.', audience: 'Customer-facing staff' },
+      { n: 5, title: 'Beneficial Ownership', content: 'How to identify and verify beneficial owners for companies and trusts. Why trusts are high-risk.', audience: 'Customer-facing staff' },
+      { n: 6, title: 'PEP & Sanctions Screening', content: 'What PEPs and TFS are. How to screen customers. What to do if a match is found.', audience: 'Customer-facing staff, compliance officer' },
+      { n: 7, title: 'Red Flags & Suspicious Activity', content: "AUSTRAC's real estate red flag indicators across all 4 categories. How to recognise suspicious behaviour.", audience: 'All staff' },
+      { n: 8, title: 'Reporting Obligations', content: 'When and how to file SMRs, TTRs, and IFTIs. Internal escalation process. Filing timeframes.', audience: 'All staff' },
+      { n: 9, title: 'Tipping-Off Prohibition', content: 'What you must not disclose. Penalties for tipping off. What you CAN do when you have concerns.', audience: 'All staff' },
+      { n: 10, title: 'Record Keeping', content: 'What to keep, how to store it, for how long. Privacy obligations.', audience: 'Admin staff, compliance officer' },
+      { n: 11, title: 'Ongoing CDD & Monitoring', content: 'How to conduct ongoing monitoring. When to re-assess customer risk. Triggers for additional review.', audience: 'Customer-facing staff' },
+      { n: 12, title: 'Program Review', content: 'When and how to review the AML/CTF program. Review triggers. Documenting changes.', audience: 'Compliance officer, management' },
+    ];
+    return `
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        ${modules.map(m => `
+          <div class="bg-white rounded-xl border border-slate-200 p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="tag bg-blue-100 text-blue-700">Module ${m.n}</span>
+              <span class="tag bg-slate-100 text-slate-600">${m.audience}</span>
+            </div>
+            <div class="font-semibold text-slate-800 mb-1">${m.title}</div>
+            <div class="text-sm text-slate-600">${m.content}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  },
+
+  // ─── PROGRAM REVIEW ───────────────────────────────────────────────────────
+  renderProgramReview() {
+    const el = document.getElementById('section-program-review');
+    el.innerHTML = `
+      <div class="p-6 max-w-4xl mx-auto">
+        ${this.pageHeader('Program Review & Maintenance', 'Your AML/CTF program must remain current as risks, operations, and regulatory expectations change.', '🔄')}
+
+        <div class="flex gap-2 mb-5 border-b border-slate-200">
+          ${['Review Triggers', 'Review Checklist', 'Change Log'].map((tab, i) => `
+            <button onclick="App.switchTab('rev-tab', ${i})"
+              class="rev-tab pb-2 px-2 text-sm font-medium ${i === 0 ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-500 hover:text-slate-700'}" data-tab="${i}">
+              ${tab}
+            </button>
+          `).join('')}
+        </div>
+        <div id="rev-tab-0">${this.renderReviewTriggers()}</div>
+        <div id="rev-tab-1" class="hidden">${Checklist.renderSection('programReview', 'Program Review Checklist')}</div>
+        <div id="rev-tab-2" class="hidden">${Forms.renderChangeLog()}</div>
+      </div>
+    `;
+    Checklist.updateProgress();
+  },
+
+  renderReviewTriggers() {
+    const triggers = [
+      { trigger: 'Scheduled periodic review', example: 'Your program specifies reviews every 6 or 12 months' },
+      { trigger: 'Changes to designated services', example: 'You start or stop offering a type of service (e.g., commercial property)' },
+      { trigger: 'Changes to customer types', example: 'You begin servicing a new customer type (e.g., foreign investors, trusts)' },
+      { trigger: 'Changes to countries', example: 'You begin dealing with customers linked to a new high-risk jurisdiction' },
+      { trigger: 'Internal incidents or control failures', example: 'A CDD step was missed; a suspicious transaction was not escalated' },
+      { trigger: 'Regulatory or legislative updates', example: 'AUSTRAC issues new guidance or the AML/CTF Rules change' },
+      { trigger: 'New or emerging ML/TF/PF risks', example: 'New typologies identified by AUSTRAC or law enforcement' },
+      { trigger: 'AUSTRAC communications', example: 'AUSTRAC issues a national risk assessment, sector alert, or direct feedback' },
+      { trigger: 'Adverse independent evaluation findings', example: 'An independent evaluator identifies gaps or weaknesses in your program' },
+      { trigger: 'Significant business changes', example: 'New staff, new offices, new technology platforms' },
+    ];
+    return `
+      <div class="space-y-2">
+        ${triggers.map(t => `
+          <div class="bg-white rounded-xl border border-slate-200 p-4 flex items-start gap-3">
+            <span class="text-amber-500 text-lg flex-shrink-0">⚡</span>
+            <div>
+              <div class="font-semibold text-slate-800 text-sm">${t.trigger}</div>
+              <div class="text-sm text-slate-500">Example: ${t.example}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  },
+
+  // ─── EVALUATION ───────────────────────────────────────────────────────────
+  renderEvaluation() {
+    const el = document.getElementById('section-evaluation');
+    el.innerHTML = `
+      <div class="p-6 max-w-3xl mx-auto">
+        ${this.pageHeader('Independent Evaluation Planning', 'Plan for the required independent evaluation of your AML/CTF program.', '🔎')}
+
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-5">
+          <div class="font-semibold text-blue-800 mb-1">AUSTRAC Requirement</div>
+          <p class="text-sm text-blue-700">An independent evaluation must be conducted at least once every <strong>3 years</strong>. The evaluator must be independent of the program (not the compliance officer or anyone who designed the program).</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
+          ${[
+            { who: 'External compliance consultant', ok: true },
+            { who: 'Internal audit function (if independent of AML/CTF program)', ok: true },
+            { who: 'Industry association compliance review service', ok: true },
+            { who: 'The AML/CTF compliance officer', ok: false },
+            { who: 'The person who built the program', ok: false },
+            { who: 'Staff directly involved in AML/CTF operations', ok: false },
+          ].map(p => `
+            <div class="${p.ok ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'} border rounded-xl p-3 text-sm">
+              <span class="${p.ok ? 'text-green-600' : 'text-red-600'} font-bold">${p.ok ? '✓ OK' : '✗ Not permitted'}</span>
+              <div class="${p.ok ? 'text-green-800' : 'text-red-800'} mt-1">${p.who}</div>
+            </div>
+          `).join('')}
+        </div>
+
+        ${Forms.renderEvaluationPlan()}
+      </div>
+    `;
+  },
+
+  // ─── FORMS LIBRARY ────────────────────────────────────────────────────────
+  renderFormsLibrary() {
+    const el = document.getElementById('section-forms-library');
+    const forms = [
+      { n: 1, name: 'CDD — Individual', section: 'cdd', tab: 0 },
+      { n: 2, name: 'CDD — Company', section: 'cdd', tab: 1 },
+      { n: 3, name: 'CDD — Trust', section: 'cdd', tab: 2 },
+      { n: 4, name: 'CDD — Partnership', section: 'cdd', tab: 3 },
+      { n: 5, name: 'CDD — Foreign Customer', section: 'cdd', tab: 4 },
+      { n: 6, name: 'Enhanced Due Diligence Record', section: 'cdd', tab: 5 },
+      { n: 7, name: 'Ongoing CDD Review', section: 'cdd', tab: 6 },
+      { n: 8, name: 'PEP/TFS Screening Record', section: 'cdd', tab: 7 },
+      { n: 9, name: 'Compliance Officer Appointment', section: 'governance', tab: 0 },
+      { n: 10, name: 'AML/CTF Roles Assignment', section: 'governance', tab: 1 },
+      { n: 11, name: 'Personnel Due Diligence Record', section: 'governance', tab: 2 },
+      { n: 12, name: 'Training Plan', section: 'training', tab: 0 },
+      { n: 13, name: 'Training Attendance Record', section: 'training', tab: 2 },
+      { n: 14, name: 'Program Review Record', section: 'program-review', tab: 1 },
+      { n: 15, name: 'Change Log', section: 'program-review', tab: 2 },
+      { n: 16, name: 'Independent Evaluation Plan', section: 'evaluation', tab: 0 },
+      { n: 17, name: 'Enrolment Checklist', section: 'enrolment', tab: 0 },
+      { n: 18, name: 'Risk Assessment Summary', section: 'risk-assessment', tab: 0 },
+    ];
+
+    el.innerHTML = `
+      <div class="p-6 max-w-4xl mx-auto">
+        ${this.pageHeader('Forms & Templates Library', 'All interactive forms and templates in one place. All data stays in your browser.', '📁')}
+
+        <div class="flex gap-2 mb-4 flex-wrap">
+          <button onclick="App.exportAllData()" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700">Export All Data (JSON)</button>
+          <label class="bg-slate-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-700 cursor-pointer">
+            Import Data<input type="file" accept=".json" class="hidden" onchange="App.importData(event)">
+          </label>
+          <button onclick="window.print()" class="bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-300">Print Current View</button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          ${forms.map(f => `
+            <div class="bg-white rounded-xl border border-slate-200 p-4 flex items-center justify-between gap-2 hover:border-blue-200 hover:shadow-sm transition-all">
+              <div class="flex items-center gap-2">
+                <span class="tag bg-slate-100 text-slate-600 text-xs">#${f.n}</span>
+                <span class="text-sm font-medium text-slate-700">${f.name}</span>
+              </div>
+              <button onclick="App.goToForm('${f.section}', ${f.tab})"
+                class="text-xs text-blue-600 hover:underline whitespace-nowrap flex-shrink-0">Open →</button>
+            </div>
+          `).join('')}
+        </div>
+        <div class="mt-4 text-xs text-slate-400">All forms store data in your browser's localStorage. Export regularly as a backup. Data is never transmitted to any server.</div>
+      </div>
+    `;
+  },
+
+  goToForm(section, tab) {
+    this.navigateTo(section);
+    setTimeout(() => {
+      const prefix = { cdd: 'cdd', governance: 'gov', training: 'tr', 'program-review': 'rev' }[section];
+      if (prefix) this.switchTab(prefix + '-tab', tab);
+    }, 100);
+  },
+
+  // ─── GLOSSARY ─────────────────────────────────────────────────────────────
+  renderGlossary() {
+    const el = document.getElementById('section-glossary');
+    const sorted = [...AMLiqData.glossary].sort((a, b) => a.term.localeCompare(b.term));
+    el.innerHTML = `
+      <div class="p-6 max-w-3xl mx-auto">
+        ${this.pageHeader('Jargon Buster', 'Plain-English definitions of every AML/CTF term used in this tool and AUSTRAC guidance.', '📖')}
+        <input type="text" id="gloss-search" placeholder="Search terms..." oninput="App.filterGlossary()"
+          class="w-full border border-slate-200 rounded-lg px-4 py-2 text-sm mb-4 focus:outline-none focus:border-blue-400">
+        <div id="glossary-list" class="space-y-2">
+          ${sorted.map(g => `
+            <div class="gloss-item bg-white rounded-xl border border-slate-200 p-4">
+              <div class="font-bold text-slate-800 text-sm mb-1">${g.term}</div>
+              <div class="text-sm text-slate-600">${g.definition}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  },
+
+  filterGlossary() {
+    const q = document.getElementById('gloss-search').value.toLowerCase();
+    document.querySelectorAll('.gloss-item').forEach(item => {
+      item.style.display = item.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  },
+
+  // ─── FAQ ──────────────────────────────────────────────────────────────────
+  renderFAQ() {
+    const el = document.getElementById('section-faq');
+    el.innerHTML = `
+      <div class="p-6 max-w-3xl mx-auto">
+        ${this.pageHeader('Frequently Asked Questions', 'Common questions about AML/CTF obligations for real estate professionals, answered in plain English.', '❓')}
+        <input type="text" id="faq-search" placeholder="Search FAQs..." oninput="App.filterFAQ()"
+          class="w-full border border-slate-200 rounded-lg px-4 py-2 text-sm mb-4 focus:outline-none focus:border-blue-400">
+        <div id="faq-list" class="space-y-2">
+          ${AMLiqData.faq.map((f, i) => `
+            <div class="faq-item bg-white rounded-xl border border-slate-200 overflow-hidden">
+              <button onclick="App.toggleFAQ(${i})"
+                class="w-full text-left px-5 py-4 flex items-start justify-between gap-3 hover:bg-slate-50">
+                <span class="font-medium text-slate-800 text-sm">${f.q}</span>
+                <span id="faq-chevron-${i}" class="text-slate-400 flex-shrink-0 mt-0.5">▼</span>
+              </button>
+              <div id="faq-body-${i}" class="hidden px-5 pb-4">
+                <p class="text-sm text-slate-600 mb-2">${f.a}</p>
+                <div class="text-xs text-slate-400">Source: ${f.source}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  },
+
+  toggleFAQ(i) {
+    const body = document.getElementById('faq-body-' + i);
+    const chevron = document.getElementById('faq-chevron-' + i);
+    if (body) body.classList.toggle('hidden');
+    if (chevron) chevron.textContent = body.classList.contains('hidden') ? '▼' : '▲';
+  },
+
+  filterFAQ() {
+    const q = document.getElementById('faq-search').value.toLowerCase();
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.style.display = item.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  },
+
+  // ─── AUSTRAC LINKS ────────────────────────────────────────────────────────
+  renderAustracLinks() {
+    const el = document.getElementById('section-austrac-links');
+    el.innerHTML = `
+      <div class="p-6 max-w-4xl mx-auto">
+        ${this.pageHeader('AUSTRAC Links & Source Documents', 'Official AUSTRAC resources that form the basis of this tool.', '🔗')}
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-5 text-sm text-amber-800">
+          <strong>Important:</strong> Always refer directly to AUSTRAC's official publications for the most current and authoritative guidance. This tool is based on materials as of February 2026 and should be used alongside, not instead of, the official AUSTRAC Real Estate Program Starter Kit.
+        </div>
+        <div class="space-y-2">
+          ${AMLiqData.austracLinks.map(l => `
+            <div class="bg-white rounded-xl border border-slate-200 p-4 flex items-start gap-3">
+              <span class="text-blue-500 text-lg flex-shrink-0">🔗</span>
+              <div class="flex-1 min-w-0">
+                <a href="${l.url}" target="_blank" rel="noopener" class="font-semibold text-blue-600 hover:underline text-sm">${l.title}</a>
+                <div class="text-xs text-slate-500 mt-1">${l.desc}</div>
+                <div class="text-xs text-slate-400 truncate mt-0.5">${l.url}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  },
+
+  // ─── HELPERS ──────────────────────────────────────────────────────────────
+  pageHeader(title, subtitle, icon = '') {
+    return `
+      <div class="page-header mb-6 pb-4 border-b border-slate-200">
+        <div class="flex items-center gap-3 mb-1">
+          ${icon ? `<span class="text-3xl">${icon}</span>` : ''}
+          <h1 class="text-2xl font-bold text-slate-800">${title}</h1>
+        </div>
+        <p class="text-slate-500 text-sm">${subtitle}</p>
+        <div class="text-xs text-slate-400 mt-1">Content sourced from AUSTRAC guidance — last reviewed February 2026. Not legal advice.</div>
+      </div>
+    `;
+  },
+
+  switchTab(prefix, tabIndex) {
+    const baseClass = prefix.replace('-tab', '');
+    const tabs = document.querySelectorAll(`.${baseClass}-tab`);
+    tabs.forEach((tab, i) => {
+      const panel = document.getElementById(`${prefix}-${i}`);
+      if (i === tabIndex) {
+        tab.classList.remove('text-slate-500', 'hover:text-slate-700');
+        tab.classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+        if (panel) panel.classList.remove('hidden');
+      } else {
+        tab.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600');
+        tab.classList.add('text-slate-500', 'hover:text-slate-700');
+        if (panel) panel.classList.add('hidden');
+      }
+    });
+  },
+
+  toggleAccordion(btn) {
+    const content = btn.nextElementSibling;
+    if (content) content.classList.toggle('open');
+    const chevron = btn.querySelector('.accordion-chevron');
+    if (chevron) chevron.textContent = content.classList.contains('open') ? '▲' : '▼';
+  },
+
+  bindAccordions(el) {
+    el.querySelectorAll('.accordion-btn').forEach(btn => {
+      btn.addEventListener('click', () => this.toggleAccordion(btn));
+    });
+  },
+
+  showModal(title, content, footerHTML = '') {
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-content').innerHTML = content;
+    document.getElementById('modal-footer').innerHTML = footerHTML;
+    const overlay = document.getElementById('modal-overlay');
+    overlay.classList.remove('hidden');
+    overlay.classList.add('flex');
+  },
+
+  closeModal() {
+    const overlay = document.getElementById('modal-overlay');
+    overlay.classList.add('hidden');
+    overlay.classList.remove('flex');
+  },
+
+  showToast(msg, duration = 3000) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.remove('hidden');
+    setTimeout(() => toast.classList.add('hidden'), duration);
+  },
+
+  exportAllData() {
+    Export.exportAll();
+  },
+
+  importData(event) {
+    Export.importData(event);
+  },
+};
+
+// Mobile sidebar toggle
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}

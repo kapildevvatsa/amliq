@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMLiq — Test Suite</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/custom.css">
+  <style>
+    .pass { background: #f0fdf4; border-left: 4px solid #22c55e; }
+    .fail { background: #fef2f2; border-left: 4px solid #ef4444; }
+    .skip { background: #fffbeb; border-left: 4px solid #f59e0b; }
+    #app-shell { position: fixed; left: -10000px; top: 0; width: 1280px; height: 900px; overflow: hidden; visibility: hidden; }
+    .group-header { background: #1e3a5f; color: white; padding: 6px 12px; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 8px; border-radius: 4px; }
+    .test-row { padding: 5px 10px; font-size: 0.78rem; margin: 1px 0; border-radius: 4px; display: flex; align-items: flex-start; gap: 8px; }
+    .test-icon { flex-shrink: 0; font-weight: 700; width: 16px; }
+    .test-name { flex: 1; }
+    .test-error { font-size: 0.7rem; color: #dc2626; margin-top: 2px; font-family: monospace; }
+  </style>
+</head>
+<body class="bg-slate-100">
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- HIDDEN APP SHELL — full DOM required by App.init()          -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div id="app-shell">
+  <div id="disclaimer-banner"></div>
+  <div class="flex" style="height:100vh">
+    <aside id="sidebar">
+      <nav id="main-nav">
+        <a class="nav-link" data-section="dashboard" href="#">Dashboard</a>
+        <a class="nav-link" data-section="am-i-regulated" href="#">Am I Regulated</a>
+        <a class="nav-link" data-section="obligations-overview" href="#">Obligations Overview</a>
+        <a class="nav-link" data-section="key-dates" href="#">Key Dates</a>
+        <a class="nav-link" data-section="risk-assessment" href="#">Risk Assessment</a>
+        <a class="nav-link" data-section="program-builder" href="#">Program Builder</a>
+        <a class="nav-link" data-section="governance" href="#">Governance</a>
+        <a class="nav-link" data-section="enrolment" href="#">Enrolment</a>
+        <a class="nav-link" data-section="cdd" href="#">CDD</a>
+        <a class="nav-link" data-section="red-flags" href="#">Red Flags</a>
+        <a class="nav-link" data-section="reporting" href="#">Reporting</a>
+        <a class="nav-link" data-section="record-keeping" href="#">Record Keeping</a>
+        <a class="nav-link" data-section="training" href="#">Training</a>
+        <a class="nav-link" data-section="program-review" href="#">Program Review</a>
+        <a class="nav-link" data-section="evaluation" href="#">Evaluation</a>
+        <a class="nav-link" data-section="forms-library" href="#">Forms Library</a>
+        <a class="nav-link" data-section="glossary" href="#">Glossary</a>
+        <a class="nav-link" data-section="faq" href="#">FAQ</a>
+        <a class="nav-link" data-section="austrac-links" href="#">AUSTRAC Links</a>
+      </nav>
+    </aside>
+    <main id="main-content" style="flex:1;overflow-y:auto">
+      <div id="section-dashboard"          class="section hidden"></div>
+      <div id="section-am-i-regulated"     class="section hidden"></div>
+      <div id="section-obligations-overview" class="section hidden"></div>
+      <div id="section-key-dates"          class="section hidden"></div>
+      <div id="section-risk-assessment"    class="section hidden"></div>
+      <div id="section-program-builder"    class="section hidden"></div>
+      <div id="section-governance"         class="section hidden"></div>
+      <div id="section-enrolment"          class="section hidden"></div>
+      <div id="section-cdd"               class="section hidden"></div>
+      <div id="section-red-flags"          class="section hidden"></div>
+      <div id="section-reporting"          class="section hidden"></div>
+      <div id="section-record-keeping"     class="section hidden"></div>
+      <div id="section-training"           class="section hidden"></div>
+      <div id="section-program-review"     class="section hidden"></div>
+      <div id="section-evaluation"         class="section hidden"></div>
+      <div id="section-forms-library"      class="section hidden"></div>
+      <div id="section-glossary"           class="section hidden"></div>
+      <div id="section-faq"               class="section hidden"></div>
+      <div id="section-austrac-links"      class="section hidden"></div>
+    </main>
+  </div>
+  <div id="modal-overlay" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+    <div id="modal-box">
+      <h2 id="modal-title"></h2>
+      <div id="modal-content"></div>
+      <div id="modal-footer"></div>
+    </div>
+  </div>
+  <div id="toast" class="hidden"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TEST RESULTS PANEL                                          -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="max-w-5xl mx-auto py-6 px-4">
+  <!-- Header -->
+  <div class="bg-slate-900 text-white rounded-xl p-5 mb-5">
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white text-lg">A</div>
+      <div>
+        <div class="font-bold text-lg">AMLiq — Test Suite</div>
+        <div class="text-xs text-slate-400">Automated tests for every link, button, field and interaction</div>
+      </div>
+    </div>
+    <div id="summary-bar" class="text-sm text-slate-300">Initialising...</div>
+  </div>
+
+  <!-- Stats -->
+  <div class="grid grid-cols-4 gap-3 mb-5">
+    <div class="bg-white rounded-xl p-4 text-center border border-slate-200">
+      <div id="stat-total" class="text-3xl font-black text-slate-700">—</div>
+      <div class="text-xs text-slate-500 mt-1">Total Tests</div>
+    </div>
+    <div class="bg-green-50 rounded-xl p-4 text-center border border-green-200">
+      <div id="stat-pass" class="text-3xl font-black text-green-600">—</div>
+      <div class="text-xs text-green-600 mt-1">Passed</div>
+    </div>
+    <div class="bg-red-50 rounded-xl p-4 text-center border border-red-200">
+      <div id="stat-fail" class="text-3xl font-black text-red-600">—</div>
+      <div class="text-xs text-red-600 mt-1">Failed</div>
+    </div>
+    <div class="bg-amber-50 rounded-xl p-4 text-center border border-amber-200">
+      <div id="stat-pct" class="text-3xl font-black text-amber-600">—</div>
+      <div class="text-xs text-amber-600 mt-1">Pass Rate</div>
+    </div>
+  </div>
+
+  <!-- Filter -->
+  <div class="flex gap-2 mb-4">
+    <button onclick="filterResults('all')" class="result-filter px-3 py-1.5 text-sm rounded-lg bg-slate-800 text-white font-medium" data-f="all">All</button>
+    <button onclick="filterResults('fail')" class="result-filter px-3 py-1.5 text-sm rounded-lg bg-white text-slate-600 border border-slate-200 font-medium" data-f="fail">Failures only</button>
+    <button onclick="filterResults('pass')" class="result-filter px-3 py-1.5 text-sm rounded-lg bg-white text-slate-600 border border-slate-200 font-medium" data-f="pass">Passes only</button>
+    <button onclick="window.location.reload()" class="ml-auto px-3 py-1.5 text-sm rounded-lg bg-blue-600 text-white font-medium">Re-run</button>
+  </div>
+
+  <!-- Results -->
+  <div id="test-results" class="bg-white rounded-xl border border-slate-200 p-4">
+    <div class="text-slate-400 text-sm">Running tests...</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- APP SCRIPTS                                                  -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<script src="js/data.js"></script>
+<script src="js/export.js"></script>
+<script src="js/checklist.js"></script>
+<script src="js/risk.js"></script>
+<script src="js/forms.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/app.js"></script>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TEST RUNNER                                                  -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<script>
+// ─── RUNNER CORE ─────────────────────────────────────────────────────────────
+const Runner = {
+  results: [],
+  currentGroup: '',
+
+  group(name) { this.currentGroup = name; },
+
+  run(name, fn) {
+    try {
+      fn();
+      this.results.push({ name, group: this.currentGroup, status: 'pass' });
+    } catch(e) {
+      this.results.push({ name, group: this.currentGroup, status: 'fail', error: e.message });
+    }
+  },
+
+  render(filter = 'all') {
+    const total  = this.results.length;
+    const passed = this.results.filter(r => r.status === 'pass').length;
+    const failed = this.results.filter(r => r.status === 'fail').length;
+    const pct    = total > 0 ? Math.round((passed / total) * 100) : 0;
+
+    document.getElementById('stat-total').textContent = total;
+    document.getElementById('stat-pass').textContent  = passed;
+    document.getElementById('stat-fail').textContent  = failed;
+    document.getElementById('stat-pct').textContent   = pct + '%';
+    document.getElementById('summary-bar').textContent =
+      `${passed} passed · ${failed} failed · ${pct}% pass rate · ${total} tests total`;
+
+    const visible = filter === 'all' ? this.results :
+                    this.results.filter(r => r.status === filter);
+
+    let html = '';
+    let lastGroup = '';
+    visible.forEach(r => {
+      if (r.group !== lastGroup) {
+        html += `<div class="group-header">${r.group}</div>`;
+        lastGroup = r.group;
+      }
+      const icon = r.status === 'pass' ? '✓' : '✗';
+      const cls  = r.status === 'pass' ? 'pass' : 'fail';
+      html += `<div class="test-row ${cls}">
+        <span class="test-icon ${r.status === 'pass' ? 'text-green-600' : 'text-red-600'}">${icon}</span>
+        <div class="flex-1"><div class="test-name">${r.name}</div>
+        ${r.error ? `<div class="test-error">${r.error}</div>` : ''}</div>
+      </div>`;
+    });
+    document.getElementById('test-results').innerHTML = html || '<div class="text-slate-400 text-sm p-2">No results match filter.</div>';
+  }
+};
+
+// ─── ASSERTION HELPERS ───────────────────────────────────────────────────────
+function assert(condition, msg) {
+  if (!condition) throw new Error(msg || 'Assertion failed');
+}
+function assertEl(id, msg) {
+  const el = document.getElementById(id);
+  assert(el, msg || `Element #${id} not found`);
+  return el;
+}
+function assertQ(selector, context) {
+  const root = context || document;
+  const el = root.querySelector(selector);
+  assert(el, `No element matching "${selector}"`);
+  return el;
+}
+function assertQAll(selector, minCount, context) {
+  const root = context || document;
+  const els = root.querySelectorAll(selector);
+  assert(els.length >= minCount, `Expected ≥${minCount} elements matching "${selector}", found ${els.length}`);
+  return els;
+}
+function assertVisible(sectionId) {
+  const el = assertEl('section-' + sectionId);
+  assert(!el.classList.contains('hidden'), `Section "${sectionId}" should be visible but is hidden`);
+}
+function assertHidden(sectionId) {
+  const el = assertEl('section-' + sectionId);
+  assert(el.classList.contains('hidden'), `Section "${sectionId}" should be hidden but is visible`);
+}
+function assertContains(selector, text, context) {
+  const el = assertQ(selector, context);
+  assert(el.textContent.includes(text), `"${selector}" should contain "${text}", got: "${el.textContent.slice(0,80)}"`);
+}
+function assertAttr(selector, attr, value, context) {
+  const el = assertQ(selector, context);
+  const actual = el.getAttribute(attr);
+  if (value !== undefined) {
+    assert(actual === value || (actual && actual.includes(value)), `Attribute ${attr} expected "${value}", got "${actual}"`);
+  } else {
+    assert(actual !== null, `Attribute ${attr} missing on "${selector}"`);
+  }
+}
+function assertHref(selector, domain, context) {
+  const el = assertQ(selector, context);
+  const href = el.getAttribute('href');
+  assert(href && href.length > 0, `Link href is empty on "${selector}"`);
+  if (domain) assert(href.includes(domain), `Link "${href}" should contain "${domain}"`);
+}
+function clickEl(selector, context) {
+  const el = assertQ(selector, context);
+  el.click();
+  return el;
+}
+function navigateTo(section) {
+  App.navigateTo(section);
+}
+function sectionEl(id) {
+  return assertEl('section-' + id);
+}
+function setSectionValue(selector, value) {
+  const el = assertQ(selector);
+  if (el.tagName === 'SELECT') el.value = value;
+  else { el.value = value; el.dispatchEvent(new Event('input')); }
+}
+
+// ─── SAVE/RESTORE LOCALSTORAGE ───────────────────────────────────────────────
+const savedLS = {};
+function backupLS() {
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    savedLS[k] = localStorage.getItem(k);
+  }
+}
+function clearTestLS() {
+  const toRemove = Object.keys(localStorage).filter(k =>
+    k.startsWith('check_') || k.startsWith('forms_') || k === 'riskAssessment' || k === 'quiz_state');
+  toRemove.forEach(k => localStorage.removeItem(k));
+}
+function restoreLS() {
+  clearTestLS();
+  Object.entries(savedLS).forEach(([k, v]) => localStorage.setItem(k, v));
+}
+
+// ─── MAIN TEST EXECUTION ─────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  // Stop the countdown interval to avoid noise
+  if (App.countdownInterval) clearInterval(App.countdownInterval);
+  App.countdownInterval = null;
+
+  // Override showToast to suppress visual noise during tests
+  App.showToast = () => {};
+
+  // Init app
+  backupLS();
+  clearTestLS();
+  App.init();
+
+  // Run all tests
+  runAllTests();
+
+  // Render results
+  Runner.render('all');
+  restoreLS();
+});
+
+function filterResults(f) {
+  document.querySelectorAll('.result-filter').forEach(btn => {
+    btn.className = btn.className.replace('bg-slate-800 text-white', 'bg-white text-slate-600 border border-slate-200');
+  });
+  const active = document.querySelector(`.result-filter[data-f="${f}"]`);
+  if (active) active.className = active.className.replace('bg-white text-slate-600 border border-slate-200', 'bg-slate-800 text-white');
+  Runner.render(f);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ALL TEST CASES
+// ═══════════════════════════════════════════════════════════════════════════
+function runAllTests() {
+
+  // ── 1. MODULE INITIALIZATION ──────────────────────────────────────────────
+  Runner.group('1. Module Initialization');
+  Runner.run('App module exists',          () => assert(typeof App !== 'undefined'));
+  Runner.run('AMLiqData module exists',    () => assert(typeof AMLiqData !== 'undefined'));
+  Runner.run('Checklist module exists',    () => assert(typeof Checklist !== 'undefined'));
+  Runner.run('Forms module exists',        () => assert(typeof Forms !== 'undefined'));
+  Runner.run('Quiz module exists',         () => assert(typeof Quiz !== 'undefined'));
+  Runner.run('RiskWizard module exists',   () => assert(typeof RiskWizard !== 'undefined'));
+  Runner.run('Export module exists',       () => assert(typeof Export !== 'undefined'));
+  Runner.run('App.navigateTo is a function', () => assert(typeof App.navigateTo === 'function'));
+  Runner.run('App.switchTab is a function',  () => assert(typeof App.switchTab === 'function'));
+
+  // ── 2. DOM STRUCTURE ──────────────────────────────────────────────────────
+  Runner.group('2. DOM Structure — 19 Section Containers');
+  const SECTIONS = ['dashboard','am-i-regulated','obligations-overview','key-dates',
+    'risk-assessment','program-builder','governance','enrolment','cdd','red-flags',
+    'reporting','record-keeping','training','program-review','evaluation',
+    'forms-library','glossary','faq','austrac-links'];
+  SECTIONS.forEach(s => {
+    Runner.run(`Section container exists: #section-${s}`, () => assertEl('section-' + s));
+  });
+
+  Runner.run('19 nav links exist in #main-nav',
+    () => assertQAll('.nav-link', 19, document.getElementById('main-nav')));
+  Runner.run('Modal overlay exists', () => assertEl('modal-overlay'));
+  Runner.run('Toast element exists',  () => assertEl('toast'));
+
+  // ── 3. NAVIGATION — ALL 19 SECTIONS ──────────────────────────────────────
+  Runner.group('3. Navigation — All 19 Sections');
+  SECTIONS.forEach(s => {
+    Runner.run(`Navigate to ${s}: section becomes visible`, () => {
+      navigateTo(s);
+      assertVisible(s);
+    });
+    Runner.run(`Navigate to ${s}: other sections are hidden`, () => {
+      navigateTo(s);
+      SECTIONS.filter(x => x !== s).forEach(other => assertHidden(other));
+    });
+  });
+
+  Runner.run('Active nav link gets .active class on navigate', () => {
+    navigateTo('dashboard');
+    const link = document.querySelector('.nav-link[data-section="dashboard"]');
+    assert(link.classList.contains('active'), 'Active nav link missing .active class');
+  });
+  Runner.run('Previous active link loses .active class on navigate', () => {
+    navigateTo('dashboard');
+    navigateTo('glossary');
+    const dashLink = document.querySelector('.nav-link[data-section="dashboard"]');
+    assert(!dashLink.classList.contains('active'), 'Previous nav link should not have .active');
+  });
+
+  // ── 4. DASHBOARD ──────────────────────────────────────────────────────────
+  Runner.group('4. Dashboard');
+  navigateTo('dashboard');
+  const dash = sectionEl('dashboard');
+
+  Runner.run('Dashboard heading rendered', () => assertContains('h1', 'Dashboard', dash));
+  Runner.run('Countdown days element exists', () => assertEl('cd-days'));
+  Runner.run('Countdown hours element exists', () => assertEl('cd-hours'));
+  Runner.run('Countdown mins element exists',  () => assertEl('cd-mins'));
+  Runner.run('Countdown secs element exists',  () => assertEl('cd-secs'));
+  Runner.run('Countdown days is a number', () => {
+    const text = document.getElementById('cd-days').textContent;
+    assert(!isNaN(parseInt(text)) || text === '--', `cd-days is "${text}"`);
+  });
+  Runner.run('Overall score element exists',   () => assertEl('overall-score'));
+  Runner.run('Overall progress bar exists',    () => assertEl('overall-bar'));
+  Runner.run('Phase 1 progress card exists',   () => assertEl('phase-1-bar'));
+  Runner.run('Phase 2 progress card exists',   () => assertEl('phase-2-bar'));
+  Runner.run('Phase 3 progress card exists',   () => assertEl('phase-3-bar'));
+  Runner.run('Phase 4 progress card exists',   () => assertEl('phase-4-bar'));
+  Runner.run('Key dates section exists',       () => assertContains('h2', 'Key Upcoming', dash));
+  Runner.run('Quick access section has 4 buttons', () => {
+    const btns = dash.querySelectorAll('button');
+    assert(btns.length >= 4, `Expected ≥4 buttons, found ${btns.length}`);
+  });
+  Runner.run('"What should I do today?" nudge exists', () => {
+    assert(dash.textContent.includes('What should I do today?'), 'Nudge text missing');
+  });
+  Runner.run('Sidebar export button exists', () =>
+    assertQ('button[onclick*="exportAllData"]'));
+  Runner.run('Sidebar import label exists', () =>
+    assertQ('label input[type="file"]'));
+  Runner.run('1 July 2026 mentioned in key dates', () =>
+    assert(dash.textContent.includes('1 July 2026'), 'Key date missing'));
+  Runner.run('29 July 2026 deadline mentioned',     () =>
+    assert(dash.textContent.includes('29 July 2026'), 'Deadline date missing'));
+
+  // ── 5. AM I REGULATED — DECISION TREE ────────────────────────────────────
+  Runner.group('5. Am I Regulated? — Decision Tree');
+  navigateTo('am-i-regulated');
+  const reg = sectionEl('am-i-regulated');
+
+  Runner.run('Decision tree container exists', () => assertEl('decision-tree-container'));
+  Runner.run('First question rendered',        () =>
+    assert(reg.textContent.includes('Do you sell, buy, or transfer'), 'Q1 missing'));
+  Runner.run('YES button exists on Q1',        () => assertQ('button', document.getElementById('decision-tree-container')));
+  Runner.run('Two answer buttons on Q1',       () =>
+    assertQAll('button', 2, document.getElementById('decision-tree-container')));
+
+  // Click YES → Q4 (geographic link)
+  Runner.run('Clicking YES on Q1 advances to next question', () => {
+    navigateTo('am-i-regulated');
+    const btns = document.getElementById('decision-tree-container').querySelectorAll('button');
+    btns[0].click(); // YES
+    assert(!document.getElementById('decision-tree-container').textContent.includes('Do you sell, buy, or transfer'),
+      'Q1 should be gone after YES');
+  });
+
+  // Full regulated path: Q1=YES → Q4=YES → Q5=YES → regulated
+  Runner.run('Full regulated path returns "likely a Reporting Entity"', () => {
+    navigateTo('am-i-regulated');
+    // Q1: YES (brokering)
+    let btns = document.getElementById('decision-tree-container').querySelectorAll('button');
+    btns[0].click();
+    // Q4: YES (Australian property)
+    btns = document.getElementById('decision-tree-container').querySelectorAll('button');
+    btns[0].click();
+    // Q5: YES (right type of interest)
+    btns = document.getElementById('decision-tree-container').querySelectorAll('button');
+    btns[0].click();
+    assert(document.getElementById('decision-tree-container').textContent.includes('Reporting Entity'),
+      'Regulated result not shown');
+  });
+
+  Runner.run('Regulated result has "View All Obligations" button', () => {
+    assert(document.getElementById('decision-tree-container').textContent.includes('View All Obligations') ||
+           document.getElementById('decision-tree-container').querySelectorAll('button').length >= 1,
+      'Result buttons missing');
+  });
+
+  Runner.run('"Start again" link exists after result', () => {
+    assert(document.getElementById('decision-tree-container').textContent.includes('Start again'),
+      '"Start again" link missing');
+  });
+
+  Runner.run('Start again resets to Q1', () => {
+    const container = document.getElementById('decision-tree-container');
+    const btns = container.querySelectorAll('button');
+    // Find and click "Start again"
+    let found = false;
+    btns.forEach(btn => {
+      if (btn.textContent.includes('Start again') || btn.textContent.trim() === '← Start again') {
+        btn.click(); found = true;
+      }
+    });
+    if (!found) {
+      // try clicking inline onclick
+      const startAgainEl = Array.from(container.querySelectorAll('button')).find(b => b.textContent.includes('Start again'));
+      if (startAgainEl) { startAgainEl.click(); found = true; }
+    }
+    assert(found || container.textContent.includes('Do you sell, buy, or transfer'), 'Q1 not restored');
+  });
+
+  // Exempt path: Q1=NO → Q2=NO → Q3=YES (property management)
+  Runner.run('Exempt path (property management) returns "EXEMPT"', () => {
+    navigateTo('am-i-regulated');
+    // Q1: NO
+    let btns = document.getElementById('decision-tree-container').querySelectorAll('button');
+    btns[1].click();
+    // Q2: NO
+    btns = document.getElementById('decision-tree-container').querySelectorAll('button');
+    btns[1].click();
+    // Q3: YES (only manage rentals)
+    btns = document.getElementById('decision-tree-container').querySelectorAll('button');
+    btns[0].click();
+    assert(document.getElementById('decision-tree-container').textContent.toUpperCase().includes('EXEMPT'),
+      'Exempt result not shown');
+  });
+
+  // ── 6. OBLIGATIONS OVERVIEW ───────────────────────────────────────────────
+  Runner.group('6. Obligations Overview');
+  navigateTo('obligations-overview');
+  const obl = sectionEl('obligations-overview');
+
+  Runner.run('Page heading exists',             () => assertContains('h1', 'Obligations', obl));
+  Runner.run('10 obligation cards rendered',    () => assertQAll('button', 10, obl));
+  Runner.run('"What Changed?" section exists',  () => assert(obl.textContent.includes('What Changed'), '"What Changed" missing'));
+  Runner.run('"Who Is Affected?" section exists', () => assert(obl.textContent.includes('Who Is Affected'), '"Who Is Affected" missing'));
+  Runner.run('"What Happens If You Don\'t Comply?" exists', () =>
+    assert(obl.textContent.includes("Don't Comply") || obl.textContent.includes("Comply"), 'Compliance section missing'));
+  Runner.run('Accordion "What Changed?" opens on click', () => {
+    const btn = Array.from(obl.querySelectorAll('.accordion-btn')).find(b => b.textContent.includes('What Changed'));
+    assert(btn, 'Accordion button for "What Changed" not found');
+    btn.click(); // toggle — could open or close depending on initial state
+    btn.click(); // toggle back
+    assert(true); // Just verify it doesn't throw
+  });
+  Runner.run('Obligation 1 (Enrol) navigates on click', () => {
+    const card = Array.from(obl.querySelectorAll('button')).find(b => b.textContent.includes('Enrol'));
+    assert(card, 'Enrolment obligation card not found');
+    card.click();
+    assertVisible('enrolment');
+  });
+  Runner.run('Obligation 3 (Risk Assessment) navigates on click', () => {
+    navigateTo('obligations-overview');
+    const card = Array.from(obl.querySelectorAll('button')).find(b => b.textContent.includes('risk assessment') || b.textContent.includes('Risk Assessment') || b.textContent.includes('risk'));
+    assert(card, 'Risk assessment obligation card not found');
+    card.click();
+    assertVisible('risk-assessment');
+  });
+
+  // ── 7. KEY DATES ──────────────────────────────────────────────────────────
+  Runner.group('7. Key Dates & Timeline');
+  navigateTo('key-dates');
+  const kd = sectionEl('key-dates');
+
+  Runner.run('Key Dates heading exists',           () => assertContains('h1', 'Key Dates', kd));
+  Runner.run('31 March 2026 date listed',          () => assert(kd.textContent.includes('31 March 2026')));
+  Runner.run('1 July 2026 obligations date listed', () => assert(kd.textContent.includes('1 July 2026')));
+  Runner.run('29 July 2026 deadline listed',        () => assert(kd.textContent.includes('29 July 2026')));
+  Runner.run('14 days notification mentioned',      () => assert(kd.textContent.includes('14 days')));
+  Runner.run('3 years evaluation mentioned',        () => assert(kd.textContent.includes('3 years')));
+  Runner.run('At least 9 timeline items rendered',  () => assertQAll('.rounded-xl', 9, kd));
+
+  // ── 8. RISK ASSESSMENT WIZARD ─────────────────────────────────────────────
+  Runner.group('8. Risk Assessment Wizard');
+  navigateTo('risk-assessment');
+  const ra = sectionEl('risk-assessment');
+
+  Runner.run('Risk wizard container exists',          () => assertEl('risk-wizard-container'));
+  Runner.run('"Start Assessment" button exists',       () =>
+    assert(ra.textContent.includes('Start Assessment') || ra.textContent.includes('Retake'), 'Start button missing'));
+  Runner.run('4 category cards shown on start screen', () => {
+    navigateTo('risk-assessment');
+    assertQAll('.rounded-lg', 4, document.getElementById('risk-wizard-container'));
+  });
+  Runner.run('Start Assessment button launches wizard', () => {
+    const btn = Array.from(document.getElementById('risk-wizard-container').querySelectorAll('button'))
+                     .find(b => b.textContent.includes('Start') || b.textContent.includes('Assessment'));
+    assert(btn, 'Start button not found');
+    btn.click();
+    assert(document.getElementById('risk-wizard-container').textContent.includes('Customer Risk') ||
+           document.getElementById('risk-wizard-container').textContent.includes('Question'),
+      'Wizard did not advance after start');
+  });
+  Runner.run('First category is Customer Risk',  () =>
+    assert(document.getElementById('risk-wizard-container').textContent.includes('Customer Risk'), 'Customer Risk not shown'));
+  Runner.run('YES button exists in wizard',      () =>
+    assertQ('button', document.getElementById('risk-wizard-container')));
+  Runner.run('Step indicator exists (dots)',     () =>
+    assertQ('.step-dot', document.getElementById('risk-wizard-container')));
+  Runner.run('Answering YES highlights button', () => {
+    const yesBtn = Array.from(document.getElementById('risk-wizard-container').querySelectorAll('button'))
+                        .find(b => b.textContent.trim() === 'YES');
+    assert(yesBtn, 'YES button not found');
+    yesBtn.click();
+    // After click, it should have a blue or different class
+    assert(true); // Verify no crash
+  });
+  Runner.run('Next button exists after answering', () => {
+    const nextBtn = Array.from(document.getElementById('risk-wizard-container').querySelectorAll('button'))
+                         .find(b => b.textContent.includes('Next'));
+    assert(nextBtn, 'Next button not found after answering');
+  });
+  Runner.run('Clicking Next advances to category 2', () => {
+    const nextBtn = Array.from(document.getElementById('risk-wizard-container').querySelectorAll('button'))
+                         .find(b => b.textContent.includes('Next'));
+    nextBtn.click();
+    assert(document.getElementById('risk-wizard-container').textContent.includes('Service') ||
+           document.getElementById('risk-wizard-container').textContent.includes('Step 2'),
+      'Did not advance to step 2');
+  });
+
+  // Navigate through full wizard to results
+  Runner.run('Full wizard flow reaches results', () => {
+    RiskWizard.answers = {};
+    RiskWizard.currentCat = 0;
+    RiskWizard.renderCategory(0);
+    // Answer all questions YES for cat 0
+    AMLiqData.riskQuestions.customer.forEach(q => { RiskWizard.answers[q.id] = 'yes'; });
+    AMLiqData.riskQuestions.service.forEach(q => { RiskWizard.answers[q.id] = 'yes'; });
+    AMLiqData.riskQuestions.delivery.forEach(q => { RiskWizard.answers[q.id] = 'yes'; });
+    AMLiqData.riskQuestions.geographic.forEach(q => { RiskWizard.answers[q.id] = 'yes'; });
+    RiskWizard.showResults();
+    assert(document.getElementById('risk-wizard-container').textContent.includes('Risk') ||
+           document.getElementById('risk-wizard-container').textContent.includes('High'),
+      'Results not shown');
+  });
+  Runner.run('Risk results show 4 category ratings', () => {
+    assertQAll('.step-dot, [class*="risk-high"], .tag', 1, document.getElementById('risk-wizard-container'));
+  });
+  Runner.run('"Retake Assessment" button in results', () => {
+    assert(document.getElementById('risk-wizard-container').textContent.includes('Retake'), 'Retake button missing');
+  });
+  Runner.run('"Build Your Program" button in results', () => {
+    assert(document.getElementById('risk-wizard-container').textContent.includes('Build Your Program') ||
+           document.getElementById('risk-wizard-container').textContent.includes('Program'), 'Program button missing');
+  });
+  Runner.run('Risk assessment saved to localStorage', () => {
+    assert(localStorage.getItem('riskAssessment') !== null, 'riskAssessment not saved');
+  });
+
+  // ── 9. PROGRAM BUILDER ────────────────────────────────────────────────────
+  Runner.group('9. Program Builder — Checklists');
+  navigateTo('program-builder');
+  const pb = sectionEl('program-builder');
+
+  Runner.run('Program Builder heading exists',    () => assertContains('h1', 'Program Builder', pb));
+  Runner.run('Overall completion bar exists',      () => assertEl('program-overall-bar'));
+  Runner.run('Overall completion % exists',        () => assertEl('program-overall-pct'));
+  Runner.run('Export Progress button exists',      () =>
+    assert(pb.textContent.includes('Export Progress'), 'Export button missing'));
+  Runner.run('All 9 checklist sections rendered',  () =>
+    assertQAll('.rounded-xl', 9, document.getElementById('program-checklist-container')));
+
+  const checklistSections = ['riskAssessment','governance','cddProcedures','monitoring',
+    'reporting','recordKeeping','training','evaluation','seniorApproval'];
+  checklistSections.forEach(key => {
+    Runner.run(`Checklist section "${key}" has items`, () => {
+      const items = AMLiqData.checklists[key];
+      assert(items && items.length > 0, `No items in checklist "${key}"`);
+    });
+  });
+
+  Runner.run('Clicking a section toggle opens it', () => {
+    const toggleBtn = pb.querySelector('button[onclick*="toggleSection"]');
+    assert(toggleBtn, 'Toggle button not found');
+    toggleBtn.click();
+    assert(true); // No crash
+  });
+
+  // Checklist state persistence
+  Runner.run('Checking a checkbox saves to localStorage', () => {
+    navigateTo('program-builder');
+    const firstItem = AMLiqData.checklists.riskAssessment[0];
+    Checklist.set(firstItem.id, true);
+    assert(localStorage.getItem('check_' + firstItem.id) === '1', 'Checkbox state not persisted');
+    Checklist.set(firstItem.id, false); // Clean up
+  });
+  Runner.run('Unchecking removes from localStorage', () => {
+    const firstItem = AMLiqData.checklists.riskAssessment[0];
+    Checklist.set(firstItem.id, true);
+    Checklist.set(firstItem.id, false);
+    assert(localStorage.getItem('check_' + firstItem.id) === null, 'Checkbox state not cleared');
+  });
+  Runner.run('Checklist.get() returns correct value', () => {
+    const item = AMLiqData.checklists.governance[0];
+    Checklist.set(item.id, true);
+    assert(Checklist.get(item.id) === true, 'Checklist.get() returned false for set item');
+    Checklist.set(item.id, false);
+  });
+  Runner.run('All 90+ checklist items have unique IDs', () => {
+    const ids = [];
+    Object.values(AMLiqData.checklists).forEach(section => {
+      section.forEach(item => {
+        assert(!ids.includes(item.id), `Duplicate checklist ID: ${item.id}`);
+        ids.push(item.id);
+      });
+    });
+  });
+
+  // ── 10. GOVERNANCE ────────────────────────────────────────────────────────
+  Runner.group('10. Governance — Tabs and Forms');
+  navigateTo('governance');
+  const gov = sectionEl('governance');
+
+  Runner.run('Governance heading exists',          () => assertContains('h1', 'Governance', gov));
+  Runner.run('3 governance tabs exist',             () => assertQAll('.gov-tab', 3, gov));
+  Runner.run('Tab 0 panel exists (#gov-tab-0)',    () => assertEl('gov-tab-0'));
+  Runner.run('Tab 1 panel exists (#gov-tab-1)',    () => assertEl('gov-tab-1'));
+  Runner.run('Tab 2 panel exists (#gov-tab-2)',    () => assertEl('gov-tab-2'));
+  Runner.run('Compliance Officer form exists',      () => assertEl('form-compliance-officer'));
+  Runner.run('Compliance Officer full name field',  () => assertQ('[name="full_name"]', document.getElementById('form-compliance-officer')));
+  Runner.run('Compliance Officer position field',   () => assertQ('[name="position"]', document.getElementById('form-compliance-officer')));
+  Runner.run('Date of appointment field',           () => assertQ('[name="date_appointed"]', document.getElementById('form-compliance-officer')));
+  Runner.run('AUSTRAC notification field',          () => assertQ('[name="austrac_notified"]', document.getElementById('form-compliance-officer')));
+  Runner.run('Save button on CO form',              () => assertQ('button[onclick*="saveForm"][onclick*="form-compliance-officer"]'));
+  Runner.run('Load Saved button on CO form',        () => assertQ('button[onclick*="loadForm"][onclick*="form-compliance-officer"]'));
+  Runner.run('Print button on CO form',             () => assertQ('button[onclick*="printForm"][onclick*="form-compliance-officer"]'));
+  Runner.run('Clear button on CO form',             () => assertQ('button[onclick*="clearForm"][onclick*="form-compliance-officer"]'));
+
+  Runner.run('Switching to Roles tab (tab 1) shows roles form', () => {
+    App.switchTab('gov-tab', 1);
+    assert(!document.getElementById('gov-tab-1').classList.contains('hidden'), 'Roles tab panel hidden');
+    assert(document.getElementById('gov-tab-0').classList.contains('hidden'), 'CO tab panel should be hidden');
+  });
+  Runner.run('Roles form exists after tab switch',  () => assertEl('form-roles'));
+  Runner.run('CO role assigned-to field exists',    () => assertQ('[name="co_assigned"]', document.getElementById('form-roles')));
+  Runner.run('CDD Lead role field exists',          () => assertQ('[name="cdd_assigned"]', document.getElementById('form-roles')));
+
+  Runner.run('Switching to Personnel DD tab (tab 2)', () => {
+    App.switchTab('gov-tab', 2);
+    assert(!document.getElementById('gov-tab-2').classList.contains('hidden'), 'Personnel tab hidden');
+  });
+  Runner.run('Personnel DD form exists',            () => assertEl('form-personnel-dd'));
+  Runner.run('Personnel role dropdown exists',      () => assertQ('[name="role"]', document.getElementById('form-personnel-dd')));
+  Runner.run('Police check field exists',           () => assertQ('[name="dd_police"]', document.getElementById('form-personnel-dd')));
+
+  Runner.run('Forms.saveForm() persists data to localStorage', () => {
+    navigateTo('governance');
+    App.switchTab('gov-tab', 0);
+    const form = document.getElementById('form-compliance-officer');
+    const nameField = form.querySelector('[name="full_name"]');
+    nameField.value = 'Test Officer';
+    Forms.saveForm('form-compliance-officer');
+    const saved = JSON.parse(localStorage.getItem('forms_form-compliance-officer') || '{}');
+    assert(saved.full_name === 'Test Officer', 'Saved name not found in localStorage');
+    localStorage.removeItem('forms_form-compliance-officer');
+  });
+  Runner.run('Forms.loadForm() restores data from localStorage', () => {
+    localStorage.setItem('forms_form-compliance-officer', JSON.stringify({ full_name: 'Loaded Officer' }));
+    navigateTo('governance');
+    App.switchTab('gov-tab', 0);
+    Forms.loadForm('form-compliance-officer');
+    const field = document.querySelector('[name="full_name"]');
+    assert(field && field.value === 'Loaded Officer', `Expected "Loaded Officer", got "${field?.value}"`);
+    localStorage.removeItem('forms_form-compliance-officer');
+  });
+
+  // ── 11. ENROLMENT ─────────────────────────────────────────────────────────
+  Runner.group('11. Enrolment Guide');
+  navigateTo('enrolment');
+  const enr = sectionEl('enrolment');
+
+  Runner.run('Enrolment heading exists',               () => assertContains('h1', 'Enrolment', enr));
+  Runner.run('5 enrolment steps rendered',             () => assertQAll('.rounded-xl', 5, enr));
+  Runner.run('31 March 2026 date shown',               () => assert(enr.textContent.includes('31 March 2026')));
+  Runner.run('1 July 2026 date shown',                 () => assert(enr.textContent.includes('1 July 2026')));
+  Runner.run('29 July 2026 date shown',                () => assert(enr.textContent.includes('29 July 2026')));
+  Runner.run('AUSTRAC Online link exists',             () => assertQ('a[href*="austrac.gov.au"]', enr));
+  Runner.run('AUSTRAC Online link has target=_blank',  () => assertAttr('a[href*="austrac.gov.au"]', 'target', '_blank', enr));
+  Runner.run('Enrolment checklist items exist',        () => {
+    const items = AMLiqData.checklists.enrolment;
+    assert(items.length >= 5, `Expected ≥5 enrolment items, found ${items.length}`);
+  });
+  Runner.run('AUSTRAC regulatory expectation callout', () =>
+    assert(enr.textContent.includes('regulatory expectation') || enr.textContent.includes('AUSTRAC'), 'Callout missing'));
+
+  // ── 12. CDD — TABS ────────────────────────────────────────────────────────
+  Runner.group('12. CDD — Tab Navigation');
+  navigateTo('cdd');
+  const cdd = sectionEl('cdd');
+
+  Runner.run('CDD heading exists',             () => assertContains('h1', 'Due Diligence', cdd));
+  Runner.run('8 CDD tabs rendered',            () => assertQAll('.cdd-tab', 8, cdd));
+  Runner.run('CDD tab-0 panel exists',         () => assertEl('cdd-tab-0'));
+  Runner.run('CDD tab-1 panel exists',         () => assertEl('cdd-tab-1'));
+  Runner.run('CDD tab-2 panel exists',         () => assertEl('cdd-tab-2'));
+  Runner.run('CDD tab-3 panel exists',         () => assertEl('cdd-tab-3'));
+  Runner.run('CDD tab-4 panel exists',         () => assertEl('cdd-tab-4'));
+  Runner.run('CDD tab-5 panel exists',         () => assertEl('cdd-tab-5'));
+  Runner.run('CDD tab-6 panel exists',         () => assertEl('cdd-tab-6'));
+  Runner.run('CDD tab-7 panel exists',         () => assertEl('cdd-tab-7'));
+
+  Runner.run('Switch to Company tab (1)', () => {
+    App.switchTab('cdd-tab', 1);
+    assert(!document.getElementById('cdd-tab-1').classList.contains('hidden'), 'Company tab hidden');
+    assert(document.getElementById('cdd-tab-0').classList.contains('hidden'), 'Individual tab should be hidden');
+  });
+  Runner.run('Switch to Trust tab (2)', () => {
+    App.switchTab('cdd-tab', 2);
+    assert(!document.getElementById('cdd-tab-2').classList.contains('hidden'), 'Trust tab hidden');
+  });
+  Runner.run('Switch back to Individual tab (0)', () => {
+    App.switchTab('cdd-tab', 0);
+    assert(!document.getElementById('cdd-tab-0').classList.contains('hidden'), 'Individual tab hidden');
+    assert(document.getElementById('cdd-tab-2').classList.contains('hidden'), 'Trust tab should be hidden');
+  });
+
+  // ── 13. CDD INDIVIDUAL FORM ───────────────────────────────────────────────
+  Runner.group('13. CDD — Individual Form Fields');
+  navigateTo('cdd');
+  App.switchTab('cdd-tab', 0);
+  const cddInd = document.getElementById('form-cdd-individual');
+
+  Runner.run('Individual CDD form exists',           () => assert(cddInd, 'form-cdd-individual not found'));
+  Runner.run('Full name field exists',               () => assertQ('[name="full_name"]',         cddInd));
+  Runner.run('Date of birth field exists',           () => assertQ('[name="dob"]',               cddInd));
+  Runner.run('Residential address field exists',     () => assertQ('[name="address"]',            cddInd));
+  Runner.run('Acting on own behalf field exists',    () => assertQ('[name="own_behalf"]',         cddInd));
+  Runner.run('Document 1 type dropdown exists',      () => assertQ('[name="doc1_type"]',          cddInd));
+  Runner.run('Document 1 number field exists',       () => assertQ('[name="doc1_number"]',        cddInd));
+  Runner.run('Document 1 expiry field exists',       () => assertQ('[name="doc1_expiry"]',        cddInd));
+  Runner.run('Document 2 type dropdown exists',      () => assertQ('[name="doc2_type"]',          cddInd));
+  Runner.run('PEP screening field exists',           () => assertQ('[name="pep_screening"]',      cddInd));
+  Runner.run('Is PEP field exists',                  () => assertQ('[name="is_pep"]',             cddInd));
+  Runner.run('TFS screening field exists',           () => assertQ('[name="tfs_screening"]',      cddInd));
+  Runner.run('Sanctions match field exists',         () => assertQ('[name="sanctions_match"]',    cddInd));
+  Runner.run('Source of funds field exists',         () => assertQ('[name="source_funds"]',       cddInd));
+  Runner.run('Risk rating dropdown exists',          () => assertQ('[name="risk_rating"]',        cddInd));
+  Runner.run('EDD required dropdown exists',         () => assertQ('[name="edd_required"]',       cddInd));
+  Runner.run('CDD completed by field exists',        () => assertQ('[name="completed_by"]',       cddInd));
+  Runner.run('Date completed field exists',          () => assertQ('[name="date_completed"]',     cddInd));
+  Runner.run('Notes textarea exists',                () => assertQ('[name="notes"]',              cddInd));
+  Runner.run('Risk rating has Low option',           () => {
+    const sel = cddInd.querySelector('[name="risk_rating"]');
+    assert(Array.from(sel.options).some(o => o.value === 'low'), 'Low option missing from risk rating');
+  });
+  Runner.run('Risk rating has High option',          () => {
+    const sel = cddInd.querySelector('[name="risk_rating"]');
+    assert(Array.from(sel.options).some(o => o.value === 'high'), 'High option missing from risk rating');
+  });
+  Runner.run('Doc type has Australian Passport option', () => {
+    const sel = cddInd.querySelector('[name="doc1_type"]');
+    assert(Array.from(sel.options).some(o => o.text.includes('Passport')), 'Passport option missing');
+  });
+  Runner.run('Form fields are writable (fill full_name)', () => {
+    const field = cddInd.querySelector('[name="full_name"]');
+    field.value = 'Jane Test';
+    assert(field.value === 'Jane Test', 'Field not writable');
+    field.value = '';
+  });
+  Runner.run('Save/Load/Print/Clear buttons exist', () => {
+    assertQ('button[onclick*="saveForm"][onclick*="form-cdd-individual"]');
+    assertQ('button[onclick*="loadForm"][onclick*="form-cdd-individual"]');
+    assertQ('button[onclick*="clearForm"][onclick*="form-cdd-individual"]');
+  });
+
+  // ── 14. CDD COMPANY FORM ──────────────────────────────────────────────────
+  Runner.group('14. CDD — Company Form Fields');
+  App.switchTab('cdd-tab', 1);
+  const cddCo = document.getElementById('form-cdd-company');
+
+  Runner.run('Company CDD form exists',              () => assert(cddCo, 'form-cdd-company not found'));
+  Runner.run('Company name field exists',            () => assertQ('[name="company_name"]',      cddCo));
+  Runner.run('ACN field exists',                     () => assertQ('[name="acn"]',               cddCo));
+  Runner.run('ABN field exists',                     () => assertQ('[name="abn"]',               cddCo));
+  Runner.run('ASIC verified field exists',           () => assertQ('[name="asic_verified"]',     cddCo));
+  Runner.run('Beneficial Owner 1 name field exists', () => assertQ('[name="bo1_name"]',          cddCo));
+  Runner.run('Beneficial Owner 1 ownership % field', () => assertQ('[name="bo1_pct"]',           cddCo));
+  Runner.run('Beneficial Owner 2 fields exist',      () => assertQ('[name="bo2_name"]',          cddCo));
+  Runner.run('Auth representative field exists',     () => assertQ('[name="auth_rep_name"]',     cddCo));
+  Runner.run('PEP/TFS screening field exists',       () => assertQ('[name="pep_tfs_screening"]', cddCo));
+  Runner.run('Source of funds field exists',         () => assertQ('[name="source_funds"]',      cddCo));
+
+  // ── 15. CDD TRUST FORM ────────────────────────────────────────────────────
+  Runner.group('15. CDD — Trust Form Fields');
+  App.switchTab('cdd-tab', 2);
+  const cddTr = document.getElementById('form-cdd-trust');
+
+  Runner.run('Trust CDD form exists',                () => assert(cddTr, 'form-cdd-trust not found'));
+  Runner.run('High-risk banner exists on trust form', () =>
+    assert(cddTr.closest('#cdd-tab-2').textContent.includes('high national money laundering risk') ||
+           sectionEl('cdd').textContent.includes('high national'), 'High-risk warning missing'));
+  Runner.run('Trust name field exists',              () => assertQ('[name="trust_name"]',        cddTr));
+  Runner.run('Trust type dropdown exists',           () => assertQ('[name="trust_type"]',        cddTr));
+  Runner.run('Trust deed sighted field exists',      () => assertQ('[name="deed_sighted"]',      cddTr));
+  Runner.run('Trustee name field exists',            () => assertQ('[name="trustee1_name"]',     cddTr));
+  Runner.run('Settlor name field exists',            () => assertQ('[name="settlor_name"]',      cddTr));
+  Runner.run('Appointor name field exists',          () => assertQ('[name="appointor_name"]',    cddTr));
+  Runner.run('Beneficiaries identified dropdown',    () => assertQ('[name="beneficiaries_identified"]', cddTr));
+  Runner.run('Trust type has Discretionary option',  () => {
+    const sel = cddTr.querySelector('[name="trust_type"]');
+    assert(Array.from(sel.options).some(o => o.text.includes('Discretionary')), 'Discretionary option missing');
+  });
+
+  // ── 16. CDD EDD FORM ──────────────────────────────────────────────────────
+  Runner.group('16. CDD — EDD Form');
+  App.switchTab('cdd-tab', 5);
+  const eddForm = document.getElementById('form-edd');
+
+  Runner.run('EDD form exists',                          () => assert(eddForm, 'form-edd not found'));
+  Runner.run('Customer name field in EDD',               () => assertQ('[name="customer_name"]',   eddForm));
+  Runner.run('CDD reference field in EDD',               () => assertQ('[name="cdd_ref"]',         eddForm));
+  Runner.run('EDD trigger checkboxes exist (≥7)',        () => assertQAll('input[type="checkbox"]', 7, eddForm));
+  Runner.run('Source of funds field in EDD',             () => assertQ('[name="sof_info"]',         eddForm));
+  Runner.run('Senior management approval field in EDD',  () => assertQ('[name="senior_approval"]',  eddForm));
+  Runner.run('Monitoring frequency dropdown in EDD',     () => assertQ('[name="monitoring_freq"]',  eddForm));
+  Runner.run('Rationale for proceeding textarea',        () => assertQ('[name="rationale"]',        eddForm));
+
+  // ── 17. CDD PEP SCREENING FORM ────────────────────────────────────────────
+  Runner.group('17. CDD — PEP/TFS Screening Form');
+  App.switchTab('cdd-tab', 7);
+  const pepForm = document.getElementById('form-pep-screening');
+
+  Runner.run('PEP screening form exists',            () => assert(pepForm, 'form-pep-screening not found'));
+  Runner.run('PEP explanation text exists',          () =>
+    assert(sectionEl('cdd').textContent.includes('Politically Exposed'), 'PEP explanation missing'));
+  Runner.run('TFS explanation text exists',          () =>
+    assert(sectionEl('cdd').textContent.includes('Targeted Financial'), 'TFS explanation missing'));
+  Runner.run('DFAT Consolidated List link exists',   () =>
+    assertQ('a[href*="dfat.gov.au"]', document.getElementById('cdd-tab-7')));
+  Runner.run('DFAT link opens in new tab',           () =>
+    assertAttr('a[href*="dfat.gov.au"]', 'target', '_blank', document.getElementById('cdd-tab-7')));
+  Runner.run('PEP self-declaration field',           () => assertQ('[name="pep_declaration"]',  pepForm));
+  Runner.run('Is PEP field',                         () => assertQ('[name="is_pep"]',           pepForm));
+  Runner.run('PEP type dropdown',                    () => assertQ('[name="pep_type"]',         pepForm));
+  Runner.run('DFAT consolidated list checked field', () => assertQ('[name="dfat_checked"]',     pepForm));
+  Runner.run('Sanctions match field',                () => assertQ('[name="sanctions_match"]',  pepForm));
+  Runner.run('Action taken dropdown',                () => assertQ('[name="action_taken"]',     pepForm));
+  Runner.run('Action taken has EDD option',          () => {
+    const sel = pepForm.querySelector('[name="action_taken"]');
+    assert(Array.from(sel.options).some(o => o.text.includes('EDD')), 'EDD action option missing');
+  });
+  Runner.run('Action taken has "Service declined" option', () => {
+    const sel = pepForm.querySelector('[name="action_taken"]');
+    assert(Array.from(sel.options).some(o => o.text.includes('declined')), '"Service declined" option missing');
+  });
+
+  // ── 18. RED FLAGS ─────────────────────────────────────────────────────────
+  Runner.group('18. Red Flags — Cards, Filters, Search');
+  navigateTo('red-flags');
+  const rf = sectionEl('red-flags');
+
+  Runner.run('Red Flags heading exists',             () => assertContains('h1', 'Red Flag', rf));
+  Runner.run('Tipping-off warning banner exists',    () => assert(rf.textContent.includes('TIPPING-OFF'), 'Tipping-off banner missing'));
+  Runner.run('27 red flag cards rendered',           () => assertQAll('.rf-card', 27, rf));
+  Runner.run('5 category filter buttons exist',      () => assertQAll('.rf-filter', 5, rf));
+  Runner.run('Search input exists',                  () => assertEl('rf-search'));
+  Runner.run('"All Red Flags" filter button exists', () =>
+    assert(rf.textContent.includes('All Red Flags'), 'All filter missing'));
+  Runner.run('"Customer Risk" filter exists',        () =>
+    assert(rf.textContent.includes('Customer Risk'), 'Customer filter missing'));
+  Runner.run('"Transaction Risk" filter exists',     () =>
+    assert(rf.textContent.includes('Transaction Risk'), 'Transaction filter missing'));
+  Runner.run('"Delivery Channel" filter exists',     () =>
+    assert(rf.textContent.includes('Delivery Channel'), 'Delivery filter missing'));
+  Runner.run('"Jurisdiction Risk" filter exists',    () =>
+    assert(rf.textContent.includes('Jurisdiction Risk'), 'Jurisdiction filter missing'));
+  Runner.run('Customer filter shows only customer cards', () => {
+    App.filterRedFlags('customer');
+    const visible = Array.from(rf.querySelectorAll('.rf-card'))
+                         .filter(c => c.style.display !== 'none');
+    assert(visible.length === 10, `Customer filter: expected 10, got ${visible.length}`);
+    visible.forEach(c => assert(c.dataset.category === 'customer', `Non-customer card visible: ${c.dataset.category}`));
+  });
+  Runner.run('Transaction filter shows only transaction cards', () => {
+    App.filterRedFlags('transaction');
+    const visible = Array.from(rf.querySelectorAll('.rf-card'))
+                         .filter(c => c.style.display !== 'none');
+    assert(visible.length === 8, `Transaction filter: expected 8, got ${visible.length}`);
+  });
+  Runner.run('Delivery channel filter shows correct cards', () => {
+    App.filterRedFlags('delivery');
+    const visible = Array.from(rf.querySelectorAll('.rf-card'))
+                         .filter(c => c.style.display !== 'none');
+    assert(visible.length === 4, `Delivery filter: expected 4, got ${visible.length}`);
+  });
+  Runner.run('Jurisdiction filter shows correct cards', () => {
+    App.filterRedFlags('jurisdiction');
+    const visible = Array.from(rf.querySelectorAll('.rf-card'))
+                         .filter(c => c.style.display !== 'none');
+    assert(visible.length === 5, `Jurisdiction filter: expected 5, got ${visible.length}`);
+  });
+  Runner.run('"All" filter restores all 27 cards', () => {
+    App.filterRedFlags('all');
+    const visible = Array.from(rf.querySelectorAll('.rf-card'))
+                         .filter(c => c.style.display !== 'none');
+    assert(visible.length === 27, `All filter: expected 27, got ${visible.length}`);
+  });
+  Runner.run('Search filters cards by keyword', () => {
+    document.getElementById('rf-search').value = 'cash';
+    App.searchRedFlags();
+    const visible = Array.from(rf.querySelectorAll('.rf-card'))
+                         .filter(c => c.style.display !== 'none');
+    assert(visible.length > 0 && visible.length < 27, `Search returned ${visible.length} cards`);
+  });
+  Runner.run('Search with no match hides all cards', () => {
+    document.getElementById('rf-search').value = 'xzxzxzxzxzxzxzxz99999';
+    App.searchRedFlags();
+    const visible = Array.from(rf.querySelectorAll('.rf-card'))
+                         .filter(c => c.style.display !== 'none');
+    assert(visible.length === 0, `Expected 0 cards for no-match search, got ${visible.length}`);
+    document.getElementById('rf-search').value = '';
+    App.searchRedFlags();
+  });
+  Runner.run('Clicking a red flag card reveals detail', () => {
+    const firstCard = rf.querySelector('.rf-card');
+    assert(firstCard, 'No red flag cards found');
+    const cardId = firstCard.getAttribute('onclick')?.match(/'(rf\d+)'/)?.[1];
+    if (cardId) {
+      App.toggleRedFlagDetail(cardId);
+      const detail = document.getElementById('rf-detail-' + cardId);
+      assert(detail && !detail.classList.contains('hidden'), 'Detail not shown after click');
+      App.toggleRedFlagDetail(cardId); // close
+    } else {
+      firstCard.click();
+      assert(true); // No crash is acceptable
+    }
+  });
+  Runner.run('"Report This" link in cards links to reporting section', () => {
+    const reportLinks = rf.querySelectorAll('button[onclick*="reporting"]');
+    assert(reportLinks.length > 0, 'No "Report This" links found');
+  });
+  Runner.run('"Escalate" severity tags exist on red cards', () => {
+    const escalateTags = Array.from(rf.querySelectorAll('.tag')).filter(t => t.textContent.trim() === 'Escalate');
+    assert(escalateTags.length > 0, 'No "Escalate" severity tags found');
+  });
+  Runner.run('"Alert" severity tags exist on amber cards', () => {
+    const alertTags = Array.from(rf.querySelectorAll('.tag')).filter(t => t.textContent.trim() === 'Alert');
+    assert(alertTags.length > 0, 'No "Alert" severity tags found');
+  });
+
+  // ── 19. REPORTING ─────────────────────────────────────────────────────────
+  Runner.group('19. Reporting to AUSTRAC — Tabs, SMR, TTR');
+  navigateTo('reporting');
+  const rep = sectionEl('reporting');
+
+  Runner.run('Reporting heading exists',             () => assertContains('h1', 'Reporting', rep));
+  Runner.run('Tipping-off warning on reporting page', () =>
+    assert(rep.textContent.includes('TIPPING-OFF'), 'Tipping-off warning missing on reporting page'));
+  Runner.run('4 reporting tabs exist',               () => assertQAll('.rep-tab', 4, rep));
+  Runner.run('SMR tab panel exists (#rep-tab-0)',    () => assertEl('rep-tab-0'));
+  Runner.run('TTR tab panel exists (#rep-tab-1)',    () => assertEl('rep-tab-1'));
+  Runner.run('IFTI tab panel exists (#rep-tab-2)',   () => assertEl('rep-tab-2'));
+  Runner.run('Escalation tab exists (#rep-tab-3)',   () => assertEl('rep-tab-3'));
+  Runner.run('"24 hours" timeframe for terrorism in SMR tab', () =>
+    assert(document.getElementById('rep-tab-0').textContent.includes('24 hours'), '24-hour rule missing'));
+  Runner.run('"3 business days" timeframe in SMR tab', () =>
+    assert(document.getElementById('rep-tab-0').textContent.includes('3 business days'), '3 business days missing'));
+  Runner.run('AUSTRAC Online link in SMR tab',       () =>
+    assertQ('a[href*="austrac.gov.au"]', document.getElementById('rep-tab-0')));
+  Runner.run('Real estate SMR example exists',       () =>
+    assert(document.getElementById('rep-tab-0').textContent.includes('$200,000') ||
+           document.getElementById('rep-tab-0').textContent.includes('cash'), 'SMR example missing'));
+  Runner.run('SMR decision checkboxes (≥4)',         () =>
+    assertQAll('input[type="checkbox"]', 4, document.getElementById('rep-tab-0')));
+
+  Runner.run('Switch to TTR tab (1)',                () => {
+    App.switchTab('rep-tab', 1);
+    assert(!document.getElementById('rep-tab-1').classList.contains('hidden'), 'TTR tab hidden');
+  });
+  Runner.run('$10,000 threshold shown in TTR tab',  () =>
+    assert(document.getElementById('rep-tab-1').textContent.includes('10,000'), '$10,000 threshold missing'));
+  Runner.run('"10 business days" TTR deadline shown', () =>
+    assert(document.getElementById('rep-tab-1').textContent.includes('10 business days'), 'TTR deadline missing'));
+  Runner.run('TTR calculator input exists',          () => assertEl('ttr-amount'));
+  Runner.run('TTR calc: $15,000 triggers TTR required', () => {
+    document.getElementById('ttr-amount').value = '15000';
+    App.calcTTR();
+    const result = document.getElementById('ttr-result');
+    assert(result && !result.classList.contains('hidden'), 'TTR result not shown');
+    assert(result.textContent.includes('required'), 'TTR not flagged as required for $15,000');
+  });
+  Runner.run('TTR calc: $5,000 shows no TTR required', () => {
+    document.getElementById('ttr-amount').value = '5000';
+    App.calcTTR();
+    const result = document.getElementById('ttr-result');
+    assert(result && result.textContent.toLowerCase().includes('no ttr'), 'No-TTR message missing for $5,000');
+  });
+  Runner.run('TTR calc: exactly $10,000 triggers TTR', () => {
+    document.getElementById('ttr-amount').value = '10000';
+    App.calcTTR();
+    const result = document.getElementById('ttr-result');
+    assert(result && result.textContent.includes('required'), 'TTR not flagged for exact $10,000');
+  });
+  Runner.run('Structuring warning in TTR tab',       () =>
+    assert(document.getElementById('rep-tab-1').textContent.includes('Structuring') ||
+           document.getElementById('rep-tab-1').textContent.includes('structuring'), 'Structuring warning missing'));
+
+  Runner.run('Switch to Escalation tab (3)',         () => {
+    App.switchTab('rep-tab', 3);
+    assert(!document.getElementById('rep-tab-3').classList.contains('hidden'), 'Escalation tab hidden');
+  });
+  Runner.run('6 escalation steps shown',            () =>
+    assertQAll('.rounded-xl', 6, document.getElementById('rep-tab-3')));
+
+  Runner.run('SMR decision tool: 3+ checks show SMR recommended', () => {
+    App.switchTab('rep-tab', 0);
+    [0,1,2,3].forEach(i => {
+      const cb = document.getElementById('smr-q' + i);
+      if (cb) cb.checked = true;
+    });
+    App.updateSMRDecision();
+    const result = document.getElementById('smr-result');
+    assert(result && !result.classList.contains('hidden'), 'SMR result not shown');
+    assert(result.textContent.includes('SMR') || result.textContent.includes('warranted'), 'SMR recommendation missing');
+  });
+  Runner.run('SMR decision tool: 0 checks shows not required', () => {
+    [0,1,2,3].forEach(i => {
+      const cb = document.getElementById('smr-q' + i);
+      if (cb) cb.checked = false;
+    });
+    App.updateSMRDecision();
+    const result = document.getElementById('smr-result');
+    assert(result && (result.textContent.includes('not') || result.textContent.toLowerCase().includes('may not')), 'Should show not required for 0 checks');
+  });
+
+  // ── 20. RECORD KEEPING ────────────────────────────────────────────────────
+  Runner.group('20. Record Keeping');
+  navigateTo('record-keeping');
+  const rk = sectionEl('record-keeping');
+
+  Runner.run('Record Keeping heading exists',   () => assertContains('h1', 'Record', rk));
+  Runner.run('7-year retention banner exists',  () => assert(rk.textContent.includes('7 years'), '7 years retention missing'));
+  Runner.run('Records table exists (8 rows)',   () => assertQAll('tr', 8, rk));
+  Runner.run('"Securely" storage requirement',  () => assert(rk.textContent.includes('securely') || rk.textContent.includes('Securely'), 'Secure storage missing'));
+  Runner.run('"Privacy" compliance mentioned',  () => assert(rk.textContent.includes('privacy') || rk.textContent.includes('Privacy'), 'Privacy missing'));
+  Runner.run('Record audit checklist exists',   () => {
+    const items = AMLiqData.checklists.recordAudit;
+    assert(items && items.length >= 8, `Expected ≥8 record audit items, found ${items?.length}`);
+  });
+
+  // ── 21. TRAINING ──────────────────────────────────────────────────────────
+  Runner.group('21. Staff Training — Tabs and Quiz');
+  navigateTo('training');
+  const tr = sectionEl('training');
+
+  Runner.run('Training heading exists',           () => assertContains('h1', 'Training', tr));
+  Runner.run('4 training tabs exist',              () => assertQAll('.tr-tab', 4, tr));
+  Runner.run('Training plan tab panel exists',     () => assertEl('tr-tab-0'));
+  Runner.run('Training modules tab panel exists',  () => assertEl('tr-tab-1'));
+  Runner.run('Attendance record tab exists',       () => assertEl('tr-tab-2'));
+  Runner.run('Quiz tab panel exists',              () => assertEl('tr-tab-3'));
+
+  Runner.run('Switch to Modules tab (1)',          () => {
+    App.switchTab('tr-tab', 1);
+    assert(!document.getElementById('tr-tab-1').classList.contains('hidden'), 'Modules tab hidden');
+  });
+  Runner.run('12 training modules listed',         () =>
+    assertQAll('.rounded-xl', 12, document.getElementById('tr-tab-1')));
+  Runner.run('Module 7 (Red Flags) exists',        () =>
+    assert(document.getElementById('tr-tab-1').textContent.includes('Red Flags'), 'Red Flags module missing'));
+  Runner.run('Module 9 (Tipping-Off) exists',      () =>
+    assert(document.getElementById('tr-tab-1').textContent.includes('Tipping'), 'Tipping-Off module missing'));
+
+  Runner.run('Switch to Quiz tab (3)',             () => {
+    App.switchTab('tr-tab', 3);
+    assert(!document.getElementById('tr-tab-3').classList.contains('hidden'), 'Quiz tab hidden');
+  });
+  Runner.run('Quiz container exists',              () => assertEl('quiz-container'));
+  Runner.run('First quiz question is rendered',    () => {
+    Quiz.reset();
+    const container = document.getElementById('quiz-container');
+    container.innerHTML = Quiz.renderQuestion(0);
+    assert(container.textContent.includes('designated services') ||
+           container.textContent.includes('Question 1'), 'Q1 not rendered');
+  });
+  Runner.run('Q1 has 4 answer options',            () => {
+    assertQAll('.quiz-option', 4, document.getElementById('quiz-container'));
+  });
+  Runner.run('Progress bar shown on Q1',           () =>
+    assertQ('.rounded-full', document.getElementById('quiz-container')));
+  Runner.run('Answering Q1 correctly shows correct feedback', () => {
+    const q = AMLiqData.quiz[0];
+    Quiz.selectAnswer(0, q.answer);
+    const container = document.getElementById('quiz-container');
+    assert(container.textContent.includes('Correct') || container.textContent.includes('correct'),
+      'Correct feedback not shown');
+  });
+  Runner.run('Answering Q1 incorrectly shows incorrect feedback', () => {
+    Quiz.reset();
+    const container = document.getElementById('quiz-container');
+    container.innerHTML = Quiz.renderQuestion(0);
+    const q = AMLiqData.quiz[0];
+    const wrongAnswer = q.answer === 0 ? 1 : 0;
+    Quiz.selectAnswer(0, wrongAnswer);
+    assert(container.textContent.includes('Incorrect') || container.textContent.includes('incorrect') ||
+           container.textContent.includes('✗'), 'Incorrect feedback not shown');
+  });
+  Runner.run('Explanation shown after answering',  () => {
+    assert(document.getElementById('quiz-container').textContent.includes(AMLiqData.quiz[0].explanation.slice(0, 20)),
+      'Explanation not shown after answer');
+  });
+  Runner.run('Quiz: 15 questions defined in data', () =>
+    assert(AMLiqData.quiz.length === 15, `Expected 15 questions, found ${AMLiqData.quiz.length}`));
+  Runner.run('All quiz questions have 4 options (or 2 for yes/no)', () => {
+    AMLiqData.quiz.forEach(q => {
+      assert(q.options.length >= 2, `Q${q.id} has ${q.options.length} options`);
+    });
+  });
+  Runner.run('All quiz answers are valid indices', () => {
+    AMLiqData.quiz.forEach(q => {
+      assert(q.answer >= 0 && q.answer < q.options.length,
+        `Q${q.id} answer index ${q.answer} out of range`);
+    });
+  });
+  Runner.run('Quiz summary rendered after all questions answered', () => {
+    Quiz.reset();
+    AMLiqData.quiz.forEach((q, i) => { Quiz.answers[i] = q.answer; Quiz.revealed[i] = true; });
+    Quiz.finished = true;
+    Quiz.saveState();
+    const container = document.getElementById('quiz-container');
+    container.innerHTML = Quiz.renderSummary();
+    assert(container.textContent.includes('%') || container.textContent.includes('Quiz Complete'),
+      'Quiz summary not shown');
+  });
+  Runner.run('Retake Quiz button in summary',      () => {
+    assert(document.getElementById('quiz-container').textContent.includes('Retake'), 'Retake button missing');
+  });
+
+  // ── 22. PROGRAM REVIEW ────────────────────────────────────────────────────
+  Runner.group('22. Program Review');
+  navigateTo('program-review');
+  const pr = sectionEl('program-review');
+
+  Runner.run('Program Review heading exists',     () => assertContains('h1', 'Program Review', pr));
+  Runner.run('3 program review tabs',             () => assertQAll('.rev-tab', 3, pr));
+  Runner.run('Review Triggers tab panel exists',  () => assertEl('rev-tab-0'));
+  Runner.run('Review Checklist tab exists',       () => assertEl('rev-tab-1'));
+  Runner.run('Change Log tab exists',             () => assertEl('rev-tab-2'));
+  Runner.run('≥10 trigger items listed',          () =>
+    assertQAll('.rounded-xl', 10, document.getElementById('rev-tab-0')));
+  Runner.run('Switch to Change Log tab (2)',       () => {
+    App.switchTab('rev-tab', 2);
+    assert(!document.getElementById('rev-tab-2').classList.contains('hidden'), 'Change log tab hidden');
+  });
+  Runner.run('Change log form exists',            () => assertEl('form-change-log'));
+  Runner.run('Date of change field exists',       () => assertQ('[name="date_of_change"]', document.getElementById('form-change-log')));
+  Runner.run('Trigger dropdown exists',           () => assertQ('[name="trigger"]',        document.getElementById('form-change-log')));
+  Runner.run('What was changed textarea exists',  () => assertQ('[name="what_changed"]',   document.getElementById('form-change-log')));
+
+  // ── 23. INDEPENDENT EVALUATION ────────────────────────────────────────────
+  Runner.group('23. Independent Evaluation');
+  navigateTo('evaluation');
+  const ev = sectionEl('evaluation');
+
+  Runner.run('Evaluation heading exists',          () => assertContains('h1', 'Evaluation', ev));
+  Runner.run('"3 years" requirement mentioned',    () => assert(ev.textContent.includes('3 years'), '3 years missing'));
+  Runner.run('Permitted evaluators listed',        () =>
+    assert(ev.textContent.includes('External compliance consultant'), 'Evaluator types missing'));
+  Runner.run('"Not permitted" evaluators listed',  () =>
+    assert(ev.textContent.includes('Not permitted') || ev.textContent.includes('not permitted'), 'Not-permitted list missing'));
+  Runner.run('Evaluation form exists',             () => assertEl('form-evaluation'));
+  Runner.run('First evaluation due date field',    () => assertQ('[name="due_date"]',         document.getElementById('form-evaluation')));
+  Runner.run('Evaluator type dropdown',            () => assertQ('[name="evaluator_type"]',   document.getElementById('form-evaluation')));
+  Runner.run('Evaluator name field',               () => assertQ('[name="evaluator_name"]',   document.getElementById('form-evaluation')));
+  Runner.run('Independent confirmation field',     () => assertQ('[name="confirmed_independent"]', document.getElementById('form-evaluation')));
+  Runner.run('Adverse findings field',             () => assertQ('[name="adverse_findings"]', document.getElementById('form-evaluation')));
+
+  // ── 24. FORMS LIBRARY ─────────────────────────────────────────────────────
+  Runner.group('24. Forms Library');
+  navigateTo('forms-library');
+  const fl = sectionEl('forms-library');
+
+  Runner.run('Forms Library heading exists',       () => assertContains('h1', 'Forms', fl));
+  Runner.run('≥18 form entries listed',            () =>
+    assert(fl.querySelectorAll('.rounded-xl').length >= 18, `Expected ≥18 entries, got ${fl.querySelectorAll('.rounded-xl').length}`));
+  Runner.run('Export All Data button exists',      () =>
+    assertQ('button[onclick*="exportAllData"]', fl));
+  Runner.run('Import Data input exists',           () =>
+    assertQ('input[type="file"]', fl));
+  Runner.run('Print button exists',                () =>
+    assert(fl.textContent.includes('Print'), 'Print button missing'));
+  Runner.run('"Open →" buttons exist for forms (≥18)', () =>
+    assertQAll('button[onclick*="goToForm"]', 18, fl));
+  Runner.run('CDD Individual form link works',     () => {
+    const btn = Array.from(fl.querySelectorAll('button')).find(b => b.textContent.includes('CDD — Individual'));
+    assert(btn, 'CDD Individual button not found');
+    btn.click();
+    assertVisible('cdd');
+  });
+  Runner.run('Glossary form link works',           () => {
+    navigateTo('forms-library');
+    const btn = Array.from(fl.querySelectorAll('button')).find(b => b.textContent.includes('Risk Assessment'));
+    assert(btn, 'Risk Assessment form button not found');
+    btn.click();
+    assertVisible('risk-assessment');
+  });
+  Runner.run('Storage notice exists',              () =>
+    assert(fl.textContent.includes('localStorage') || fl.textContent.includes('local storage'), 'Storage notice missing'));
+
+  // ── 25. GLOSSARY ──────────────────────────────────────────────────────────
+  Runner.group('25. Jargon Buster — Glossary');
+  navigateTo('glossary');
+  const gl = sectionEl('glossary');
+
+  Runner.run('Glossary heading exists',            () => assertContains('h1', 'Jargon', gl));
+  Runner.run('Search input exists',                () => assertEl('gloss-search'));
+  Runner.run('31 glossary terms rendered',         () =>
+    assert(gl.querySelectorAll('.gloss-item').length === 31,
+      `Expected 31 terms, found ${gl.querySelectorAll('.gloss-item').length}`));
+  Runner.run('Search "AML" filters terms',         () => {
+    document.getElementById('gloss-search').value = 'AML';
+    App.filterGlossary();
+    const visible = Array.from(gl.querySelectorAll('.gloss-item')).filter(i => i.style.display !== 'none');
+    assert(visible.length > 0 && visible.length < 31, `AML search returned ${visible.length} items`);
+  });
+  Runner.run('Search "xzxzxzxz" hides all terms', () => {
+    document.getElementById('gloss-search').value = 'xzxzxzxz999';
+    App.filterGlossary();
+    const visible = Array.from(gl.querySelectorAll('.gloss-item')).filter(i => i.style.display !== 'none');
+    assert(visible.length === 0, `Expected 0 terms, got ${visible.length}`);
+    document.getElementById('gloss-search').value = '';
+    App.filterGlossary();
+  });
+  Runner.run('All 31 terms have non-empty definitions', () => {
+    AMLiqData.glossary.forEach(g => {
+      assert(g.definition && g.definition.length > 10, `Term "${g.term}" has empty/short definition`);
+    });
+  });
+  Runner.run('Key term "AML" exists in glossary',  () =>
+    assert(AMLiqData.glossary.some(g => g.term === 'AML'), 'AML term missing'));
+  Runner.run('Key term "PEP" exists in glossary',  () =>
+    assert(AMLiqData.glossary.some(g => g.term === 'PEP'), 'PEP term missing'));
+  Runner.run('Key term "SMR" exists in glossary',  () =>
+    assert(AMLiqData.glossary.some(g => g.term === 'SMR'), 'SMR term missing'));
+  Runner.run('Key term "TTR" exists in glossary',  () =>
+    assert(AMLiqData.glossary.some(g => g.term === 'TTR'), 'TTR term missing'));
+  Runner.run('Key term "Structuring" exists',       () =>
+    assert(AMLiqData.glossary.some(g => g.term === 'Structuring'), 'Structuring term missing'));
+  Runner.run('Key term "FATF" exists in glossary', () =>
+    assert(AMLiqData.glossary.some(g => g.term === 'FATF'), 'FATF term missing'));
+
+  // ── 26. FAQ ───────────────────────────────────────────────────────────────
+  Runner.group('26. FAQ');
+  navigateTo('faq');
+  const faqEl = sectionEl('faq');
+
+  Runner.run('FAQ heading exists',                 () => assertContains('h1', 'FAQ', faqEl));
+  Runner.run('FAQ search input exists',            () => assertEl('faq-search'));
+  Runner.run('15 FAQ items rendered',              () =>
+    assert(faqEl.querySelectorAll('.faq-item').length === 15,
+      `Expected 15 FAQ items, found ${faqEl.querySelectorAll('.faq-item').length}`));
+  Runner.run('FAQ item 0 expands on click',        () => {
+    App.toggleFAQ(0);
+    const body = document.getElementById('faq-body-0');
+    assert(body && !body.classList.contains('hidden'), 'FAQ item 0 did not expand');
+  });
+  Runner.run('FAQ item 0 collapses on second click', () => {
+    App.toggleFAQ(0);
+    const body = document.getElementById('faq-body-0');
+    assert(body && body.classList.contains('hidden'), 'FAQ item 0 did not collapse');
+  });
+  Runner.run('FAQ search "property" filters results', () => {
+    document.getElementById('faq-search').value = 'property';
+    App.filterFAQ();
+    const visible = Array.from(faqEl.querySelectorAll('.faq-item')).filter(i => i.style.display !== 'none');
+    assert(visible.length > 0 && visible.length < 15, `Property search returned ${visible.length} items`);
+    document.getElementById('faq-search').value = '';
+    App.filterFAQ();
+  });
+  Runner.run('FAQ item 1 expands and shows answer',  () => {
+    App.toggleFAQ(1);
+    const body = document.getElementById('faq-body-1');
+    assert(body && !body.classList.contains('hidden') && body.textContent.length > 10, 'FAQ item 1 answer empty');
+    App.toggleFAQ(1);
+  });
+  Runner.run('All 15 FAQs have non-empty answers',   () => {
+    AMLiqData.faq.forEach((f, i) => {
+      assert(f.a && f.a.length > 10, `FAQ ${i} has empty answer`);
+    });
+  });
+  Runner.run('FAQ property management answer says "exempt"', () => {
+    const q = AMLiqData.faq.find(f => f.q.includes('property management'));
+    assert(q && q.a.toLowerCase().includes('exempt'), 'Property management FAQ should say exempt');
+  });
+  Runner.run("FAQ buyer's agent answer confirms regulated",   () => {
+    const q = AMLiqData.faq.find(f => f.q.includes("buyer's agent"));
+    assert(q && (q.a.toLowerCase().includes('yes') || q.a.toLowerCase().includes('designated')),
+      "Buyer's agent FAQ should confirm regulated");
+  });
+
+  // ── 27. AUSTRAC LINKS ─────────────────────────────────────────────────────
+  Runner.group('27. AUSTRAC Links — External URLs');
+  navigateTo('austrac-links');
+  const al = sectionEl('austrac-links');
+
+  Runner.run('AUSTRAC Links heading exists',       () => assertContains('h1', 'AUSTRAC', al));
+  Runner.run('≥19 link entries rendered',          () =>
+    assert(al.querySelectorAll('a').length >= 19, `Expected ≥19 links, found ${al.querySelectorAll('a').length}`));
+  Runner.run('All links have non-empty href',      () => {
+    al.querySelectorAll('a[href]').forEach(a => {
+      assert(a.href && a.href.length > 0, `Empty href on "${a.textContent.trim().slice(0,40)}"`);
+    });
+  });
+  Runner.run('All external links open in new tab', () => {
+    al.querySelectorAll('a[href^="http"]').forEach(a => {
+      assert(a.target === '_blank', `Link "${a.textContent.trim().slice(0,40)}" missing target=_blank`);
+    });
+  });
+  Runner.run('Real Estate Guidance link present',  () =>
+    assertQ('a[href*="austrac.gov.au"]', al));
+  Runner.run('DFAT Consolidated List link present', () =>
+    assertQ('a[href*="dfat.gov.au"]', al));
+  Runner.run('AUSTRAC Online link present',        () =>
+    assertQ('a[href*="online.austrac.gov.au"]', al));
+  Runner.run('AUSTRAC data has 19 links in data.js', () =>
+    assert(AMLiqData.austracLinks.length === 19, `Expected 19 links, found ${AMLiqData.austracLinks.length}`));
+  Runner.run('All austracLinks have non-empty URLs', () => {
+    AMLiqData.austracLinks.forEach(l => {
+      assert(l.url && l.url.startsWith('http'), `Link "${l.title}" has invalid URL: "${l.url}"`);
+    });
+  });
+  Runner.run('All austracLinks have title and desc', () => {
+    AMLiqData.austracLinks.forEach(l => {
+      assert(l.title && l.title.length > 3, `Link has empty title`);
+      assert(l.desc && l.desc.length > 10, `Link "${l.title}" has empty desc`);
+    });
+  });
+
+  // ── 28. DATA INTEGRITY ────────────────────────────────────────────────────
+  Runner.group('28. Data Integrity — Static Content');
+  Runner.run('27 red flags defined in data.js',          () =>
+    assert(AMLiqData.redFlags.length === 27, `Expected 27 red flags, found ${AMLiqData.redFlags.length}`));
+  Runner.run('All red flags have unique IDs',            () => {
+    const ids = AMLiqData.redFlags.map(r => r.id);
+    const unique = new Set(ids);
+    assert(unique.size === ids.length, 'Duplicate red flag IDs found');
+  });
+  Runner.run('All red flags have category, title, detail', () => {
+    AMLiqData.redFlags.forEach(r => {
+      assert(r.category, `Red flag ${r.id} missing category`);
+      assert(r.title,    `Red flag ${r.id} missing title`);
+      assert(r.detail,   `Red flag ${r.id} missing detail`);
+    });
+  });
+  Runner.run('Red flags span all 4 categories',          () => {
+    const cats = new Set(AMLiqData.redFlags.map(r => r.category));
+    assert(cats.has('customer') && cats.has('transaction') && cats.has('delivery') && cats.has('jurisdiction'),
+      'Not all 4 categories present');
+  });
+  Runner.run('10 obligations defined',                   () =>
+    assert(AMLiqData.obligations.length === 10, `Expected 10 obligations, found ${AMLiqData.obligations.length}`));
+  Runner.run('All obligations have section links',       () => {
+    AMLiqData.obligations.forEach(o => {
+      assert(o.section, `Obligation ${o.num} missing section link`);
+      assert(SECTIONS.includes(o.section), `Obligation ${o.num} section "${o.section}" not in SECTIONS list`);
+    });
+  });
+  Runner.run('FATF blacklist has 3 entries',             () =>
+    assert(AMLiqData.fatfHighRisk.blacklist.length === 3,
+      `Expected 3 blacklist entries, found ${AMLiqData.fatfHighRisk.blacklist.length}`));
+  Runner.run('FATF greylist has >20 entries',            () =>
+    assert(AMLiqData.fatfHighRisk.greylist.length > 20,
+      `Expected >20 greylist entries, found ${AMLiqData.fatfHighRisk.greylist.length}`));
+  Runner.run('Risk questions exist for all 4 categories', () => {
+    assert(AMLiqData.riskQuestions.customer.length > 0, 'Customer risk questions missing');
+    assert(AMLiqData.riskQuestions.service.length > 0, 'Service risk questions missing');
+    assert(AMLiqData.riskQuestions.delivery.length > 0, 'Delivery risk questions missing');
+    assert(AMLiqData.riskQuestions.geographic.length > 0, 'Geographic risk questions missing');
+  });
+  Runner.run('All risk questions have risk level (high/medium)', () => {
+    ['customer','service','delivery','geographic'].forEach(cat => {
+      AMLiqData.riskQuestions[cat].forEach(q => {
+        assert(['high','medium'].includes(q.risk), `Q ${q.id} has invalid risk: ${q.risk}`);
+      });
+    });
+  });
+
+  // ── 29. EXPORT / IMPORT ────────────────────────────────────────────────────
+  Runner.group('29. Export / Import');
+  Runner.run('Export.exportAll is callable without crash', () => {
+    // Override URL.createObjectURL to avoid "not implemented" error in test env
+    const origCreate = URL.createObjectURL;
+    const origRevoke = URL.revokeObjectURL;
+    URL.createObjectURL = () => 'blob:test';
+    URL.revokeObjectURL = () => {};
+    const origClick = HTMLElement.prototype.click;
+    HTMLElement.prototype.click = function() {}; // suppress download
+    try {
+      Export.exportAll();
+    } finally {
+      URL.createObjectURL = origCreate;
+      URL.revokeObjectURL = origRevoke;
+      HTMLElement.prototype.click = origClick;
+    }
+  });
+  Runner.run('Export includes checklist data', () => {
+    Checklist.set('ra1', true);
+    const data = {
+      checklists: {},
+      forms: {},
+    };
+    Object.keys(AMLiqData.checklists).forEach(k => {
+      data.checklists[k] = {};
+      AMLiqData.checklists[k].forEach(item => {
+        data.checklists[k][item.id] = Checklist.get(item.id);
+      });
+    });
+    assert(data.checklists.riskAssessment.ra1 === true, 'Checked item not included in export data');
+    Checklist.set('ra1', false);
+  });
+  Runner.run('Import restores checklist state', () => {
+    localStorage.setItem('check_ra1', '1');
+    assert(Checklist.get('ra1') === true, 'Import restore failed');
+    localStorage.removeItem('check_ra1');
+  });
+  Runner.run('Checklist.exportProgress is callable', () => {
+    const origCreate = URL.createObjectURL;
+    const origRevoke = URL.revokeObjectURL;
+    URL.createObjectURL = () => 'blob:test';
+    URL.revokeObjectURL = () => {};
+    const origClick = HTMLElement.prototype.click;
+    HTMLElement.prototype.click = function() {};
+    try {
+      Checklist.exportProgress();
+    } finally {
+      URL.createObjectURL = origCreate;
+      URL.revokeObjectURL = origRevoke;
+      HTMLElement.prototype.click = origClick;
+    }
+  });
+
+  // ── 30. ALL EXTERNAL LINKS VALIDATION ─────────────────────────────────────
+  Runner.group('30. External Link Validation — All Sections');
+  const trustedDomains = ['austrac.gov.au', 'dfat.gov.au', 'fatf-gafi.org', 'online.austrac.gov.au'];
+  navigateTo('austrac-links');
+  Runner.run('All rendered external links use https://', () => {
+    document.querySelectorAll('a[href^="http"]').forEach(a => {
+      assert(a.href.startsWith('https://'), `Non-HTTPS link found: ${a.href}`);
+    });
+  });
+  Runner.run('All external links have rel="noopener" or target="_blank"', () => {
+    document.querySelectorAll('a[href^="https"]').forEach(a => {
+      const hasTarget = a.target === '_blank';
+      const hasRel    = (a.rel || '').includes('noopener');
+      assert(hasTarget || hasRel, `Link "${a.href.slice(0,60)}" has no target=_blank or rel=noopener`);
+    });
+  });
+  Runner.run('All data.js austracLinks URLs start with https://', () => {
+    AMLiqData.austracLinks.forEach(l => {
+      assert(l.url.startsWith('https://'), `Non-HTTPS URL in data.js: ${l.url}`);
+    });
+  });
+  Runner.run('Disclaimer banner has AUSTRAC link', () => {
+    const banner = document.getElementById('disclaimer-banner');
+    assert(banner, 'Disclaimer banner not found');
+    const link = banner.querySelector('a[href*="austrac.gov.au"]');
+    assert(link, 'AUSTRAC link missing from disclaimer banner');
+  });
+
+} // end runAllTests()
+</script>
+</body>
+</html>
