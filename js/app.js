@@ -64,6 +64,8 @@ const App = {
     this.renderProgramReview();
     this.renderEvaluation();
     this.renderFormsLibrary();
+    this.renderStarterKitForms();
+    this.renderCustomerExamples();
     this.renderGlossary();
     this.renderFAQ();
     this.renderAustracLinks();
@@ -614,6 +616,50 @@ const App = {
         ${this.pageHeader('AML/CTF Program Builder', 'A comprehensive checklist of everything your AML/CTF program should contain — aligned to AUSTRAC\'s starter kit.', '🏗️')}
         <div class="austrac-callout mb-5 text-sm">
           <strong class="text-blue-800">AUSTRAC Starter Kit alignment:</strong> The starter kit contains four core documents: Customise Guide, Risk Assessment, Policy Document, and Process Document. Once customised and approved by senior management, these together form your official AML/CTF program. Use this checklist to track your progress.
+          <div class="mt-2 text-amber-700 font-medium">⚠️ The starter kit is NOT designed to be used as-is. You must complete the customisation step to create a program that reflects your specific business.</div>
+        </div>
+
+        <!-- AUSTRAC Downloadable Templates -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5 mb-5">
+          <h3 class="font-semibold text-slate-700 mb-1">AUSTRAC Official Templates (Download from austrac.gov.au)</h3>
+          <p class="text-xs text-slate-500 mb-3">These are the official Word documents from AUSTRAC's Real Estate Program Starter Kit. Download, customise, and use them as your AML/CTF program.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            ${[
+              { name: 'Customise Guide', size: '1.13 MB', url: 'https://www.austrac.gov.au/sites/default/files/2026-01/Real%20estate%20-%20Customise%20guide%20-%20January%202026.docx' },
+              { name: 'Risk Assessment', size: '995 KB', url: 'https://www.austrac.gov.au/sites/default/files/2026-01/Real%20estate%20-%20Risk%20assessment%20-%20January%202026.docx' },
+              { name: 'Policy Document', size: '1.07 MB', url: 'https://www.austrac.gov.au/sites/default/files/2026-01/Real%20estate%20-%20Policy%20document%20-%20January%202026.docx' },
+              { name: 'Process Document', size: '977 KB', url: 'https://www.austrac.gov.au/sites/default/files/2026-01/Real%20estate%20-%20Process%20document%20-%20January%202026.docx' },
+            ].map(t => `
+              <a href="${t.url}" target="_blank" rel="noopener" class="flex items-center gap-2 border border-slate-200 rounded-lg px-3 py-2 hover:border-blue-300 hover:bg-blue-50 transition-colors">
+                <span class="text-blue-500 text-lg">📄</span>
+                <div>
+                  <div class="text-sm font-medium text-slate-700">${t.name}</div>
+                  <div class="text-xs text-slate-400">Word document · ${t.size}</div>
+                </div>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- 4-Step Customisation Process -->
+        <div class="bg-slate-50 rounded-xl border border-slate-200 p-5 mb-5">
+          <h3 class="font-semibold text-slate-700 mb-3">AUSTRAC's 4-Step Customisation Process</h3>
+          <div class="space-y-3">
+            ${[
+              { n: 1, title: 'Customise your risk assessment', desc: 'Identify risks relevant to your business, their significance, and acceptable risk levels.' },
+              { n: 2, title: 'Customise personnel sections', desc: 'Assign AML/CTF roles, conduct personnel due diligence, and plan staff training.' },
+              { n: 3, title: 'Tailor customer sections', desc: 'Establish CDD procedures, monitoring processes, and risk response controls.' },
+              { n: 4, title: 'Document and approve your program', desc: 'Finalise all documents and obtain formal senior management approval.' },
+            ].map(s => `
+              <div class="flex items-start gap-3">
+                <div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">${s.n}</div>
+                <div>
+                  <div class="text-sm font-semibold text-slate-700">${s.title}</div>
+                  <div class="text-xs text-slate-500">${s.desc}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
         </div>
         <div class="mb-4 flex items-center gap-4">
           <div class="flex-1">
@@ -721,13 +767,53 @@ const App = {
       <div class="p-6 max-w-4xl mx-auto">
         ${this.pageHeader('Customer Due Diligence (CDD)', 'Step-by-step guidance on identifying and verifying customers for each entity type.', '🪪')}
 
-        <div class="austrac-callout mb-5 text-sm">
-          <strong class="text-blue-800">Overarching principle:</strong> You must conduct initial CDD <em>before</em> providing a designated service (i.e., before acting for the customer in a property transaction). If CDD cannot be completed satisfactorily, consider whether to decline or cease providing the service.
+        <!-- Who Is Your Customer — critical clarification -->
+        <div class="bg-amber-50 border border-amber-300 rounded-xl p-4 mb-4 text-sm">
+          <div class="font-bold text-amber-800 mb-1">⚠️ Who Is Your Customer? — Critical Clarification (AUSTRAC)</div>
+          <p class="text-amber-700"><em>"If you act for the seller and broker the successful sale of real estate, your customer is both the buyer and the seller. If you act for the buyer and broker the successful purchase of real estate, your customer is also both the buyer and the seller."</em></p>
+          <p class="text-amber-600 text-xs mt-1">Source: AUSTRAC Step 2 — Use Your Real Estate Program</p>
+        </div>
+
+        <div class="austrac-callout mb-4 text-sm">
+          <strong class="text-blue-800">Overarching principle:</strong> You must conduct initial CDD <em>before</em> providing a designated service (i.e., before acting for the customer in a property transaction). If CDD cannot be completed satisfactorily, consider whether to decline or cease providing the service. CDD data is collected under a legal obligation — handle it in accordance with the Australian Privacy Principles.
+        </div>
+
+        <!-- Risk Rating Table -->
+        <div class="bg-white rounded-xl border border-slate-200 p-5 mb-5">
+          <h3 class="font-semibold text-slate-700 mb-3">Customer Risk Rating Table <span class="text-xs font-normal text-slate-400 ml-1">(AUSTRAC Starter Kit)</span></h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs">
+              <thead>
+                <tr class="border-b border-slate-200">
+                  <th class="text-left py-2 pr-3 font-semibold text-slate-600 w-24">Rating</th>
+                  <th class="text-left py-2 pr-3 font-semibold text-slate-600">Risk Factors Present</th>
+                  <th class="text-left py-2 font-semibold text-slate-600 w-32">Controls</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr>
+                  <td class="py-2 pr-3"><span class="tag bg-red-100 text-red-700 font-bold">HIGH</span></td>
+                  <td class="py-2 pr-3 text-slate-600">Paying with &gt;A$50,000 physical currency; using cryptocurrency; grossly unusual/complex transaction; information suggesting criminal activity; unexplained wealth; resident of high-risk country; foreign PEP; identity difficult to establish</td>
+                  <td class="py-2 text-slate-600">Enhanced CDD; source of funds &amp; wealth check; adverse media check; senior manager approval</td>
+                </tr>
+                <tr>
+                  <td class="py-2 pr-3"><span class="tag bg-amber-100 text-amber-700 font-bold">MEDIUM</span></td>
+                  <td class="py-2 pr-3 text-slate-600">Property &gt;A$1.5M without mortgage; domestic or international organisation PEP; third party not enrolled with AUSTRAC representing customer; charity/non-profit; remote-only interactions</td>
+                  <td class="py-2 text-slate-600">Initial CDD (simplified CDD not appropriate)</td>
+                </tr>
+                <tr>
+                  <td class="py-2 pr-3"><span class="tag bg-green-100 text-green-700 font-bold">LOW</span></td>
+                  <td class="py-2 pr-3 text-slate-600">Does not meet high or medium-risk criteria</td>
+                  <td class="py-2 text-slate-600">Simplified CDD</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <!-- CDD Tabs -->
         <div class="flex gap-2 mb-5 overflow-x-auto border-b border-slate-200">
-          ${['Individual', 'Company', 'Trust', 'Partnership', 'Foreign', 'EDD', 'Ongoing CDD', 'PEP/Sanctions'].map((tab, i) => `
+          ${['Individual', 'Company', 'Trust', 'Partnership', 'Foreign', 'EDD', 'Ongoing CDD', 'PEP/Sanctions', 'Delayed CDD', '3rd Party Reliance', 'CDD Outcome'].map((tab, i) => `
             <button onclick="App.switchTab('cdd-tab', ${i})"
               class="cdd-tab pb-2 px-2 text-sm font-medium whitespace-nowrap ${i === 0 ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-500 hover:text-slate-700'}" data-tab="${i}">
               ${tab}
@@ -742,6 +828,9 @@ const App = {
         <div id="cdd-tab-5" class="hidden">${Forms.renderEDD()}</div>
         <div id="cdd-tab-6" class="hidden">${Checklist.renderSection('ongoingCDD', 'Ongoing CDD Review Checklist')}</div>
         <div id="cdd-tab-7" class="hidden">${Forms.renderPEPScreening()}</div>
+        <div id="cdd-tab-8" class="hidden">${this.renderDelayedCDD()}</div>
+        <div id="cdd-tab-9" class="hidden">${this.renderThirdPartyReliance()}</div>
+        <div id="cdd-tab-10" class="hidden">${this.renderCDDOutcome()}</div>
       </div>
     `;
     Checklist.updateProgress();
@@ -852,7 +941,7 @@ const App = {
     const el = document.getElementById('section-reporting');
     el.innerHTML = `
       <div class="p-6 max-w-4xl mx-auto">
-        ${this.pageHeader('Reporting to AUSTRAC', 'When and how to file Suspicious Matter Reports (SMRs), Threshold Transaction Reports (TTRs), and IFTIs.', '📤')}
+        ${this.pageHeader('Reporting to AUSTRAC', 'When and how to file Suspicious Matter Reports (SMRs), Threshold Transaction Reports (TTRs), IFTIs, and Annual Compliance Reports.', '📤')}
 
         <div class="tipping-off-warning mb-5">
           <div class="flex items-center gap-2 mb-2"><span class="text-red-600 font-bold">🚫 TIPPING-OFF PROHIBITION — APPLIES TO ALL REPORTING</span></div>
@@ -860,7 +949,7 @@ const App = {
         </div>
 
         <div class="flex gap-2 mb-5 border-b border-slate-200 flex-wrap">
-          ${['SMRs', 'TTRs', 'IFTIs', 'Escalation Guide'].map((tab, i) => `
+          ${['SMRs', 'TTRs', 'IFTIs', 'Annual Report', 'Escalation Guide'].map((tab, i) => `
             <button onclick="App.switchTab('rep-tab', ${i})"
               class="rep-tab pb-2 px-2 text-sm font-medium ${i === 0 ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-500 hover:text-slate-700'}" data-tab="${i}">
               ${tab}
@@ -870,7 +959,8 @@ const App = {
         <div id="rep-tab-0">${this.renderSMRGuide()}</div>
         <div id="rep-tab-1" class="hidden">${this.renderTTRGuide()}</div>
         <div id="rep-tab-2" class="hidden">${this.renderIFTIGuide()}</div>
-        <div id="rep-tab-3" class="hidden">${this.renderEscalationGuide()}</div>
+        <div id="rep-tab-3" class="hidden">${this.renderAnnualComplianceReport()}</div>
+        <div id="rep-tab-4" class="hidden">${this.renderEscalationGuide()}</div>
       </div>
     `;
   },
@@ -1304,6 +1394,9 @@ const App = {
       { n: 16, name: 'Independent Evaluation Plan', section: 'evaluation', tab: 0 },
       { n: 17, name: 'Enrolment Checklist', section: 'enrolment', tab: 0 },
       { n: 18, name: 'Risk Assessment Summary', section: 'risk-assessment', tab: 0 },
+      { n: 19, name: 'Delayed CDD Record', section: 'cdd', tab: 8 },
+      { n: 20, name: 'Third-Party Reliance Record', section: 'cdd', tab: 9 },
+      { n: 21, name: 'CDD Outcome Record', section: 'cdd', tab: 10 },
     ];
 
     el.innerHTML = `
@@ -1421,14 +1514,344 @@ const App = {
         <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-5 text-sm text-amber-800">
           <strong>Important:</strong> Always refer directly to AUSTRAC's official publications for the most current and authoritative guidance. This tool is based on materials as of February 2026 and should be used alongside, not instead of, the official AUSTRAC Real Estate Program Starter Kit.
         </div>
+        ${(() => {
+          const grouped = {};
+          AMLiqData.austracLinks.forEach(l => {
+            const cat = l.category || 'General';
+            if (!grouped[cat]) grouped[cat] = [];
+            grouped[cat].push(l);
+          });
+          return Object.entries(grouped).map(([cat, links]) => `
+            <div class="mb-6">
+              <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">${cat}</h3>
+              <div class="space-y-2">
+                ${links.map(l => `
+                  <div class="bg-white rounded-xl border border-slate-200 p-4 flex items-start gap-3">
+                    <span class="text-blue-500 text-lg flex-shrink-0">🔗</span>
+                    <div class="flex-1 min-w-0">
+                      <a href="${l.url}" target="_blank" rel="noopener" class="font-semibold text-blue-600 hover:underline text-sm">${l.title}</a>
+                      <div class="text-xs text-slate-500 mt-1">${l.desc}</div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `).join('');
+        })()}
+      </div>
+    `;
+  },
+
+  // ─── NEW CDD SUB-SECTIONS ─────────────────────────────────────────────────
+  renderDelayedCDD() {
+    return `
+      <div class="space-y-4">
+        <div class="austrac-callout text-sm">
+          <strong class="text-blue-800">📎 AUSTRAC Source:</strong> <a href="https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/customer-due-diligence-reform/initial-customer-due-diligence-reform/delayed-initial-customer-due-diligence-reform" target="_blank" rel="noopener" class="underline text-blue-600">Delayed Initial CDD (Reform)</a>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">When May You Delay CDD?</h3>
+          <p class="text-sm text-slate-600 mb-3">AUSTRAC recognises that real estate transactions may require starting work before CDD is fully completed. You may delay initial CDD only if <strong>both</strong> conditions are met:</p>
+          <div class="space-y-2 mb-4">
+            <div class="flex items-start gap-2 text-sm text-slate-700"><span class="text-green-600 font-bold mt-0.5">1.</span><span>You determine on reasonable grounds that there is <strong>low additional ML/TF/PF risk</strong> if you delay.</span></div>
+            <div class="flex items-start gap-2 text-sm text-slate-700"><span class="text-green-600 font-bold mt-0.5">2.</span><span>Delaying is <strong>essential to avoid interrupting the ordinary course of business</strong>.</span></div>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-800 mb-4">
+            <strong>⚠️ Critical:</strong> Sanctions screening must be completed <strong>without delay</strong> even when other CDD is delayed.
+          </div>
+          <div class="bg-slate-50 rounded-lg p-3 text-sm text-slate-600">
+            <strong>Real estate examples where delay may be appropriate:</strong>
+            <ul class="list-disc list-inside mt-1 space-y-1">
+              <li>Auction winner signs contract on the day — full CDD not yet completed</li>
+              <li>Fast-moving sale requiring exchange within 24 hours</li>
+              <li>Interstate/overseas buyer unable to provide original ID immediately</li>
+            </ul>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">Delayed CDD Record — Form #19</h3>
+          ${Forms.renderDelayedCDDForm ? Forms.renderDelayedCDDForm() : this.renderSimpleForm('delayed-cdd', [
+            { label: 'Customer name', type: 'text', id: 'dc-name' },
+            { label: 'Reason for delay', type: 'text', id: 'dc-reason' },
+            { label: 'Low ML/TF/PF risk assessed and documented?', type: 'select', id: 'dc-risk', options: ['Yes', 'No'] },
+            { label: 'Delay essential to avoid interrupting business?', type: 'select', id: 'dc-essential', options: ['Yes', 'No'] },
+            { label: 'Sanctions screening completed without delay?', type: 'select', id: 'dc-sanctions', options: ['Yes', 'No'] },
+            { label: 'Date service commenced', type: 'date', id: 'dc-started' },
+            { label: 'CDD completion target date', type: 'date', id: 'dc-target' },
+            { label: 'CDD actually completed date', type: 'date', id: 'dc-completed' },
+            { label: 'Any concerns identified after completion?', type: 'select', id: 'dc-concerns', options: ['No', 'Yes'] },
+            { label: 'Action taken (if concerns found)', type: 'text', id: 'dc-action' },
+          ])}
+        </div>
+      </div>
+    `;
+  },
+
+  renderThirdPartyReliance() {
+    return `
+      <div class="space-y-4">
+        <div class="austrac-callout text-sm">
+          <strong class="text-blue-800">📎 AUSTRAC Source:</strong> <a href="https://www.austrac.gov.au/about-us/amlctf-reform/reforms-guidance/amlctf-program-reform/customer-due-diligence-reform/reliance-customer-identification-third-party-reform/reliance-under-customer-due-diligence-arrangements-reform" target="_blank" rel="noopener" class="underline text-blue-600">Reliance Under CDD Arrangements (Reform)</a>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-2">What Is Third-Party Reliance?</h3>
+          <p class="text-sm text-slate-600 mb-3">You may rely on CDD conducted by another reporting entity (e.g., a lawyer, conveyancer, or another agent) rather than conducting CDD yourself from scratch.</p>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-800 mb-3">
+            <strong>⚠️ Risk Note:</strong> A third party <em>not enrolled with AUSTRAC</em> representing the customer is a <strong>medium risk factor</strong> per AUSTRAC's starter kit. If the third party IS enrolled with AUSTRAC, this risk factor does not apply.
+          </div>
+          <div class="bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-red-800">
+            <strong>Critical Rule:</strong> You <strong>remain responsible</strong> for ensuring CDD obligations are met, even when relying on a third party.
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">Third-Party Reliance Record — Form #20</h3>
+          ${Forms.renderThirdPartyRelianceForm ? Forms.renderThirdPartyRelianceForm() : this.renderSimpleForm('tp-reliance', [
+            { label: 'Customer name', type: 'text', id: 'tpr-customer' },
+            { label: 'Third party relied upon (name/firm)', type: 'text', id: 'tpr-party' },
+            { label: 'Is third party a reporting entity?', type: 'select', id: 'tpr-re', options: ['Yes', 'No', 'Unknown'] },
+            { label: 'Is third party enrolled with AUSTRAC?', type: 'select', id: 'tpr-austrac', options: ['Yes', 'No', 'Unknown'] },
+            { label: 'Jurisdiction', type: 'text', id: 'tpr-jurisdiction' },
+            { label: "Third party's ML/TF risk framework assessed?", type: 'select', id: 'tpr-assessed', options: ['Yes', 'No'] },
+            { label: 'CDD standards agreed?', type: 'select', id: 'tpr-standards', options: ['Yes', 'No'] },
+            { label: 'Arrangement documented in AML/CTF program?', type: 'select', id: 'tpr-documented', options: ['Yes', 'No'] },
+            { label: 'Date of reliance', type: 'date', id: 'tpr-date' },
+            { label: 'CDD information received (summary)', type: 'text', id: 'tpr-info' },
+          ])}
+        </div>
+      </div>
+    `;
+  },
+
+  renderCDDOutcome() {
+    return `
+      <div class="space-y-4">
+        <div class="austrac-callout text-sm">
+          <strong class="text-blue-800">📎 AUSTRAC Source:</strong> <a href="https://www.austrac.gov.au/business/how-comply-guidance-and-resources/guidance-resources/amlctf-reforms-customer-due-diligence-providing-designated-service" target="_blank" rel="noopener" class="underline text-blue-600">CDD Before Providing a Designated Service</a>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">When CDD Cannot Be Completed</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs">
+              <thead><tr class="border-b border-slate-200">
+                <th class="text-left py-2 pr-3 font-semibold text-slate-600">Scenario</th>
+                <th class="text-left py-2 font-semibold text-slate-600">Recommended Action</th>
+              </tr></thead>
+              <tbody class="divide-y divide-slate-100">
+                ${[
+                  ['Customer refuses to provide ID', 'Decline to act. Consider filing an SMR if refusal is suspicious.'],
+                  ['Customer provides inconsistent or fraudulent documents', 'Do not proceed. Escalate internally. File an SMR.'],
+                  ['Beneficial owner cannot be identified', 'Do not proceed until identified. Apply EDD.'],
+                  ['Customer is on DFAT sanctions list', '⛔ Do NOT proceed under any circumstances. Seek legal advice.'],
+                  ['CDD reveals a PEP', 'Do not automatically decline — apply EDD and obtain senior manager approval.'],
+                  ['High-risk jurisdiction connection', 'Apply EDD. May proceed if risk adequately mitigated and documented.'],
+                  ['Source of funds cannot be verified', 'Consider declining. If proceeding, apply EDD and document rationale. File SMR if suspicious.'],
+                ].map(([s, a]) => `<tr><td class="py-2 pr-3 text-slate-600">${s}</td><td class="py-2 text-slate-600">${a}</td></tr>`).join('')}
+              </tbody>
+            </table>
+          </div>
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-800 mt-4">
+            <strong>AUSTRAC Worked Example (High-Risk):</strong> Filing an SMR does <em>not</em> automatically mean you must decline service — a senior manager can provide written approval to continue the relationship even after an SMR is filed.
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">CDD Outcome Record — Form #21</h3>
+          ${Forms.renderCDDOutcomeForm ? Forms.renderCDDOutcomeForm() : this.renderSimpleForm('cdd-outcome', [
+            { label: 'Customer name', type: 'text', id: 'co-name' },
+            { label: 'CDD issue encountered', type: 'select', id: 'co-issue', options: ['Refused ID', 'Inconsistent documents', 'Beneficial owner unclear', 'Sanctions match', 'PEP identified', 'High-risk jurisdiction', 'Source of funds unverifiable', 'Other'] },
+            { label: 'Detail of issue', type: 'text', id: 'co-detail' },
+            { label: 'Action taken', type: 'select', id: 'co-action', options: ['Service declined', 'EDD applied and proceeded', 'SMR filed', 'Sanctions freeze — seek legal advice'] },
+            { label: 'Rationale for decision', type: 'text', id: 'co-rationale' },
+            { label: 'Senior management approval obtained?', type: 'select', id: 'co-approval', options: ['N/A', 'Yes', 'No'] },
+            { label: 'SMR filed?', type: 'select', id: 'co-smr', options: ['No', 'Yes'] },
+            { label: 'Documented by', type: 'text', id: 'co-by' },
+            { label: 'Date', type: 'date', id: 'co-date' },
+          ])}
+        </div>
+      </div>
+    `;
+  },
+
+  renderSimpleForm(prefix, fields) {
+    return `
+      <div class="space-y-3">
+        ${fields.map(f => `
+          <div>
+            <label class="block text-xs font-medium text-slate-600 mb-1">${f.label}</label>
+            ${f.type === 'select'
+              ? `<select id="${f.id}" onchange="Forms.saveField('${f.id}', this.value)" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400">
+                   ${(f.options || []).map(o => `<option value="${o}">${o}</option>`).join('')}
+                 </select>`
+              : `<input type="${f.type}" id="${f.id}" value="${localStorage.getItem('form_' + f.id) || ''}"
+                   onchange="Forms.saveField('${f.id}', this.value)"
+                   class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-400">`
+            }
+          </div>
+        `).join('')}
+        <button onclick="window.print()" class="mt-2 text-xs text-blue-600 hover:underline">🖨️ Print this form</button>
+      </div>
+    `;
+  },
+
+  renderAnnualComplianceReport() {
+    return `
+      <div class="space-y-4">
+        <div class="austrac-callout text-sm">
+          <strong class="text-blue-800">📎 AUSTRAC Source:</strong> <a href="https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit/step-2-use-your-real-estate-program" target="_blank" rel="noopener" class="underline text-blue-600">Step 2: Use Your Real Estate Program</a>
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">Annual Compliance Report</h3>
+          <p class="text-sm text-slate-600 mb-4">An annual compliance report must be submitted to AUSTRAC covering how you met your AML/CTF obligations during the previous calendar year.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+            ${[
+              { label: 'Frequency', value: 'Annually' },
+              { label: 'Covers', value: 'Previous calendar year' },
+              { label: 'Filed via', value: 'AUSTRAC Online' },
+            ].map(i => `
+              <div class="bg-slate-50 rounded-lg p-3 text-center">
+                <div class="text-xs text-slate-500 mb-1">${i.label}</div>
+                <div class="font-semibold text-slate-700 text-sm">${i.value}</div>
+              </div>
+            `).join('')}
+          </div>
+          <h4 class="font-semibold text-slate-700 mb-2 text-sm">What to Include:</h4>
+          <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside">
+            <li>Confirmation that your AML/CTF program is in place and current</li>
+            <li>Summary of compliance activities undertaken during the year</li>
+            <li>Any material changes to the program during the reporting period</li>
+            <li>Details of independent evaluations conducted (if applicable)</li>
+          </ul>
+          <div class="mt-4">
+            <a href="https://online.austrac.gov.au" target="_blank" rel="noopener"
+              class="inline-flex items-center gap-1.5 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700">
+              File via AUSTRAC Online →
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  // ─── NEW RESOURCE SECTIONS ────────────────────────────────────────────────
+  renderStarterKitForms() {
+    const el = document.getElementById('section-starter-kit-forms');
+    if (!el) return;
+    const mapping = [
+      { austrac: 'Onboarding form — Individuals and sole traders', purpose: 'Collect initial customer information during engagement', amliq: 'CDD — Individual', section: 'cdd', tab: 0 },
+      { austrac: 'Onboarding form — Entity (trust, company, etc.)', purpose: 'Collect initial information for entity customers', amliq: 'CDD — Company / Trust / Partnership', section: 'cdd', tab: 1 },
+      { austrac: 'Initial CDD form — Individual', purpose: 'Verify identity, assess risk, complete CDD checks', amliq: 'CDD — Individual', section: 'cdd', tab: 0 },
+      { austrac: 'Initial CDD form — Entity', purpose: 'Verify entity identity, beneficial owners, CDD checks', amliq: 'CDD — Company / Trust / Partnership', section: 'cdd', tab: 1 },
+      { austrac: 'Guided form: Escalation', purpose: 'Document escalation of high-risk or suspicious matters', amliq: 'Suspicious Activity (Red Flags)', section: 'red-flags', tab: null },
+      { austrac: 'Guided form: Enhanced CDD', purpose: 'Document enhanced due diligence for high-risk customers', amliq: 'EDD Record', section: 'cdd', tab: 5 },
+      { austrac: 'Process: Sanctions check', purpose: 'Step-by-step sanctions screening', amliq: 'PEP/TFS Screening Record', section: 'cdd', tab: 7 },
+      { austrac: 'Process: PEP check', purpose: 'Step-by-step PEP screening', amliq: 'PEP/TFS Screening Record', section: 'cdd', tab: 7 },
+      { austrac: 'Source of funds and source of wealth check', purpose: 'Verify where funds and wealth originate', amliq: 'Enhanced Due Diligence Record', section: 'cdd', tab: 5 },
+      { austrac: 'Adverse media check process', purpose: 'Open-source background checks on customers', amliq: 'Enhanced Due Diligence Record', section: 'cdd', tab: 5 },
+      { austrac: 'Periodic review and update form', purpose: 'Ongoing CDD review of existing customers', amliq: 'Ongoing CDD Review', section: 'cdd', tab: 6 },
+      { austrac: 'Personnel due diligence forms', purpose: 'Assess suitability of staff in AML/CTF roles', amliq: 'Personnel Due Diligence Record', section: 'governance', tab: 2 },
+      { austrac: 'AML/CTF Roles Form', purpose: 'Define AML/CTF responsibilities', amliq: 'AML/CTF Roles Assignment', section: 'governance', tab: 1 },
+    ];
+    el.innerHTML = `
+      <div class="p-6 max-w-4xl mx-auto">
+        ${this.pageHeader('AUSTRAC Starter Kit Forms Reference', 'Maps AUSTRAC\'s official form names to the corresponding AMLiq templates.', '📋')}
+        <div class="austrac-callout mb-5 text-sm">
+          <strong class="text-blue-800">📎 AUSTRAC Source:</strong> <a href="https://www.austrac.gov.au/reforms/program-starter-kits/real-estate-guidance/real-estate-program-starter-kit/real-estate-program-starter-kit-document-library" target="_blank" rel="noopener" class="underline text-blue-600">Real Estate Program Starter Kit Document Library</a>
+          <div class="mt-1 text-slate-600">These are the official form names used in AUSTRAC's Real Estate Program Starter Kit. AMLiq provides equivalent guidance-only templates.</div>
+        </div>
         <div class="space-y-2">
-          ${AMLiqData.austracLinks.map(l => `
-            <div class="bg-white rounded-xl border border-slate-200 p-4 flex items-start gap-3">
-              <span class="text-blue-500 text-lg flex-shrink-0">🔗</span>
-              <div class="flex-1 min-w-0">
-                <a href="${l.url}" target="_blank" rel="noopener" class="font-semibold text-blue-600 hover:underline text-sm">${l.title}</a>
-                <div class="text-xs text-slate-500 mt-1">${l.desc}</div>
-                <div class="text-xs text-slate-400 truncate mt-0.5">${l.url}</div>
+          ${mapping.map(m => `
+            <div class="bg-white rounded-xl border border-slate-200 p-4 flex items-start justify-between gap-3">
+              <div class="flex-1">
+                <div class="text-sm font-semibold text-slate-700">${m.austrac}</div>
+                <div class="text-xs text-slate-500 mt-0.5">${m.purpose}</div>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <div class="text-xs text-slate-400 mb-1">AMLiq equivalent</div>
+                <button onclick="App.goToForm('${m.section}', ${m.tab !== null ? m.tab : 0})" class="text-xs text-blue-600 hover:underline font-medium">${m.amliq} →</button>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  },
+
+  renderCustomerExamples() {
+    const el = document.getElementById('section-customer-examples');
+    if (!el) return;
+    const examples = [
+      {
+        risk: 'LOW',
+        color: 'green',
+        title: 'Low-Risk Customer',
+        scenario: 'Individual buyer makes an off-market offer of $1 million on a residential property.',
+        steps: [
+          'Agent completes initial CDD after exchange, before settlement',
+          'Buyer confirms purchasing for themselves using bank loan + personal funds',
+          'Buyer is not a PEP; provides driver\'s licence',
+          'No medium or high-risk factors identified → rated LOW',
+          'Simplified CDD applied: identity verification, sanctions check, PEP check',
+          'Business relationship concludes at settlement — no further ongoing CDD required',
+        ],
+        insight: 'For a typical low-risk customer, compliance boils down to approximately 3 forms.',
+      },
+      {
+        risk: 'MEDIUM',
+        color: 'amber',
+        title: 'Medium-Risk Customer',
+        scenario: 'Individual places successful bid at auction ($1.3M). A representative acts on behalf of two buyers (married couple).',
+        steps: [
+          'Medium risk factors: Both buyers are domestic PEPs (parents of a State MP) + representative is a third party not enrolled with AUSTRAC',
+          'Delayed CDD applied at auction — low additional risk, adequate controls exist',
+          'Sanctions screening completed WITHOUT delay (even though other CDD is delayed)',
+          'CDD completed after exchange but before settlement',
+          'Verifies identity of representative AND both buyers, plus representative\'s authority',
+          'PEP check confirms buyers are family members of a domestic PEP',
+          'No triggers or escalation needed → final rating remains MEDIUM',
+        ],
+        insight: 'Delayed CDD is permitted at auction, but sanctions screening must always be done immediately.',
+      },
+      {
+        risk: 'HIGH',
+        color: 'red',
+        title: 'High-Risk Customer',
+        scenario: 'Individual seeks to buy a luxury property ($5–5.5M). Foreign PEP (senior government official) purchasing without a mortgage.',
+        steps: [
+          'High risk factors: Foreign PEP + purchasing over $1.5M without mortgage',
+          'Agent escalates to AML/CTF compliance officer under escalation policy',
+          'Compliance officer conducts enhanced CDD: identity, source of funds (pay slips), source of wealth (share registry)',
+          'Property value appears grossly excessive relative to known wealth',
+          'Adverse media check reveals customer investigated internationally for fraud and corruption',
+          'Compliance officer forms reasonable grounds for suspicion → submits SMR to AUSTRAC',
+          'Despite SMR, senior manager provides written approval to continue the relationship',
+          'Ongoing monitoring conducted more closely than for low/medium risk',
+        ],
+        insight: 'Filing an SMR does NOT automatically mean you must decline service. Senior management can approve proceeding even after an SMR is filed.',
+      },
+    ];
+    el.innerHTML = `
+      <div class="p-6 max-w-4xl mx-auto">
+        ${this.pageHeader('Real-World Customer Examples', 'AUSTRAC\'s official worked examples showing CDD in practice for each risk level.', '👥')}
+        <div class="austrac-callout mb-5 text-sm">
+          <strong class="text-blue-800">📎 AUSTRAC Source:</strong> <a href="https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit-examples-dealing-customers" target="_blank" rel="noopener" class="underline text-blue-600">Real Estate Program Starter Kit: Examples of Dealing with Customers</a>
+        </div>
+        <div class="space-y-6">
+          ${examples.map(e => `
+            <div class="bg-white rounded-xl border border-slate-200 p-5">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="tag bg-${e.color}-100 text-${e.color}-700 font-bold">${e.risk} RISK</span>
+                <h3 class="font-bold text-slate-800">${e.title}</h3>
+              </div>
+              <p class="text-sm text-slate-600 italic mb-4">"${e.scenario}"</p>
+              <ol class="space-y-2 mb-4">
+                ${e.steps.map((s, i) => `
+                  <li class="flex items-start gap-2 text-sm text-slate-600">
+                    <span class="w-5 h-5 rounded-full bg-${e.color}-100 text-${e.color}-700 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">${i + 1}</span>
+                    <span>${s}</span>
+                  </li>
+                `).join('')}
+              </ol>
+              <div class="bg-${e.color}-50 border border-${e.color}-200 rounded-lg p-3 text-sm text-${e.color}-800">
+                <strong>Key insight:</strong> ${e.insight}
               </div>
             </div>
           `).join('')}
