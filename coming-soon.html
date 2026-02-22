@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon — AMLiq</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { DEFAULT: '#1e3a5f', light: '#2d5a8e', dark: '#142845' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 shadow-sm">
+    <div class="max-w-4xl mx-auto px-4 py-4 flex items-center gap-3">
+      <div class="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white text-xl flex-shrink-0">A</div>
+      <div>
+        <div class="font-bold text-xl text-slate-900 leading-tight">AMLiq</div>
+        <div class="text-xs text-slate-500">Tranche 2 AML/CTF Compliance Portal</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="flex-1 flex items-center justify-center px-4 py-16">
+    <div class="max-w-lg w-full text-center">
+
+      <!-- Icon -->
+      <div class="w-20 h-20 rounded-3xl bg-amber-100 flex items-center justify-center text-4xl mx-auto mb-6" id="entity-icon">⏳</div>
+
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 border border-amber-200 text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block animate-pulse"></span>
+        Coming 1 July 2026
+      </div>
+
+      <!-- Heading -->
+      <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-3" id="entity-name">Loading…</h1>
+      <p class="text-slate-500 mb-2" id="entity-description">This compliance tool is currently in development.</p>
+      <p class="text-slate-400 text-sm mb-10" id="entity-detail"></p>
+
+      <!-- Email capture (placeholder) -->
+      <div class="bg-white border border-slate-200 rounded-xl p-6 text-left shadow-sm mb-8">
+        <p class="text-sm font-semibold text-slate-700 mb-1">Get notified when this tool launches</p>
+        <p class="text-xs text-slate-400 mb-4">We'll send you a single email when the tool goes live. No spam.</p>
+        <div class="flex gap-2">
+          <input
+            type="email"
+            placeholder="your@email.com"
+            class="flex-1 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          >
+          <button
+            type="button"
+            class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+            onclick="handleNotify(this)"
+          >
+            Notify Me
+          </button>
+        </div>
+        <p class="text-xs text-slate-400 mt-2">* Email capture is a placeholder — no data is stored or transmitted.</p>
+      </div>
+
+      <!-- Back link -->
+      <a href="index.html" class="inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 font-medium transition-colors">
+        <span aria-hidden="true">←</span> Back to Portal
+      </a>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 text-xs py-5">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p>All tools are free guidance aids. Not official AUSTRAC documents. Seek professional legal and compliance advice for your specific circumstances.</p>
+      <p class="mt-1 text-slate-600">&copy; 2026 AMLiq</p>
+    </div>
+  </footer>
+
+  <script>
+    const ENTITY_MAP = {
+      lawyers: {
+        name: 'Lawyers & Conveyancers',
+        icon: '⚖️',
+        iconBg: 'bg-purple-100',
+        description: 'AML/CTF compliance guidance for legal practitioners is in development.',
+        detail: 'Under Tranche 2, lawyers and conveyancers handling property settlements, trust accounts, company formation, and business transactions will be required to enrol with AUSTRAC, establish an AML/CTF program, conduct customer due diligence, and report suspicious matters.'
+      },
+      accountants: {
+        name: 'Accountants & Tax Agents',
+        icon: '📊',
+        iconBg: 'bg-green-100',
+        description: 'AML/CTF compliance guidance for accounting professionals is in development.',
+        detail: 'Accountants and tax agents providing certain designated services — including managing client funds, forming companies, and preparing tax returns for complex structures — will have new AUSTRAC obligations from 1 July 2026.'
+      },
+      jewellers: {
+        name: 'Jewellers & Precious Metals',
+        icon: '💎',
+        iconBg: 'bg-yellow-100',
+        description: 'AML/CTF compliance guidance for precious metals dealers is in development.',
+        detail: 'Dealers in precious metals and stones making or accepting cash payments above the threshold will need to comply with customer due diligence, record-keeping, and suspicious matter reporting obligations under the reformed AML/CTF Act.'
+      },
+      tcsps: {
+        name: 'Trust & Company Service Providers',
+        icon: '🏢',
+        iconBg: 'bg-slate-100',
+        description: 'AML/CTF compliance guidance for TCSPs is in development.',
+        detail: 'Trust and company service providers that form companies, provide registered offices, act as directors or trustees, or manage client assets will be among the most heavily regulated under Tranche 2, given their high exposure to complex ownership structures.'
+      },
+      financial: {
+        name: 'Financial Advisors',
+        icon: '💼',
+        iconBg: 'bg-indigo-100',
+        description: 'AML/CTF compliance guidance for financial advisors is in development.',
+        detail: 'Financial planners and advisors managing client investments, superannuation, and insurance products will need to establish AML/CTF programs, conduct ongoing customer due diligence, and report threshold transactions and suspicious matters from 1 July 2026.'
+      }
+    };
+
+    function handleNotify(btn) {
+      btn.textContent = 'Noted!';
+      btn.disabled = true;
+      btn.classList.replace('bg-blue-600', 'bg-emerald-600');
+      btn.classList.replace('hover:bg-blue-700', 'hover:bg-emerald-600');
+    }
+
+    (function init() {
+      const params = new URLSearchParams(window.location.search);
+      const key = params.get('entity') || '';
+      const entity = ENTITY_MAP[key];
+
+      if (!entity) return;
+
+      const iconEl = document.getElementById('entity-icon');
+      iconEl.textContent = entity.icon;
+      iconEl.className = iconEl.className.replace('bg-amber-100', entity.iconBg);
+
+      document.getElementById('entity-name').textContent = entity.name;
+      document.getElementById('entity-description').textContent = entity.description;
+      document.getElementById('entity-detail').textContent = entity.detail;
+      document.title = entity.name + ' — AMLiq';
+    })();
+  </script>
+
+</body>
+</html>
