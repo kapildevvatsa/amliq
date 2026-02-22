@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
 const DEFAULT_REDIRECT_URI =
-  'https://t2c-prod.d348r0hmzvjji4.amplifyapp.com/real-estate.html';
+  'https://www.tranche2compliance.com.au/real-estate.html';
 
 function extractConfigValue(source, key) {
   const regex = new RegExp(`${key}:\\s*'([^']+)'`);
