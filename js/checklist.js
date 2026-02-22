@@ -1,4 +1,4 @@
-// AMLiq — Checklist Module
+// T2C — Checklist Module
 // Handles all checkbox state, rendering, and progress tracking
 
 const Checklist = {

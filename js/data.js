@@ -1,4 +1,4 @@
-// AMLiq — Static Data
+// T2C — Static Data
 // All content sourced from publicly available AUSTRAC materials
 
 const AMLiqData = {

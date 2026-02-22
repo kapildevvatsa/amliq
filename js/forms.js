@@ -1,4 +1,4 @@
-// AMLiq — Forms Module
+// T2C — Forms Module
 // All CDD forms, governance forms, and template forms
 
 const Forms = {

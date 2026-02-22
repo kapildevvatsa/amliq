@@ -1,4 +1,4 @@
-// AMLiq — Risk Assessment Wizard
+// T2C — Risk Assessment Wizard
 
 const RiskWizard = {
 

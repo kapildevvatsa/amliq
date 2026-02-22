@@ -1,4 +1,4 @@
-// AMLiq — Jewellers & Precious Goods Dealers — Core Application Logic
+// T2C — Jewellers & Precious Goods Dealers — Core Application Logic
 // Navigation, section rendering, dashboard, state management
 
 const App = {
@@ -183,7 +183,7 @@ const App = {
         </div>
 
         <div class="mt-6 text-xs text-slate-400 text-center">
-          AMLiq — Not legal advice. All data stored locally. Last reviewed: February 2026.
+          T2C — Not legal advice. All data stored locally. Last reviewed: February 2026.
           Always refer to <a href="https://www.austrac.gov.au" target="_blank" class="underline">austrac.gov.au</a> for the most current guidance.
         </div>
       </div>
@@ -1661,7 +1661,7 @@ const App = {
 
     el.innerHTML = `
       <div class="p-6 max-w-4xl mx-auto">
-        ${this.pageHeader('AUSTRAC Starter Kit Forms Reference', 'Maps official AUSTRAC Jeweller Program Starter Kit form names to AMLiq interactive templates.', '📋')}
+        ${this.pageHeader('AUSTRAC Starter Kit Forms Reference', 'Maps official AUSTRAC Jeweller Program Starter Kit form names to T2C interactive templates.', '📋')}
 
         <div class="austrac-callout mb-5 text-sm">
           <strong class="text-blue-800">📎 AUSTRAC Source:</strong> <a href="https://www.austrac.gov.au/reforms/program-starter-kits/dealers-precious-metals-stones-and-products-guidance/jeweller-program-starter-kit/jeweller-program-starter-kit-document-library" target="_blank" rel="noopener" class="underline text-blue-600">Jeweller Program Starter Kit Document Library</a>
@@ -1672,7 +1672,7 @@ const App = {
             <thead><tr class="bg-slate-50 text-left">
               <th class="px-3 py-2 font-semibold text-slate-600">AUSTRAC Official Form</th>
               <th class="px-3 py-2 font-semibold text-slate-600">Purpose</th>
-              <th class="px-3 py-2 font-semibold text-slate-600">AMLiq Equivalent</th>
+              <th class="px-3 py-2 font-semibold text-slate-600">T2C Equivalent</th>
             </tr></thead>
             <tbody>
               ${kitForms.map((f, i) => `
@@ -1685,7 +1685,7 @@ const App = {
             </tbody>
           </table>
         </div>
-        <div class="mt-4 text-xs text-slate-400">AMLiq templates combine and extend AUSTRAC's official forms into interactive, saveable formats. Always refer to the official Starter Kit for authoritative templates.</div>
+        <div class="mt-4 text-xs text-slate-400">T2C templates combine and extend AUSTRAC's official forms into interactive, saveable formats. Always refer to the official Starter Kit for authoritative templates.</div>
       </div>
     `;
   },

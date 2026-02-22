@@ -1,4 +1,4 @@
-# AMLiq — AML/CTF Compliance Guide for Jewellers & Dealers in Precious Metals, Stones and Products
+# T2C — AML/CTF Compliance Guide for Jewellers & Dealers in Precious Metals, Stones and Products
 
 ## Product Concept Document — v1.0
 
@@ -6,7 +6,7 @@
 
 ## 1. Vision
 
-**AMLiq** is a lightweight, static, single-page web application that guides Australian jewellers and dealers in precious metals, stones and products through their new Anti-Money Laundering / Counter-Terrorism Financing (AML/CTF) obligations under the reformed AML/CTF Act (Tranche 2), effective **1 July 2026**.
+**T2C** is a lightweight, static, single-page web application that guides Australian jewellers and dealers in precious metals, stones and products through their new Anti-Money Laundering / Counter-Terrorism Financing (AML/CTF) obligations under the reformed AML/CTF Act (Tranche 2), effective **1 July 2026**.
 
 It is **not** legal advice. It is a practical, step-by-step guidance tool built entirely from publicly available AUSTRAC materials, including the official **Jeweller Program Starter Kit** released 30 January 2026.
 
@@ -39,7 +39,7 @@ From **1 July 2026**, businesses that buy or sell precious metals, stones or pro
 
 Most small jewellers and precious goods dealers have **zero experience** with AML/CTF compliance. AUSTRAC's 2024 National Risk Assessment rated the **retail jewellery sector as a HIGH money laundering risk** in Australia. Precious metals and stones are among the most at-risk goods for money laundering because they can be bought anonymously with cash, are easy to conceal and transport, difficult to trace, and easy to convert back to legitimate funds.
 
-**AMLiq bridges that gap** by translating AUSTRAC's requirements into plain-English, actionable guidance with interactive tools — all for free, with no data leaving the user's browser.
+**T2C bridges that gap** by translating AUSTRAC's requirements into plain-English, actionable guidance with interactive tools — all for free, with no data leaving the user's browser.
 
 ---
 
@@ -156,7 +156,7 @@ Each transaction is under $10,000, but they are linked — the business begins p
 The app is a single-page application with tab/section-based navigation, organised into **4 phases**.
 
 ```
-AMLiq — Jewellers
+T2C — Jewellers
 │
 ├── Home / Dashboard
 │
@@ -1515,7 +1515,7 @@ You **MUST NOT** disclose ("tip off") to the customer or any other person that:
 
 > **📎 AUSTRAC Source:** [Jeweller Program Starter Kit Document Library](https://www.austrac.gov.au/reforms/program-starter-kits/dealers-precious-metals-stones-and-products-guidance/jeweller-program-starter-kit/jeweller-program-starter-kit-document-library)
 
-| AUSTRAC Official Form Name | Purpose | AMLiq Equivalent |
+| AUSTRAC Official Form Name | Purpose | T2C Equivalent |
 |---|---|---|
 | Onboarding form — Individual or sole trader | Collect initial customer information | CDD — Individual (Section 7.8.1) |
 | Onboarding form — Entity | Collect initial information for entity customers | CDD — Company/Trust/Partnership (Sections 7.8.2–7.8.4) |
@@ -1837,6 +1837,6 @@ For the most current guidance, always refer directly to austrac.gov.au.
 *Document version: 1.0*  
 *Created: 22 February 2026*  
 *Updated: 22 February 2026*  
-*Project: AMLiq — AML/CTF Compliance Guide for Jewellers & Dealers in Precious Metals, Stones and Products*  
+*Project: T2C — AML/CTF Compliance Guide for Jewellers & Dealers in Precious Metals, Stones and Products*  
 *Source: AUSTRAC Jeweller Program Starter Kit, Precious Metals/Stones/Products Reform Guidance, Risk Insights, and austrac.gov.au sector-specific guidance pages*  
 *AUSTRAC cross-reference review: 22 February 2026 — verified against all published AUSTRAC jeweller guidance pages*

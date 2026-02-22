@@ -1,4 +1,4 @@
-// AMLiq — Jewellers & Precious Goods Dealers — Static Data
+// T2C — Jewellers & Precious Goods Dealers — Static Data
 // All content sourced from publicly available AUSTRAC materials
 // localStorage prefix: amliq_jewl_
 

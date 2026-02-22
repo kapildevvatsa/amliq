@@ -1,4 +1,4 @@
-// AMLiq for Accountants — Core Application Logic
+// T2C for Accountants — Core Application Logic
 // Navigation, section rendering, dashboard, state management
 
 const App = {
@@ -181,7 +181,7 @@ const App = {
         </div>
 
         <div class="mt-6 text-xs text-slate-400 text-center">
-          AMLiq — Not legal advice. All data stored locally. Last reviewed: February 2026.
+          T2C — Not legal advice. All data stored locally. Last reviewed: February 2026.
           Always refer to <a href="https://www.austrac.gov.au" target="_blank" class="underline">austrac.gov.au</a> for the most current guidance.
         </div>
       </div>
@@ -1721,10 +1721,10 @@ const App = {
     ];
     el.innerHTML = `
       <div class="p-6 max-w-4xl mx-auto">
-        ${this.pageHeader('AUSTRAC Starter Kit Forms Reference', 'Maps AUSTRAC\'s official form names from the Accounting Program Starter Kit to the corresponding AMLiq templates.', '📋')}
+        ${this.pageHeader('AUSTRAC Starter Kit Forms Reference', 'Maps AUSTRAC\'s official form names from the Accounting Program Starter Kit to the corresponding T2C templates.', '📋')}
         <div class="austrac-callout mb-5 text-sm">
           <strong class="text-blue-800">📎 AUSTRAC Source:</strong> <a href="https://www.austrac.gov.au/reforms/program-starter-kits/accounting-guidance/accounting-program-starter-kit/accounting-program-starter-kit-document-library" target="_blank" rel="noopener" class="underline text-blue-600">Accounting Program Starter Kit Document Library</a>
-          <div class="mt-1 text-slate-600">These are the official form names used in AUSTRAC's Accounting Program Starter Kit. AMLiq provides equivalent guidance-only templates.</div>
+          <div class="mt-1 text-slate-600">These are the official form names used in AUSTRAC's Accounting Program Starter Kit. T2C provides equivalent guidance-only templates.</div>
         </div>
         <div class="space-y-2">
           ${mapping.map(m => `
@@ -1734,7 +1734,7 @@ const App = {
                 <div class="text-xs text-slate-500 mt-0.5">${m.purpose}</div>
               </div>
               <div class="text-right flex-shrink-0">
-                <div class="text-xs text-slate-400 mb-1">AMLiq equivalent</div>
+                <div class="text-xs text-slate-400 mb-1">T2C equivalent</div>
                 <button onclick="App.goToForm('${m.section}', ${m.tab})" class="text-xs text-blue-600 hover:underline font-medium">${m.amliq} →</button>
               </div>
             </div>

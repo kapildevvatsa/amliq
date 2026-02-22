@@ -1,4 +1,4 @@
-// AMLiq for Accountants — Forms Module
+// T2C for Accountants — Forms Module
 // All CDD forms, governance forms, and template forms
 
 const Forms = {

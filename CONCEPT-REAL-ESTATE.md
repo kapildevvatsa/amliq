@@ -1,4 +1,4 @@
-# AMLiq — AML/CTF Compliance Guide for Real Estate Agents
+# T2C — AML/CTF Compliance Guide for Real Estate Agents
 
 ## Product Concept Document — v2.0
 
@@ -6,7 +6,7 @@
 
 ## 1. Vision
 
-**AMLiq** is a lightweight, static, single-page web application that guides Australian real estate professionals through their new Anti-Money Laundering / Counter-Terrorism Financing (AML/CTF) obligations under the reformed AML/CTF Act (Tranche 2), effective **1 July 2026**.
+**T2C** is a lightweight, static, single-page web application that guides Australian real estate professionals through their new Anti-Money Laundering / Counter-Terrorism Financing (AML/CTF) obligations under the reformed AML/CTF Act (Tranche 2), effective **1 July 2026**.
 
 It is **not** legal advice. It is a practical, step-by-step guidance tool built entirely from publicly available AUSTRAC materials, including the official **Real Estate Program Starter Kit** released 30 January 2026.
 
@@ -14,7 +14,7 @@ It is **not** legal advice. It is a practical, step-by-step guidance tool built 
 
 The tool mirrors the structure of AUSTRAC's own starter kit — **Customise → Implement → Maintain & Review** — but wraps it in an interactive, user-friendly interface with checklists, wizards, template forms, and plain-English explanations.
 
-**Key AUSTRAC insight:** AUSTRAC CEO Brendan Thomas stated that *"for most customers who are individuals posing a low to medium risk, compliance generally boils down to just three forms"* — onboarding, initial CDD, and ongoing monitoring. AMLiq reflects this proportionate, risk-based approach.
+**Key AUSTRAC insight:** AUSTRAC CEO Brendan Thomas stated that *"for most customers who are individuals posing a low to medium risk, compliance generally boils down to just three forms"* — onboarding, initial CDD, and ongoing monitoring. T2C reflects this proportionate, risk-based approach.
 
 **Who the starter kit is designed for:** The AUSTRAC starter kit is specifically designed for Tranche 2 entities who, from 1 July 2026, are for the first time subject to AML/CTF legislation. It is intended for typical small-to-medium real estate businesses and buyer's agencies. Larger or more complex businesses may need to supplement the starter kit with additional tailored compliance measures.
 
@@ -37,7 +37,7 @@ From **1 July 2026**, real estate businesses providing designated services will 
 
 Most small to mid-sized real estate agencies have **zero experience** with AML/CTF compliance. AUSTRAC's 2024 National Risk Assessment rated real estate as a **high money laundering risk** sector. Real estate is one of the most common property types found in proceeds-of-crime investigations.
 
-**AMLiq bridges that gap** by translating AUSTRAC's requirements into plain-English, actionable guidance with interactive tools — all for free, with no data leaving the user's browser.
+**T2C bridges that gap** by translating AUSTRAC's requirements into plain-English, actionable guidance with interactive tools — all for free, with no data leaving the user's browser.
 
 ---
 
@@ -109,7 +109,7 @@ The service must have a **geographical link to Australia** to trigger obligation
 The app is a single-page application with tab/section-based navigation, organised into **4 phases**.
 
 ```
-AMLiq
+T2C
 │
 ├── Home / Dashboard
 │
@@ -1732,11 +1732,11 @@ When a review is triggered:
 
 > **📎 AUSTRAC Source:** [Real Estate Program Starter Kit Document Library](https://www.austrac.gov.au/reforms/program-starter-kits/real-estate-guidance/real-estate-program-starter-kit/real-estate-program-starter-kit-document-library)
 
-**Purpose:** Map AUSTRAC's official starter kit form names to the corresponding AMLiq template forms, so users can easily cross-reference between this tool and the official documents.
+**Purpose:** Map AUSTRAC's official starter kit form names to the corresponding T2C template forms, so users can easily cross-reference between this tool and the official documents.
 
 **AUSTRAC's Starter Kit Forms (as referenced in official worked examples):**
 
-| AUSTRAC Official Form Name | Purpose | AMLiq Equivalent |
+| AUSTRAC Official Form Name | Purpose | T2C Equivalent |
 |---|---|---|
 | Onboarding form — Individuals and sole traders | Collect initial customer information during engagement | CDD — Individual (Section 7.8.1) |
 | Onboarding form — Entity (trust, company, etc.) | Collect initial information for entity customers | CDD — Company/Trust/Partnership (Sections 7.8.2–7.8.4) |
@@ -1755,8 +1755,8 @@ When a review is triggered:
 | Assign Responsibilities Form | Assign responsibilities to specific staff | AML/CTF Roles Assignment (Section 7.6.2) |
 
 **UI Elements:**
-- Two-column layout showing AUSTRAC form name alongside AMLiq equivalent
-- Click-through links to the relevant AMLiq section
+- Two-column layout showing AUSTRAC form name alongside T2C equivalent
+- Click-through links to the relevant T2C section
 - Tooltip explaining: "These are the official form names used in AUSTRAC's Real Estate Program Starter Kit. Our tool provides equivalent guidance-only templates."
 
 ---
@@ -1821,7 +1821,7 @@ When a review is triggered:
 - Three tabbed panels (Low / Medium / High risk)
 - Each example presented as a step-by-step timeline with visual indicators
 - Key decision points highlighted with callout boxes
-- Cross-references to relevant AMLiq sections (CDD forms, EDD, PEP screening, SMR)
+- Cross-references to relevant T2C sections (CDD forms, EDD, PEP screening, SMR)
 - "AUSTRAC Says" attribution on each example
 - Print-friendly format
 
@@ -2113,6 +2113,6 @@ To avoid legal risk, all content MUST adhere to these rules:
 *Document version: 3.0*  
 *Created: 22 February 2026*  
 *Updated: 22 February 2026*  
-*Project: AMLiq — AML/CTF Compliance Guide for Real Estate Agents*  
+*Project: T2C — AML/CTF Compliance Guide for Real Estate Agents*  
 *Source: AUSTRAC Real Estate Guidance, Starter Kit, Reform Documentation, and austrac.gov.au sector-specific guidance pages*  
 *AUSTRAC cross-reference review: 22 February 2026 — verified against all published AUSTRAC real estate starter kit pages*

@@ -1,4 +1,4 @@
-# AMLiq — AML/CTF Compliance Guide for Accountants
+# T2C — AML/CTF Compliance Guide for Accountants
 
 ## Product Concept Document — v1.3
 
@@ -6,7 +6,7 @@
 
 ## 1. Vision
 
-**AMLiq for Accountants** is a lightweight, static, single-page web application that guides Australian accounting professionals through their new Anti-Money Laundering / Counter-Terrorism Financing (AML/CTF) obligations under the reformed AML/CTF Act (Tranche 2), effective **1 July 2026**.
+**T2C for Accountants** is a lightweight, static, single-page web application that guides Australian accounting professionals through their new Anti-Money Laundering / Counter-Terrorism Financing (AML/CTF) obligations under the reformed AML/CTF Act (Tranche 2), effective **1 July 2026**.
 
 It is **not** legal or professional advice. It is a practical, step-by-step guidance tool built entirely from publicly available AUSTRAC materials, including the official **Accounting Program Starter Kit** released January 2026.
 
@@ -33,7 +33,7 @@ Accountants are recognised internationally as **"gatekeeper" professionals** —
 
 Most small to mid-sized accounting practices have **zero experience** with AML/CTF compliance. The regulation is complex, the 8 designated services are nuanced, and hiring compliance consultants is expensive.
 
-**AMLiq bridges that gap** by translating AUSTRAC's requirements into plain-English, actionable guidance with interactive tools — all for free, with no data leaving the user's browser.
+**T2C bridges that gap** by translating AUSTRAC's requirements into plain-English, actionable guidance with interactive tools — all for free, with no data leaving the user's browser.
 
 ---
 
@@ -150,7 +150,7 @@ Larger accounting firms or firms that are part of a corporate group may need to 
 ## 6. Sitemap & Feature Breakdown
 
 ```
-AMLiq for Accountants
+T2C for Accountants
 │
 ├── Home / Dashboard
 │
@@ -1993,5 +1993,5 @@ Updated forms list including new sections:
 *Document version: 1.3*  
 *Created: 22 February 2026*  
 *Updated: 22 February 2026*  
-*Project: AMLiq — AML/CTF Compliance Guide for Accountants*  
+*Project: T2C — AML/CTF Compliance Guide for Accountants*  
 *Source: AUSTRAC Accountant Guidance, Accounting Program Starter Kit, CPA Australia, and FATF Guidance*

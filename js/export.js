@@ -1,12 +1,12 @@
-// AMLiq — Export / Import Module
+// T2C — Export / Import Module
 
 const Export = {
 
   exportAll() {
     const data = {
       exportDate: new Date().toISOString(),
-      appVersion: 'AMLiq v2.0',
-      notice: 'This file contains AML/CTF program data from AMLiq. All data was stored locally in the browser. This is not an official AUSTRAC document.',
+      appVersion: 'T2C v2.0',
+      notice: 'This file contains AML/CTF program data from T2C. All data was stored locally in the browser. This is not an official AUSTRAC document.',
       checklists: {},
       forms: {},
       riskAssessment: null,
@@ -115,7 +115,7 @@ const Export = {
 
   clearAllData() {
     if (!confirm('Are you sure you want to clear ALL saved data? This cannot be undone. Export your data first if you want to keep a backup.')) return;
-    // Clear only AMLiq-related keys
+    // Clear only T2C-related keys
     const keysToRemove = Object.keys(localStorage).filter(k =>
       k.startsWith('check_') || k.startsWith('forms_') || k === 'riskAssessment' || k === 'quiz_state'
     );

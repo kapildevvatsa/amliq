@@ -1,4 +1,4 @@
-// AMLiq for Accountants — Static Data
+// T2C for Accountants — Static Data
 // All content sourced from publicly available AUSTRAC materials
 
 const AMLiqData = {

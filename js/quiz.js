@@ -1,4 +1,4 @@
-// AMLiq — Staff Knowledge Quiz
+// T2C — Staff Knowledge Quiz
 
 const Quiz = {
 

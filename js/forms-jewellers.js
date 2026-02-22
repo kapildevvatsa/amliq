@@ -1,4 +1,4 @@
-// AMLiq — Jewellers Forms Module
+// T2C — Jewellers Forms Module
 // All CDD forms, governance forms, and template forms
 // localStorage prefix: amliq_jewl_forms_
 
