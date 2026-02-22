@@ -10,5 +10,13 @@ desktop.ini
 # Claude Code session data
 .claude/
 
+# Node
+node_modules/
+package-lock.json
+
+# Amplify
+amplify_outputs.json
+.amplify/
+
 # Logs
 *.log
