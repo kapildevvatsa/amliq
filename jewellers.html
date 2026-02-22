@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AMLiq — AML/CTF Compliance Guide for Real Estate Agents</title>
+  <title>AMLiq — AML/CTF Compliance Guide for Jewellers & Precious Goods Dealers</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="css/custom.css">
   <script>
@@ -19,7 +19,6 @@
   </script>
 </head>
 <body class="bg-slate-50 font-sans text-slate-800">
-<script src="js/auth.js"></script>
 
 <!-- Legal Reference Banner -->
 <div class="bg-red-700 text-white text-center text-xs font-semibold px-4 py-1.5 print:hidden">
@@ -31,7 +30,7 @@
 <!-- Disclaimer Banner -->
 <div id="disclaimer-banner" class="bg-amber-50 border-b border-amber-300 px-4 py-2 text-xs text-amber-800 flex items-start gap-2 print:hidden">
   <svg class="w-4 h-4 mt-0.5 flex-shrink-0 text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
-  <span><strong>Disclaimer:</strong> This tool provides general guidance only, based on publicly available AUSTRAC information. It is NOT legal, financial, or compliance advice, and is NOT a substitute for the official AUSTRAC Real Estate Program Starter Kit. Always refer to <a href="https://www.austrac.gov.au" target="_blank" class="underline font-medium">austrac.gov.au</a> for authoritative guidance and seek professional advice for your specific circumstances. <button onclick="document.getElementById('disclaimer-banner').style.display='none'" class="ml-2 font-semibold underline">Dismiss</button></span>
+  <span><strong>Disclaimer:</strong> This tool provides general guidance only, based on publicly available AUSTRAC information. It is NOT legal, financial, or compliance advice, and is NOT a substitute for the official AUSTRAC Jeweller Program Starter Kit. Always refer to <a href="https://www.austrac.gov.au" target="_blank" class="underline font-medium">austrac.gov.au</a> for authoritative guidance and seek professional advice for your specific circumstances. <button onclick="document.getElementById('disclaimer-banner').style.display='none'" class="ml-2 font-semibold underline">Dismiss</button></span>
 </div>
 
 <!-- App Shell -->
@@ -44,14 +43,9 @@
       <div class="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white text-lg">A</div>
       <div>
         <div class="font-bold text-lg text-white leading-tight">AMLiq</div>
-        <div class="text-xs text-slate-400">AML/CTF Compliance Tool</div>
+        <div class="text-xs text-slate-400">Jewellers & Dealers</div>
       </div>
       <button id="sidebar-close" class="ml-auto text-slate-400 hover:text-white lg:hidden" onclick="toggleSidebar()">✕</button>
-    </div>
-
-    <!-- Sign Out -->
-    <div class="px-5 py-2 border-b border-slate-700">
-      <button onclick="amliqSignOut()" class="text-xs text-slate-400 hover:text-white font-medium transition-colors">Sign Out</button>
     </div>
 
     <!-- Nav -->
@@ -148,7 +142,6 @@
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
       <span class="font-bold text-slate-800">AMLiq</span>
-      <button onclick="amliqSignOut()" class="ml-auto text-sm text-slate-500 hover:text-slate-800 font-medium">Sign Out</button>
     </header>
 
     <!-- Section Content -->
@@ -195,13 +188,13 @@
 <div id="toast" class="fixed bottom-4 right-4 bg-slate-900 text-white px-4 py-3 rounded-lg shadow-xl text-sm hidden z-50 print:hidden"></div>
 
 <!-- Scripts -->
-<script src="js/data.js"></script>
+<script src="js/data-jewellers.js"></script>
 <script src="js/export.js"></script>
 <script src="js/checklist.js"></script>
 <script src="js/risk.js"></script>
-<script src="js/forms.js"></script>
+<script src="js/forms-jewellers.js"></script>
 <script src="js/quiz.js"></script>
-<script src="js/app.js"></script>
+<script src="js/app-jewellers.js"></script>
 
 <script>
 function toggleSidebar() {
