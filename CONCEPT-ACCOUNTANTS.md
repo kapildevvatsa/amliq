@@ -1776,9 +1776,8 @@ All terms from the real estate glossary, plus the following accountant-specific 
 ```
 DISCLAIMER
 
-This tool provides general guidance only. It is based on publicly available 
-information published by AUSTRAC, the Australian Government, CPA Australia, 
-and other official sources as of February 2026.
+This website is an educational aid only. Despite best efforts, some content may 
+be factually unreliable.
 
 This tool does NOT constitute legal, financial, compliance, or professional 
 advice. It is NOT a substitute for the AUSTRAC Accounting Program Starter 
