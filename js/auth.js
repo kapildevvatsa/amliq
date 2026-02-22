@@ -1,7 +1,7 @@
 (function () {
   var CONFIG = {
-    domain:      't2c-prod-amliq-11447.auth.ap-southeast-2.amazoncognito.com',
-    clientId:    '34podrh338iasb9l6em1ljg0h8',
+    domain:      't2c-prod-amliq-53314.auth.ap-southeast-2.amazoncognito.com',
+    clientId:    '31etl7ceunn7p9g3gaipms8rhr',
     redirectUri: window.location.origin + window.location.pathname + window.location.search,
     logoutUri:   window.location.origin + '/',
   };
