@@ -47,7 +47,7 @@ const Checklist = {
                   ${item.text}
                 </label>
                 <div class="text-xs text-slate-400 mt-0.5 ${this.get(item.id) ? 'hidden' : ''}">
-                  ${item.detail}
+                  ${item.detail || ''}
                 </div>
               </div>
             </div>
@@ -107,7 +107,7 @@ const Checklist = {
                     <label for="chk-${item.id}" class="text-sm cursor-pointer font-medium ${this.get(item.id) ? 'line-through text-slate-400' : 'text-slate-700'}">
                       ${item.text}
                     </label>
-                    <div class="text-xs text-slate-400 mt-0.5">${item.detail}</div>
+                    <div class="text-xs text-slate-400 mt-0.5">${item.detail || ''}</div>
                   </div>
                 </div>
               `).join('')}

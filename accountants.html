@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMLiq — AML/CTF Compliance Guide for Accountants & Tax Agents</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/custom.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { DEFAULT: '#1e3a5f', light: '#2d5a8e', dark: '#142845' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800">
+
+<!-- Disclaimer Banner -->
+<div id="disclaimer-banner" class="bg-amber-50 border-b border-amber-300 px-4 py-2 text-xs text-amber-800 flex items-start gap-2 print:hidden">
+  <svg class="w-4 h-4 mt-0.5 flex-shrink-0 text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+  <span><strong>Disclaimer:</strong> This tool provides general guidance only, based on publicly available AUSTRAC information. It is NOT legal, financial, or compliance advice, and is NOT a substitute for the official AUSTRAC Accounting Program Starter Kit. Always refer to <a href="https://www.austrac.gov.au" target="_blank" class="underline font-medium">austrac.gov.au</a> for authoritative guidance and seek professional advice for your specific circumstances. <button onclick="document.getElementById('disclaimer-banner').style.display='none'" class="ml-2 font-semibold underline">Dismiss</button></span>
+</div>
+
+<!-- App Shell -->
+<div class="flex h-screen overflow-hidden" id="app-shell" style="height: calc(100vh - 0px)">
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="w-72 bg-slate-900 text-white flex-shrink-0 flex flex-col overflow-y-auto transition-all duration-300 print:hidden">
+    <!-- Logo -->
+    <div class="px-5 py-4 border-b border-slate-700 flex items-center gap-3">
+      <div class="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white text-lg">A</div>
+      <div>
+        <div class="font-bold text-lg text-white leading-tight">AMLiq</div>
+        <div class="text-xs text-slate-400">Accountants & Tax Agents</div>
+      </div>
+      <button id="sidebar-close" class="ml-auto text-slate-400 hover:text-white lg:hidden" onclick="toggleSidebar()">✕</button>
+    </div>
+
+    <!-- Nav -->
+    <nav class="flex-1 px-3 py-4 space-y-1 text-sm" id="main-nav">
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="dashboard">
+        <span>🏠</span> Dashboard
+      </a>
+
+      <div class="pt-3 pb-1 px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Phase 1: Understand</div>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="am-i-regulated">
+        <span>🔍</span> Am I Regulated?
+      </a>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="obligations-overview">
+        <span>📋</span> Obligations Overview
+      </a>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="key-dates">
+        <span>📅</span> Key Dates & Timeline
+      </a>
+
+      <div class="pt-3 pb-1 px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Phase 2: Build Program</div>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="risk-assessment">
+        <span>⚠️</span> Risk Assessment
+      </a>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="program-builder">
+        <span>🏗️</span> Program Builder
+      </a>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="governance">
+        <span>👤</span> Governance Setup
+      </a>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="enrolment">
+        <span>✅</span> Enrolment Guide
+      </a>
+
+      <div class="pt-3 pb-1 px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Phase 3: Implement</div>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="cdd">
+        <span>🪪</span> Customer Due Diligence
+      </a>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="client-risk-rating">
+        <span>📊</span> Client Risk Rating Guide
+      </a>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="red-flags">
+        <span>🚩</span> Red Flags
+      </a>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="reporting">
+        <span>📤</span> Reporting to AUSTRAC
+      </a>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="record-keeping">
+        <span>🗂️</span> Record Keeping
+      </a>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="training">
+        <span>🎓</span> Staff Training
+      </a>
+
+      <div class="pt-3 pb-1 px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Phase 4: Maintain</div>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="program-review">
+        <span>🔄</span> Program Review
+      </a>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="evaluation">
+        <span>🔎</span> Independent Evaluation
+      </a>
+
+      <div class="pt-3 pb-1 px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Resources</div>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="forms-library">
+        <span>📁</span> Forms Library
+      </a>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="starter-kit-forms">
+        <span>📋</span> Starter Kit Forms
+      </a>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="glossary">
+        <span>📖</span> Jargon Buster
+      </a>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="faq">
+        <span>❓</span> FAQ
+      </a>
+      <a href="#" class="nav-link flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-700 text-slate-300 hover:text-white" data-section="austrac-links">
+        <span>🔗</span> AUSTRAC Links
+      </a>
+    </nav>
+
+    <!-- Storage Note -->
+    <div class="px-4 py-3 border-t border-slate-700 text-xs text-slate-500">
+      <div>All data stored locally in your browser. No data is transmitted.</div>
+      <button onclick="App.exportAllData()" class="mt-1 text-blue-400 hover:text-blue-300 underline">Export all data</button>
+      <span class="mx-1">·</span>
+      <label class="text-blue-400 hover:text-blue-300 underline cursor-pointer">Import<input type="file" accept=".json" class="hidden" onchange="App.importData(event)"></label>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+    <!-- Top Bar (mobile) -->
+    <header class="bg-white border-b border-slate-200 px-4 py-3 flex items-center gap-3 lg:hidden print:hidden">
+      <button onclick="toggleSidebar()" class="text-slate-600 hover:text-slate-900">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <span class="font-bold text-slate-800">AMLiq</span>
+    </header>
+
+    <!-- Section Content -->
+    <main class="flex-1 overflow-y-auto" id="main-content">
+      <!-- Sections are rendered here by JavaScript -->
+      <div id="section-dashboard" class="section hidden"></div>
+      <div id="section-am-i-regulated" class="section hidden"></div>
+      <div id="section-obligations-overview" class="section hidden"></div>
+      <div id="section-key-dates" class="section hidden"></div>
+      <div id="section-risk-assessment" class="section hidden"></div>
+      <div id="section-program-builder" class="section hidden"></div>
+      <div id="section-governance" class="section hidden"></div>
+      <div id="section-enrolment" class="section hidden"></div>
+      <div id="section-cdd" class="section hidden"></div>
+      <div id="section-client-risk-rating" class="section hidden"></div>
+      <div id="section-red-flags" class="section hidden"></div>
+      <div id="section-reporting" class="section hidden"></div>
+      <div id="section-record-keeping" class="section hidden"></div>
+      <div id="section-training" class="section hidden"></div>
+      <div id="section-program-review" class="section hidden"></div>
+      <div id="section-evaluation" class="section hidden"></div>
+      <div id="section-forms-library" class="section hidden"></div>
+      <div id="section-starter-kit-forms" class="section hidden"></div>
+      <div id="section-glossary" class="section hidden"></div>
+      <div id="section-faq" class="section hidden"></div>
+      <div id="section-austrac-links" class="section hidden"></div>
+    </main>
+  </div>
+</div>
+
+<!-- Modal Container -->
+<div id="modal-overlay" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+  <div id="modal-box" class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200">
+      <h2 id="modal-title" class="text-lg font-bold text-slate-800"></h2>
+      <button onclick="App.closeModal()" class="text-slate-400 hover:text-slate-700 text-2xl leading-none">&times;</button>
+    </div>
+    <div id="modal-content" class="px-6 py-5"></div>
+    <div id="modal-footer" class="px-6 py-4 border-t border-slate-200 bg-slate-50 flex gap-2 flex-wrap"></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="fixed bottom-4 right-4 bg-slate-900 text-white px-4 py-3 rounded-lg shadow-xl text-sm hidden z-50 print:hidden"></div>
+
+<!-- Scripts -->
+<script src="js/data-accountants.js"></script>
+<script src="js/export.js"></script>
+<script src="js/checklist.js"></script>
+<script src="js/risk.js"></script>
+<script src="js/forms-accountants.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/app-accountants.js"></script>
+
+<script>
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.classList.toggle('-translate-x-full');
+}
+// Init on load
+window.addEventListener('DOMContentLoaded', () => {
+  App.init();
+});
+</script>
+</body>
+</html>
