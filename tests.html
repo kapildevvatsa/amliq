@@ -46,6 +46,8 @@
         <a class="nav-link" data-section="forms-library" href="#">Forms Library</a>
         <a class="nav-link" data-section="glossary" href="#">Glossary</a>
         <a class="nav-link" data-section="faq" href="#">FAQ</a>
+        <a class="nav-link" data-section="starter-kit-forms" href="#">Starter Kit Forms</a>
+        <a class="nav-link" data-section="customer-examples" href="#">Customer Examples</a>
         <a class="nav-link" data-section="austrac-links" href="#">AUSTRAC Links</a>
       </nav>
     </aside>
@@ -69,6 +71,8 @@
       <div id="section-glossary"           class="section hidden"></div>
       <div id="section-faq"               class="section hidden"></div>
       <div id="section-austrac-links"      class="section hidden"></div>
+      <div id="section-starter-kit-forms" class="section hidden"></div>
+      <div id="section-customer-examples" class="section hidden"></div>
     </main>
   </div>
   <div id="modal-overlay" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
@@ -329,22 +333,22 @@ function runAllTests() {
   Runner.run('App.switchTab is a function',  () => assert(typeof App.switchTab === 'function'));
 
   // ── 2. DOM STRUCTURE ──────────────────────────────────────────────────────
-  Runner.group('2. DOM Structure — 19 Section Containers');
+  Runner.group('2. DOM Structure — 21 Section Containers');
   const SECTIONS = ['dashboard','am-i-regulated','obligations-overview','key-dates',
     'risk-assessment','program-builder','governance','enrolment','cdd','red-flags',
     'reporting','record-keeping','training','program-review','evaluation',
-    'forms-library','glossary','faq','austrac-links'];
+    'forms-library','starter-kit-forms','customer-examples','glossary','faq','austrac-links'];
   SECTIONS.forEach(s => {
     Runner.run(`Section container exists: #section-${s}`, () => assertEl('section-' + s));
   });
 
-  Runner.run('19 nav links exist in #main-nav',
-    () => assertQAll('.nav-link', 19, document.getElementById('main-nav')));
+  Runner.run('21 nav links exist in #main-nav',
+    () => assertQAll('.nav-link', 21, document.getElementById('main-nav')));
   Runner.run('Modal overlay exists', () => assertEl('modal-overlay'));
   Runner.run('Toast element exists',  () => assertEl('toast'));
 
-  // ── 3. NAVIGATION — ALL 19 SECTIONS ──────────────────────────────────────
-  Runner.group('3. Navigation — All 19 Sections');
+  // ── 3. NAVIGATION — ALL 21 SECTIONS ──────────────────────────────────────
+  Runner.group('3. Navigation — All 21 Sections');
   SECTIONS.forEach(s => {
     Runner.run(`Navigate to ${s}: section becomes visible`, () => {
       navigateTo(s);
@@ -669,6 +673,52 @@ function runAllTests() {
     });
   });
 
+  Runner.run('AUSTRAC Official Templates section exists', () =>
+    assert(pb.textContent.includes('AUSTRAC Official Templates') || pb.textContent.includes('Official Templates'),
+      'AUSTRAC templates section missing'));
+  Runner.run('4 downloadable Word template links exist', () => {
+    const templateLinks = pb.querySelectorAll('a[href*="austrac.gov.au"][href*=".docx"]');
+    assert(templateLinks.length >= 4, `Expected ≥4 .docx template links, found ${templateLinks.length}`);
+  });
+  Runner.run('Customise Guide template link exists', () => {
+    const link = pb.querySelector('a[href*="Customise"]') ||
+                 Array.from(pb.querySelectorAll('a')).find(a => a.textContent.includes('Customise Guide'));
+    assert(link, 'Customise Guide template missing');
+  });
+  Runner.run('Risk Assessment template link exists', () => {
+    const link = pb.querySelector('a[href*="Risk%20assessment"]') ||
+                 Array.from(pb.querySelectorAll('a')).find(a => a.textContent.includes('Risk Assessment'));
+    assert(link, 'Risk Assessment template link missing');
+  });
+  Runner.run('Policy Document template link exists', () => {
+    const link = pb.querySelector('a[href*="Policy"]') ||
+                 Array.from(pb.querySelectorAll('a')).find(a => a.textContent.includes('Policy Document'));
+    assert(link, 'Policy Document template link missing');
+  });
+  Runner.run('Process Document template link exists', () => {
+    const link = pb.querySelector('a[href*="Process"]') ||
+                 Array.from(pb.querySelectorAll('a')).find(a => a.textContent.includes('Process Document'));
+    assert(link, 'Process Document template link missing');
+  });
+  Runner.run('Template links open in new tab', () => {
+    pb.querySelectorAll('a[href*=".docx"]').forEach(a => {
+      assert(a.target === '_blank', `Template link "${a.textContent.trim()}" missing target=_blank`);
+    });
+  });
+  Runner.run('AUSTRAC 4-step customisation process section exists', () =>
+    assert(pb.textContent.includes('4-Step') || pb.textContent.includes('Customisation') ||
+           pb.textContent.includes('customisation'), '4-step customisation section missing'));
+  Runner.run('Customisation step circles rendered (≥4)', () => {
+    const steps = pb.querySelectorAll('.rounded-full');
+    assert(steps.length >= 4, `Expected ≥4 step circles, found ${steps.length}`);
+  });
+  Runner.run('Step 1: Customise risk assessment exists', () =>
+    assert(pb.textContent.includes('Customise your risk assessment') ||
+           pb.textContent.includes('risk assessment'), 'Step 1 text missing'));
+  Runner.run('Step 4: Document and approve exists', () =>
+    assert(pb.textContent.includes('Document and approve') ||
+           pb.textContent.includes('senior management approval'), 'Step 4 text missing'));
+
   // ── 10. GOVERNANCE ────────────────────────────────────────────────────────
   Runner.group('10. Governance — Tabs and Forms');
   navigateTo('governance');
@@ -752,7 +802,12 @@ function runAllTests() {
   const cdd = sectionEl('cdd');
 
   Runner.run('CDD heading exists',             () => assertContains('h1', 'Due Diligence', cdd));
-  Runner.run('8 CDD tabs rendered',            () => assertQAll('.cdd-tab', 8, cdd));
+  Runner.run('"Who Is Your Customer?" callout exists', () =>
+    assert(cdd.textContent.includes('Who Is Your Customer'), '"Who Is Your Customer?" callout missing'));
+  Runner.run('AUSTRAC risk rating table exists (High/Medium/Low)', () =>
+    assert(cdd.textContent.includes('High') && cdd.textContent.includes('Medium') && cdd.textContent.includes('Low'),
+      'Risk rating table missing'));
+  Runner.run('11 CDD tabs rendered',           () => assertQAll('.cdd-tab', 11, cdd));
   Runner.run('CDD tab-0 panel exists',         () => assertEl('cdd-tab-0'));
   Runner.run('CDD tab-1 panel exists',         () => assertEl('cdd-tab-1'));
   Runner.run('CDD tab-2 panel exists',         () => assertEl('cdd-tab-2'));
@@ -761,6 +816,9 @@ function runAllTests() {
   Runner.run('CDD tab-5 panel exists',         () => assertEl('cdd-tab-5'));
   Runner.run('CDD tab-6 panel exists',         () => assertEl('cdd-tab-6'));
   Runner.run('CDD tab-7 panel exists',         () => assertEl('cdd-tab-7'));
+  Runner.run('CDD tab-8 panel exists',         () => assertEl('cdd-tab-8'));
+  Runner.run('CDD tab-9 panel exists',         () => assertEl('cdd-tab-9'));
+  Runner.run('CDD tab-10 panel exists',        () => assertEl('cdd-tab-10'));
 
   Runner.run('Switch to Company tab (1)', () => {
     App.switchTab('cdd-tab', 1);
@@ -907,6 +965,115 @@ function runAllTests() {
     assert(Array.from(sel.options).some(o => o.text.includes('declined')), '"Service declined" option missing');
   });
 
+  // ── 17.1 CDD — DELAYED CDD (TAB 8) ───────────────────────────────────────
+  Runner.group('17.1 CDD — Delayed CDD (Tab 8)');
+  navigateTo('cdd');
+  App.switchTab('cdd-tab', 8);
+  const delayedCDDTab = document.getElementById('cdd-tab-8');
+
+  Runner.run('Delayed CDD tab panel visible after switch', () =>
+    assert(!delayedCDDTab.classList.contains('hidden'), 'Delayed CDD tab hidden'));
+  Runner.run('"Delayed" content exists in tab panel', () =>
+    assert(delayedCDDTab.textContent.includes('Delayed') || delayedCDDTab.textContent.includes('delayed'),
+      'Delayed CDD content missing'));
+  Runner.run('Conditions text exists (low risk / essential)', () =>
+    assert(delayedCDDTab.textContent.includes('low') || delayedCDDTab.textContent.includes('essential') ||
+           delayedCDDTab.textContent.includes('condition'), 'Delayed CDD conditions text missing'));
+  Runner.run('Sanctions always required text exists', () =>
+    assert(delayedCDDTab.textContent.includes('sanctions') || delayedCDDTab.textContent.includes('Sanctions'),
+      'Sanctions requirement text missing in delayed CDD'));
+  Runner.run('Delayed CDD form exists (#delayed-cdd)', () => assertEl('delayed-cdd'));
+  (() => {
+    const dcForm = document.getElementById('delayed-cdd');
+    Runner.run('Customer name field (dc-name)',             () => assertQ('[id="dc-name"]',       dcForm));
+    Runner.run('Reason for delay field (dc-reason)',        () => assertQ('[id="dc-reason"]',     dcForm));
+    Runner.run('Low ML/TF risk assessed (dc-risk)',         () => assertQ('[id="dc-risk"]',       dcForm));
+    Runner.run('Delay essential field (dc-essential)',      () => assertQ('[id="dc-essential"]',  dcForm));
+    Runner.run('Sanctions screening done (dc-sanctions)',   () => assertQ('[id="dc-sanctions"]',  dcForm));
+    Runner.run('Service commenced date (dc-started)',       () => assertQ('[id="dc-started"]',    dcForm));
+    Runner.run('CDD target date (dc-target)',               () => assertQ('[id="dc-target"]',     dcForm));
+    Runner.run('CDD completed date (dc-completed)',         () => assertQ('[id="dc-completed"]',  dcForm));
+    Runner.run('Concerns after completion (dc-concerns)',   () => assertQ('[id="dc-concerns"]',   dcForm));
+    Runner.run('Action taken (dc-action)',                  () => assertQ('[id="dc-action"]',     dcForm));
+    Runner.run('Save/Load/Clear buttons on Delayed CDD form', () => {
+      assertQ('button[onclick*="saveForm"][onclick*="delayed-cdd"]');
+      assertQ('button[onclick*="loadForm"][onclick*="delayed-cdd"]');
+      assertQ('button[onclick*="clearForm"][onclick*="delayed-cdd"]');
+    });
+  })();
+
+  // ── 17.2 CDD — THIRD-PARTY RELIANCE (TAB 9) ──────────────────────────────
+  Runner.group('17.2 CDD — Third-Party Reliance (Tab 9)');
+  App.switchTab('cdd-tab', 9);
+  const tprTab = document.getElementById('cdd-tab-9');
+
+  Runner.run('Third-Party Reliance tab panel visible after switch', () =>
+    assert(!tprTab.classList.contains('hidden'), 'TPR tab hidden'));
+  Runner.run('"Third" or "Reliance" content exists in tab', () =>
+    assert(tprTab.textContent.includes('Third') || tprTab.textContent.includes('Reliance'),
+      'TPR content missing'));
+  Runner.run('Risk warning text in TPR tab', () =>
+    assert(tprTab.textContent.includes('risk') || tprTab.textContent.includes('Risk'),
+      'Risk warning missing in TPR tab'));
+  Runner.run('Third-Party Reliance form exists (#tp-reliance)', () => assertEl('tp-reliance'));
+  (() => {
+    const tprForm = document.getElementById('tp-reliance');
+    Runner.run('Customer name field (tpr-customer)',           () => assertQ('[id="tpr-customer"]',    tprForm));
+    Runner.run('Third party name/firm field (tpr-party)',      () => assertQ('[id="tpr-party"]',       tprForm));
+    Runner.run('Is reporting entity field (tpr-re)',           () => assertQ('[id="tpr-re"]',          tprForm));
+    Runner.run('Enrolled with AUSTRAC field (tpr-austrac)',    () => assertQ('[id="tpr-austrac"]',     tprForm));
+    Runner.run('Jurisdiction field (tpr-jurisdiction)',        () => assertQ('[id="tpr-jurisdiction"]',tprForm));
+    Runner.run('CDD standards agreed (tpr-standards)',         () => assertQ('[id="tpr-standards"]',   tprForm));
+    Runner.run('Date of reliance (tpr-date)',                  () => assertQ('[id="tpr-date"]',        tprForm));
+    Runner.run('CDD info received summary (tpr-info)',         () => assertQ('[id="tpr-info"]',        tprForm));
+    Runner.run('Save/Load/Clear buttons on TPR form', () => {
+      assertQ('button[onclick*="saveForm"][onclick*="tp-reliance"]');
+      assertQ('button[onclick*="loadForm"][onclick*="tp-reliance"]');
+      assertQ('button[onclick*="clearForm"][onclick*="tp-reliance"]');
+    });
+  })();
+
+  // ── 17.3 CDD — CDD OUTCOME (TAB 10) ──────────────────────────────────────
+  Runner.group('17.3 CDD — CDD Outcome (Tab 10)');
+  App.switchTab('cdd-tab', 10);
+  const outcomeTab = document.getElementById('cdd-tab-10');
+
+  Runner.run('CDD Outcome tab panel visible after switch', () =>
+    assert(!outcomeTab.classList.contains('hidden'), 'CDD Outcome tab hidden'));
+  Runner.run('"Outcome" content exists in tab', () =>
+    assert(outcomeTab.textContent.includes('Outcome') || outcomeTab.textContent.includes('outcome'),
+      'CDD Outcome content missing'));
+  Runner.run('CDD Outcome form exists (#cdd-outcome)', () => assertEl('cdd-outcome'));
+  (() => {
+    const coForm = document.getElementById('cdd-outcome');
+    Runner.run('Customer name field (co-name)',           () => assertQ('[id="co-name"]',      coForm));
+    Runner.run('CDD issue encountered (co-issue)',        () => assertQ('[id="co-issue"]',     coForm));
+    Runner.run('Detail of issue (co-detail)',             () => assertQ('[id="co-detail"]',    coForm));
+    Runner.run('Action taken (co-action)',                () => assertQ('[id="co-action"]',    coForm));
+    Runner.run('Rationale for decision (co-rationale)',   () => assertQ('[id="co-rationale"]', coForm));
+    Runner.run('SMR filed field (co-smr)',                () => assertQ('[id="co-smr"]',       coForm));
+    Runner.run('co-action has "Service declined" option', () => {
+      const sel = coForm.querySelector('[id="co-action"]');
+      assert(Array.from(sel.options).some(o => o.text.includes('declined')),
+        '"Service declined" option missing from co-action');
+    });
+    Runner.run('co-action has "SMR filed" option', () => {
+      const sel = coForm.querySelector('[id="co-action"]');
+      assert(Array.from(sel.options).some(o => o.text.includes('SMR')),
+        '"SMR filed" option missing from co-action');
+    });
+    Runner.run('co-issue has "Sanctions match" option', () => {
+      const sel = coForm.querySelector('[id="co-issue"]');
+      assert(Array.from(sel.options).some(o => o.text.toLowerCase().includes('sanctions')),
+        '"Sanctions match" option missing from co-issue');
+    });
+    Runner.run('Save/Load/Clear buttons on CDD Outcome form', () => {
+      assertQ('button[onclick*="saveForm"][onclick*="cdd-outcome"]');
+      assertQ('button[onclick*="loadForm"][onclick*="cdd-outcome"]');
+      assertQ('button[onclick*="clearForm"][onclick*="cdd-outcome"]');
+    });
+  })();
+
   // ── 18. RED FLAGS ─────────────────────────────────────────────────────────
   Runner.group('18. Red Flags — Cards, Filters, Search');
   navigateTo('red-flags');
@@ -1009,11 +1176,12 @@ function runAllTests() {
   Runner.run('Reporting heading exists',             () => assertContains('h1', 'Reporting', rep));
   Runner.run('Tipping-off warning on reporting page', () =>
     assert(rep.textContent.includes('TIPPING-OFF'), 'Tipping-off warning missing on reporting page'));
-  Runner.run('4 reporting tabs exist',               () => assertQAll('.rep-tab', 4, rep));
+  Runner.run('5 reporting tabs exist',               () => assertQAll('.rep-tab', 5, rep));
   Runner.run('SMR tab panel exists (#rep-tab-0)',    () => assertEl('rep-tab-0'));
   Runner.run('TTR tab panel exists (#rep-tab-1)',    () => assertEl('rep-tab-1'));
   Runner.run('IFTI tab panel exists (#rep-tab-2)',   () => assertEl('rep-tab-2'));
-  Runner.run('Escalation tab exists (#rep-tab-3)',   () => assertEl('rep-tab-3'));
+  Runner.run('Annual Compliance Report tab (#rep-tab-3)', () => assertEl('rep-tab-3'));
+  Runner.run('Escalation tab exists (#rep-tab-4)',   () => assertEl('rep-tab-4'));
   Runner.run('"24 hours" timeframe for terrorism in SMR tab', () =>
     assert(document.getElementById('rep-tab-0').textContent.includes('24 hours'), '24-hour rule missing'));
   Runner.run('"3 business days" timeframe in SMR tab', () =>
@@ -1058,12 +1226,24 @@ function runAllTests() {
     assert(document.getElementById('rep-tab-1').textContent.includes('Structuring') ||
            document.getElementById('rep-tab-1').textContent.includes('structuring'), 'Structuring warning missing'));
 
-  Runner.run('Switch to Escalation tab (3)',         () => {
+  Runner.run('Switch to Annual Compliance Report tab (3)', () => {
     App.switchTab('rep-tab', 3);
-    assert(!document.getElementById('rep-tab-3').classList.contains('hidden'), 'Escalation tab hidden');
+    assert(!document.getElementById('rep-tab-3').classList.contains('hidden'), 'Annual Report tab hidden');
+  });
+  Runner.run('"Annual Compliance Report" heading in tab 3', () =>
+    assert(document.getElementById('rep-tab-3').textContent.includes('Annual'),
+      'Annual content missing in rep-tab-3'));
+  Runner.run('"Annually" or "annual" frequency mentioned in tab 3', () =>
+    assert(document.getElementById('rep-tab-3').textContent.toLowerCase().includes('annual'),
+      'Frequency missing in Annual Report tab'));
+  Runner.run('AUSTRAC Online link in Annual Report tab', () =>
+    assertQ('a[href*="online.austrac.gov.au"]', document.getElementById('rep-tab-3')));
+  Runner.run('Switch to Escalation tab (4)',         () => {
+    App.switchTab('rep-tab', 4);
+    assert(!document.getElementById('rep-tab-4').classList.contains('hidden'), 'Escalation tab hidden');
   });
   Runner.run('6 escalation steps shown',            () =>
-    assertQAll('.rounded-xl', 6, document.getElementById('rep-tab-3')));
+    assertQAll('.rounded-xl', 6, document.getElementById('rep-tab-4')));
 
   Runner.run('SMR decision tool: 3+ checks show SMR recommended', () => {
     App.switchTab('rep-tab', 0);
@@ -1234,16 +1414,16 @@ function runAllTests() {
   const fl = sectionEl('forms-library');
 
   Runner.run('Forms Library heading exists',       () => assertContains('h1', 'Forms', fl));
-  Runner.run('≥18 form entries listed',            () =>
-    assert(fl.querySelectorAll('.rounded-xl').length >= 18, `Expected ≥18 entries, got ${fl.querySelectorAll('.rounded-xl').length}`));
+  Runner.run('≥21 form entries listed',            () =>
+    assert(fl.querySelectorAll('.rounded-xl').length >= 21, `Expected ≥21 entries, got ${fl.querySelectorAll('.rounded-xl').length}`));
   Runner.run('Export All Data button exists',      () =>
     assertQ('button[onclick*="exportAllData"]', fl));
   Runner.run('Import Data input exists',           () =>
     assertQ('input[type="file"]', fl));
   Runner.run('Print button exists',                () =>
     assert(fl.textContent.includes('Print'), 'Print button missing'));
-  Runner.run('"Open →" buttons exist for forms (≥18)', () =>
-    assertQAll('button[onclick*="goToForm"]', 18, fl));
+  Runner.run('"Open →" buttons exist for forms (≥21)', () =>
+    assertQAll('button[onclick*="goToForm"]', 21, fl));
   Runner.run('CDD Individual form link works',     () => {
     const btn = Array.from(fl.querySelectorAll('button')).find(b => b.textContent.includes('CDD — Individual'));
     assert(btn, 'CDD Individual button not found');
@@ -1350,6 +1530,16 @@ function runAllTests() {
     assert(q && (q.a.toLowerCase().includes('yes') || q.a.toLowerCase().includes('designated')),
       "Buyer's agent FAQ should confirm regulated");
   });
+  Runner.run('FAQ Q4 mentions both buyer AND seller as customers', () => {
+    // Q4 (index 3) updated: both buyer and seller are customers
+    const q = AMLiqData.faq[3];
+    assert(q, 'FAQ Q4 not found');
+    assert(
+      q.a.toLowerCase().includes('both') ||
+      (q.a.toLowerCase().includes('buyer') && q.a.toLowerCase().includes('seller')),
+      'FAQ Q4 should mention both buyer and seller as customers'
+    );
+  });
 
   // ── 27. AUSTRAC LINKS ─────────────────────────────────────────────────────
   Runner.group('27. AUSTRAC Links — External URLs');
@@ -1357,8 +1547,8 @@ function runAllTests() {
   const al = sectionEl('austrac-links');
 
   Runner.run('AUSTRAC Links heading exists',       () => assertContains('h1', 'AUSTRAC', al));
-  Runner.run('≥19 link entries rendered',          () =>
-    assert(al.querySelectorAll('a').length >= 19, `Expected ≥19 links, found ${al.querySelectorAll('a').length}`));
+  Runner.run('≥32 link entries rendered',          () =>
+    assert(al.querySelectorAll('a').length >= 32, `Expected ≥32 links, found ${al.querySelectorAll('a').length}`));
   Runner.run('All links have non-empty href',      () => {
     al.querySelectorAll('a[href]').forEach(a => {
       assert(a.href && a.href.length > 0, `Empty href on "${a.textContent.trim().slice(0,40)}"`);
@@ -1375,8 +1565,27 @@ function runAllTests() {
     assertQ('a[href*="dfat.gov.au"]', al));
   Runner.run('AUSTRAC Online link present',        () =>
     assertQ('a[href*="online.austrac.gov.au"]', al));
-  Runner.run('AUSTRAC data has 19 links in data.js', () =>
-    assert(AMLiqData.austracLinks.length === 19, `Expected 19 links, found ${AMLiqData.austracLinks.length}`));
+  Runner.run('AUSTRAC data has 32 links in data.js', () =>
+    assert(AMLiqData.austracLinks.length === 32, `Expected 32 links, found ${AMLiqData.austracLinks.length}`));
+  Runner.run('All austracLinks have category field', () => {
+    AMLiqData.austracLinks.forEach(l => {
+      assert(l.category && l.category.length > 0, `Link "${l.title}" missing category`);
+    });
+  });
+  Runner.run('Links span ≥5 distinct categories', () => {
+    const cats = new Set(AMLiqData.austracLinks.map(l => l.category));
+    assert(cats.size >= 5, `Expected ≥5 categories, found ${cats.size}: ${[...cats].join(', ')}`);
+  });
+  Runner.run('Category headings rendered in DOM (≥3)', () => {
+    const headings = al.querySelectorAll('h2, h3, h4');
+    assert(headings.length >= 3, `Expected ≥3 category headings, found ${headings.length}`);
+  });
+  Runner.run('"Starter Kit" or "Guidance" category rendered', () =>
+    assert(al.textContent.includes('Starter Kit') || al.textContent.includes('Guidance'),
+      '"Starter Kit & Guidance Hub" category missing'));
+  Runner.run('"Downloadable" or "Templates" category rendered', () =>
+    assert(al.textContent.includes('Downloadable') || al.textContent.includes('Templates'),
+      '"Downloadable Templates" category missing'));
   Runner.run('All austracLinks have non-empty URLs', () => {
     AMLiqData.austracLinks.forEach(l => {
       assert(l.url && l.url.startsWith('http'), `Link "${l.title}" has invalid URL: "${l.url}"`);
@@ -1519,6 +1728,101 @@ function runAllTests() {
     const link = banner.querySelector('a[href*="austrac.gov.au"]');
     assert(link, 'AUSTRAC link missing from disclaimer banner');
   });
+
+  // ── 31. STARTER KIT FORMS ─────────────────────────────────────────────────
+  Runner.group('31. Starter Kit Forms — Mapping Reference');
+  navigateTo('starter-kit-forms');
+  const skf = sectionEl('starter-kit-forms');
+
+  Runner.run('Starter Kit Forms heading exists', () =>
+    assert(skf.textContent.includes('Starter Kit') || skf.textContent.includes('Forms Reference'),
+      'Starter Kit Forms heading missing'));
+  Runner.run('AUSTRAC source callout/link exists', () =>
+    assert(skf.querySelector('a[href*="austrac.gov.au"]') !== null ||
+           skf.textContent.includes('austrac.gov.au'),
+      'AUSTRAC source link missing from Starter Kit Forms'));
+  Runner.run('≥13 mapping entries rendered', () =>
+    assertQAll('.rounded-xl', 13, skf));
+  Runner.run('"Individuals" or "Individual" entry exists', () =>
+    assert(skf.textContent.includes('Individuals') || skf.textContent.includes('Individual'),
+      'Individual onboarding entry missing'));
+  Runner.run('"Entity" entry exists', () =>
+    assert(skf.textContent.includes('Entity') || skf.textContent.includes('entity'),
+      'Entity onboarding entry missing'));
+  Runner.run('"Enhanced" or EDD entry exists', () =>
+    assert(skf.textContent.includes('Enhanced') || skf.textContent.includes('EDD'),
+      'EDD entry missing'));
+  Runner.run('"Sanctions" entry exists', () =>
+    assert(skf.textContent.includes('Sanctions') || skf.textContent.includes('sanctions'),
+      'Sanctions check entry missing'));
+  Runner.run('"PEP" entry exists', () =>
+    assert(skf.textContent.includes('PEP'), 'PEP check entry missing'));
+  Runner.run('"Personnel" entry exists', () =>
+    assert(skf.textContent.includes('Personnel') || skf.textContent.includes('personnel'),
+      'Personnel due diligence entry missing'));
+  Runner.run('≥13 "Open →" buttons exist', () =>
+    assertQAll('button[onclick*="goToForm"]', 13, skf));
+  Runner.run('Clicking CDD Individual button navigates to CDD', () => {
+    const btn = Array.from(skf.querySelectorAll('button')).find(
+      b => b.textContent.includes('CDD') && b.textContent.includes('Individual'));
+    assert(btn, 'CDD Individual button not found in Starter Kit Forms');
+    btn.click();
+    assertVisible('cdd');
+  });
+  Runner.run('Clicking Governance button navigates to governance', () => {
+    navigateTo('starter-kit-forms');
+    const btn = Array.from(skf.querySelectorAll('button')).find(
+      b => b.textContent.includes('Roles') || b.textContent.includes('Personnel'));
+    assert(btn, 'Governance-related button not found in Starter Kit Forms');
+    btn.click();
+    assertVisible('governance');
+  });
+
+  // ── 32. CUSTOMER EXAMPLES ─────────────────────────────────────────────────
+  Runner.group('32. Customer Examples — AUSTRAC Worked Examples');
+  navigateTo('customer-examples');
+  const ce = sectionEl('customer-examples');
+
+  Runner.run('Customer Examples heading exists', () =>
+    assert(ce.textContent.includes('Customer Examples') || ce.textContent.includes('Examples'),
+      'Customer Examples heading missing'));
+  Runner.run('AUSTRAC source link exists', () =>
+    assert(ce.querySelector('a[href*="austrac.gov.au"]') !== null,
+      'AUSTRAC source link missing from Customer Examples'));
+  Runner.run('≥3 example panels rendered', () =>
+    assertQAll('.rounded-xl', 3, ce));
+  Runner.run('LOW-RISK example exists', () =>
+    assert(ce.textContent.includes('LOW') || ce.textContent.includes('Low-Risk') ||
+           ce.textContent.includes('low'),
+      'Low-risk example missing'));
+  Runner.run('MEDIUM-RISK example exists', () =>
+    assert(ce.textContent.includes('MEDIUM') || ce.textContent.includes('Medium-Risk') ||
+           ce.textContent.includes('medium'),
+      'Medium-risk example missing'));
+  Runner.run('HIGH-RISK example exists', () =>
+    assert(ce.textContent.includes('HIGH') || ce.textContent.includes('High-Risk') ||
+           ce.textContent.includes('high'),
+      'High-risk example missing'));
+  Runner.run('Low-risk scenario mentions residential property or buyer', () =>
+    assert(ce.textContent.includes('residential') || ce.textContent.includes('buyer') ||
+           ce.textContent.includes('property'),
+      'Low-risk scenario content missing'));
+  Runner.run('Medium-risk mentions delayed CDD or auction', () =>
+    assert(ce.textContent.includes('auction') || ce.textContent.includes('Delayed') ||
+           ce.textContent.includes('delayed'),
+      'Medium-risk scenario content missing'));
+  Runner.run('High-risk mentions PEP or foreign or luxury', () =>
+    assert(ce.textContent.includes('PEP') || ce.textContent.includes('foreign') ||
+           ce.textContent.includes('luxury'),
+      'High-risk scenario content missing'));
+  Runner.run('"Key insight" callout exists in examples', () =>
+    assert(ce.textContent.includes('Key insight') || ce.textContent.includes('Key Insight'),
+      '"Key insight" callout missing'));
+  Runner.run('SMR mentioned in high-risk example', () =>
+    assert(ce.textContent.includes('SMR'), 'SMR mention missing from customer examples'));
+  Runner.run('Sanctions screening mentioned in medium-risk', () =>
+    assert(ce.textContent.includes('sanctions') || ce.textContent.includes('Sanctions'),
+      'Sanctions screening mention missing'));
 
 } // end runAllTests()
 </script>

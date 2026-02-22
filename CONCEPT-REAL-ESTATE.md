@@ -10,7 +10,13 @@
 
 It is **not** legal advice. It is a practical, step-by-step guidance tool built entirely from publicly available AUSTRAC materials, including the official **Real Estate Program Starter Kit** released 30 January 2026.
 
+> **📎 AUSTRAC Source:** [Starter Kit Media Release](https://www.austrac.gov.au/news-and-media/media-release/austrac-backs-newly-regulated-sectors-release-amlctf-program-starter-kits) | [Real Estate Guidance Hub](https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance)
+
 The tool mirrors the structure of AUSTRAC's own starter kit — **Customise → Implement → Maintain & Review** — but wraps it in an interactive, user-friendly interface with checklists, wizards, template forms, and plain-English explanations.
+
+**Key AUSTRAC insight:** AUSTRAC CEO Brendan Thomas stated that *"for most customers who are individuals posing a low to medium risk, compliance generally boils down to just three forms"* — onboarding, initial CDD, and ongoing monitoring. AMLiq reflects this proportionate, risk-based approach.
+
+**Who the starter kit is designed for:** The AUSTRAC starter kit is specifically designed for Tranche 2 entities who, from 1 July 2026, are for the first time subject to AML/CTF legislation. It is intended for typical small-to-medium real estate businesses and buyer's agencies. Larger or more complex businesses may need to supplement the starter kit with additional tailored compliance measures.
 
 ---
 
@@ -36,6 +42,8 @@ Most small to mid-sized real estate agencies have **zero experience** with AML/C
 ---
 
 ## 3. Who Is Regulated (and Who Is Not)
+
+> **📎 AUSTRAC Source:** [Real Estate Services (Reform)](https://www.austrac.gov.au/amlctf-reform/reforms-guidance/before-you-start/new-industries-and-services-be-regulated-reform/real-estate-services-reform)
 
 ### 3.1 Two Designated Services
 
@@ -125,6 +133,9 @@ AMLiq
 │
 ├── PHASE 3: IMPLEMENT (Day-to-Day Operations — AUSTRAC Step 2)
 │   ├── 8. Customer Due Diligence (CDD)
+│   │   ├── Who Is Your Customer?
+│   │   ├── Customer Lifecycle (8-Step Process)
+│   │   ├── Risk Rating Table (Low / Medium / High)
 │   │   ├── Initial CDD — Individuals
 │   │   ├── Initial CDD — Companies
 │   │   ├── Initial CDD — Trusts
@@ -132,7 +143,11 @@ AMLiq
 │   │   ├── Initial CDD — Foreign Customers
 │   │   ├── Enhanced Due Diligence (EDD)
 │   │   ├── Ongoing CDD
-│   │   └── PEP & Sanctions Screening
+│   │   ├── PEP & Sanctions Screening
+│   │   ├── Delayed CDD (Real Estate Specific)
+│   │   ├── Third-Party Reliance Arrangements
+│   │   ├── When CDD Cannot Be Completed
+│   │   └── Privacy Obligations & CDD Data
 │   ├── 9. Suspicious Activity & Red Flags
 │   │   ├── Customer Risk Indicators
 │   │   ├── Service/Transaction Risk Indicators
@@ -142,6 +157,7 @@ AMLiq
 │   │   ├── Suspicious Matter Reports (SMRs)
 │   │   ├── Threshold Transaction Reports (TTRs)
 │   │   ├── IFTIs
+│   │   ├── Annual Compliance Reports
 │   │   └── Tipping-Off Prohibition
 │   ├── 11. Record Keeping
 │   └── 12. Staff Training & Awareness
@@ -157,9 +173,11 @@ AMLiq
 │
 ├── RESOURCES
 │   ├── 15. Forms & Templates Library
-│   ├── 16. Jargon Buster (Glossary)
-│   ├── 17. FAQ
-│   └── 18. AUSTRAC Links & Source Documents
+│   ├── 16. AUSTRAC Starter Kit Forms Reference
+│   ├── 17. Real-World Customer Examples (Low / Medium / High Risk)
+│   ├── 18. Jargon Buster (Glossary)
+│   ├── 19. FAQ
+│   └── 20. AUSTRAC Links & Source Documents
 │
 └── Disclaimer (persistent footer/banner on every page)
 ```
@@ -239,6 +257,8 @@ Q5: Is the property interest one of: fee simple, leasehold >30 years,
 
 ### 7.3 Obligations Overview
 
+> **📎 AUSTRAC Source:** [Summary of AML/CTF Obligations for Tranche 2 Entities](https://www.austrac.gov.au/about-us/amlctf-reform/summary-amlctf-obligations-tranche-2-entities) | [Regulatory Expectations for Implementation](https://www.austrac.gov.au/austrac-regulatory-expectations-implementation-amlctf-reforms)
+
 **Purpose:** Explain, in plain English, what the new law means for real estate professionals.
 
 **Content Sections:**
@@ -284,6 +304,8 @@ Each obligation is a clickable card that links to the relevant detailed section:
 ---
 
 ### 7.4 Risk Assessment Wizard
+
+> **📎 AUSTRAC Source:** [Step 1: Customise Your Real Estate Program](https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit/step-1-customise-your-real-estate-program-using-starter-kit) | [Risk Assessment Template (Word, 995 KB)](https://www.austrac.gov.au/sites/default/files/2026-01/Real%20estate%20-%20Risk%20assessment%20-%20January%202026.docx)
 
 **Purpose:** Guide the agent through a structured self-assessment of their money laundering, terrorism financing, and proliferation financing (ML/TF/PF) risk — aligned to AUSTRAC's starter kit risk assessment template.
 
@@ -353,12 +375,30 @@ The wizard asks a series of multiple-choice questions across **four risk categor
 
 ### 7.5 AML/CTF Program Builder (Policy & Process Checklist)
 
+> **📎 AUSTRAC Source:** [Step 1: Customise Your Real Estate Program](https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit/step-1-customise-your-real-estate-program-using-starter-kit)
+
 **Purpose:** A comprehensive, tickable checklist of everything that should be in the AML/CTF program — structured to mirror AUSTRAC's starter kit documents (Risk Assessment, Policy Document, Process Document).
 
 **Aligned to AUSTRAC Starter Kit Structure:**
 - The starter kit contains 4 core documents: **Customise Guide**, **Risk Assessment**, **Policy Document**, **Process Document**
 - Plus supporting forms for personnel and customers
 - Once customised and approved by senior management, it becomes the official AML/CTF program
+- **Important:** The starter kit is NOT designed to be used as-is. You must complete the customisation step to create a program that reflects your business.
+
+**AUSTRAC Downloadable Templates:**
+
+| Document | Download |
+|---|---|
+| Customise the program starter kit guide | [Word, 1.13 MB](https://www.austrac.gov.au/sites/default/files/2026-01/Real%20estate%20-%20Customise%20guide%20-%20January%202026.docx) |
+| Risk assessment | [Word, 995 KB](https://www.austrac.gov.au/sites/default/files/2026-01/Real%20estate%20-%20Risk%20assessment%20-%20January%202026.docx) |
+| Policy document | [Word, 1.07 MB](https://www.austrac.gov.au/sites/default/files/2026-01/Real%20estate%20-%20Policy%20document%20-%20January%202026.docx) |
+| Process document | [Word, 977 KB](https://www.austrac.gov.au/sites/default/files/2026-01/Real%20estate%20-%20Process%20document%20-%20January%202026.docx) |
+
+**4-Step Customisation Process (from AUSTRAC Customise Guide):**
+1. **Customise your risk assessment** — Identify relevant risks, their significance, and acceptable risk levels
+2. **Customise personnel sections** — Assign AML/CTF roles, conduct personnel due diligence, plan training
+3. **Tailor customer sections** — Establish CDD procedures, monitoring, and risk response processes
+4. **Document and approve your program** — Finalise documents, obtain senior management approval
 
 **Checklist Categories:**
 
@@ -460,6 +500,8 @@ The wizard asks a series of multiple-choice questions across **four risk categor
 
 ### 7.6 Governance Setup — NEW PAGE
 
+> **📎 AUSTRAC Source:** [AML/CTF Compliance Officer (Reform)](https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/develop-your-amlctf-program-reform/step-1-establish-your-governance-framework-reform/amlctf-compliance-officer-reform) | [Personnel Due Diligence & Training (Reform)](https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/personnel-due-diligence-and-training-reform/identifying-personnel-roles-require-due-diligence-and-training-reform)
+
 **Purpose:** Guide the user through establishing the governance framework for their AML/CTF program.
 
 #### 7.6.1 Appoint Compliance Officer
@@ -551,6 +593,8 @@ According to AUSTRAC, due diligence and training applies to anyone performing AM
 
 ### 7.7 Enrolment Guide
 
+> **📎 AUSTRAC Source:** [Real Estate Services (Reform)](https://www.austrac.gov.au/amlctf-reform/reforms-guidance/before-you-start/new-industries-and-services-be-regulated-reform/real-estate-services-reform) | [Regulatory Expectations for Implementation](https://www.austrac.gov.au/austrac-regulatory-expectations-implementation-amlctf-reforms)
+
 **Purpose:** Walk the user through the AUSTRAC enrolment process step by step.
 
 **Content:**
@@ -607,9 +651,53 @@ According to AUSTRAC, due diligence and training applies to anyone performing AM
 
 ### 7.8 Customer Due Diligence (CDD) — EXPANDED
 
+> **📎 AUSTRAC Source:** [Step 2: Use Your Real Estate Program](https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit/step-2-use-your-real-estate-program) | [Examples of Dealing with Customers](https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit-examples-dealing-customers)
+
 **Purpose:** Provide clear, step-by-step guidance on how to identify and verify customers for each entity type, including when to apply enhanced or ongoing due diligence.
 
 **Overarching Principle:** You must conduct initial CDD **before providing a designated service** (i.e., before acting for the customer in a property transaction). If CDD cannot be completed satisfactorily, you should consider whether to decline or cease providing the service.
+
+#### 7.8.0a Who Is Your Customer? — CRITICAL CLARIFICATION
+
+> **⚠️ AUSTRAC Clarification (from Step 2: Use Your Real Estate Program):**
+> *"If you act for the seller and broker the successful sale of real estate, your customer is both the buyer and the seller. If you act for the buyer and broker the successful purchase of real estate, your customer is also both the buyer and the seller."*
+
+This is a key distinction: **both parties** to the transaction are your customers for CDD purposes, regardless of which party engaged you. Your CDD obligations apply to both.
+
+#### 7.8.0b Customer Risk Rating Table — FROM AUSTRAC STARTER KIT
+
+> **📎 AUSTRAC Source:** [Step 2: Use Your Real Estate Program](https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit/step-2-use-your-real-estate-program)
+
+AUSTRAC's starter kit defines three risk ratings with specific criteria and risk factors:
+
+| Risk Rating | Criteria | Customer Risk Factors | Controls |
+|---|---|---|---|
+| **HIGH** | One or more high-risk factors, or you identify other reasons the customer is high risk | Paying with more than A$50,000 in physical currency; using a virtual asset (e.g., cryptocurrency) to pay; requesting a service with no apparent economic or legal purpose or involving unusually large/complex transactions; information suggesting criminal activity; unexplained wealth; resident of or located in a high-risk country; foreign PEP; delivery channels making it difficult to establish identity | Enhanced CDD; source of funds and source of wealth check; adverse media check; verify business relationship; senior manager approval |
+| **MEDIUM** | Two or more medium-risk factors, or you identify other reasons the customer is medium risk | Real estate over A$1.5 million purchased without a mortgage; domestic or international organisation PEPs; a third party not enrolled with AUSTRAC representing the customer; operates a charity or other non-profit; interactions only through remote channels | Initial CDD (simplified CDD not appropriate) |
+| **LOW** | Doesn't meet high or medium-risk criteria | Customer isn't medium or high risk | Simplified CDD |
+
+**UI Element:** This risk rating table should be displayed prominently within the CDD section and used as the basis for the Risk Assessment Wizard (Section 7.4) scoring logic.
+
+#### 7.8.0c Customer Lifecycle (8-Step Process) — FROM AUSTRAC STARTER KIT
+
+> **📎 AUSTRAC Source:** [Step 2: Use Your Real Estate Program](https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit/step-2-use-your-real-estate-program)
+
+AUSTRAC's starter kit defines an 8-step customer lifecycle that guides how agents deal with customers from first contact to end of relationship:
+
+| Step | Action | Description |
+|---|---|---|
+| 1 | **Identify the kind of customer** | Determine if they're an individual or entity (trust, company, etc.) and the type of service sought. This determines which onboarding form applies. |
+| 2 | **Collect customer information** | Use the relevant onboarding form. Level of information depends on customer type, service nature, and ML/TF risk factors. |
+| 3 | **Verify customer information** | Follow the relevant initial CDD form to confirm collected information is reliable for AML/CTF purposes. Supports risk assessment and service decision. |
+| 4 | **Identify and assess triggers** | Watch for inconsistencies, unusual behaviour, higher-risk indicators. Can occur during onboarding or at any point during the relationship. |
+| 5 | **Decide how to proceed** | Based on checks: proceed, apply additional controls, escalate/report, or decline service. Guided by policy and risk assessment controls. |
+| 6 | **Provide the designated service** | Generally only after required checks are complete and risks addressed. May delay CDD if delayed CDD criteria are met (see Section 7.8.9). |
+| 7 | **Ongoing customer due diligence** | Monitor for changes in behaviour, respond to new triggers, update customer information as required throughout the relationship. |
+| 8 | **End of business relationship** | Determine what records to keep, how long, and how they support future reviews. No further ongoing CDD required after relationship concludes. |
+
+**UI Element:** This lifecycle should be presented as a visual stepper/timeline that users can reference during any transaction. Each step should link to the relevant detailed section.
+
+---
 
 #### 7.8.1 Initial CDD — Individual Customers
 
@@ -908,9 +996,166 @@ Targeted Financial Sanctions are sanctions imposed under Australian law (and UN 
 | Screened by | Text |
 | Date | Date |
 
+#### 7.8.9 Delayed CDD (Real Estate Specific) — NEW PAGE
+
+> **📎 AUSTRAC Source:** [Delayed Initial Customer Due Diligence (Reform)](https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/customer-due-diligence-reform/initial-customer-due-diligence-reform/delayed-initial-customer-due-diligence-reform) | [Examples of Dealing with Customers](https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit-examples-dealing-customers)
+
+**Purpose:** Explain when and how CDD verification can be delayed in real estate transactions.
+
+**When You May Delay CDD:**
+AUSTRAC recognises that real estate transactions may require starting work before CDD is fully completed. You may delay initial CDD if **both** conditions are met:
+
+1. You determine on reasonable grounds that there is **low additional ML/TF/PF risk** if you delay
+2. Delaying is **essential to avoid interrupting the ordinary course of business**
+
+**Real Estate Examples Where Delay May Be Appropriate:**
+- An auction where the winning bidder signs a contract on the day and full CDD has not yet been completed (AUSTRAC's medium-risk worked example specifically addresses this)
+- A fast-moving sale where the vendor insists on exchanging contracts within 24 hours
+- An interstate/overseas buyer who cannot provide original ID documents immediately
+
+**AUSTRAC Worked Example (from Starter Kit):**
+> In the medium-risk customer example, an agent applies delayed CDD at an auction because: (1) they are completing CDD on the counterparty (buyer) at an auction, (2) there is low additional ML/TF risk associated with delaying as CDD will be completed before settlement, and (3) there are adequate controls to manage additional risk, including the ability to stop brokering services if the buyer falls outside risk appetite. Sanctions screening is still completed **without delay**.
+
+**Mandatory Completion Rules:**
+- CDD must be completed **as soon as reasonably practicable** after you start providing the service
+- Must be completed no later than the timeframes in the AML/CTF Rules 2025
+- **Sanctions screening must still be completed without delay**, even when other CDD is delayed
+- **Civil penalties apply** if you fail to verify within the required timeframe
+
+**Your AML/CTF Program Must Include:**
+- When it is appropriate to delay CDD
+- How you will manage and mitigate ML/TF/PF risks during the delay period
+- A process for what happens if CDD reveals concerns after you've started (e.g., return deposit, cease acting)
+
+**Interactive Checklist — Delayed CDD Record:**
+
+| Field | Input |
+|---|---|
+| Customer name | Text |
+| Reason for delay | Text |
+| Low ML/TF/PF risk assessment documented? | Yes / No |
+| Delay essential to avoid interrupting business? | Yes / No |
+| Sanctions screening completed without delay? | Yes / No + date |
+| Date service commenced | Date |
+| CDD completion target date | Date |
+| CDD actually completed date | Date |
+| Any concerns identified after completion? | Yes / No |
+| Action taken if concerns found | Text |
+
+---
+
+#### 7.8.10 Third-Party Reliance Arrangements — NEW PAGE
+
+> **📎 AUSTRAC Source:** [Reliance Under Customer Due Diligence Arrangements (Reform)](https://www.austrac.gov.au/about-us/amlctf-reform/reforms-guidance/amlctf-program-reform/customer-due-diligence-reform/reliance-customer-identification-third-party-reform/reliance-under-customer-due-diligence-arrangements-reform)
+
+**Purpose:** Explain when and how you can rely on another party's CDD.
+
+**What Is Third-Party Reliance?**
+You may rely on CDD information collected and verified by another reporting entity (e.g., a lawyer, conveyancer, or another real estate agent), rather than conducting CDD yourself from scratch.
+
+**Real Estate Example:**
+A buyer's solicitor has already verified the buyer's identity as part of their own AML/CTF obligations. As the selling agent, you may be able to rely on the solicitor's CDD rather than re-verifying the buyer yourself.
+
+**AUSTRAC Risk Factor:** Note that AUSTRAC's risk rating table treats *"a third party that isn't enrolled with AUSTRAC representing the customer"* as a **medium risk factor**. If the third party IS enrolled with AUSTRAC, this factor does not apply.
+
+**Eligible Third Parties:**
+- A reporting entity regulated under Australian AML/CTF law
+- A foreign business subject to AML/CTF regulation implementing FATF recommendations
+
+**Before Entering a Reliance Arrangement, You Must:**
+1. Assess whether the arrangement is appropriate to your own ML/TF/PF risks
+2. Evaluate the third party's ML/TF risk assessment, countries of operation, customer types, and business complexity
+3. Review any published disciplinary actions, adverse media, or evaluation findings about the third party
+4. Agree on CDD standards appropriate to the customer's risk level
+5. Document the arrangement in your AML/CTF program
+
+**Critical Rule:** You **remain responsible** for ensuring CDD obligations are met. If the third party's CDD was inadequate, you are still liable.
+
+**Interactive Form — Third-Party Reliance Record:**
+
+| Field | Input |
+|---|---|
+| Customer name | Text |
+| Third party relied upon — Name/Firm | Text |
+| Third party is a reporting entity? | Yes / No |
+| Third party enrolled with AUSTRAC? | Yes / No |
+| Jurisdiction | Text |
+| Assessment of third party's ML/TF risk framework completed? | Yes / No |
+| CDD standards agreed? | Yes / No |
+| Arrangement documented in AML/CTF program? | Yes / No |
+| Date of reliance | Date |
+| CDD information received | Text |
+
+---
+
+#### 7.8.11 When CDD Cannot Be Completed — NEW PAGE
+
+> **📎 AUSTRAC Source:** [CDD Before Providing a Designated Service](https://www.austrac.gov.au/business/how-comply-guidance-and-resources/guidance-resources/amlctf-reforms-customer-due-diligence-providing-designated-service)
+
+**Purpose:** Guide agents on what to do when a customer refuses or is unable to complete CDD.
+
+**When CDD Fails, Consider:**
+
+| Scenario | Recommended Action |
+|---|---|
+| Customer refuses to provide ID | Decline to act. Consider filing an SMR if the refusal itself is suspicious. |
+| Customer provides inconsistent or fraudulent documents | Do not proceed. Escalate internally. File an SMR. |
+| Beneficial owner cannot be identified for a trust or company | Do not proceed until beneficial owners are identified. Apply EDD. |
+| Customer is on the DFAT sanctions list | **Do not proceed under any circumstances.** Seek legal advice. You may have a legal obligation to freeze assets. |
+| CDD reveals a PEP | Do not automatically decline — apply EDD and obtain senior management approval. |
+| CDD reveals high-risk jurisdiction connection | Apply EDD. May proceed if risk can be adequately mitigated and documented. |
+| Customer's source of funds cannot be verified | Consider declining. If proceeding, apply EDD and document rationale. File an SMR if suspicious. |
+
+**AUSTRAC High-Risk Worked Example:**
+> In AUSTRAC's high-risk customer example, the AML/CTF compliance officer discovers that the value of the real estate the customer seeks to buy appears grossly excessive relative to their known sources of wealth. Open-source background checks reveal the customer has been investigated internationally for fraud and corruption. The compliance officer forms reasonable grounds for suspicion and submits an SMR. Despite this, the senior manager provides written approval to continue the relationship — demonstrating that filing an SMR does not automatically mean you must decline service.
+
+**Document the Decision:**
+Whether you proceed or decline, **document the outcome** and the reasoning. This is critical for record-keeping and potential AUSTRAC review.
+
+**Interactive Form — CDD Outcome Record:**
+
+| Field | Input |
+|---|---|
+| Customer name | Text |
+| CDD issue encountered | Dropdown: Refused ID / Inconsistent docs / Beneficial owner unclear / Sanctions match / PEP identified / High-risk jurisdiction / Source of funds unverifiable / Other |
+| Detail of issue | Text |
+| Action taken | Dropdown: Service declined / EDD applied and proceeded / SMR filed / Sanctions freeze / Seek legal advice |
+| Rationale for decision | Text |
+| Senior management approval (if proceeding with high risk) | Yes / No + name + date |
+| SMR filed? | Yes / No |
+| Documented by | Text |
+| Date | Date |
+
+---
+
+#### 7.8.12 Privacy Obligations & CDD Data — NEW PAGE
+
+**Purpose:** Brief guidance on how AML/CTF data collection intersects with the Australian Privacy Principles (APPs).
+
+**Key Points:**
+- When collecting personal information for CDD, you are doing so under a **legal obligation** (AML/CTF Act). This is a permitted purpose under the APPs.
+- You should **only collect information that is reasonably necessary** for CDD purposes — do not over-collect.
+- CDD data must be **stored securely** and protected from unauthorised access, loss, or misuse.
+- You must **not use CDD information for marketing** or any purpose unrelated to your AML/CTF obligations.
+- Customers have a right to know **why** you are collecting their information. You can explain that it is required under Australian AML/CTF law.
+- Customers do **not** have a right to refuse CDD collection — but you must handle their data in accordance with the APPs.
+- SMR-related records must be handled with **additional care** due to the tipping-off prohibition.
+
+**Privacy Notice Template (for inclusion in CDD forms):**
+```
+We are required by Australian Anti-Money Laundering and Counter-Terrorism 
+Financing (AML/CTF) law to collect and verify your identity information 
+before providing certain services. This information will be stored securely, 
+used only for AML/CTF compliance purposes, and retained for a minimum of 
+7 years as required by law. For more information, please refer to our 
+Privacy Policy.
+```
+
 ---
 
 ### 7.9 Suspicious Activity & Red Flags — EXPANDED
+
+> **📎 AUSTRAC Source:** [Risk Insights and Indicators of Suspicious Activity for the Real Estate Sector](https://www.austrac.gov.au/business/how-comply-guidance-and-resources/guidance-resources/risk-insights-and-indicators-suspicious-activity-real-estate-sector)
 
 **Purpose:** Help agents recognise warning signs of money laundering in real estate transactions — **aligned to AUSTRAC's 4 risk categories** from their official "Risk insights and indicators of suspicious activity for the real estate sector" guidance.
 
@@ -990,7 +1235,9 @@ Targeted Financial Sanctions are sanctions imposed under Australian law (and UN 
 
 ### 7.10 Reporting to AUSTRAC — EXPANDED
 
-**Purpose:** Explain the three types of reports, when to file them, how to file them, and the tipping-off prohibition.
+> **📎 AUSTRAC Source:** [Suspicious Matter Reports (Reform)](https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/reporting-austrac-reform/suspicious-matter-reports-reform) | [Threshold Transaction Reports (Reform)](https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/reporting-austrac-reform/threshold-transaction-reports-reform) | [Reporting to AUSTRAC (Reform)](https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/reporting-austrac-reform)
+
+**Purpose:** Explain the four types of reports, when to file them, how to file them, and the tipping-off prohibition.
 
 #### 7.10.1 Suspicious Matter Reports (SMRs)
 
@@ -1066,7 +1313,30 @@ An IFTI report is required when you are involved in sending or receiving interna
 
 > Note: In most real estate transactions, the real estate agent is not directly involved in the fund transfer — the bank handles this. However, if you are directly involved in receiving or arranging international transfers, you have IFTI reporting obligations.
 
-#### 7.10.4 Tipping-Off Prohibition
+#### 7.10.4 Annual Compliance Reports — NEW
+
+> **📎 AUSTRAC Source:** [Step 2: Use Your Real Estate Program](https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit/step-2-use-your-real-estate-program)
+
+**What Is It?**
+An annual compliance report submitted to AUSTRAC about how you met your AML/CTF obligations during the previous calendar year.
+
+**Key Details:**
+- Required annually
+- Covers the previous calendar year
+- Reports on how the business met its obligations
+- Filed via [AUSTRAC Online](https://online.austrac.gov.au)
+
+**What to Include:**
+- Confirmation that AML/CTF program is in place and current
+- Summary of compliance activities undertaken
+- Any material changes to the program during the reporting period
+- Details of independent evaluations conducted (if applicable)
+
+**UI Element:** Add a reminder/countdown for the annual compliance report due date in the Dashboard section.
+
+---
+
+#### 7.10.5 Tipping-Off Prohibition
 
 **Critical Legal Requirement:**
 
@@ -1100,6 +1370,8 @@ You **MUST NOT** disclose ("tip off") to the customer or any other person that:
 ---
 
 ### 7.11 Record Keeping
+
+> **📎 AUSTRAC Source:** [Step 2: Use Your Real Estate Program](https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit/step-2-use-your-real-estate-program) | [Summary of Obligations (Tranche 2)](https://www.austrac.gov.au/about-us/amlctf-reform/summary-amlctf-obligations-tranche-2-entities)
 
 **Purpose:** Clear guidance on what to keep, how to keep it, and for how long.
 
@@ -1141,6 +1413,8 @@ You **MUST NOT** disclose ("tip off") to the customer or any other person that:
 ---
 
 ### 7.12 Staff Training & Awareness — EXPANDED
+
+> **📎 AUSTRAC Source:** [Personnel Due Diligence & Training (Reform)](https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/personnel-due-diligence-and-training-reform/identifying-personnel-roles-require-due-diligence-and-training-reform) | [Step 2: Use Your Real Estate Program — Managing Personnel](https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit/step-2-use-your-real-estate-program)
 
 **Purpose:** Help agencies plan, deliver, and track AML/CTF training.
 
@@ -1313,6 +1587,8 @@ According to AUSTRAC, training is required for anyone performing roles relevant 
 
 ### 7.13 Program Review & Maintenance — NEW PAGE
 
+> **📎 AUSTRAC Source:** [Step 3: Maintain and Review Your Real Estate Program](https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit/step-3-maintain-and-review-your-real-estate-program)
+
 **Purpose:** Guide the user through the ongoing obligation to review and update their AML/CTF program.
 
 **AUSTRAC Requirement:** Your AML/CTF program must remain current as risks, operations, and regulatory expectations change.
@@ -1369,6 +1645,8 @@ When a review is triggered:
 ---
 
 ### 7.14 Independent Evaluation Planning — NEW PAGE
+
+> **📎 AUSTRAC Source:** [Step 3: Maintain and Review Your Real Estate Program](https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit/step-3-maintain-and-review-your-real-estate-program)
 
 **Purpose:** Help agencies plan for the required independent evaluation of their AML/CTF program.
 
@@ -1436,6 +1714,9 @@ When a review is triggered:
 | 18 | SMR Decision Record | Section 7.10.1 | Document the decision to file (or not file) an SMR |
 | 19 | Enrolment Checklist | Section 7.7 | Track enrolment preparation and completion |
 | 20 | Risk Assessment Summary | Section 7.4 | Output of the risk assessment wizard |
+| 21 | Delayed CDD Record | Section 7.8.9 | Document when and why CDD was delayed |
+| 22 | Third-Party Reliance Record | Section 7.8.10 | Document reliance on another party's CDD |
+| 23 | CDD Outcome Record | Section 7.8.11 | Document decisions when CDD cannot be completed |
 
 **UI Elements:**
 - Grid/list view of all forms
@@ -1447,7 +1728,106 @@ When a review is triggered:
 
 ---
 
-### 7.16 Jargon Buster (Glossary) — NEW PAGE
+### 7.16 AUSTRAC Starter Kit Forms Reference — NEW PAGE
+
+> **📎 AUSTRAC Source:** [Real Estate Program Starter Kit Document Library](https://www.austrac.gov.au/reforms/program-starter-kits/real-estate-guidance/real-estate-program-starter-kit/real-estate-program-starter-kit-document-library)
+
+**Purpose:** Map AUSTRAC's official starter kit form names to the corresponding AMLiq template forms, so users can easily cross-reference between this tool and the official documents.
+
+**AUSTRAC's Starter Kit Forms (as referenced in official worked examples):**
+
+| AUSTRAC Official Form Name | Purpose | AMLiq Equivalent |
+|---|---|---|
+| Onboarding form — Individuals and sole traders | Collect initial customer information during engagement | CDD — Individual (Section 7.8.1) |
+| Onboarding form — Entity (trust, company, etc.) | Collect initial information for entity customers | CDD — Company/Trust/Partnership (Sections 7.8.2–7.8.4) |
+| Initial customer due diligence form — Individual | Verify identity, assess risk, complete CDD checks | CDD — Individual (Section 7.8.1) |
+| Initial customer due diligence form — Entity | Verify entity identity, beneficial owners, CDD checks | CDD — Company/Trust/Partnership (Sections 7.8.2–7.8.4) |
+| Guided form: Escalation | Document escalation of high-risk or suspicious matters to compliance officer | Suspicious Activity Log (Section 7.9) |
+| Guided form: Enhanced CDD | Document enhanced due diligence measures for high-risk customers | Enhanced Due Diligence Record (Section 7.8.6) |
+| Process: Sanctions check | Step-by-step sanctions screening process | PEP/TFS Screening Record (Section 7.8.8) |
+| Process: Politically exposed persons check | Step-by-step PEP screening process | PEP/TFS Screening Record (Section 7.8.8) |
+| Source of funds and source of wealth check process | Verify where transaction funds and overall wealth originate | Part of EDD Record (Section 7.8.6) |
+| Adverse media check process | Open-source background checks on customers | Part of EDD Record (Section 7.8.6) |
+| Periodic review and update form | Ongoing CDD review of existing customers | Ongoing CDD Review (Section 7.8.7) |
+| Nature and purpose of business relationship verification | Confirm the stated reason for requesting services is truthful | Part of CDD forms |
+| Personnel due diligence forms | Assess suitability of staff in AML/CTF roles | Personnel Due Diligence Record (Section 7.6.3) |
+| AML/CTF Roles Form | Define AML/CTF responsibilities | AML/CTF Roles Assignment (Section 7.6.2) |
+| Assign Responsibilities Form | Assign responsibilities to specific staff | AML/CTF Roles Assignment (Section 7.6.2) |
+
+**UI Elements:**
+- Two-column layout showing AUSTRAC form name alongside AMLiq equivalent
+- Click-through links to the relevant AMLiq section
+- Tooltip explaining: "These are the official form names used in AUSTRAC's Real Estate Program Starter Kit. Our tool provides equivalent guidance-only templates."
+
+---
+
+### 7.17 Real-World Customer Examples (Low / Medium / High Risk) — NEW PAGE
+
+> **📎 AUSTRAC Source:** [Real Estate Program Starter Kit: Examples of Dealing with Customers](https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit-examples-dealing-customers)
+
+**Purpose:** Present AUSTRAC's official worked examples showing how CDD works in practice for each risk level. These examples are drawn directly from AUSTRAC's published guidance and demonstrate the practical application of the starter kit.
+
+#### Example 1: Low-Risk Customer
+
+**Scenario:** A real estate agent brokers the sale of a property. An individual buyer makes an off-market offer of $1 million.
+
+**Key Points:**
+- Agent completes initial CDD within 15 days after exchange, before settlement or as soon as practicable
+- Uses: Onboarding form, Initial CDD form, Initial CDD policy, Ongoing CDD policy
+- Buyer confirms purchasing for themselves, using a bank loan + personal funds
+- Buyer is not a PEP, provides driver's licence
+- No medium or high-risk factors identified → rated **LOW risk**
+- Simplified CDD applied: identity verification via driver's licence, sanctions check, PEP check
+- Limited interaction between exchange and settlement — agent monitors for indicators but none arise
+- Business relationship concludes at settlement (6 months) — no further ongoing CDD required
+- **Compliance boils down to ~3 forms** for this typical customer
+
+#### Example 2: Medium-Risk Customer
+
+**Scenario:** An individual places a successful bid at auction ($1.3M). A representative acts on behalf of two buyers (married couple).
+
+**Key Points:**
+- **Medium risk factors:** Both buyers are domestic PEPs (parents of a State MP) + representative is a third-party agent not enrolled with AUSTRAC
+- **Delayed CDD applied** at auction — agent determines low additional risk and adequate controls exist
+- **Sanctions screening completed WITHOUT delay** (even though other CDD is delayed)
+- CDD completed after exchange but before settlement
+- Verifies identity of representative AND both buyers
+- Verifies representative's authority to act
+- PEP check confirms buyers are family members of a domestic PEP
+- No triggers or escalation needed → final rating remains **MEDIUM**
+- Ongoing monitoring throughout relationship — settlement completed within 2 months
+
+#### Example 3: High-Risk Customer
+
+**Scenario:** Individual seeks to buy a luxury property ($5–5.5M).
+
+**Key Points:**
+- **High risk factors:** Foreign PEP (senior government official in a foreign country) + purchasing $1.5M+ without a mortgage
+- Agent must **escalate to AML/CTF compliance officer** under escalation and enhanced CDD policy
+- Compliance officer conducts enhanced CDD:
+  - Identity verification with foreign passport
+  - Nature and purpose of business relationship verification
+  - **Source of funds check:** Salary verified via pay slips
+  - **Source of wealth check:** Salary and share holdings verified via share registry
+  - Compliance officer finds property value appears **grossly excessive** relative to known wealth
+  - **Adverse media check** reveals customer investigated internationally for fraud and corruption
+- Compliance officer forms **reasonable grounds for suspicion** → submits **SMR to AUSTRAC**
+- Despite SMR, senior manager provides **written approval to continue** the relationship
+- **Ongoing monitoring** conducted more closely than for low/medium risk customers
+- Periodic review after 1 year — no discrepancies found
+- Settlement completed 14 months after engagement
+
+**UI Elements:**
+- Three tabbed panels (Low / Medium / High risk)
+- Each example presented as a step-by-step timeline with visual indicators
+- Key decision points highlighted with callout boxes
+- Cross-references to relevant AMLiq sections (CDD forms, EDD, PEP screening, SMR)
+- "AUSTRAC Says" attribution on each example
+- Print-friendly format
+
+---
+
+### 7.18 Jargon Buster (Glossary) — NEW PAGE
 
 **Purpose:** A searchable, plain-English glossary of all AML/CTF terms used in the tool.
 
@@ -1488,7 +1868,7 @@ When a review is triggered:
 
 ---
 
-### 7.17 FAQ — EXPANDED
+### 7.19 FAQ — EXPANDED
 
 **Purpose:** Answer the most common questions in plain English. Each answer cites the relevant AUSTRAC source.
 
@@ -1497,7 +1877,7 @@ When a review is triggered:
 | 1 | I only do property management, not sales. Am I affected? | No. Property management is not a designated service under these reforms. |
 | 2 | I'm a buyer's agent. Am I affected? | Yes. Brokering the purchase of real estate on behalf of a buyer is a designated service. |
 | 3 | I'm a property developer with an in-house sales team. Am I affected? | Yes. Selling real estate directly to customers without an independent agent is a designated service. |
-| 4 | Do I need to verify the identity of both buyer and seller? | You must conduct CDD on your customer — the party you are providing the designated service to. If you act for the vendor, the vendor is your customer. If you act for the buyer, the buyer is your customer. |
+| 4 | Do I need to verify the identity of both buyer and seller? | Yes. According to AUSTRAC, if you broker a property sale, **both the buyer and the seller are your customers** regardless of which party engaged you. You must conduct CDD on both parties. *(AUSTRAC Source: [Step 2 — Use Your Real Estate Program](https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit/step-2-use-your-real-estate-program))* |
 | 5 | What if my customer refuses to provide ID? | If you cannot complete CDD satisfactorily, you should consider whether to decline or cease providing the service. You may also need to file an SMR if the refusal itself is suspicious. |
 | 6 | How much does it cost to enrol with AUSTRAC? | Enrolment with AUSTRAC is free. |
 | 7 | Can I use a digital ID verification service? | AUSTRAC guidance permits the use of electronic verification methods as part of CDD, subject to your risk assessment. |
@@ -1517,29 +1897,49 @@ When a review is triggered:
 
 ---
 
-### 7.18 AUSTRAC Links & Source Documents — NEW PAGE
+### 7.20 AUSTRAC Links & Source Documents — NEW PAGE
 
 **Purpose:** Central reference of all official AUSTRAC pages and documents used as sources for this tool.
 
 | Document | URL |
 |---|---|
+| **Starter Kit & Guidance Hub** | |
 | Real Estate Guidance (main page) | https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance |
 | Real Estate Program Starter Kit | https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit |
-| Starter Kit — Document Library | https://www.austrac.gov.au/reforms/program-starter-kits/real-estate-guidance/real-estate-program-starter-kit/real-estate-program-starter-kit-document-library |
+| Starter Kit — Getting Started | https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit/real-estate-program-starter-kit-getting-started |
+| Step 1: Customise Your Program | https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit/step-1-customise-your-real-estate-program-using-starter-kit |
+| Step 2: Use Your Program | https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit/step-2-use-your-real-estate-program |
 | Step 3: Maintain and Review | https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit/step-3-maintain-and-review-your-real-estate-program |
-| Risk Insights — Real Estate Suspicious Activity Indicators | https://www.austrac.gov.au/business/how-comply-guidance-and-resources/guidance-resources/risk-insights-and-indicators-suspicious-activity-real-estate-sector |
+| Starter Kit — Document Library | https://www.austrac.gov.au/reforms/program-starter-kits/real-estate-guidance/real-estate-program-starter-kit/real-estate-program-starter-kit-document-library |
+| Examples of Dealing with Customers | https://www.austrac.gov.au/reforms/sector-specific-guidance/real-estate-guidance/real-estate-program-starter-kit-examples-dealing-customers |
+| Starter Kit Media Release (30 Jan 2026) | https://www.austrac.gov.au/news-and-media/media-release/austrac-backs-newly-regulated-sectors-release-amlctf-program-starter-kits |
+| **Downloadable Templates (Word)** | |
+| Customise Guide (1.13 MB) | https://www.austrac.gov.au/sites/default/files/2026-01/Real%20estate%20-%20Customise%20guide%20-%20January%202026.docx |
+| Risk Assessment Template (995 KB) | https://www.austrac.gov.au/sites/default/files/2026-01/Real%20estate%20-%20Risk%20assessment%20-%20January%202026.docx |
+| Policy Document Template (1.07 MB) | https://www.austrac.gov.au/sites/default/files/2026-01/Real%20estate%20-%20Policy%20document%20-%20January%202026.docx |
+| Process Document Template (977 KB) | https://www.austrac.gov.au/sites/default/files/2026-01/Real%20estate%20-%20Process%20document%20-%20January%202026.docx |
+| **Reform Guidance** | |
 | Real Estate Services (Reform) | https://www.austrac.gov.au/amlctf-reform/reforms-guidance/before-you-start/new-industries-and-services-be-regulated-reform/real-estate-services-reform |
 | Summary of Obligations (Tranche 2) | https://www.austrac.gov.au/about-us/amlctf-reform/summary-amlctf-obligations-tranche-2-entities |
+| Risk Insights — Real Estate Suspicious Activity Indicators | https://www.austrac.gov.au/business/how-comply-guidance-and-resources/guidance-resources/risk-insights-and-indicators-suspicious-activity-real-estate-sector |
+| Regulatory Expectations for Implementation | https://www.austrac.gov.au/austrac-regulatory-expectations-implementation-amlctf-reforms |
+| **Customer Due Diligence** | |
 | Initial CDD for Individuals (Reform) | https://www.austrac.gov.au/about-us/amlctf-reform/reforms-guidance/amlctf-program-reform/customer-due-diligence-reform/initial-customer-due-diligence-reform/initial-customer-due-diligence-guides-customer-type-reform/initial-cdd-individuals-reform |
 | Initial CDD for Trusts (Reform) | https://www.austrac.gov.au/about-us/amlctf-reform/reforms-guidance/amlctf-program-reform/customer-due-diligence-reform/initial-customer-due-diligence-reform/initial-customer-due-diligence-guides-customer-type-reform/initial-cdd-trust-reform |
 | Enhanced CDD (Reform) | https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/customer-due-diligence-reform/enhanced-customer-due-diligence-reform |
+| Delayed Initial CDD (Reform) | https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/customer-due-diligence-reform/initial-customer-due-diligence-reform/delayed-initial-customer-due-diligence-reform |
+| CDD Before Providing a Designated Service | https://www.austrac.gov.au/business/how-comply-guidance-and-resources/guidance-resources/amlctf-reforms-customer-due-diligence-providing-designated-service |
+| Reliance Under CDD Arrangements (Reform) | https://www.austrac.gov.au/about-us/amlctf-reform/reforms-guidance/amlctf-program-reform/customer-due-diligence-reform/reliance-customer-identification-third-party-reform/reliance-under-customer-due-diligence-arrangements-reform |
+| Beneficial Owners | https://www.austrac.gov.au/business/core-guidance/customer-identification-and-verification/beneficial-owners |
+| **Governance & Personnel** | |
 | AML/CTF Compliance Officer (Reform) | https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/develop-your-amlctf-program-reform/step-1-establish-your-governance-framework-reform/amlctf-compliance-officer-reform |
 | Personnel Due Diligence & Training (Reform) | https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/personnel-due-diligence-and-training-reform/identifying-personnel-roles-require-due-diligence-and-training-reform |
+| **Reporting** | |
 | Suspicious Matter Reports (Reform) | https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/reporting-austrac-reform/suspicious-matter-reports-reform |
 | Threshold Transaction Reports (Reform) | https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/reporting-austrac-reform/threshold-transaction-reports-reform |
-| Beneficial Owners | https://www.austrac.gov.au/business/core-guidance/customer-identification-and-verification/beneficial-owners |
-| Regulatory Expectations for Implementation | https://www.austrac.gov.au/austrac-regulatory-expectations-implementation-amlctf-reforms |
+| Reporting to AUSTRAC (Reform) | https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/reporting-austrac-reform |
 | AUSTRAC Online (Enrolment & Reporting) | https://online.austrac.gov.au |
+| **External References** | |
 | DFAT Consolidated Sanctions List | https://www.dfat.gov.au/international-relations/security/sanctions/consolidated-list |
 | Money Laundering NRA 2024 | https://www.austrac.gov.au/business/how-comply-guidance-and-resources/guidance-resources/money-laundering-australia-national-risk-assessment-2024 |
 
@@ -1673,7 +2073,7 @@ To avoid legal risk, all content MUST adhere to these rules:
 | **Accuracy** | Does all content align with current AUSTRAC guidance (as of Feb 2026)? |
 | **Clarity** | Can a non-expert complete the risk assessment and CDD forms without external help? |
 | **Usability** | Is the UI intuitive on both desktop and mobile? |
-| **Form Coverage** | Are all 20 template forms functional and printable? |
+| **Form Coverage** | Are all 23 template forms functional and printable? |
 | **Quiz Quality** | Do the 15 quiz questions accurately test understanding of key obligations? |
 | **Safety** | Does the disclaimer adequately protect the creator from legal liability? |
 
@@ -1710,8 +2110,9 @@ To avoid legal risk, all content MUST adhere to these rules:
 
 ---
 
-*Document version: 2.0*  
+*Document version: 3.0*  
 *Created: 22 February 2026*  
 *Updated: 22 February 2026*  
 *Project: AMLiq — AML/CTF Compliance Guide for Real Estate Agents*  
-*Source: AUSTRAC Real Estate Guidance, Starter Kit, and Reform Documentation*
+*Source: AUSTRAC Real Estate Guidance, Starter Kit, Reform Documentation, and austrac.gov.au sector-specific guidance pages*  
+*AUSTRAC cross-reference review: 22 February 2026 — verified against all published AUSTRAC real estate starter kit pages*
