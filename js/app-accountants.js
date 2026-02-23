@@ -5,14 +5,92 @@ const App = {
 
   currentSection: 'dashboard',
   countdownInterval: null,
+  legalAccepted: false,
+  legalGateActive: false,
 
   // ─── INIT ─────────────────────────────────────────────────────────────────
   init() {
     this.bindNavLinks();
     this.renderAllSections();
+    this.showLegalGate();
+  },
+
+  setLegalGateAcceptedForTesting() {
+    this.legalAccepted = true;
+  },
+
+  showLegalGate() {
+    if (this.legalAccepted) {
+      this.finishInitAfterLegalAcceptance();
+      return;
+    }
+
+    this.legalGateActive = true;
+    this.showModal(
+      'Terms + Disclosure Acceptance',
+      `
+        <div class="space-y-4 text-sm text-slate-700">
+          <p class="font-semibold text-slate-900">You must accept before entering this tool.</p>
+          <p>
+            This website is an educational aid only and is not legal, tax, financial, or compliance advice.
+            Content may become outdated or incomplete. You must verify obligations directly with AUSTRAC and
+            seek independent professional advice before acting.
+          </p>
+          <p>
+            By continuing, you confirm you have read and understood the
+            <a href="disclaimer.html" class="underline font-medium text-blue-700" target="_blank" rel="noopener noreferrer">Disclaimer</a>
+            and
+            <a href="terms.html" class="underline font-medium text-blue-700" target="_blank" rel="noopener noreferrer">Terms of Use</a>.
+          </p>
+          <p class="text-xs text-slate-500">
+            Acceptance applies to this page visit only and is required again after refresh/reload.
+          </p>
+        </div>
+      `,
+      `
+        <button onclick="App.declineLegalGate()" class="px-4 py-2 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100">
+          Decline
+        </button>
+        <button onclick="App.acceptLegalGate()" class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">
+          Accept
+        </button>
+      `
+    );
+    this.setLegalGateModalState(true);
+  },
+
+  acceptLegalGate() {
+    this.legalAccepted = true;
+    this.legalGateActive = false;
+    this.setLegalGateModalState(false);
+    this.closeModal();
+    this.finishInitAfterLegalAcceptance();
+  },
+
+  declineLegalGate() {
+    window.location.href = 'index.html';
+  },
+
+  finishInitAfterLegalAcceptance() {
     this.navigateTo('dashboard');
     this.startCountdown();
     this.updateAllProgress();
+  },
+
+  setLegalGateModalState(isLocked) {
+    const overlay = document.getElementById('modal-overlay');
+    const modalBox = document.getElementById('modal-box');
+    const closeBtn = document.getElementById('modal-close-btn') || document.querySelector('#modal-box button[onclick="App.closeModal()"]');
+
+    if (overlay) overlay.style.padding = isLocked ? '0' : '';
+    if (modalBox) {
+      modalBox.style.maxWidth = isLocked ? '100vw' : '';
+      modalBox.style.width = isLocked ? '100vw' : '';
+      modalBox.style.maxHeight = isLocked ? '100vh' : '';
+      modalBox.style.height = isLocked ? '100vh' : '';
+      modalBox.style.borderRadius = isLocked ? '0' : '';
+    }
+    if (closeBtn) closeBtn.style.display = isLocked ? 'none' : '';
   },
 
   // ─── NAVIGATION ───────────────────────────────────────────────────────────
@@ -1827,7 +1905,7 @@ const App = {
         </div>
         ${(() => {
           const grouped = {};
-          AMLiqData.austracLinks.forEach(l => {
+          (AMLiqData.austracLinks || []).forEach(l => {
             const cat = l.category || 'General';
             if (!grouped[cat]) grouped[cat] = [];
             grouped[cat].push(l);
@@ -1908,7 +1986,8 @@ const App = {
     overlay.classList.add('flex');
   },
 
-  closeModal() {
+  closeModal(forceClose = false) {
+    if (this.legalGateActive && !forceClose) return;
     const overlay = document.getElementById('modal-overlay');
     overlay.classList.add('hidden');
     overlay.classList.remove('flex');

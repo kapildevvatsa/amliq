@@ -296,6 +296,11 @@ window.addEventListener('DOMContentLoaded', () => {
   // Init app
   backupLS();
   clearTestLS();
+  if (typeof App.setLegalGateAcceptedForTesting === 'function') {
+    App.setLegalGateAcceptedForTesting();
+  } else {
+    App.legalAccepted = true;
+  }
   App.init();
 
   // Run all tests
