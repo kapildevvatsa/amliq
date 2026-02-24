@@ -38,9 +38,9 @@ const App = {
           </p>
           <p>
             By continuing, you confirm you have read and understood the
-            <a href="disclaimer.html" class="underline font-medium text-blue-700" target="_blank" rel="noopener noreferrer">Disclaimer</a>
-            and
-            <a href="terms.html" class="underline font-medium text-blue-700" target="_blank" rel="noopener noreferrer">Terms of Use</a>.
+            <a href="disclaimer.html" class="underline font-medium text-blue-700" target="_blank" rel="noopener noreferrer">Disclaimer</a>,
+            <a href="terms.html" class="underline font-medium text-blue-700" target="_blank" rel="noopener noreferrer">Terms of Use</a>, and
+            <a href="privacy.html" class="underline font-medium text-blue-700" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
           </p>
           <p class="text-xs text-slate-500">
             Acceptance applies to this page visit only and is required again after refresh/reload.
