@@ -8,6 +8,7 @@ import {
   CognitoUserPoolsAuthorizer,
   Cors,
 } from 'aws-cdk-lib/aws-apigateway';
+import { UserPool } from 'aws-cdk-lib/aws-cognito';
 import { auth } from './auth/resource';
 import { stripeWebhook } from './functions/stripe-webhook/resource';
 import { checkSubscription } from './functions/check-subscription/resource';
@@ -20,15 +21,19 @@ const backend = defineBackend({
   postConfirmation,
 });
 
-// ─── Auto-inject Cognito User Pool ID into Lambda env vars ───────────────────
+// ─── External Cognito User Pool ─────────────────────────────────────────────
+// The app uses a separately-created production User Pool, not the Amplify-managed one.
+// Both Lambdas need to target this pool for user attribute updates / reads.
+const EXTERNAL_USER_POOL_ID = 'ap-southeast-2_VQ5jADaPv';
+const EXTERNAL_USER_POOL_ARN = `arn:aws:cognito-idp:ap-southeast-2:${Stack.of(backend.auth.resources.userPool).account}:userpool/${EXTERNAL_USER_POOL_ID}`;
 
 backend.stripeWebhook.resources.lambda.addEnvironment(
   'COGNITO_USER_POOL_ID',
-  backend.auth.resources.userPool.userPoolId
+  EXTERNAL_USER_POOL_ID
 );
 backend.checkSubscription.resources.lambda.addEnvironment(
   'COGNITO_USER_POOL_ID',
-  backend.auth.resources.userPool.userPoolId
+  EXTERNAL_USER_POOL_ID
 );
 
 // ─── IAM Policies ────────────────────────────────────────────────────────────
@@ -37,7 +42,7 @@ backend.checkSubscription.resources.lambda.addEnvironment(
 backend.stripeWebhook.resources.lambda.addToRolePolicy(
   new PolicyStatement({
     actions: ['cognito-idp:AdminUpdateUserAttributes'],
-    resources: [backend.auth.resources.userPool.userPoolArn],
+    resources: [EXTERNAL_USER_POOL_ARN],
   })
 );
 
@@ -45,7 +50,7 @@ backend.stripeWebhook.resources.lambda.addToRolePolicy(
 backend.checkSubscription.resources.lambda.addToRolePolicy(
   new PolicyStatement({
     actions: ['cognito-idp:AdminGetUser'],
-    resources: [backend.auth.resources.userPool.userPoolArn],
+    resources: [EXTERNAL_USER_POOL_ARN],
   })
 );
 
@@ -73,12 +78,19 @@ const api = new RestApi(functionStack, 'T2CApi', {
   },
 });
 
-// Cognito authorizer for protected routes
+// Import the external (production) User Pool for the API authorizer
+const externalUserPool = UserPool.fromUserPoolId(
+  functionStack,
+  'ExternalUserPool',
+  EXTERNAL_USER_POOL_ID
+);
+
+// Cognito authorizer for protected routes — uses the external production pool
 const cognitoAuthorizer = new CognitoUserPoolsAuthorizer(
   functionStack,
   'CognitoAuthorizer',
   {
-    cognitoUserPools: [backend.auth.resources.userPool],
+    cognitoUserPools: [externalUserPool],
   }
 );
 

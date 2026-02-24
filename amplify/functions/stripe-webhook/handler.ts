@@ -69,25 +69,29 @@ export const handler: APIGatewayProxyHandler = async (event) => {
           break;
         }
 
-        // Store cognito_user_id in Stripe Customer metadata for future webhook lookups
-        await stripe.customers.update(customerId, {
-          metadata: { cognito_user_id: userId },
-        });
-
+        // Update Cognito first — this is the critical operation
         if (session.mode === 'subscription') {
-          // Pro subscription checkout
           await updateCognitoAttributes(userId, {
             'custom:subscription_tier': 'pro',
             'custom:stripe_customer_id': customerId,
           });
           console.log(`User ${userId} upgraded to pro (subscription)`);
         } else if (session.mode === 'payment') {
-          // One-time PDF purchase
           await updateCognitoAttributes(userId, {
             'custom:pdf_purchased': 'true',
             'custom:stripe_customer_id': customerId,
           });
           console.log(`User ${userId} purchased PDF (one-time)`);
+        }
+
+        // Tag Stripe customer with cognito_user_id for future webhook lookups
+        // Non-fatal — don't let this block the upgrade
+        try {
+          await stripe.customers.update(customerId, {
+            metadata: { cognito_user_id: userId },
+          });
+        } catch (tagErr) {
+          console.warn(`Failed to tag Stripe customer ${customerId}:`, tagErr);
         }
         break;
       }
