@@ -40,11 +40,7 @@
   window.t2cSignOut = function () {
     sessionStorage.removeItem('amliq_id_token');
     sessionStorage.removeItem('amliq_return_url');
-    window.location.replace(
-      'https://' + CONFIG.domain + '/logout'
-      + '?client_id=' + CONFIG.clientId
-      + '&redirect_uri=' + encodeURIComponent(CONFIG.logoutUri)
-    );
+    window.location.replace(CONFIG.logoutUri);
   };
 
   // Update header button based on auth state
