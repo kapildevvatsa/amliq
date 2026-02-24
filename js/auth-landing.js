@@ -43,7 +43,7 @@
     window.location.replace(
       'https://' + CONFIG.domain + '/logout'
       + '?client_id=' + CONFIG.clientId
-      + '&logout_uri=' + encodeURIComponent(CONFIG.logoutUri)
+      + '&redirect_uri=' + encodeURIComponent(CONFIG.logoutUri)
     );
   };
 
