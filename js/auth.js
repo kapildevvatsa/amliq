@@ -149,6 +149,17 @@
     );
   }
 
+  // ─── FORCE TOKEN REFRESH (called by subscription polling) ──────────────
+
+  window.amliqRefreshTokens = async function () {
+    var success = await refreshTokens();
+    if (success) {
+      var token = sessionStorage.getItem('amliq_id_token');
+      extractUserAttributes(token);
+    }
+    return success;
+  };
+
   // ─── SIGN OUT ───────────────────────────────────────────────────────────
 
   window.amliqSignOut = function () {

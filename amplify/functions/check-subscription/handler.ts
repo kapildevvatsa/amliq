@@ -10,12 +10,24 @@ const cognito = new CognitoIdentityProviderClient({
 
 const USER_POOL_ID = process.env.COGNITO_USER_POOL_ID!;
 
-const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': 'https://www.tranche2compliance.com.au',
-  'Access-Control-Allow-Headers': 'Authorization,Content-Type',
-};
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || '')
+  .split(',')
+  .map((s) => s.trim())
+  .filter(Boolean);
+
+function getCorsHeaders(event: { headers: Record<string, string | undefined> }) {
+  const origin = event.headers['origin'] || event.headers['Origin'] || '';
+  const allowedOrigin = ALLOWED_ORIGINS.includes(origin)
+    ? origin
+    : ALLOWED_ORIGINS[0] || '*';
+  return {
+    'Access-Control-Allow-Origin': allowedOrigin,
+    'Access-Control-Allow-Headers': 'Authorization,Content-Type',
+  };
+}
 
 export const handler: APIGatewayProxyHandler = async (event) => {
+  const CORS_HEADERS = getCorsHeaders(event);
   // User ID comes from Cognito JWT validated by API Gateway authorizer
   const userId =
     event.requestContext.authorizer?.claims?.sub ||

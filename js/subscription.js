@@ -273,6 +273,11 @@ const Subscription = {
         if (data.tier === 'pro') window.T2C_TIER = 'pro';
         if (data.pdf_purchased) window.T2C_PDF_PURCHASED = true;
 
+        // Force token refresh so the JWT has updated claims for future page loads
+        if (typeof window.amliqRefreshTokens === 'function') {
+          window.amliqRefreshTokens();
+        }
+
         self._showActivationSuccess();
 
         // Re-render the page with updated tier
