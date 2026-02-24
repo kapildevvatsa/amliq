@@ -959,6 +959,101 @@ const Forms = {
           ${this.field('Approved By', 'approved_by')}
           ${this.field('Notes', 'notes', 'textarea')}
         </form>
+        <div class="mt-4 p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-600">
+          <strong>Option 1 (Exempt):</strong> You never accept physical currency or virtual assets — no AML/CTF program needed.<br>
+          <strong>Option 2 (Limited):</strong> You accept cash/virtual assets but individual transactions never reach $10,000 — limited obligations.<br>
+          <strong>Option 3 (Streamlined):</strong> Transactions can reach $10,000+ but only with individual customers (not entities) — streamlined CDD.<br>
+          <strong>Option 4 (Full):</strong> $10,000+ transactions with entities (companies, trusts) or high-risk customers — full AML/CTF program.
+        </div>
+        ${this.formButtons(id)}
+      </div>
+    `;
+  },
+
+  // ─── 26. PRECIOUS GOODS VALUATION RECORD ──────────────────────────────────
+  renderValuationRecord() {
+    const id = 'form-valuation';
+    return `
+      <div class="bg-white rounded-xl border border-slate-200 p-5">
+        <h3 class="font-bold text-slate-800 mb-4">Precious Goods Valuation Record</h3>
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4 text-sm text-blue-800">
+          <strong>Why this matters:</strong> Accurate valuation is critical for determining whether a transaction reaches the $10,000 threshold. Undervaluing goods can be used to avoid triggering AML/CTF obligations. Document your valuation methodology for audit purposes.
+        </div>
+        ${this.disclaimer('Record valuation details and provenance for precious goods transactions. Data stored locally only.')}
+        <form id="${id}" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+          ${this.sectionDivider('Item Details')}
+          ${this.field('Item Description', 'item_desc', 'textarea', { placeholder: 'e.g. 18ct yellow gold necklace with 1.2ct oval sapphire' })}
+          ${this.field('Item Category', 'category', 'select', { options: ['Precious metal (gold, silver, platinum)', 'Precious stone (diamond, ruby, sapphire, emerald)', 'Precious metal product (jewellery)', 'Mixed (metal + stones)', 'Bullion / investment bar or coin', 'Scrap / melt value items', 'Other precious goods'] })}
+          ${this.field('Weight / Carat', 'weight', 'text', { placeholder: 'e.g. 24g total, stone 1.2ct' })}
+          ${this.field('Purity / Quality', 'quality', 'text', { placeholder: 'e.g. 18ct gold, VS1 clarity, E colour' })}
+
+          ${this.sectionDivider('Valuation')}
+          ${this.field('Valuation Method', 'method', 'select', { options: ['Market price (spot rate)', 'Independent appraisal / certificate', 'Retail replacement value', 'Insurance valuation', 'Scrap / melt value', 'Agreed sale price', 'Other'] })}
+          ${this.field('Valuation Amount ($)', 'value', 'number')}
+          ${this.field('Valuation Date', 'valuation_date', 'date')}
+          ${this.field('Valued By', 'valued_by')}
+          ${this.field('Independent Certificate Number (if any)', 'cert_number')}
+
+          ${this.sectionDivider('Provenance & Origin')}
+          ${this.field('Country of Origin (if known)', 'country_origin')}
+          ${this.field('Supplier / Source', 'supplier', 'text', { placeholder: 'Name of supplier, estate, or source' })}
+          ${this.field('Provenance Documentation Available?', 'provenance_docs', 'yesno')}
+          ${this.field('Conflict-Free Declaration Obtained?', 'conflict_free', 'select', { options: ['Yes', 'No', 'N/A — not applicable to this item'] })}
+          ${this.field('Hallmark / Stamp Verified?', 'hallmark', 'yesno')}
+
+          ${this.sectionDivider('Transaction Context')}
+          ${this.field('Transaction Type', 'transaction_type', 'select', { options: ['Sale to customer', 'Purchase from customer (buy-back)', 'Scrap purchase', 'Consignment', 'Trade-in / exchange', 'Other'] })}
+          ${this.field('Customer Name', 'customer_name')}
+          ${this.field('$10,000 Threshold Reached?', 'threshold_reached', 'yesno')}
+          ${this.field('CDD Completed?', 'cdd_completed', 'yesnodate')}
+          ${this.field('Notes', 'notes', 'textarea')}
+        </form>
+        ${this.formButtons(id)}
+      </div>
+    `;
+  },
+
+  // ─── 27. IMPORT/EXPORT DOCUMENTATION TRACKER ────────────────────────────
+  renderImportExportTracker() {
+    const id = 'form-import-export';
+    return `
+      <div class="bg-white rounded-xl border border-slate-200 p-5">
+        <h3 class="font-bold text-slate-800 mb-4">Import/Export Documentation Tracker</h3>
+        <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-4 text-sm text-amber-800">
+          <strong>AML/CTF relevance:</strong> International movement of precious goods creates additional ML/TF risk. Importing from or exporting to high-risk jurisdictions, unusual trade patterns, and inadequate documentation are all red flag indicators. Maintain records of all import/export activities.
+        </div>
+        ${this.disclaimer('Track import/export documentation for precious goods. Data stored locally only.')}
+        <form id="${id}" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+          ${this.sectionDivider('Shipment Details')}
+          ${this.field('Direction', 'direction', 'select', { options: ['Import (into Australia)', 'Export (from Australia)'] })}
+          ${this.field('Date', 'shipment_date', 'date')}
+          ${this.field('Goods Description', 'goods_desc', 'textarea', { placeholder: 'Describe the precious goods being imported/exported' })}
+          ${this.field('Total Declared Value ($AUD)', 'declared_value', 'number')}
+          ${this.field('Weight / Quantity', 'weight', 'text', { placeholder: 'e.g. 500g gold, 50 loose diamonds' })}
+
+          ${this.sectionDivider('Origin / Destination')}
+          ${this.field('Country of Origin', 'country_origin')}
+          ${this.field('Country of Destination', 'country_dest')}
+          ${this.field('Is Origin/Destination a FATF High-Risk Jurisdiction?', 'fatf_risk', 'select', { options: ['No', 'Yes — FATF Grey List', 'Yes — FATF Black List'] })}
+          ${this.field('Supplier / Buyer Name', 'counterparty')}
+          ${this.field('Supplier / Buyer Country', 'counterparty_country')}
+
+          ${this.sectionDivider('Documentation')}
+          ${this.field('Customs Declaration Lodged?', 'customs_lodged', 'yesnodate')}
+          ${this.field('Customs Declaration Number', 'customs_ref')}
+          ${this.field('Certificate of Origin Obtained?', 'cert_origin', 'yesno')}
+          ${this.field('Kimberley Process Certificate (if diamonds)?', 'kimberley', 'select', { options: ['Yes', 'No', 'N/A — not diamonds'] })}
+          ${this.field('Insurance Documentation?', 'insurance', 'yesno')}
+          ${this.field('IFTI Required?', 'ifti_required', 'yesno')}
+          ${this.field('IFTI Filed?', 'ifti_filed', 'yesnodate')}
+
+          ${this.sectionDivider('AML/CTF Assessment')}
+          ${this.field('Any Red Flags Identified?', 'red_flags', 'yesno')}
+          ${this.field('If Yes — Red Flags Described', 'red_flags_desc', 'textarea')}
+          ${this.field('Escalated to Compliance Officer?', 'escalated', 'yesnodate')}
+          ${this.field('Recorded By', 'recorded_by')}
+          ${this.field('Notes', 'notes', 'textarea')}
+        </form>
         ${this.formButtons(id)}
       </div>
     `;

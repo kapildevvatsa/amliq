@@ -450,7 +450,7 @@ const App = {
         </div>
 
         <!-- Reporting Groups -->
-        <div class="bg-white rounded-xl border border-slate-200 p-5">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 mb-5">
           <button class="accordion-btn w-full text-left flex items-center justify-between" onclick="App.toggleAccordion(this)">
             <span class="font-semibold text-slate-800">Reporting Groups (Larger Firms)</span>
             <span class="accordion-chevron text-slate-400">▼</span>
@@ -466,6 +466,13 @@ const App = {
               <strong>Note:</strong> The AUSTRAC Accounting Program Starter Kit is designed for practices with <strong>15 or fewer personnel</strong> that are not part of a reporting group. Larger firms should seek tailored compliance advice.
             </div>
           </div>
+        </div>
+
+        <!-- Designated Service Assessment Form -->
+        <div>
+          <h3 class="font-bold text-slate-800 mb-2">Assess a Specific Engagement</h3>
+          <p class="text-sm text-slate-500 mb-3">Use this form to document your assessment of whether a particular client engagement triggers AML/CTF obligations.</p>
+          ${Forms.renderDesignatedServiceAssessment()}
         </div>
       </div>
     `;
@@ -899,7 +906,10 @@ const App = {
         <div id="cdd-tab-3" class="hidden">${Forms.renderCDDPartnership()}</div>
         <div id="cdd-tab-4" class="hidden">${Forms.renderCDDForeign()}</div>
         <div id="cdd-tab-5" class="hidden">${Forms.renderEDD()}</div>
-        <div id="cdd-tab-6" class="hidden">${Checklist.renderSection('ongoingCDD', 'Ongoing CDD Review Checklist')}</div>
+        <div id="cdd-tab-6" class="hidden">
+          ${Checklist.renderSection('ongoingCDD', 'Ongoing CDD Review Checklist')}
+          <div class="mt-5">${Forms.renderOngoingCDD()}</div>
+        </div>
         <div id="cdd-tab-7" class="hidden">${Forms.renderPEPScreening()}</div>
         <div id="cdd-tab-8" class="hidden">${Forms.renderSMRDecision()}</div>
         <div id="cdd-tab-9" class="hidden">${this.renderDelayedCDD()}</div>
@@ -1196,6 +1206,13 @@ const App = {
               </div>
             </div>
           `).join('')}
+        </div>
+
+        <!-- Suspicious Activity Log Form -->
+        <div class="mt-6">
+          <h3 class="font-bold text-slate-800 mb-3">Log a Suspicious Activity</h3>
+          <p class="text-sm text-slate-500 mb-3">Use this form to record suspicious observations internally before deciding whether to escalate or file an SMR.</p>
+          ${Forms.renderSuspiciousActivityLog()}
         </div>
       </div>
     `;
@@ -1747,6 +1764,9 @@ const App = {
       { n: 20, name: 'Independent Evaluation Plan', section: 'evaluation', tab: 0 },
       { n: 21, name: 'Enrolment Checklist', section: 'enrolment', tab: 0 },
       { n: 22, name: 'Risk Assessment Summary', section: 'risk-assessment', tab: 0 },
+      { n: 23, name: 'Suspicious Activity Log', section: 'red-flags', tab: 0 },
+      { n: 24, name: 'Designated Service Assessment', section: 'am-i-regulated', tab: 0 },
+      { n: 25, name: 'Ongoing CDD Review Record', section: 'cdd', tab: 6 },
     ];
 
     el.innerHTML = `

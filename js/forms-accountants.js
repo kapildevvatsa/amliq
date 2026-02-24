@@ -781,6 +781,127 @@ const Forms = {
     `;
   },
 
+  // ─── SUSPICIOUS ACTIVITY LOG ──────────────────────────────────────────────
+  renderSuspiciousActivityLog() {
+    const id = 'form-suspicious-log';
+    return `
+      <div class="bg-white rounded-xl border border-slate-200 p-5">
+        <h3 class="font-bold text-slate-800 mb-4">Suspicious Activity Log</h3>
+        <div class="bg-red-50 border border-red-200 rounded-lg p-3 mb-4 text-sm text-red-800">
+          <strong>Tipping-off warning:</strong> Do NOT disclose any suspicion or SMR filing to the client. This is a criminal offence — up to 2 years imprisonment.
+        </div>
+        ${this.disclaimer('Internal record of suspicious activity observations. Keep separately from client files. Data stored locally only.')}
+        <form id="${id}" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+          ${this.sectionDivider('Observation Details')}
+          ${this.field('Date Observed', 'date_observed', 'date')}
+          ${this.field('Client Name (if known)', 'client_name')}
+          ${this.field('Designated Service Involved', 'service', 'select', { options: ['Entity formation (company)', 'Entity formation (trust/SMSF)', 'Entity formation (partnership)', 'Entity restructuring', 'Nominee director/secretary', 'Registered office/agent', 'Financial product advice', 'Securities dealing', 'Other designated service'] })}
+          ${this.field('Description of Suspicious Activity', 'activity_desc', 'textarea', { placeholder: 'Describe what was observed and why it raised suspicion' })}
+          ${this.field('Red Flag Indicators Observed', 'red_flags', 'textarea', { placeholder: 'List the specific red flag indicators observed (refer to Red Flags section)' })}
+          ${this.field('Category', 'category', 'select', { options: ['Client Risk', 'Service/Transaction Risk', 'Delivery Channel Risk', 'Foreign Jurisdiction Risk', 'Multiple categories'] })}
+          ${this.sectionDivider('Escalation & Decision')}
+          ${this.field('Observed By', 'observed_by')}
+          ${this.field('Escalated to Compliance Officer?', 'escalated', 'yesnodate')}
+          ${this.field('Compliance Officer Assessment', 'co_assessment', 'textarea', { placeholder: 'Document the compliance officer assessment and reasoning' })}
+          ${this.field('SMR Filed?', 'smr_filed', 'yesnodate')}
+          ${this.field('Action Taken', 'action', 'select', { options: ['Monitoring continues', 'SMR filed', 'Service declined', 'Engagement ceased', 'No further action — suspicion not substantiated'] })}
+          ${this.field('Notes', 'notes', 'textarea')}
+        </form>
+        ${this.formButtons(id)}
+      </div>
+    `;
+  },
+
+  // ─── DESIGNATED SERVICE ASSESSMENT ──────────────────────────────────────
+  renderDesignatedServiceAssessment() {
+    const id = 'form-designated-service';
+    return `
+      <div class="bg-white rounded-xl border border-slate-200 p-5">
+        <h3 class="font-bold text-slate-800 mb-4">Designated Service Assessment</h3>
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4 text-sm text-blue-800">
+          <strong>Purpose:</strong> Use this form to assess whether a specific service you are providing (or being asked to provide) to a client is a "designated service" under the AML/CTF Act. Only designated services trigger your AML/CTF obligations.
+        </div>
+        ${this.disclaimer('Assess and record whether a service triggers AML/CTF obligations. Data stored locally only.')}
+        <form id="${id}" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+          ${this.sectionDivider('Client & Engagement')}
+          ${this.field('Client Name', 'client_name')}
+          ${this.field('Engagement / File Reference', 'file_ref')}
+          ${this.field('Date of Assessment', 'assessment_date', 'date')}
+
+          ${this.sectionDivider('Service Being Provided')}
+          ${this.field('Describe the service', 'service_desc', 'textarea', { placeholder: 'e.g. Setting up a discretionary family trust for the client' })}
+          ${this.field('Designated Service Category', 'service_category', 'select', { options: [
+            'Not a designated service (exempt)',
+            'DS 4 — Financial product advice',
+            'DS 5 — Securities dealing',
+            'DS 6 — Entity formation (company, trust, partnership, etc.)',
+            'DS 7 — Nominee director, secretary, or partner',
+            'DS 8 — Registered office/agent',
+            'DS 9 — Trust services (trustee, settlor, protector)',
+            'DS 10 — Financial arrangement for entity creation',
+            'Unsure — requires further analysis',
+          ] })}
+          ${this.field('Is this service exempt?', 'is_exempt', 'select', { options: ['No — this is a designated service', 'Yes — tax return / BAS preparation', 'Yes — bookkeeping / payroll', 'Yes — audit services', 'Yes — financial statement preparation', 'Yes — other exempt service', 'Uncertain'] })}
+
+          ${this.sectionDivider('Assessment Outcome')}
+          ${this.field('AML/CTF Obligations Triggered?', 'obligations_triggered', 'select', { options: ['Yes — CDD required before providing service', 'No — exempt service, no CDD required', 'Partial — some aspects are designated, some are not'] })}
+          ${this.field('If Partial: Designated Component', 'partial_designated', 'textarea', { placeholder: 'Describe which part of the engagement is a designated service' })}
+          ${this.field('CDD to be Conducted?', 'cdd_required', 'yesno')}
+          ${this.field('Assessed By', 'assessed_by')}
+          ${this.field('Reviewed By (Partner/CO)', 'reviewed_by')}
+          ${this.field('Notes', 'notes', 'textarea')}
+        </form>
+        <div class="mt-4 p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-600">
+          <strong>Common exempt services for accountants:</strong> Tax returns, BAS preparation, bookkeeping, payroll, financial statement preparation, audit services, general business advice (not related to entity creation or financial products).<br>
+          <strong>Common designated services:</strong> Setting up companies, trusts, SMSFs, partnerships; acting as nominee director/secretary; providing a registered office; financial product advice; securities dealing.
+        </div>
+        ${this.formButtons(id)}
+      </div>
+    `;
+  },
+
+  // ─── ONGOING CDD REVIEW ─────────────────────────────────────────────────
+  renderOngoingCDD() {
+    const id = 'form-ongoing-cdd';
+    return `
+      <div class="bg-white rounded-xl border border-slate-200 p-5">
+        <h3 class="font-bold text-slate-800 mb-4">Ongoing CDD Review Record</h3>
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4 text-sm text-blue-800">
+          <strong>When to review:</strong> Ongoing CDD is required throughout the service relationship — triggered by significant changes in the client's circumstances, new or unusual transactions, changes to beneficial ownership, or as part of periodic scheduled reviews.
+        </div>
+        ${this.disclaimer('Record periodic CDD reviews of existing designated-service clients. Data stored locally only.')}
+        <form id="${id}" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+          ${this.sectionDivider('Client Details')}
+          ${this.field('Client Name', 'client_name')}
+          ${this.field('Original CDD Date', 'original_cdd_date', 'date')}
+          ${this.field('Designated Service(s) Provided', 'services', 'textarea', { placeholder: 'List current designated services being provided' })}
+
+          ${this.sectionDivider('Review Details')}
+          ${this.field('Review Date', 'review_date', 'date')}
+          ${this.field('Review Trigger', 'trigger', 'select', { options: ['Scheduled periodic review', 'Change in client circumstances', 'New designated service requested', 'Unusual transaction or activity', 'Change in beneficial ownership', 'Change in client risk profile', 'Regulatory change', 'Other'] })}
+          ${this.field('Changes to Client Information?', 'info_changed', 'yesno')}
+          ${this.field('If Yes — Changes Identified', 'changes_desc', 'textarea', { placeholder: 'Describe what has changed (address, directors, beneficial owners, etc.)' })}
+          ${this.field('Beneficial Ownership Reconfirmed?', 'bo_reconfirmed', 'yesno')}
+          ${this.field('PEP/Sanctions Rescreened?', 'pep_rescreened', 'yesnodate')}
+          ${this.field('Source of Funds Still Consistent?', 'sof_consistent', 'yesno')}
+
+          ${this.sectionDivider('Risk Reassessment')}
+          ${this.field('Previous Risk Rating', 'prev_risk', 'risk')}
+          ${this.field('Updated Risk Rating', 'new_risk', 'risk')}
+          ${this.field('Risk Rating Changed?', 'risk_changed', 'yesno')}
+          ${this.field('EDD Required?', 'edd_required', 'yesno')}
+
+          ${this.sectionDivider('Outcome')}
+          ${this.field('Action Taken', 'action', 'select', { options: ['No changes required', 'CDD information updated', 'Risk rating changed', 'EDD applied', 'Engagement under review', 'Engagement ceased', 'SMR filed'] })}
+          ${this.field('Reviewed By', 'reviewed_by')}
+          ${this.field('Next Review Due', 'next_review', 'date')}
+          ${this.field('Notes', 'notes', 'textarea')}
+        </form>
+        ${this.formButtons(id)}
+      </div>
+    `;
+  },
+
   // ─── EVALUATION PLAN ──────────────────────────────────────────────────────
   renderEvaluationPlan() {
     const id = 'form-evaluation';

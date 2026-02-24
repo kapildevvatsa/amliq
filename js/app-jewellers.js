@@ -772,6 +772,13 @@ const App = {
         <div id="program-checklist-container">
           ${this.renderProgramChecklist()}
         </div>
+
+        <!-- Precious Goods Valuation Record -->
+        <div class="mt-6">
+          <h3 class="font-bold text-slate-800 mb-2">Precious Goods Valuation</h3>
+          <p class="text-sm text-slate-500 mb-3">Document item valuation, provenance, and origin for regulated transactions.</p>
+          ${Forms.renderValuationRecord()}
+        </div>
       </div>
     `;
     Checklist.updateProgress();
@@ -1176,6 +1183,13 @@ const App = {
             </div>
           `).join('')}
         </div>
+
+        <!-- Suspicious Activity Log Form -->
+        <div class="mt-6">
+          <h3 class="font-bold text-slate-800 mb-3">Log a Suspicious Activity</h3>
+          <p class="text-sm text-slate-500 mb-3">Use this form to record suspicious observations internally before deciding whether to escalate or file an SMR.</p>
+          ${Forms.renderSuspiciousActivityLog()}
+        </div>
       </div>
     `;
   },
@@ -1508,6 +1522,13 @@ const App = {
         </div>
 
         ${Checklist.renderSection('recordKeeping', 'Record Keeping Checklist')}
+
+        <!-- Import/Export Documentation Tracker -->
+        <div class="mt-6">
+          <h3 class="font-bold text-slate-800 mb-2">Import/Export Documentation</h3>
+          <p class="text-sm text-slate-500 mb-3">Track customs and origin documentation for international precious goods shipments.</p>
+          ${Forms.renderImportExportTracker()}
+        </div>
       </div>
     `;
     Checklist.updateProgress();
@@ -1685,6 +1706,8 @@ const App = {
       { n: 23, name: 'Risk Assessment Summary', section: 'risk-assessment', tab: 0 },
       { n: 24, name: 'Transaction Detection Record', section: 'program-builder', tab: 0 },
       { n: 25, name: 'Regulation Option Assessment', section: 'am-i-regulated', tab: 0 },
+      { n: 26, name: 'Precious Goods Valuation Record', section: 'program-builder', tab: 0 },
+      { n: 27, name: 'Import/Export Documentation Tracker', section: 'record-keeping', tab: 0 },
     ];
 
     el.innerHTML = `
