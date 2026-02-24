@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>T2C — Tranche 2 AML/CTF Compliance Portal</title>
+  <script defer data-domain="tranche2compliance.com.au" src="https://plausible.io/js/script.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -48,7 +49,10 @@
           <div class="text-xs text-slate-500 truncate">Tranche 2 AML/CTF Compliance Portal</div>
         </div>
       </a>
-      <div class="ml-auto" id="auth-button"></div>
+      <div class="ml-auto flex items-center gap-4">
+        <a href="pricing.html" class="text-sm font-medium text-brand hover:text-brand-light hidden sm:inline-block">Pricing</a>
+        <div id="auth-button"></div>
+      </div>
     </div>
   </header>
 

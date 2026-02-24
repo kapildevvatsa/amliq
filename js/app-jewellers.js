@@ -75,6 +75,8 @@ const App = {
     this.navigateTo('dashboard');
     this.startCountdown();
     this.updateAllProgress();
+    // Initialize subscription feature gating and post-checkout handling
+    if (typeof Subscription !== 'undefined') Subscription.init();
   },
 
   setLegalGateModalState(isLocked) {
@@ -109,6 +111,18 @@ const App = {
 
   navigateTo(sectionId) {
     document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
+
+    // Feature gating — show locked overlay for Pro sections if user is on free tier
+    if (typeof Subscription !== 'undefined' && !Subscription.canAccess(sectionId)) {
+      Subscription.renderLockedOverlay(sectionId);
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      const activeLink = document.querySelector(`.nav-link[data-section="${sectionId}"]`);
+      if (activeLink) activeLink.classList.add('active');
+      this.currentSection = sectionId;
+      window.scrollTo(0, 0);
+      return;
+    }
+
     const target = document.getElementById('section-' + sectionId);
     if (target) target.classList.remove('hidden');
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
@@ -779,6 +793,7 @@ const App = {
           <p class="text-sm text-slate-500 mb-3">Document item valuation, provenance, and origin for regulated transactions.</p>
           ${Forms.renderValuationRecord()}
         </div>
+        ${typeof PDFGenerator !== 'undefined' ? PDFGenerator.getButtonHTML() : ''}
       </div>
     `;
     Checklist.updateProgress();

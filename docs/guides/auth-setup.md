@@ -393,7 +393,7 @@ AUTH_REDIRECT_URI=https://www.tranche2compliance.com.au/lawyers.html npm run tes
 
 **Cause:** Token has expired, or user opened the link in a new tab (sessionStorage doesn't persist across tabs).
 
-**Fix:** This is expected behaviour. The user needs to log in again. To improve UX, consider switching from `sessionStorage` to `localStorage` for token persistence (see AUTH-TECH-DESIGN.md for trade-offs).
+**Fix:** This is expected behaviour. The user needs to log in again. To improve UX, consider switching from `sessionStorage` to `localStorage` for token persistence (see [auth.md](../architecture/auth.md) for trade-offs).
 
 ### Problem: Sign Out doesn't work / user stays logged in
 

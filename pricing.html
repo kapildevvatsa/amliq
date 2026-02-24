@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T2C — Pricing | AML/CTF Compliance Tools</title>
+  <script defer data-domain="tranche2compliance.com.au" src="https://plausible.io/js/script.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { DEFAULT: '#1e3a5f', light: '#2d5a8e', dark: '#142845' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .pricing-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .pricing-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+    .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center gap-3">
+      <a href="index.html" class="flex items-center gap-3 min-w-0">
+        <img src="logo.png" alt="T2C" class="w-14 h-14 flex-shrink-0 object-contain">
+        <div class="min-w-0">
+          <div class="font-bold text-xl text-slate-900 leading-tight">T2C</div>
+          <div class="text-xs text-slate-500 truncate">Tranche 2 AML/CTF Compliance Portal</div>
+        </div>
+      </a>
+      <div class="ml-auto flex items-center gap-4">
+        <a href="pricing.html" class="text-sm font-medium text-brand hover:text-brand-light hidden sm:inline-block">Pricing</a>
+        <div id="auth-button"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Pricing Hero -->
+  <section class="bg-brand text-white py-12">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-3xl sm:text-4xl font-bold mb-3">Simple, Affordable Pricing</h1>
+      <p class="text-lg text-blue-100 max-w-2xl mx-auto">
+        Everything you need to build and maintain your AML/CTF compliance program.
+        Start with a 14-day free trial — no credit card required upfront.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pricing Cards -->
+  <section class="max-w-5xl mx-auto px-4 -mt-8 mb-12">
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- Free Tier -->
+      <div class="pricing-card bg-white rounded-xl border border-slate-200 p-6 flex flex-col">
+        <h3 class="text-lg font-bold text-slate-800">Free</h3>
+        <div class="mt-2 mb-4">
+          <span class="text-3xl font-bold text-slate-900">$0</span>
+          <span class="text-slate-500 text-sm">/forever</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-6">Understand your obligations and get started with AML/CTF compliance.</p>
+        <ul class="text-sm text-slate-700 space-y-2 mb-6 flex-1">
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Full educational content</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> "Am I Regulated?" assessment</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Key dates & timeline</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Obligations overview</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Red flags reference</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Enrolment & reporting guides</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Glossary, FAQ & AUSTRAC links</li>
+        </ul>
+        <a href="index.html" class="block text-center py-2.5 px-4 rounded-lg border border-slate-300 text-slate-700 font-medium hover:bg-slate-100">
+          Get Started Free
+        </a>
+      </div>
+
+      <!-- Pro Tier (Popular) -->
+      <div class="pricing-card bg-white rounded-xl border-2 border-brand p-6 flex flex-col relative">
+        <div class="popular-badge bg-brand text-white text-xs font-bold px-3 py-1 rounded-full">Most Popular</div>
+        <h3 class="text-lg font-bold text-slate-800">Pro</h3>
+        <div class="mt-2 mb-1">
+          <span class="text-3xl font-bold text-slate-900" id="price-display">$29</span>
+          <span class="text-slate-500 text-sm" id="price-period">/month</span>
+        </div>
+        <div class="flex items-center gap-2 mb-4">
+          <button id="toggle-monthly" onclick="setPricing('monthly')" class="text-xs px-2 py-0.5 rounded-full bg-brand text-white font-medium">Monthly</button>
+          <button id="toggle-annual" onclick="setPricing('annual')" class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-medium">Annual (save 30%)</button>
+        </div>
+        <p class="text-sm text-slate-600 mb-6">All compliance tools for sole traders and small firms.</p>
+        <ul class="text-sm text-slate-700 space-y-2 mb-6 flex-1">
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> <strong>Everything in Free</strong></li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Risk assessment tool with scoring</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> AML/CTF Program Builder</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Fillable CDD forms</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Governance setup wizard</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> PDF program document export</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Starter kit forms & templates</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Staff training quiz</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Program review & evaluation guides</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Record keeping templates</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Customer examples</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Data export (JSON backup)</li>
+        </ul>
+        <button id="pro-cta" onclick="startProCheckout()" class="block w-full text-center py-2.5 px-4 rounded-lg bg-brand text-white font-medium hover:bg-brand-light">
+          Start 14-Day Free Trial
+        </button>
+        <p class="text-xs text-slate-400 text-center mt-2">No credit card required to start trial</p>
+      </div>
+
+      <!-- PDF One-Time -->
+      <div class="pricing-card bg-white rounded-xl border border-slate-200 p-6 flex flex-col">
+        <h3 class="text-lg font-bold text-slate-800">Program PDF</h3>
+        <div class="mt-2 mb-4">
+          <span class="text-3xl font-bold text-slate-900">$149</span>
+          <span class="text-slate-500 text-sm">/one-time</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-6">Just need the AML/CTF program document? Get it without a subscription.</p>
+        <ul class="text-sm text-slate-700 space-y-2 mb-6 flex-1">
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Generate your AML/CTF Program PDF</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Entity-specific content</li>
+          <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Professional formatting</li>
+          <li class="flex gap-2"><span class="text-slate-300">&#10005;</span> <span class="text-slate-400">No access to other Pro tools</span></li>
+          <li class="flex gap-2"><span class="text-slate-300">&#10005;</span> <span class="text-slate-400">No ongoing updates</span></li>
+        </ul>
+        <button onclick="startPdfCheckout()" class="block w-full text-center py-2.5 px-4 rounded-lg border border-brand text-brand font-medium hover:bg-blue-50">
+          Buy Program PDF
+        </button>
+        <p class="text-xs text-slate-400 text-center mt-2">One-time payment, no subscription</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="max-w-4xl mx-auto px-4 mb-12">
+    <h2 class="text-2xl font-bold text-slate-800 text-center mb-6">Feature Comparison</h2>
+    <div class="bg-white rounded-xl border border-slate-200 overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-50 border-b">
+            <th class="text-left py-3 px-4 font-semibold text-slate-700">Feature</th>
+            <th class="text-center py-3 px-4 font-semibold text-slate-700">Free</th>
+            <th class="text-center py-3 px-4 font-semibold text-brand">Pro</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+          <tr><td class="py-2.5 px-4">Educational content (all sections)</td><td class="text-center text-green-500">&#10003;</td><td class="text-center text-green-500">&#10003;</td></tr>
+          <tr><td class="py-2.5 px-4">"Am I Regulated?" assessment</td><td class="text-center text-green-500">&#10003;</td><td class="text-center text-green-500">&#10003;</td></tr>
+          <tr><td class="py-2.5 px-4">Key dates, obligations, red flags</td><td class="text-center text-green-500">&#10003;</td><td class="text-center text-green-500">&#10003;</td></tr>
+          <tr><td class="py-2.5 px-4">Enrolment & reporting guides</td><td class="text-center text-green-500">&#10003;</td><td class="text-center text-green-500">&#10003;</td></tr>
+          <tr><td class="py-2.5 px-4">Glossary, FAQ & AUSTRAC links</td><td class="text-center text-green-500">&#10003;</td><td class="text-center text-green-500">&#10003;</td></tr>
+          <tr class="bg-blue-50/50"><td class="py-2.5 px-4 font-medium">Risk assessment tool</td><td class="text-center text-slate-300">&#10005;</td><td class="text-center text-green-500">&#10003;</td></tr>
+          <tr class="bg-blue-50/50"><td class="py-2.5 px-4 font-medium">AML/CTF Program Builder</td><td class="text-center text-slate-300">&#10005;</td><td class="text-center text-green-500">&#10003;</td></tr>
+          <tr class="bg-blue-50/50"><td class="py-2.5 px-4 font-medium">Fillable CDD forms</td><td class="text-center text-slate-300">&#10005;</td><td class="text-center text-green-500">&#10003;</td></tr>
+          <tr class="bg-blue-50/50"><td class="py-2.5 px-4 font-medium">Governance setup wizard</td><td class="text-center text-slate-300">&#10005;</td><td class="text-center text-green-500">&#10003;</td></tr>
+          <tr class="bg-blue-50/50"><td class="py-2.5 px-4 font-medium">PDF program document export</td><td class="text-center text-slate-300">&#10005;</td><td class="text-center text-green-500">&#10003;</td></tr>
+          <tr class="bg-blue-50/50"><td class="py-2.5 px-4 font-medium">Starter kit forms & templates</td><td class="text-center text-slate-300">&#10005;</td><td class="text-center text-green-500">&#10003;</td></tr>
+          <tr class="bg-blue-50/50"><td class="py-2.5 px-4 font-medium">Staff training quiz</td><td class="text-center text-slate-300">&#10005;</td><td class="text-center text-green-500">&#10003;</td></tr>
+          <tr class="bg-blue-50/50"><td class="py-2.5 px-4 font-medium">Program review & evaluation</td><td class="text-center text-slate-300">&#10005;</td><td class="text-center text-green-500">&#10003;</td></tr>
+          <tr class="bg-blue-50/50"><td class="py-2.5 px-4 font-medium">Record keeping templates</td><td class="text-center text-slate-300">&#10005;</td><td class="text-center text-green-500">&#10003;</td></tr>
+          <tr class="bg-blue-50/50"><td class="py-2.5 px-4 font-medium">Customer examples</td><td class="text-center text-slate-300">&#10005;</td><td class="text-center text-green-500">&#10003;</td></tr>
+          <tr class="bg-blue-50/50"><td class="py-2.5 px-4 font-medium">Data export (JSON backup)</td><td class="text-center text-slate-300">&#10005;</td><td class="text-center text-green-500">&#10003;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-3xl mx-auto px-4 mb-16">
+    <h2 class="text-2xl font-bold text-slate-800 text-center mb-6">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      <details class="bg-white rounded-lg border border-slate-200 p-4">
+        <summary class="font-medium text-slate-800 cursor-pointer">Can I try Pro for free?</summary>
+        <p class="text-sm text-slate-600 mt-2">Yes! All Pro subscriptions start with a 14-day free trial. You won't be charged until the trial ends. Cancel anytime during the trial at no cost.</p>
+      </details>
+      <details class="bg-white rounded-lg border border-slate-200 p-4">
+        <summary class="font-medium text-slate-800 cursor-pointer">Can my team share one account?</summary>
+        <p class="text-sm text-slate-600 mt-2">Yes. T2C is designed for sole traders and small firms (1-3 people). One login is shared across the business — no per-seat charges.</p>
+      </details>
+      <details class="bg-white rounded-lg border border-slate-200 p-4">
+        <summary class="font-medium text-slate-800 cursor-pointer">What's the difference between Pro and the one-time PDF?</summary>
+        <p class="text-sm text-slate-600 mt-2">Pro gives you full access to all compliance tools (risk assessment, forms, training, etc.) plus PDF generation. The one-time PDF purchase ($149) only gives you the ability to generate the AML/CTF program document — no access to other Pro tools.</p>
+      </details>
+      <details class="bg-white rounded-lg border border-slate-200 p-4">
+        <summary class="font-medium text-slate-800 cursor-pointer">Can I cancel my subscription?</summary>
+        <p class="text-sm text-slate-600 mt-2">Yes, cancel anytime from your subscription management portal. Your access continues until the end of the current billing period.</p>
+      </details>
+      <details class="bg-white rounded-lg border border-slate-200 p-4">
+        <summary class="font-medium text-slate-800 cursor-pointer">Is this a legally valid AML/CTF program?</summary>
+        <p class="text-sm text-slate-600 mt-2">T2C is an educational tool that helps you build your compliance program. The generated documents are based on AUSTRAC's published guidance. You should have your program reviewed by a compliance professional before finalising it. See our <a href="disclaimer.html" class="text-blue-600 underline">disclaimer</a> for details.</p>
+      </details>
+      <details class="bg-white rounded-lg border border-slate-200 p-4">
+        <summary class="font-medium text-slate-800 cursor-pointer">How much cheaper is T2C compared to alternatives?</summary>
+        <p class="text-sm text-slate-600 mt-2">T2C Pro costs $29/month — significantly cheaper than easyAML ($179/mo), HeadStart ($679+ one-time), or engaging a law firm ($2,000-$10,000+). The annual plan ($249/year) saves an additional 30%.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mt-auto bg-slate-800 text-slate-400 py-6">
+    <div class="max-w-6xl mx-auto px-4 text-center text-sm">
+      <p>&copy; 2026 T2C — Tranche 2 AML/CTF Compliance Portal. For educational purposes only.</p>
+      <div class="mt-2 flex justify-center gap-4">
+        <a href="disclaimer.html" class="hover:text-white">Disclaimer</a>
+        <a href="terms.html" class="hover:text-white">Terms</a>
+        <a href="privacy.html" class="hover:text-white">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Auth (non-blocking for landing/pricing) -->
+  <script src="js/auth-landing.js"></script>
+  <script src="js/subscription.js"></script>
+  <script src="js/analytics.js"></script>
+  <script>
+    var currentPricing = 'monthly';
+
+    function setPricing(type) {
+      currentPricing = type;
+      var priceEl = document.getElementById('price-display');
+      var periodEl = document.getElementById('price-period');
+      var monthlyBtn = document.getElementById('toggle-monthly');
+      var annualBtn = document.getElementById('toggle-annual');
+
+      if (type === 'annual') {
+        priceEl.textContent = '$249';
+        periodEl.textContent = '/year';
+        monthlyBtn.className = 'text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-medium';
+        annualBtn.className = 'text-xs px-2 py-0.5 rounded-full bg-brand text-white font-medium';
+      } else {
+        priceEl.textContent = '$29';
+        periodEl.textContent = '/month';
+        monthlyBtn.className = 'text-xs px-2 py-0.5 rounded-full bg-brand text-white font-medium';
+        annualBtn.className = 'text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-medium';
+      }
+    }
+
+    function startProCheckout() {
+      var priceType = currentPricing === 'annual' ? 'pro_annual' : 'pro_monthly';
+      handleCheckout(priceType);
+    }
+
+    function startPdfCheckout() {
+      handleCheckout('pdf_onetime');
+    }
+
+    function handleCheckout(priceType) {
+      // Track click
+      if (typeof Analytics !== 'undefined') {
+        Analytics.track('Upgrade_Clicked', { purchase_type: priceType, source: 'pricing_page' });
+      }
+
+      var token = sessionStorage.getItem('amliq_id_token');
+      if (!token) {
+        // Not authenticated — redirect to login (PKCE), then back to pricing with checkout intent
+        sessionStorage.setItem('amliq_return_url', window.location.origin + '/pricing.html?action=checkout&price=' + priceType);
+        t2cLogin();
+        return;
+      }
+
+      // Authenticated — go directly to Payment Link
+      if (typeof Subscription !== 'undefined') {
+        Subscription.openCheckout(priceType);
+      }
+    }
+
+    // Handle return from auth with checkout intent
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var action = params.get('action');
+      var price = params.get('price');
+      if (action === 'checkout' && price) {
+        // Clean URL
+        history.replaceState(null, '', window.location.pathname);
+        // Small delay to let auth-landing.js process the token
+        setTimeout(function () {
+          handleCheckout(price);
+        }, 500);
+      }
+    })();
+  </script>
+
+</body>
+</html>

@@ -20,3 +20,6 @@ amplify_outputs.json
 
 # Logs
 *.log
+
+# Sensitive setup guides (contain API keys)
+docs/guides/stripe-setup.md

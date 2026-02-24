@@ -198,9 +198,9 @@ These phrases appear on the live site and may increase legal exposure. Lawyer sh
 | `js/app.js` | Core app logic incl. legal gate modal (Real Estate) |
 | `js/app-accountants.js` | Accountants app logic incl. legal gate modal |
 | `js/app-jewellers.js` | Jewellers app logic incl. legal gate modal |
-| `CONCEPT-REAL-ESTATE.md` | Product spec — Real Estate (internal, not user-facing) |
-| `CONCEPT-ACCOUNTANTS.md` | Product spec — Accountants (internal, not user-facing) |
-| `CONCEPT-JEWELLERS.md` | Product spec — Jewellers (internal, not user-facing) |
+| `docs/product/real-estate.md` | Product spec — Real Estate (internal, not user-facing) |
+| `docs/product/accountants.md` | Product spec — Accountants (internal, not user-facing) |
+| `docs/product/jewellers.md` | Product spec — Jewellers (internal, not user-facing) |
 
 ---
 

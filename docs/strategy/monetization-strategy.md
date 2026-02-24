@@ -43,7 +43,7 @@ T2C (Tranche 2 Compliance) is positioned at the intersection of a regulatory dea
 2. **Entity-specific** — tailored content per profession (not one-size-fits-all)
 3. **Self-serve simplicity** — no sales calls, no demos, no onboarding required
 4. **Built-in trust** — legal disclaimers, AUSTRAC source attribution, educational framing
-5. **Low overhead** — static site, no backend infrastructure costs (yet)
+5. **Low overhead** — static site + 2 serverless Lambda functions; AWS costs effectively $0 at launch scale
 
 ---
 
@@ -91,7 +91,7 @@ This means multi-seat management and enterprise tiers add complexity with no rea
 │  • Independent evaluation preparation guide                  │
 │  • Customer examples (low/medium/high risk)                  │
 │  • Data export (JSON backup)                                │
-│  • Up to 3 logins per business (shared account)             │
+│  • Shared login (one account per business)                   │
 │  • Email support                                             │
 │  Goal: Give sole traders and small firms everything they     │
 │        need to build and maintain their AML/CTF program      │
@@ -107,14 +107,14 @@ This means multi-seat management and enterprise tiers add complexity with no rea
 
 | Rejected Tier | Why It Was Dropped |
 |---|---|
-| Team ($79/mo, 5 seats) | Target businesses have 2–3 people. Multi-seat management adds engineering complexity for no real demand. Pro includes 3 logins instead. |
+| Team ($79/mo, 5 seats) | Target businesses have 2–3 people. Multi-seat management adds engineering complexity for no real demand. Pro uses a shared login instead. |
 | Enterprise ($199/mo+, unlimited seats) | No franchise groups or large firms in the target market. Industry body licensing (Section 4c) is the better route for scale. |
 
 ### Pricing Rationale
 
 - **$29/mo Pro**: Significantly cheaper than easyAML ($179/mo) and HeadStart ($679 one-time). Low enough for a sole-trader real estate agent to justify as a business expense. Annual discount ($249/yr = ~30% off) incentivises commitment and reduces churn.
 - **$149 one-time PDF**: For businesses that just want the program document and won't use the ongoing tools. Lower friction than a subscription. Still cheaper than HeadStart ($679+) and law firm packages ($2,000+).
-- **No per-seat pricing**: Businesses with 2–3 people share one subscription. Simpler billing, no seat-management UI to build, no "how many licenses do I need?" friction.
+- **No per-seat pricing**: Businesses with 2–3 people share one login. Simpler billing, no seat-management UI to build, no "how many licenses do I need?" friction.
 
 ---
 
@@ -169,7 +169,7 @@ This ensures the free tier is genuinely valuable (builds trust and SEO), while t
 - OR one-time purchase: $149–$299 per generated document (no subscription needed)
 - OR both: subscription includes unlimited regeneration, one-time purchase for non-subscribers
 
-**Implementation**: Generate PDF client-side using jsPDF or html2pdf.js. No backend needed.
+**Implementation**: Generate PDF client-side using jsPDF + html2canvas (lazy-loaded on demand). No backend needed.
 
 ### 4b. Affiliate / Referral Partnerships
 
@@ -214,39 +214,45 @@ Not recommended in early stages — ads undermine the trust-based brand. Conside
 
 ## 5. Technical Implementation Roadmap
 
-### Phase 1: Foundation + Pro Launch (Month 1–3)
+### Phase 1: Payments + Feature Gating + PDF (Weeks 1–4)
 
 | Task | Effort | Notes |
 |---|---|---|
-| Add Stripe integration | Medium | Stripe.js + hosted Checkout, no custom payment UI |
-| Build paywall / feature gating | Medium | Check subscription tier, show "Upgrade to unlock" |
-| Extend Cognito for subscription tier | Low | Custom attribute on user pool |
-| Set up Stripe webhook handler | Medium | Single Lambda function for subscription events |
-| Create pricing page | Low | New HTML page with Free vs Pro comparison |
-| Build PDF document generation | Medium | Client-side PDF with jsPDF |
-| Implement free trial (14 days) | Low | Stripe trial period on subscription |
-| Set up transactional emails | Medium | SES or Stripe emails for receipts, trial expiry |
-| Implement $149 one-time PDF purchase | Low | Stripe one-time payment + PDF download |
+| Set up Stripe account + 3 products | Low | Dashboard only: Pro Monthly, Pro Annual, PDF One-Time |
+| Create 3 Payment Links | Low | No-code checkout URLs configured in Stripe Dashboard |
+| Enable Stripe built-in emails | Low | Receipts, failed payments, trial reminders — Dashboard config |
+| Configure Stripe Customer Portal | Low | Self-service plan switching, cancellation, payment method |
+| Add Cognito custom attributes | Low | `subscription_tier`, `stripe_customer_id`, `pdf_purchased` |
+| Create pricing page | Low | New HTML page with Free vs Pro comparison + Payment Link URLs |
+| Build paywall / feature gating | Medium | `subscription.js` — tier check, upgrade prompts, Payment Link URL builder |
+| Create 2 Lambda functions | Medium | `stripe-webhook` (updates Cognito from Stripe events) + `check-subscription` (reads Cognito attrs) |
+| Set up API Gateway (2 routes) | Low | POST /webhook/stripe + GET /subscription with Cognito authorizer |
+| Build PDF document generation | Medium | Client-side PDF with jsPDF + html2canvas (lazy-loaded) |
+| Migrate auth to PKCE | Medium | Authorization Code + PKCE replaces deprecated implicit grant |
+| End-to-end testing + go live | Low | Stripe test mode → live mode |
 
-**Architecture decision**: Keep the static site approach. Use Stripe's hosted Checkout + Customer Portal. Store subscription status in Cognito custom attributes + DynamoDB. No multi-seat management needed — businesses share one login.
+**Architecture decision**: Stripe is the source of truth for all payment/subscription state. Cognito custom attributes cache the tier in the JWT for instant client-side reads. No custom database. Stripe Payment Links handle checkout (zero backend code). Stripe built-in emails handle all payment communications. SES is used only for the welcome email (via Cognito post-confirmation trigger). Businesses share one login — no multi-seat management.
 
-### Phase 2: Growth (Month 3–6)
+### Phase 2: Analytics + Welcome Email (Weeks 5–6)
 
 | Task | Effort | Notes |
 |---|---|---|
-| Add analytics (Plausible) | Low | Privacy-first tracking, no cookie banner |
-| Build partner referral system | Low | Tracked outbound links |
+| Set up Plausible Analytics | Low | Privacy-first, no cookies, no cookie banner needed |
+| Create analytics.js wrapper | Low | Custom event tracking (upgrade clicks, form saves, PDF generated) |
+| Set up SES for welcome email | Low | Cognito post-confirmation trigger, verify domain, DKIM |
+
+The entire monetization stack is complete after Phase 2.
+
+### Phase 3: Growth + Partners (Months 3–6)
+
+| Task | Effort | Notes |
+|---|---|---|
 | Launch remaining entity types | High | Lawyers, TCSPs, Financial Advisors |
 | SEO content pages | Medium | Blog/guides targeting long-tail keywords |
+| Build partner referral system | Low | Tracked outbound links |
 | Compliance badge system | Medium | Verification logic, badge generation |
-
-### Phase 3: Scale (Month 6–12)
-
-| Task | Effort | Notes |
-|---|---|---|
-| Industry body partnerships | Medium | Sales outreach to REIA, CPA Australia, etc. |
+| Industry body outreach | Medium | Sales outreach to REIA, CPA Australia, etc. |
 | Branded PDF exports | Low | Add business name/logo to generated documents |
-| Mobile UX improvements | Low | Already Tailwind-based, refine for small screens |
 | Referral program | Low | "Invite a colleague, get 1 month free" |
 
 ---
@@ -334,7 +340,7 @@ Not recommended in early stages — ads undermine the trust-based brand. Conside
 
 | Metric | Target | Tool |
 |---|---|---|
-| Monthly unique visitors | 5,000+ by launch | Google Analytics / Plausible |
+| Monthly unique visitors | 5,000+ by launch | Plausible Analytics |
 | Free → Paid conversion rate | 3–5% | Stripe + custom tracking |
 | Monthly churn rate | <5% | Stripe |
 | Average revenue per user (ARPU) | $29+ | Stripe |
@@ -362,11 +368,11 @@ Not recommended in early stages — ads undermine the trust-based brand. Conside
 
 1. **Add email capture** to landing page (e.g., "Get notified when Premium launches" + deadline reminders). This costs nothing and starts building a mailing list immediately.
 
-2. **Add Google Analytics / Plausible** to understand current traffic and user behaviour before making paywall decisions.
+2. **Add Plausible Analytics** to understand current traffic and user behaviour before making paywall decisions. Privacy-first, no cookies, no cookie banner needed.
 
 3. **Build the pricing page** (static HTML) to test demand — even before implementing payments, a pricing page with "Join waitlist" buttons validates willingness to pay.
 
-4. **Implement Stripe Checkout** for Pro tier ($29/mo, $249/yr) with 14-day free trial, plus $149 one-time PDF purchase option.
+4. **Set up Stripe Payment Links** for Pro tier ($29/mo, $249/yr) with 14-day free trial, plus $149 one-time PDF purchase — all configured in Stripe Dashboard with zero backend code.
 
 5. **Build PDF document generation** for the AML/CTF Program Builder — this is the single highest-value premium feature and the one-time purchase product.
 

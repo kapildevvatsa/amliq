@@ -1849,7 +1849,7 @@ amliq-accountants/
 │   ├── quiz.json
 │   ├── services.json         (new — 8 designated services data)
 │   └── examples.json         (new — worked client examples)
-├── CONCEPT-ACCOUNTANTS.md
+├── docs/product/accountants.md
 └── README.md
 ```
 
