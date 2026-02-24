@@ -172,22 +172,64 @@
 
 /* Print styles */
 @media print {
+  /* Hide non-content elements */
   #sidebar, #disclaimer-banner, header, #toast, #modal-overlay, .print-hidden, .no-print {
     display: none !important;
   }
+
+  /* Reset app-shell layout constraints (overflow-hidden + h-screen clip content) */
+  #app-shell {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Reset inner container constraints */
+  #app-shell > div {
+    display: block !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  /* Reset main content area */
+  main, #main-content {
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  /* Base styles */
   body, .section {
     background: white !important;
     color: black !important;
   }
-  main {
+
+  /* Keep inactive sections hidden (only print the active one) */
+  .section.hidden {
+    display: none !important;
+  }
+
+  /* Expand accordion content for print */
+  .accordion-content {
+    max-height: none !important;
     overflow: visible !important;
   }
-  .section {
-    display: block !important;
-  }
+
+  /* Page header formatting */
   .page-header {
     padding: 0 0 16px 0 !important;
     border-bottom: 2px solid #000 !important;
+  }
+
+  /* Form field borders visible in print */
+  .form-field input, .form-field select, .form-field textarea {
+    border: 1px solid #999 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Hide top banners (legal reference + disclaimer) */
+  div[class*="bg-red-700"], div[class*="bg-amber-50"] {
+    display: none !important;
   }
 }
 
