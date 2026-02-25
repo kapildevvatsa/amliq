@@ -6,14 +6,14 @@ export const auth = defineAuth({
     email: true,
     externalProviders: {
       callbackUrls: [
-        'https://www.tranche2compliance.com.au/',
-        'https://www.tranche2compliance.com.au/real-estate.html',
-        'https://www.tranche2compliance.com.au/accountants.html',
-        'https://www.tranche2compliance.com.au/jewellers.html',
-        'https://www.tranche2compliance.com.au/pricing.html',
+        'https://master.d348r0hmzvjji4.amplifyapp.com/',
+        'https://master.d348r0hmzvjji4.amplifyapp.com/real-estate.html',
+        'https://master.d348r0hmzvjji4.amplifyapp.com/accountants.html',
+        'https://master.d348r0hmzvjji4.amplifyapp.com/jewellers.html',
+        'https://master.d348r0hmzvjji4.amplifyapp.com/pricing.html',
       ],
       logoutUrls: [
-        'https://www.tranche2compliance.com.au/',
+        'https://master.d348r0hmzvjji4.amplifyapp.com/',
       ],
     },
   },

@@ -1,10 +1,10 @@
 (function () {
   var CONFIG = {
-    domain:      't2c-prod-amliq-53314.auth.ap-southeast-2.amazoncognito.com',
-    clientId:    '31etl7ceunn7p9g3gaipms8rhr',
+    domain:      't2c-master.auth.ap-southeast-2.amazoncognito.com',
+    clientId:    '61vo6gtbur7a404m49a5q1nivs',
     redirectUri: window.location.origin + window.location.pathname + window.location.search,
     logoutUri:   window.location.origin + '/',
-    tokenEndpoint: 'https://t2c-prod-amliq-53314.auth.ap-southeast-2.amazoncognito.com/oauth2/token',
+    tokenEndpoint: 'https://t2c-master.auth.ap-southeast-2.amazoncognito.com/oauth2/token',
   };
 
   document.documentElement.style.visibility = 'hidden';

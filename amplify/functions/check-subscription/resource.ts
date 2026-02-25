@@ -8,7 +8,6 @@ export const checkSubscription = defineFunction({
   memoryMB: 128,
   environment: {
     ALLOWED_ORIGINS: [
-      'https://www.tranche2compliance.com.au',
       'https://master.d348r0hmzvjji4.amplifyapp.com',
     ].join(','),
   },

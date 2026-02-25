@@ -24,7 +24,7 @@ const backend = defineBackend({
 // ─── External Cognito User Pool ─────────────────────────────────────────────
 // The app uses a separately-created production User Pool, not the Amplify-managed one.
 // Both Lambdas need to target this pool for user attribute updates / reads.
-const EXTERNAL_USER_POOL_ID = 'ap-southeast-2_VQ5jADaPv';
+const EXTERNAL_USER_POOL_ID = 'ap-southeast-2_ezBrsXgsj';
 const EXTERNAL_USER_POOL_ARN = `arn:aws:cognito-idp:ap-southeast-2:${Stack.of(backend.auth.resources.userPool).account}:userpool/${EXTERNAL_USER_POOL_ID}`;
 
 backend.stripeWebhook.resources.lambda.addEnvironment(
