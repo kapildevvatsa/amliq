@@ -204,20 +204,37 @@ const Subscription = {
   },
 
   /**
-   * Background sync: if the user is logged in but on the free tier, refresh
-   * the Cognito token to pick up any attribute changes (e.g. subscription_tier
-   * set to 'pro' by the Stripe webhook). This avoids calling the API Gateway
-   * and any CORS issues — it talks directly to the Cognito token endpoint.
+   * Background sync: if the user is logged in but on the free tier, call
+   * the check-subscription API to see if Cognito attributes have been
+   * updated by the Stripe webhook. Token refresh alone does NOT work for
+   * Hosted UI users — Cognito returns attributes from the last sign-in.
    */
   _syncSubscriptionStatus() {
+    console.log('[T2C] _syncSubscriptionStatus: tier=' + this.getTier() + ', userId=' + (window.T2C_USER_ID || 'none'));
     if (!window.T2C_USER_ID || this.isPro()) return;
-    if (typeof window.amliqRefreshTokens !== 'function') return;
+
+    var token = sessionStorage.getItem('amliq_id_token');
+    if (!token) {
+      console.log('[T2C] _syncSubscriptionStatus: no token, skipping');
+      return;
+    }
 
     var self = this;
-    window.amliqRefreshTokens().then(function () {
-      // amliqRefreshTokens() already called extractUserAttributes(),
-      // so T2C_TIER and T2C_PDF_PURCHASED are now up-to-date.
-      if (self.isPro() || window.T2C_PDF_PURCHASED === true) {
+
+    fetch(this.API_BASE_URL + '/subscription', {
+      method: 'GET',
+      headers: { 'Authorization': token },
+    })
+    .then(function (res) {
+      console.log('[T2C] _syncSubscriptionStatus: API response status=' + res.status);
+      return res.json();
+    })
+    .then(function (data) {
+      console.log('[T2C] _syncSubscriptionStatus: API data=', data);
+      if (data.tier === 'pro' || data.pdf_purchased === true) {
+        if (data.tier === 'pro') window.T2C_TIER = 'pro';
+        if (data.pdf_purchased) window.T2C_PDF_PURCHASED = true;
+
         self._showActivationSuccess();
         if (typeof App !== 'undefined') {
           App.renderAllSections();
@@ -225,6 +242,9 @@ const Subscription = {
           App.navigateTo(App.currentSection);
         }
       }
+    })
+    .catch(function (err) {
+      console.error('[T2C] _syncSubscriptionStatus: fetch failed', err);
     });
   },
 
@@ -330,7 +350,8 @@ const Subscription = {
         }, delayMs);
       }
     })
-    .catch(function () {
+    .catch(function (err) {
+      console.error('[T2C] _pollSubscription: fetch failed', err);
       setTimeout(function () {
         self._pollSubscription(attempt + 1);
       }, delayMs);
@@ -343,8 +364,10 @@ const Subscription = {
    * Call after auth.js has run and App has initialized.
    */
   init() {
+    console.log('[T2C] Subscription.init v4 — tier=' + this.getTier());
     this.enhanceSidebar();
     var checkoutHandled = this.handlePostCheckout();
+    console.log('[T2C] handlePostCheckout returned ' + checkoutHandled);
     // If no explicit checkout signal was detected, do a background sync
     // to catch cases where Stripe redirected to a different domain
     if (!checkoutHandled) {
