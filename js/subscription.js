@@ -204,45 +204,27 @@ const Subscription = {
   },
 
   /**
-   * Background sync: if the user is logged in but on the free tier, check
-   * the API to see if Cognito has been updated (e.g. after a Stripe checkout
-   * that redirected to a different domain). This removes any dependency on
-   * Stripe redirect URLs or sessionStorage flags.
+   * Background sync: if the user is logged in but on the free tier, refresh
+   * the Cognito token to pick up any attribute changes (e.g. subscription_tier
+   * set to 'pro' by the Stripe webhook). This avoids calling the API Gateway
+   * and any CORS issues — it talks directly to the Cognito token endpoint.
    */
   _syncSubscriptionStatus() {
     if (!window.T2C_USER_ID || this.isPro()) return;
-
-    var token = sessionStorage.getItem('amliq_id_token');
-    if (!token) return;
+    if (typeof window.amliqRefreshTokens !== 'function') return;
 
     var self = this;
-
-    fetch(this.API_BASE_URL + '/subscription', {
-      method: 'GET',
-      headers: { 'Authorization': 'Bearer ' + token },
-    })
-    .then(function (res) { return res.json(); })
-    .then(function (data) {
-      if (data.tier === 'pro' || data.pdf_purchased === true) {
-        if (data.tier === 'pro') window.T2C_TIER = 'pro';
-        if (data.pdf_purchased) window.T2C_PDF_PURCHASED = true;
-
-        var refreshDone = (typeof window.amliqRefreshTokens === 'function')
-          ? window.amliqRefreshTokens()
-          : Promise.resolve();
-
-        Promise.resolve(refreshDone).then(function () {
-          self._showActivationSuccess();
-          if (typeof App !== 'undefined') {
-            App.renderAllSections();
-            self.enhanceSidebar();
-            App.navigateTo(App.currentSection);
-          }
-        });
+    window.amliqRefreshTokens().then(function () {
+      // amliqRefreshTokens() already called extractUserAttributes(),
+      // so T2C_TIER and T2C_PDF_PURCHASED are now up-to-date.
+      if (self.isPro() || window.T2C_PDF_PURCHASED === true) {
+        self._showActivationSuccess();
+        if (typeof App !== 'undefined') {
+          App.renderAllSections();
+          self.enhanceSidebar();
+          App.navigateTo(App.currentSection);
+        }
       }
-    })
-    .catch(function () {
-      // Silent failure — background check, no user impact
     });
   },
 
