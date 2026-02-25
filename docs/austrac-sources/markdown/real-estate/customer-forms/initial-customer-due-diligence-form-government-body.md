@@ -7,7 +7,7 @@ Before you complete this form, you must make sure the onboarding form has been f
 The glossary at the end of this form defines terms that are in bold.
 
 | Customer’s name: |  |
-| --- | --- |
+| :--- | :--- |
 | Internal reference number: |  |
 
 ### Section A
@@ -17,13 +17,13 @@ The glossary at the end of this form defines terms that are in bold.
 Answer the following questions based on the customer’s onboarding form and your interactions in relation to this service:
 
 | Risk factor | Risk rating | Yes | No |
-| --- | --- | --- | --- |
-| Designated service risks | Designated service risks | Designated service risks | Designated service risks |
+| :--- | :--- | :--- | :--- |
+| Designated service risks |  |  |  |
 | Is the real estate of high value (valued at $1.5 million or more) and being purchased without a mortgage? | Medium | [ ] | [ ] |
 | Is the customer paying wholly or partly with physical currency (i.e. physical notes or coins) valued at A$50,000 or more? | High | [ ] | [ ] |
 | Is the customer paying wholly or partly with one or more virtual asset (such as digital currency, cryptocurrency, Bitcoin, Ethereum)? | High | [ ] | [ ] |
 | Has the customer requested a service that:<br>- has no apparent economic or legal purpose?<br>- would involve unusually complex or large transactions?<br>- would involve an unusual pattern of transactions? | High | [ ] | [ ] |
-| Customer risks | Customer risks | Customer risks | Customer risks |
+| Customer risks |  |  |  |
 | Do you think the customer may have engaged in criminal or unusual activity?<br>Note: If YES, have you notified your compliance officer in an unusual activity report? | High | [ ] | [ ] |
 | Do you think the customer or a related party are or have previously been a domestic or international organisation politically exposed person (PEP)? | Medium | [ ] | [ ] |
 | Do you think the customer or a related party are or have previously been a foreign PEP? | High | [ ] | [ ] |
@@ -31,9 +31,9 @@ Answer the following questions based on the customer’s onboarding form and you
 | Is a third party acting on the customer’s behalf as their representative?<br>If the third party is a reporting entity enrolled with AUSTRAC and provides evidence of enrolment, select NO. | Medium | [ ] | [ ] |
 | Do you think the customer has unexplained wealth disproportionate to their known sources of legitimate wealth?<br>For example, the customer lists their occupation as ‘student’ or ‘unemployed’ and wants to purchase high value real estate without a mortgage and evidence of where the funds came from. | High | [ ] | [ ] |
 | Is the customer or a related party operating a charity or other non-profit organisation (NPO)? | Medium | [ ] | [ ] |
-| Delivery channel risks | Delivery channel risks | Delivery channel risks | Delivery channel risks |
+| Delivery channel risks |  |  |  |
 | Will you be interacting with the customer or their representative only through remote channels that prevent you from establishing that they are who they say they are?<br>For example, online channels where a person can't prove they are who they say they are, such as channels that prevent you from linking their appearance to identity documents or taking other reasonable measures to prove they are an actual person. | High | [ ] | [ ] |
-| Country risks | Country risks | Country risks | Country risks |
+| Country risks |  |  |  |
 | Is the customer or a related party resident of or located in a medium risk country?<br>Do you think the customer will transact with another person who is a resident in one of these countries? This includes individuals or non-individuals (such as companies, body corporates, trusts, legal arrangements). | Medium | [ ] | [ ] |
 | Do you have information that suggests the customer or a related party is a resident of or located in a high risk country?<br>Do you think the customer will transact with another person who is a resident in one of these countries? This includes individuals or non-individuals (such as companies, body corporates, trusts, legal arrangements). | High | [ ] | [ ] |
 
@@ -57,7 +57,7 @@ Based on the information you have about the customer, assign a risk rating based
 Provide the risk rating and information on the reasons for this rating below.
 
 | Risk rating | Reasons |
-| --- | --- |
+| :--- | :--- |
 | [ ]   High<br>[ ]   Medium<br>[ ]   Low |  |
 
 ### Section B
@@ -72,26 +72,26 @@ This section applies if either:
 If you answer YES to all the below, you may provide the designated service before you complete this form about the counterparty.
 
 |  | Important: You cannot delay sanctions checks (Section E1). You must complete this as soon as possible using the client’s name, date of birth and address.<br>You must wait until initial CDD has been completed before you:<br>- transfer, or allow the transfer of money, property or virtual assets for or on behalf of the client<br>- make money, property or virtual assets available to the client. |
-| --- | --- |
+| :--- | :--- |
 
 | Criteria | Yes | No |
-| --- | --- | --- |
-| Is it essential to delay initial CDD to avoid disrupting the ordinary course of business?<br>Some examples of when it may be essential to delay initial CDD to avoid an interruption to the ordinary course of business may include:<br>- where it won’t be possible to complete initial CDD on the successful bidder at an auction before the auction starts<br>- for customers in an emergency, such as family and domestic violence or natural disasters who don’t have access to identity documents. | [ ] | [ ] |
-| Is there low additional ML/TF risk associated with delaying CDD?<br>For example:<br>- Will you have more time to complete checks between exchange of contracts and settlement?<br>- Are your controls sufficient to make sure you don't transfer, allow or facilitate the transfer of property, or make assets available to the customer until initial CDD is completed?<br>- Will you be able to offboard clients under the Offboarding policy if they refuse to provide information or don't meet your business’ risk appetite? | [ ] | [ ] |
+| :--- | :--- | :--- |
+| Is it essential to delay initial CDD to avoid disrupting the ordinary course of business?<br>Some examples of when it may be essential to delay initial CDD to avoid an interruption to the ordinary course of business may include:<br>  - where it won’t be possible to complete initial CDD on the successful bidder at an auction before the auction starts<br>  - for customers in an emergency, such as family and domestic violence or natural disasters who don’t have access to identity documents. | [ ] | [ ] |
+| Is there low additional ML/TF risk associated with delaying CDD?<br>For example:<br>  - Will you have more time to complete checks between exchange of contracts and settlement?<br>  - Are your controls sufficient to make sure you don't transfer, allow or facilitate the transfer of property, or make assets available to the customer until initial CDD is completed?<br>  - Will you be able to offboard clients under the Offboarding policy if they refuse to provide information or don't meet your business’ risk appetite? | [ ] | [ ] |
 
 | If YES to the above, provide details about why it is essential to delay and any associated ML/TF risks: |  |
-| --- | --- |
+| :--- | :--- |
 | Contract exchange date: |  |
 | Settlement date: |  |
 | CDD completion date: |  |
 
 |  | CDD must be completed on the counterparty as soon as reasonably practicable, and no later than:<br>- 15 days after the exchange of contracts, or<br>- before settlement, whichever is earliest. |
-| --- | --- |
+| :--- | :--- |
 
 Outline the steps you will take to complete this form by the CDD completion date. This includes how you will collect and verify any additional customer information that may be required.
 
 | Record details here: |
-| --- |
+| :--- |
 
 #### B2. Delayed verification of customer information
 
@@ -107,24 +107,24 @@ If you answer YES to all the below, you may start to provide the designated serv
 - if any beneficial owner of the customer is a PEP (see Section E2.2).
 
 |  | Important: You must wait until initial CDD has been completed before you:<br>- transfer, or allow the transfer of money, property or virtual assets for or on behalf of the client<br>- make money, property or virtual assets available to the client until. |
-| --- | --- |
+| :--- | :--- |
 
 | Criteria | Yes | No |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | Has the customer fully completed their onboarding form? | [ ] | [ ] |
 | Have you established the customer’s identity? Do you have reason(s) for being satisfied?<br>See Section D1 (Identity verification) | [ ] | [ ] |
 | Have you established the identity of the customer’s representative and their authority to act? Do you have reason(s) for being satisfied?<br>See Section D2 (Identity verification) | [ ] | [ ] |
 | Have you identified the customer’s ML/TF risk?<br>See Section A2 (Customer risk assessment) | [ ] | [ ] |
 | Is it essential to delay initial CDD to avoid disrupting the ordinary course of business?<br>For example, it may be essential to delay initial CDD to avoid an interruption to the ordinary course of business for customers in an emergency, such as family and domestic violence or natural disasters who don’t have access to identity documents. | [ ] | [ ] |
-| Is there a low additional ML/TF risk associated with delaying CDD?<br>For example:<br>- Will you have more time to complete checks between exchange of contracts and settlement?<br>- Are your controls sufficient to make sure you don't transfer, allow or facilitate the transfer of property, or make assets available to the customer until initial CDD is completed?<br>- Will you be able to offboard clients under the Offboarding policy if they refuse to provide information or don't meet your business’ risk appetite? | [x] | [ ] |
+| Is there a low additional ML/TF risk associated with delaying CDD?<br>For example:<br>  - Will you have more time to complete checks between exchange of contracts and settlement?<br>  - Are your controls sufficient to make sure you don't transfer, allow or facilitate the transfer of property, or make assets available to the customer until initial CDD is completed?<br>  - Will you be able to offboard clients under the Offboarding policy if they refuse to provide information or don't meet your business’ risk appetite? | [x] | [ ] |
 
 | If YES to the above, provide details about why it is essential to delay and any associated ML/TF risks: |  |
-| --- | --- |
+| :--- | :--- |
 
 Outline the steps you will take to verify this information as soon as reasonably practicable, and no later than 20 days after providing the designated service.
 
 | Record details here: |
-| --- |
+| :--- |
 
 #### B3. Verification arrangement with other reporting entity
 
@@ -133,10 +133,10 @@ Complete this section if you are entering into an arrangement with another entit
 If you are not entering into an arrangement, you can skip this section.
 
 |  | You must still complete the following before referring the matter to another entity:<br>- identify the customer's ML/TF risk (Section A)<br>- establish the customer’s identity (Section D1)<br>- establish the identity of any person acting on the customer's behalf (Section D2)<br>- sanctions checks to make sure you aren't dealing with a sanctioned person (Section E1). |
-| --- | --- |
+| :--- | :--- |
 
 | Criteria | Yes | No |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | Have you entered into a relationship with another reporting entity to verify information that you have collected?<br>If NO, you must fully complete this form. | [ ] | [ ] |
 | Are you the entity that is being requested to verify information?<br>If YES, attach information confirming the arrangement.<br>Provide the other entity with information within 15 days after the exchange of contracts. | [ ] | [ ] |
 | If you requested another entity to verify information, have you sent the signed Request to verify information form and the customer onboarding form to the other entity?<br>Attach the signed request to verify information to this form. | [ ] | [ ] |
@@ -151,11 +151,11 @@ It will also help you identify the beneficial owners of the customer – you wil
 #### C1. Identifying low risk ownership structures
 
 | Criteria | Yes | No |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | Is the customer one of, or controlled by a government body?<br>You may need to follow the process at C2 to identify if a customer is controlled by a government body.<br>You could verify this information by searching the [Australian Government Organisations Register](https://www.directory.gov.au/reports/australian-government-organisations-register) and the Department of Finance’s List of Commonwealth entities under the [Public Governance, Performance and Accountability Act 2013](https://www.finance.gov.au/government/managing-commonwealth-resources/structure-australian-government-public-sector/pgpa-act-flipchart-and-list). | [ ] | [ ] |
 
 | If YES, provide details including how you verified this. |  |
-| --- | --- |
+| :--- | :--- |
 
 If the customer is low risk and has not been escalated to the AML/CTF compliance officer, and you have answered YES to the above, you do not need to complete the following sections:
 
@@ -167,14 +167,14 @@ If the customer is low risk and has not been escalated to the AML/CTF compliance
 #### C2. Identifying beneficial owners
 
 |  | You may not need to complete this section for certain low risk entities (see Section C1). However, you may need to follow this process to identify if a customer is controlled by a low risk entity. |
-| --- | --- |
+| :--- | :--- |
 
 See Beneficial ownership process for instructions on how to identify the customer’s beneficial owners.
 
 List the beneficial owners of the customer below and attach any other documents you have created to map the ownership and control structure.
 
 | Names of beneficial owners | Ownership or control of the customer? | Ownership percentage (%) | How the beneficial owner exercises control | Country of residence | Country risk rating | Verification document(s) used |
-| --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 |  | [ ]   Ownership<br>[ ]   Control |  |  |  | [ ]   High<br>[ ]   Medium<br>[ ]   Low |  |
 |  | [ ]   Ownership<br>[ ]   Control |  |  |  | [ ]   High<br>[ ]   Medium<br>[ ]   Low |  |
 |  | [ ]   Ownership<br>[ ]   Control |  |  |  | [ ]   High<br>[ ]   Medium<br>[ ]   Low |  |
@@ -182,7 +182,7 @@ List the beneficial owners of the customer below and attach any other documents 
 List the documents you relied on to identify the ownership and control structure:
 
 | Record details here: |
-| --- |
+| :--- |
 
 ### Section D
 
@@ -195,12 +195,12 @@ The identification documents provided must be one of the independent and reliabl
 If an individual is using alternative identification, refer to the onboarding form for examples of identity documents they can use. Refer to the bottom of this section for steps you can take to manage and mitigate the ML/TF risks of using alternative identification.
 
 |  | Important: If you think the customer, any beneficial owner or any representative are not who they claim to be, or that the documents provided may be false or fraudulent, submit an Unusual activity report information form to the AML/CTF compliance officer as soon as practicable. |
-| --- | --- |
+| :--- | :--- |
 
 #### D1. Customer identity
 
 | Description of document provided.<br>For example, information on Department of Finance’s list of [Commonwealth entities and companies](https://www.finance.gov.au/government/managing-commonwealth-resources/structure-australian-government-public-sector/pgpa-act-flipchart-and-list), official government websites. |  |
-| --- | --- |
+| :--- | :--- |
 | Do the documents match the information provided in the onboarding form?<br>For example, full name of the government body, address, country or part of country where it is established. | [ ]   Yes     [ ]   No<br>Differences: |
 | Does the unique identifier (if any) belong to the customer?<br>You can verify this by searching the number in the [ABN Lookup](https://abr.business.gov.au/), another ASIC register or a foreign equivalent register, or finding the identifier on an official government website. |  |
 | Date of expiry, issue or production of the document (if any). |  |
@@ -217,7 +217,7 @@ This section verifies the information provided at onboarding about the customer�
 Complete this section if the customer is low risk, has not been referred to the AML/CTF compliance officer and has a representative acting on their behalf.
 
 | Do you have concerns that the information provided at onboarding about the customer representative is untrue?<br>If YES, complete D2.2.<br>If NO, you do not need to complete D2.2. | [ ]   Yes     [ ]   No |
-| --- | --- |
+| :--- | :--- |
 | Provide information about the representative’s authority to act. | Document:<br>Unique identifier (if any): |
 | Are you satisfied the person has authority to act in this particular transaction?<br>If YES, go to D3.<br>If NO, complete D2.2. | [ ]   Yes     [ ]   No |
 
@@ -230,7 +230,7 @@ Complete this section if any of the below apply:
 - your answer at D2.1 requires you to complete D2.2.
 
 | Provide information about the representative’s authority to act. | Document:<br>Unique identifier (if any): |
-| --- | --- |
+| :--- | :--- |
 | Are you satisfied the individual has authority to act in this particular transaction? | [ ]   Yes     [ ]   No |
 | Do you have concerns that the information provided about the customer representative at onboarding is inaccurate or untrue?<br>If YES, complete the rest of this table.<br>If NO, go to the next question. | [ ]   Yes     [ ]   No |
 | Is there a low additional ML/TF risk associated with the person representing the customer?<br>If YES, you don't need to complete the rest of this table. Go to D3.<br>If NO, complete the rest of this table. | [ ]   Yes     [ ]   No<br>Provide details why: |
@@ -248,7 +248,7 @@ Reference if no photo identification provided
 If a customer representative can’t provide photo ID, request a reference from a person who holds a position of trust in the community and has an existing relationship with the individual. The referee must confirm the person is who they claim to be. Attach any references.
 
 | Name of referee: |  |
-| --- | --- |
+| :--- | :--- |
 | Position in the community: |  |
 | What is the existing relationship with the individual? |  |
 | Does the information on the reference match details on the onboarding form? |  |
@@ -259,14 +259,14 @@ If a customer representative can’t provide photo ID, request a reference from 
 This section verifies the information provided at onboarding about the identity of beneficial owners.
 
 |  | You may be able to delay completing this part of the form. Refer to Section B.<br>You may not need to complete this part of the form for certain kinds of customers. Refer to Section C. |
-| --- | --- |
+| :--- | :--- |
 
 #### D3.1 Low risk customer
 
 Complete this section if the customer is low risk and has not been referred to the AML/CTF compliance officer.
 
 | Do you have concerns that the information provided at onboarding about the beneficial owner is untrue?<br>If YES, complete D3.2.<br>If NO, go to Section E. | [ ]   Yes     [ ]   No |
-| --- | --- |
+| :--- | :--- |
 
 #### D3.2 All other customers
 
@@ -279,7 +279,7 @@ Complete this section if any of the below apply:
 Complete the below table to verify the identity of beneficial owners. Insert additional tables if there is more than one beneficial owner.
 
 | Description of ID documents provided:<br>For example, passport, driver’s licence. |  |
-| --- | --- |
+| :--- | :--- |
 | Do the documents match the information provided in the onboarding form?<br>For example, name, date of birth, residential address. | [ ]   Yes     [ ]   No<br>Differences: |
 | For photographic identification, does the photograph match the individual?<br>Compare the photo in the document against the individual. |  |
 | Unique identifier (if any):<br>For example, passport or driver’s licence number. |  |
@@ -293,14 +293,14 @@ Reference if no photo identification provided
 If an individual can’t provide photo ID, request a reference from a person who holds a position of trust in the community and has an existing relationship with the individual. The referee must confirm the person is who they claim to be. Attach any references.
 
 | Name of referee: |  |
-| --- | --- |
+| :--- | :--- |
 | Position in the community: |  |
 | What is the existing relationship with the individual? |  |
 | Does the information on the reference match details on the onboarding form? |  |
 | Describe any steps you have taken, or will take, to resolve differences:<br>For example, requesting additional documents or references. |  |
 
 |  | Guidance<br>Steps you can take to manage and mitigate the ML/TF risks of using alternative identification could include (but aren’t limited to):<br>- gathering more alternative documents or data sources to resolve any difference<br>- for references, doing any of the following to confirm the authenticity of the reference:<br>- an internet search on the referee’s name and the organisation they work for<br>- if applicable, verify that the referee is a doctor (using the register of practitioners), legal professional (using the Australian Legal Profession Register) or financial advisor (using the financial advisors register)<br>- if you have doubts about the authenticity of a reference, contact the referee to confirm<br>- requiring the individual to provide further identification information and documents at a later date<br>- placing limitations on the higher risk services you may offer. |
-| --- | --- |
+| :--- | :--- |
 
 ### Section E
 
@@ -309,22 +309,22 @@ This section confirms if the customer, their representatives and any beneficial 
 #### E1 Sanctions screening
 
 |  | Important: This section can't be delayed. It must be completed upon receiving the customer onboarding form to avoid non-compliance with sanctions obligations. See Sanctions check process to determine if a person is sanctioned.<br>If the person is sanctioned, stop engaging with them, don’t deal with their assets and, if you control their assets, don’t return them. Criminal penalties apply for non-compliance. Immediately escalate the matter to the AML/CTF compliance officer through an Unusual activity report information form. |
-| --- | --- |
+| :--- | :--- |
 
 #### E1.1 Customer and representatives
 
 | Person | Name, address and other details searched | Date of the search | Is the person subject to sanctions? |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 | Customer |  |  |  |
 | Customer representative |  |  |  |
 
 #### E1.2 Beneficial owners
 
 |  | You may not need to complete this part of the form for certain kinds of customers – refer to Section C. |
-| --- | --- |
+| :--- | :--- |
 
 | Person | Name, address and other details searched | Date of the search | Is the person subject to sanctions? |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 | For example, beneficial owner. |  |  |  |
 |  |  |  |  |
 
@@ -333,28 +333,28 @@ This section confirms if the customer, their representatives and any beneficial 
 If the customer, any of their representatives or beneficial owners are subject to targeted financial sanctions, outline the steps you took to meet sanctions requirements.
 
 | Record details here: |
-| --- |
+| :--- |
 
 #### E2 Politically exposed person (PEP) check
 
 |  | You may be able to delay completing this part of the form. Refer to B2. |
-| --- | --- |
+| :--- | :--- |
 
 See Politically exposed persons check process to identify how to conduct a PEP check. Attach screenshots of the search engine's page results, or verification results using PEP screening software.
 
 #### E2.1 Customer representatives
 
 | Individual | Steps taken PEP check and search terms used | Date of check | Is the person a PEP? |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 | For example, customer representative name. |  |  | [ ]   Yes     [ ]   No<br>If YES:<br>[ ]   Domestic PEP<br>[ ]   Foreign PEP<br>[ ]   International organisation PEP<br>Description of role: |
 
 #### E2.2 Beneficial owners
 
 |  | You may not need to complete this part of the form for certain kinds of customers – refer to Section C. |
-| --- | --- |
+| :--- | :--- |
 
 | Individual | Steps taken PEP check and search terms used | Date of check | Is the person a PEP? |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 | For example, beneficial owner. |  |  | [ ]   Yes     [ ]   No<br>If YES:<br>[ ]   Domestic PEP<br>[ ]   Foreign PEP<br>[ ]   International organisation PEP<br>Description of role: |
 
 ### Section F
@@ -366,14 +366,14 @@ This section helps you consider the onboarding information provided about why th
 If you have doubts about this information, refer the customer to the AML/CTF compliance officer to verify.
 
 | Do you believe the customer provided truthful reasons for requesting your services? If NO, refer to compliance officer to verify.<br>For example, does it seem like the customer is using your services for a legitimate purpose? Does it seem like the reasons for seeking the service don't align with their behaviour or the services being requested? | [ ]   Yes     [ ]   No<br>Details: |
-| --- | --- |
+| :--- | :--- |
 
 ### Section G
 
 #### G1. Final onboarding checks
 
 | Are you satisfied of the following matters? Do you have reason(s) for being satisfied? | Yes | No |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | The customer's identity | [ ] | [ ] |
 | The identity of any representative of the customer and their authority to act | [ ] | [ ] |
 | The identity of the beneficial owners of the customer | [ ] | [ ] |
@@ -387,12 +387,12 @@ If you’ve answered NO to any of the above matters, you must not provide the de
 Outline the additional steps you’ve taken to reach the required level of satisfaction.
 
 | Record details here: |
-| --- |
+| :--- |
 
 #### G2. Escalation check
 
 | Do matters in the Escalating matters to the AML/CTF compliance officer process need to be sent to the AML/CTF compliance officer? | [ ]   Yes     [ ]   No |
-| --- | --- |
+| :--- | :--- |
 | Why has the matter been escalated? |  |
 | When was it escalated? |  |
 | If the matter was escalated, have you received written approval to proceed with the transaction? | [ ]   Yes     [ ]   No<br>AML/CTF compliance officer / senior manager decision:<br>Date of decision: |
@@ -405,7 +405,7 @@ Proceed to G3 Final risk rating if:
 #### G3. Final risk rating
 
 | Criteria | Yes | No |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | Since starting this form, have you become aware of circumstances that may change your assessment of the customer’s risk at A1 and A2? | [ ] | [ ] |
 
 If YES, what is the new customer risk rating? Indicate why the risk rating has changed below.
@@ -413,18 +413,18 @@ If YES, what is the new customer risk rating? Indicate why the risk rating has c
 Or, to complete initial CDD, confirm your final risk rating below.
 
 | Risk rating | Reasons |
-| --- | --- |
+| :--- | :--- |
 | [ ]   High<br>[ ]   Medium<br>[ ]   Low |  |
 
-|  | Reminder<br>If the customer was initially rated as low risk and this risk has increased:<br>- complete Section D2.2: Establish customer representative’s identity<br>- complete Section D3.2: Establish the identity of beneficial owners<br>- complete Section E1.2: Sanctions screening of beneficial owners<br>- complete Section E2.2:  PEP screening of beneficial owners<br>- review Section G1 to confirm you are satisfied you have established these matters.<br>- If the customer has been re-assessed as high risk, refer them to the AML/CTF compliance officer. Do not provide designated services until you receive their approval in line with the Escalation and enhanced customer due diligence policy. |
-| --- | --- |
+|  | Reminder<br>If the customer was initially rated as low risk and this risk has increased:<br>- complete Section D2.2: Establish customer representative’s identity<br>- complete Section D3.2: Establish the identity of beneficial owners<br>- complete Section E1.2: Sanctions screening of beneficial owners<br>- complete Section E2.2:  PEP screening of beneficial owners<br>- review Section G1 to confirm you are satisfied you have established these matters.<br>If the customer has been re-assessed as high risk, refer them to the AML/CTF compliance officer. Do not provide designated services until you receive their approval in line with the Escalation and enhanced customer due diligence policy. |
+| :--- | :--- |
 
 ### Section H
 
 The person completing this form must provide their details below:
 
 | Name: |  |
-| --- | --- |
+| :--- | :--- |
 | Role: |  |
 | Signature: |  |
 | Date: |  |
@@ -435,19 +435,19 @@ The person completing this form must provide their details below:
 You can now start to provide the designated service. You can also start to provide the designated service if you are delaying components of this form.
 
 |  | Reminder<br>You must update this form once delayed components are completed and consider if the outcomes affect the customer’s ML/TF risk. |
-| --- | --- |
+| :--- | :--- |
 
 ### Glossary
 
 High risk countries are the following countries:
 
 |  | This supports Step 4 in Part 3 of the Customise the program starter kit guide.<br>Add the high risk countries you identified in your Risk assessment here.<br>Refer to the customise guide for full instructions. Delete this information box once you have customised this form. |
-| --- | --- |
+| :--- | :--- |
 
 Medium risk countries are the following countries:
 
 |  | This supports Step 4 in Part 3 of the Customise the program starter kit guide.<br>Add the medium risk countries you identified in your Risk assessment here.<br>Refer to the customise guide for full instructions. Delete this information box once you have customised this form. |
-| --- | --- |
+| :--- | :--- |
 
 Politically exposed person is defined in the customer onboarding form. It includes persons that hold certain positions or offices in Australia, overseas or in international organisations. It also includes family members or close business associates of these persons.
 

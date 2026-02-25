@@ -111,6 +111,12 @@ def _para_to_md_text_with_checkboxes(para_element, bookmark_map, rel_map):
     rendered as [ ] (unchecked) or [x] (checked).
     """
     parts = []
+    # Field code state: tracks HYPERLINK field codes (fldChar begin/separate/end)
+    field_url = None       # URL from instrText, set on 'begin'
+    field_text_parts = []  # Display text, collected between 'separate' and 'end'
+    in_field = False       # True between 'begin' and 'end'
+    in_field_text = False  # True between 'separate' and 'end'
+
     for child in para_element:
         tag = child.tag.split('}')[-1] if '}' in child.tag else child.tag
 
@@ -125,7 +131,10 @@ def _para_to_md_text_with_checkboxes(para_element, bookmark_map, rel_map):
                 # Not a checkbox sdt — extract its text
                 for t in child.findall(f'.//{{{W_NS}}}t'):
                     if t.text:
-                        parts.append(t.text)
+                        if in_field_text:
+                            field_text_parts.append(t.text)
+                        else:
+                            parts.append(t.text)
 
         elif tag == 'hyperlink':
             anchor = child.get(f'{{{W_NS}}}anchor', '')
@@ -135,24 +144,63 @@ def _para_to_md_text_with_checkboxes(para_element, bookmark_map, rel_map):
             ).strip()
             if not link_text:
                 continue
-            if anchor:
+            if r_id and r_id in rel_map:
+                # External URL (may also have a fragment anchor)
+                url = rel_map[r_id]
+                if anchor:
+                    url = f'{url}#{anchor}'
+                parts.append(f'[{link_text}]({url})')
+            elif anchor:
+                # Pure internal cross-reference (no external URL)
                 heading_text = bookmark_map.get(anchor, '')
                 if heading_text:
                     md_anchor = _heading_to_anchor(heading_text)
                 else:
-                    md_anchor = anchor.lstrip('_').lower().replace('_', '-')
+                    md_anchor = anchor.lstrip('_').lower()
+                    md_anchor = re.sub(r'[\s_]+', '-', md_anchor)
                     md_anchor = re.sub(r'-+', '-', md_anchor).strip('-')
                 parts.append(f'[{link_text}](#{md_anchor})')
-            elif r_id and r_id in rel_map:
-                url = rel_map[r_id]
-                parts.append(f'[{link_text}]({url})')
             else:
                 parts.append(link_text)
 
         elif tag == 'r':
-            for t in child.findall(f'{{{W_NS}}}t'):
-                if t.text:
-                    parts.append(t.text)
+            # Check for field characters (fldChar) and field instructions
+            fldChar = child.find(f'{{{W_NS}}}fldChar')
+            instrText = child.find(f'{{{W_NS}}}instrText')
+
+            if fldChar is not None:
+                fld_type = fldChar.get(f'{{{W_NS}}}fldCharType', '')
+                if fld_type == 'begin':
+                    in_field = True
+                    field_url = None
+                    field_text_parts = []
+                    in_field_text = False
+                elif fld_type == 'separate':
+                    in_field_text = True
+                elif fld_type == 'end':
+                    # Emit the field-code hyperlink
+                    if field_url and field_text_parts:
+                        link_text = ''.join(field_text_parts).strip()
+                        if link_text:
+                            parts.append(f'[{link_text}]({field_url})')
+                    in_field = False
+                    in_field_text = False
+                    field_url = None
+                    field_text_parts = []
+            elif instrText is not None and in_field:
+                # Parse HYPERLINK instruction: HYPERLINK "url"
+                instr = (instrText.text or '').strip()
+                m = re.match(r'HYPERLINK\s+"([^"]+)"', instr)
+                if m:
+                    field_url = m.group(1)
+            else:
+                # Regular text run
+                for t in child.findall(f'{{{W_NS}}}t'):
+                    if t.text:
+                        if in_field_text:
+                            field_text_parts.append(t.text)
+                        else:
+                            parts.append(t.text)
 
     return ''.join(parts).strip()
 
@@ -193,26 +241,63 @@ def _cell_shading_rating(cell):
 
 # ─── TABLE CELL CONVERSION ──────────────────────────────────────────────────
 
-def cell_to_md_text(cell, bookmark_map, rel_map):
-    """Convert cell paragraphs to text, preserving bullets with <br> breaks.
+def _build_style_map(doc):
+    """Build a map from style IDs to style names."""
+    style_map = {}
+    for style in doc.styles:
+        if style.style_id:
+            style_map[style.style_id] = style.name
+    return style_map
 
-    If the cell has no text but has a colored fill (AUSTRAC risk rating),
-    the fill color is mapped to a rating label (High/Medium/Low).
+
+def _tc_shading_rating(tc_element):
+    """If a tc element is empty but has a colored fill, return the rating."""
+    shd_elements = tc_element.findall(f'.//{{{W_NS}}}shd')
+    for shd in shd_elements:
+        fill = shd.get(f'{{{W_NS}}}fill', '')
+        if fill and fill != 'auto':
+            rating = SHADING_TO_RATING.get(fill.upper())
+            if not rating:
+                rating = SHADING_TO_RATING.get(fill)
+            if rating:
+                return rating
+    return None
+
+
+def _tc_to_md_text(tc_element, bookmark_map, rel_map, style_map):
+    """Convert a raw XML tc element to markdown text.
+
+    Uses raw XML instead of python-docx Cell objects to avoid
+    python-docx bugs with cell deduplication in irregular tables.
     """
     parts = []
-    for p in cell.paragraphs:
-        text = _cell_para_to_md_text(p._element, bookmark_map, rel_map)
+    paras = tc_element.findall(f'{{{W_NS}}}p')
+    for p_el in paras:
+        text = _cell_para_to_md_text(p_el, bookmark_map, rel_map)
         if not text:
             continue
-        style = p.style.name if p.style else ''
-        if _is_list_style(style):
+        # Get style name from pStyle
+        pPr = p_el.find(f'{{{W_NS}}}pPr')
+        style_id = ''
+        if pPr is not None:
+            pStyle = pPr.find(f'{{{W_NS}}}pStyle')
+            if pStyle is not None:
+                style_id = pStyle.get(f'{{{W_NS}}}val', '')
+        style_name = style_map.get(style_id, style_id)
+        style_lower = style_name.lower()
+        # Check if paragraph has numId=0 (explicitly removed from list)
+        is_deactivated = _has_deactivated_numbering(p_el)
+        # 'Bullet list' items are sub-bullets (indented in Word)
+        if style_lower == 'bullet list':
+            parts.append('  - ' + text)
+        elif _is_list_style(style_name) and not is_deactivated:
             parts.append('- ' + text)
         else:
             parts.append(text)
 
     # If cell is empty, check for color-coded risk rating
     if not parts:
-        rating = _cell_shading_rating(cell)
+        rating = _tc_shading_rating(tc_element)
         if rating:
             return rating
 
@@ -221,26 +306,59 @@ def cell_to_md_text(cell, bookmark_map, rel_map):
 
 # ─── TABLE CONVERSION ───────────────────────────────────────────────────────
 
-def table_to_md(table, bookmark_map, rel_map):
+def table_to_md(table, bookmark_map, rel_map, style_map):
     """Convert a docx table to markdown table.
 
-    All tables are rendered as standard markdown tables.
-    Bullets inside cells use <br> for line breaks.
+    Uses raw XML tc elements instead of python-docx Cell objects to
+    correctly handle tables with irregular cell counts per row.
     """
+    tbl = table._tbl
+
+    # Get grid column count
+    grid = tbl.find(f'{{{W_NS}}}tblGrid')
+    grid_cols = len(grid.findall(f'{{{W_NS}}}gridCol')) if grid is not None else 0
+
     rows = []
-    for row in table.rows:
-        cells = [cell_to_md_text(cell, bookmark_map, rel_map) for cell in row.cells]
+    for tr in tbl.findall(f'{{{W_NS}}}tr'):
+        # Collect tc elements: direct children OR inside sdt/sdtContent
+        tcs = []
+        for child in tr:
+            tag = child.tag.split('}')[-1] if '}' in child.tag else child.tag
+            if tag == 'tc':
+                tcs.append(child)
+            elif tag == 'sdt':
+                content = child.find(f'{{{W_NS}}}sdtContent')
+                if content is not None:
+                    for sc in content:
+                        sc_tag = sc.tag.split('}')[-1] if '}' in sc.tag else sc.tag
+                        if sc_tag == 'tc':
+                            tcs.append(sc)
+        cells = []
+        for tc in tcs:
+            cell_text = _tc_to_md_text(tc, bookmark_map, rel_map, style_map)
+            # Check gridSpan for cells spanning multiple columns
+            tcPr = tc.find(f'{{{W_NS}}}tcPr')
+            span = 1
+            if tcPr is not None:
+                gs = tcPr.find(f'{{{W_NS}}}gridSpan')
+                if gs is not None:
+                    span = int(gs.get(f'{{{W_NS}}}val', '1'))
+            cells.append(cell_text)
+            # Add empty cells for extra grid columns spanned
+            for _ in range(span - 1):
+                cells.append('')
         rows.append(cells)
 
     if not rows:
         return ''
 
-    num_cols = len(rows[0])
+    # Use header row or grid to determine column count
+    num_cols = grid_cols if grid_cols > 0 else len(rows[0])
 
     # Standard markdown table
     lines = []
-    lines.append('| ' + ' | '.join(rows[0]) + ' |')
-    lines.append('| ' + ' | '.join(['---'] * num_cols) + ' |')
+    lines.append('| ' + ' | '.join(rows[0][:num_cols]) + ' |')
+    lines.append('| ' + ' | '.join([':---'] * num_cols) + ' |')
     for row in rows[1:]:
         while len(row) < num_cols:
             row.append('')
@@ -250,6 +368,35 @@ def table_to_md(table, bookmark_map, rel_map):
 
 
 # ─── PARAGRAPH STYLE DETECTION ──────────────────────────────────────────────
+
+def _has_deactivated_numbering(para_element):
+    """Check if a paragraph has numId=0, meaning explicitly removed from list."""
+    pPr = para_element.find(f'{{{W_NS}}}pPr')
+    if pPr is None:
+        return False
+    numPr = pPr.find(f'{{{W_NS}}}numPr')
+    if numPr is None:
+        return False
+    numId_el = numPr.find(f'{{{W_NS}}}numId')
+    if numId_el is not None and numId_el.get(f'{{{W_NS}}}val') == '0':
+        return True
+    return False
+
+
+def _get_num_id(para_element):
+    """Get the numId value for a paragraph, or None if not in a list."""
+    pPr = para_element.find(f'{{{W_NS}}}pPr')
+    if pPr is None:
+        return None
+    numPr = pPr.find(f'{{{W_NS}}}numPr')
+    if numPr is None:
+        return None
+    numId_el = numPr.find(f'{{{W_NS}}}numId')
+    if numId_el is not None:
+        val = numId_el.get(f'{{{W_NS}}}val', '0')
+        return int(val)
+    return None
+
 
 def _is_list_style(style_name):
     """Check if a paragraph style represents a list item."""
@@ -265,9 +412,10 @@ def docx_to_md(docx_path):
     md_lines = []
     prev_was_list = False
 
-    # Build lookup maps for cross-references and external links
+    # Build lookup maps for cross-references, external links, and styles
     bookmark_map = _build_bookmark_map(doc)
     rel_map = _build_rel_map(doc)
+    style_map = _build_style_map(doc)
 
     # Build ordered sequence of body elements (paragraphs and tables)
     table_index = 0
@@ -284,19 +432,25 @@ def docx_to_md(docx_path):
                 body_elements.append(('table', doc.tables[table_index]))
                 table_index += 1
 
+    numbered_counter = 0   # Tracks current number in a numbered list
+    last_num_id = None     # Tracks numId to detect list continuity
+
     for elem_type, elem in body_elements:
         if elem_type == 'table':
             # End any open list before a table
             if prev_was_list:
                 md_lines.append('')
                 prev_was_list = False
+            numbered_counter = 0
+            last_num_id = None
             md_lines.append('')
-            md_lines.append(table_to_md(elem, bookmark_map, rel_map))
+            md_lines.append(table_to_md(elem, bookmark_map, rel_map, style_map))
             md_lines.append('')
 
         elif elem_type == 'para':
             p = elem
             style_name = p.style.name if p.style else ''
+            style_lower = style_name.lower()
 
             # Get text with hyperlinks resolved to markdown links
             text = _para_to_md_text(p._element, bookmark_map, rel_map)
@@ -314,6 +468,11 @@ def docx_to_md(docx_path):
             if style_name.startswith('toc'):
                 continue
 
+            # Detect numbered list items (numId present and > 0)
+            num_id = _get_num_id(p._element)
+            is_numbered = (num_id is not None and num_id > 0
+                           and _is_list_style(style_name))
+            is_indented_bullet = 'increased indent' in style_lower
             is_list = _is_list_style(style_name)
 
             # Transition from list → non-list: insert blank line separator
@@ -325,20 +484,37 @@ def docx_to_md(docx_path):
                 md_lines.append(f'# {text}')
                 md_lines.append('')
                 prev_was_list = False
+                numbered_counter = 0
+                last_num_id = None
             elif 'Heading 2' in style_name:
                 md_lines.append(f'## {text}')
                 md_lines.append('')
                 prev_was_list = False
+                numbered_counter = 0
+                last_num_id = None
             elif 'Heading 3' in style_name:
                 md_lines.append(f'### {text}')
                 md_lines.append('')
                 prev_was_list = False
+                numbered_counter = 0
+                last_num_id = None
             elif 'Heading 4' in style_name:
                 md_lines.append(f'#### {text}')
                 md_lines.append('')
                 prev_was_list = False
-            # List items (bullet or numbered)
-            elif _is_list_style(style_name):
+                numbered_counter = 0
+                last_num_id = None
+            # Numbered list items
+            elif is_numbered:
+                numbered_counter += 1
+                md_lines.append(f'{numbered_counter}. {text}')
+                prev_was_list = True
+            # Indented bullet items (sub-bullets under numbered items)
+            elif is_indented_bullet:
+                md_lines.append(f'   - {text}')
+                prev_was_list = True
+            # Regular bullet list items
+            elif is_list:
                 md_lines.append(f'- {text}')
                 prev_was_list = True
             # Instructions (AUSTRAC guidance notes in italic blocks)

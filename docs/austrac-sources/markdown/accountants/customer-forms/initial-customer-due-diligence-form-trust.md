@@ -7,7 +7,7 @@ Before you complete this form, you must make sure the onboarding form has been f
 The glossary at the end of this form defines terms that are in bold.
 
 | Client’s name: |  |
-| --- | --- |
+| :--- | :--- |
 | Internal reference number: |  |
 
 ### Section A
@@ -17,14 +17,14 @@ The glossary at the end of this form defines terms that are in bold.
 Answer the following questions based on the client’s onboarding form and your interactions in relation to this service:
 
 | Risk factor | Risk rating | Yes | No |
-| --- | --- | --- | --- |
-| Designated service risks | Designated service risks | Designated service risks | Designated service risks |
+| :--- | :--- | :--- | :--- |
+| Designated service risks |  |  |  |
 | Does the client's request involve any high value transactions? | Medium | [ ] | [ ] |
 | Does the client's request involve any physical cash, and if so, is this unusual in these circumstances? | High | [ ] | [ ] |
 | Does the client's request involve any virtual assets (such as digital currency, cryptocurrency, Bitcoin, Ethereum), and if so, is this unusual in these circumstances? | High | [ ] | [ ] |
 | Is the client requesting services which could help them create distance between themselves and their economic activity, making them effectively anonymous?<br>For example, the creation of complex legal structures, request for nominee services which may hide the true owner or controller of a company or trust. | High | [ ] | [ ] |
 | Has the client requested a service that:<br>- has no apparent economic or legal purpose?<br>- would involve unusually complex or large transactions?<br>- would involve an unusual pattern of transactions? | High | [ ] | [ ] |
-| Client risks | Client risks | Client risks | Client risks |
+| Client risks |  |  |  |
 | Do you think the client may have engaged in criminal or unusual activity?<br>Note: If YES, have you notified your compliance officer in an unusual activity report? | High | [ ] | [ ] |
 | Do you think the client or a related party are or have previously been a domestic or international organisation politically exposed person (PEP)? | Medium | [ ] | [ ] |
 | Do you think the client or a related party are or have previously been a foreign PEP? | High | [ ] | [ ] |
@@ -32,9 +32,9 @@ Answer the following questions based on the client’s onboarding form and your 
 | Is a third party acting on the client’s behalf as their representative?<br>If the third party is a reporting entity enrolled with AUSTRAC and provides evidence of enrolment, select NO. | Medium | [ ] | [ ] |
 | Do you think the client has unexplained wealth that is disproportionate to their known sources of legitimate wealth?<br>For example, the client lists their occupation as ‘student’ or ‘unemployed’ and wants to purchase high value real estate without a mortgage and evidence of where the funds came from. | High | [ ] | [ ] |
 | Is the client or a related party operating a charity or other non-profit organisation (NPO)? | Medium | [ ] | [ ] |
-| Delivery channel risks | Delivery channel risks | Delivery channel risks | Delivery channel risks |
+| Delivery channel risks |  |  |  |
 | Will you be interacting with the client or their representative only through remote channels that prevent you from establishing that they are who they say they are?<br>For example, online channels where a person can't prove they are who they say they are, such as channels that prevent you from linking their appearance to identity documents or taking other reasonable measures to prove they are an actual person. | High | [ ] | [ ] |
-| Country risks | Country risks | Country risks | Country risks |
+| Country risks |  |  |  |
 | Is the client or a related party resident of or located in a medium risk country?<br>Do you think the client will transact with another person who is a resident in one of these countries? This includes individuals or non-individuals (such as companies, body corporates, trusts, legal arrangements). | Medium | [ ] | [ ] |
 | Do you have information that suggests the client or a related party is a resident of or located in a high risk country?<br>Do you think the client will transact with another person who is a resident in one of these countries? This includes individuals or non-individuals (such as companies, body corporates, trusts, legal arrangements). | High | [ ] | [ ] |
 
@@ -59,7 +59,7 @@ Based on the information you have about the client, assign a risk rating based o
 Provide the risk rating and information on the reasons for this rating below.
 
 | Risk rating | Reasons |
-| --- | --- |
+| :--- | :--- |
 | [ ]   High<br>[ ]   Medium<br>[ ]   Low |  |
 
 ### Section B
@@ -74,24 +74,24 @@ If you answer YES to all the below, you may start to provide the designated serv
 - if any beneficiaries or beneficial owners are a PEP (see Section E2.2).
 
 |  | Important: You must wait until initial CDD has been completed before you:<br>- transfer, or allow the transfer of money, property or virtual assets for or on behalf of the client<br>- make money, property or virtual assets available to the client. |
-| --- | --- |
+| :--- | :--- |
 
 | Criteria | Yes | No |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | Has the client fully completed their onboarding form? | [ ] | [ ] |
 | Have you established the client’s identity? Do you have reason(s) for being satisfied?<br>See Section D1 (Identity verification) | [ ] | [ ] |
 | Have you established the identity of the client’s representative and their authority to act? Do you have reason(s) for being satisfied?<br>See Section D2 (Identity verification) | [ ] | [ ] |
 | Have you identified the client’s ML/TF risk?<br>See Section A2 (Client risk assessment) | [ ] | [ ] |
 | Is it essential to delay initial CDD to avoid disrupting the ordinary course of business?<br>For example, it may be essential to delay initial CDD to avoid an interruption to the ordinary course of business for clients in an emergency, such as family and domestic violence or natural disasters who don’t have access to identity documents. | [ ] | [ ] |
-| Is there a low additional ML/TF risk associated with delaying CDD?<br>For example:<br>- Are your controls sufficient to make sure you don't transfer, allow or facilitate the transfer of property, or make assets available to the client until initial CDD is completed?<br>- Will you be able to offboard clients under the Offboarding policy if they refuse to provide information or don't meet your practice's risk appetite? | [ ] | [ ] |
+| Is there a low additional ML/TF risk associated with delaying CDD?<br>For example:<br>  - Are your controls sufficient to make sure you don't transfer, allow or facilitate the transfer of property, or make assets available to the client until initial CDD is completed?<br>  - Will you be able to offboard clients under the Offboarding policy if they refuse to provide information or don't meet your practice's risk appetite? | [ ] | [ ] |
 
 | If YES to the above, provide details about why it is essential to delay and any associated ML/TF risks: |  |
-| --- | --- |
+| :--- | :--- |
 
 Outline the steps you will take to verify this information as soon as reasonably practicable, and no later than 20 days after providing the designated service.
 
 | Record details here: |
-| --- |
+| :--- |
 
 ### Section C
 
@@ -102,11 +102,11 @@ It will also help you identify the beneficial owners of the client – you will 
 #### C1. Identifying low risk ownership structures
 
 | Criteria | Yes | No |
-| --- | --- | --- |
-| Is the client one of, or controlled by:<br>- a government body<br>- an entity subject to regulatory oversight by a prudential, insurance, or investor protection regulator through registration or licensing requirements<br>- a corporation or association of homeowners in a strata title or community title scheme.<br>You may need to follow the process at C2 to identify if a client is controlled by one of these bodies.<br>You could verify this information by:<br>- for banking, insurance and superannuation businesses – checking their registration details on the [APRA website](https://www.apra.gov.au/registers)<br>- for Australian Financial Services or credit licensees, registered auditors and liquidators and self-managed super fund services – search [ASIC’s professional services registers](https://www.asic.gov.au/online-services/search-asic-registers/professional-registers/)<br>- for strata titles – searching the Strata Register<br>- for government bodies – searching the [Australian Government Organisations Register](https://www.directory.gov.au/reports/australian-government-organisations-register) and the Department of Finance’s [List of Commonwealth entities under the Public Governance, Performance and Accountability Act 2013](https://www.finance.gov.au/government/managing-commonwealth-resources/structure-australian-government-public-sector/pgpa-act-flipchart-and-list). | [ ] | [ ] |
+| :--- | :--- | :--- |
+| Is the client one of, or controlled by:<br>  - a government body<br>  - an entity subject to regulatory oversight by a prudential, insurance, or investor protection regulator through registration or licensing requirements<br>  - a corporation or association of homeowners in a strata title or community title scheme.<br>You may need to follow the process at C2 to identify if a client is controlled by one of these bodies.<br>You could verify this information by:<br>  - for banking, insurance and superannuation businesses – checking their registration details on the [APRA website](https://www.apra.gov.au/registers)<br>  - for Australian Financial Services or credit licensees, registered auditors and liquidators and self-managed super fund services – search [ASIC’s professional services registers](https://www.asic.gov.au/online-services/search-asic-registers/professional-registers/)<br>  - for strata titles – searching the Strata Register<br>  - for government bodies – searching the [Australian Government Organisations Register](https://www.directory.gov.au/reports/australian-government-organisations-register) and the Department of Finance’s [List of Commonwealth entities under the Public Governance, Performance and Accountability Act 2013](https://www.finance.gov.au/government/managing-commonwealth-resources/structure-australian-government-public-sector/pgpa-act-flipchart-and-list). | [ ] | [ ] |
 
 | If YES to the above, provide details including how you verified this. |  |
-| --- | --- |
+| :--- | :--- |
 
 If the client is low risk and has not been escalated to the AML/CTF compliance officer, and you have answered YES to the above, you do not need to complete the following sections:
 
@@ -116,19 +116,19 @@ If the client is low risk and has not been escalated to the AML/CTF compliance o
 - Section E2.2 – PEP screening of beneficial owners
 
 |  | Beneficial owners may include appointors, settlors, guardians, protectors and other persons with control over the trust. |
-| --- | --- |
+| :--- | :--- |
 
 #### C2. Identifying beneficial owners
 
 |  | You may not need to complete this section for certain low risk entities (see Section C1). However, you may need to follow this process to identify if a client is controlled by a low risk entity. |
-| --- | --- |
+| :--- | :--- |
 
 See Beneficial ownership process for instructions on how to identify the client’s beneficial owners.
 
 List the beneficial owners of the client below and attach any other documents you have created to map the ownership and control structure.
 
 | Names of beneficial owners | Ownership or control of the client? | Ownership percentage (%) | How the beneficial owner exercises control | Country of residence | Country risk rating | Verification document(s) used |
-| --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 |  | [ ]   Ownership<br>[ ]   Control |  | For example, as trustee of the trust, sole shareholder of the trustee company |  | [ ]   High<br>[ ]   Medium<br>[ ]   Low |  |
 |  | [ ]   Ownership<br>[ ]   Control |  |  |  | [ ]   High<br>[ ]   Medium<br>[ ]   Low |  |
 |  | [ ]   Ownership<br>[ ]   Control |  |  |  | [ ]   High<br>[ ]   Medium<br>[ ]   Low |  |
@@ -136,7 +136,7 @@ List the beneficial owners of the client below and attach any other documents yo
 List the documents you relied on to identify the ownership and control structure:
 
 | Record details here: |
-| --- |
+| :--- |
 
 ### Section D
 
@@ -149,12 +149,12 @@ These documents must be one of the independent and reliable data sources contain
 If an individual is using alternative identification, refer to the onboarding form for examples of identity documents they can use. Refer to the bottom of this section for steps you can take to manage and mitigate the ML/TF risks of using alternative identification.
 
 |  | Important: If you think the client, any beneficial owner, any representative or any person on whose behalf the client is receiving a designated service are not who they claim to be, or that the documents provided may be false or fraudulent, submit an Unusual activity report information form to the AML/CTF compliance officer as soon as practicable. |
-| --- | --- |
+| :--- | :--- |
 
 #### D1 Client identity
 
 | Description of documents provided:<br>For example, trust deed, deeds of variation, a will, trustee resolutions, memorandum of trust, letter of administration. |  |
-| --- | --- |
+| :--- | :--- |
 | Do the documents match the information provided in the onboarding form?<br>For example, client name, ABN/ACN, addresses, trustee names. | [ ]   Yes     [ ]   No<br>Differences: |
 | Do the documents match the information provided at onboarding in relation to the:<br>- control structure of the trust (i.e. how decisions are made, how the trust is administered or controlled)<br>- identity of the individuals responsible for governance and executive decisions<br>- identity of the settlor, appointor, guardian, protector and beneficiaries? | [ ]   Yes     [ ]   No<br>Differences: |
 | Does the unique identifier (if any) belong to the client?<br>You can verify this by searching the number in the [ABN Lookup](https://abr.business.gov.au/), another ASIC register or a foreign equivalent register, or finding the identifier on an official government website. |  |
@@ -172,7 +172,7 @@ This section verifies the information provided at onboarding about the client’
 Complete this section if the client is low risk, has not been referred to the AML/CTF compliance officer and has a representative acting on their behalf.
 
 | Do you have concerns the information provided at onboarding about the client representative is untrue?<br>If YES, complete D2.2.<br>If NO, complete the rest of D2.1. | [ ]   Yes     [ ]   No |
-| --- | --- |
+| :--- | :--- |
 | Provide information about the representative’s authority to act. | Document:<br>Unique identifier (if any): |
 | Are you satisfied the person has authority to act in this particular transaction?<br>If YES, go to D3.<br>If NO, complete D2.2. | [ ]   Yes     [ ]   No |
 
@@ -185,7 +185,7 @@ Complete this section if any of the below apply:
 - your answers at D2.1 requires you to complete D2.2.
 
 | Provide information about the representative’s authority to act. | Document:<br>Unique identifier (if any): |
-| --- | --- |
+| :--- | :--- |
 | Are you satisfied the individual has authority to act in this particular transaction? | [ ]   Yes     [ ]   No |
 | Do you have concerns that the information provided about the client representative at onboarding is inaccurate or untrue?<br>If YES, complete the rest of this table.<br>If NO, go to the next question. | [ ]   Yes     [ ]   No |
 | Is there a low additional ML/TF risk associated with the person representing the client?<br>If YES, you don't need to complete the rest of this table. Go to D3.<br>If NO, complete the rest of this table. | [ ]   Yes     [ ]   No<br>Provide details why: |
@@ -203,7 +203,7 @@ Reference if no photo identification provided
 If an individual can’t provide a photo ID, request a reference from a person who holds a position of trust in the community and has an existing relationship with the individual. Refer to Appendix A of the onboarding form for information about appropriate references. The referee must confirm the person is who they claim to be. Attach any references to this form.
 
 | Name of referee: |  |
-| --- | --- |
+| :--- | :--- |
 | Position in the community: |  |
 | What is the existing relationship with the individual? |  |
 | Does the information on the reference match details on the onboarding form? |  |
@@ -214,14 +214,14 @@ If an individual can’t provide a photo ID, request a reference from a person w
 This section verifies the information provided at onboarding about the identity of the trustees of the trust. Complete the relevant table below depending on whether the trustee is an individual or a body corporate.
 
 |  | You may be able to delay completing this part of the form. Refer to Section B. |
-| --- | --- |
+| :--- | :--- |
 
 #### D3.1 Low risk client
 
 Complete this section if the client is low risk and has not been referred to the AML/CTF compliance officer.
 
 | Do you have concerns that the information provided about any of the trustees at onboarding is inaccurate or untrue?<br>If yes, complete D3.2.<br>If no, go to D4. | [ ]   Yes     [ ]   No |
-| --- | --- |
+| :--- | :--- |
 
 #### D3.2 All other clients
 
@@ -234,7 +234,7 @@ Complete this section if any of the below apply:
 If the trustee is an individual, fill out this table:
 
 | Description of ID documents provided.<br>For example, passport, driver’s licence. |  |
-| --- | --- |
+| :--- | :--- |
 | Do the documents match the information provided in the onboarding form?<br>For example, name, date of birth, residential address. | [ ]   Yes     [ ]   No<br>Differences: |
 | For photographic identification, does the photograph match the individual?<br>Compare the photo in the document against the individual. |  |
 | Unique identifier (if any).<br>For example, passport or driver’s licence number. |  |
@@ -248,7 +248,7 @@ Reference if no photo identification provided
 If an individual can’t provide a photo ID, request a reference from a person who holds a position of trust in the community and has an existing relationship with the individual. Refer to Appendix A of the onboarding form for information about appropriate references. The referee must confirm the person is who they claim to be. Attach any references to this form.
 
 | Name of referee: |  |
-| --- | --- |
+| :--- | :--- |
 | Position in the community: |  |
 | What is the existing relationship with the individual: |  |
 | Does the information on the reference match the information in the onboarding form? |  |
@@ -256,7 +256,7 @@ If an individual can’t provide a photo ID, request a reference from a person w
 If the trustee is a body corporate, fill out this table:
 
 | Description of documents provided.<br>For example, ASIC companies and organisation register, business names register, ABN Lookup, certificate of incorporation or registration, constitution, partnership agreement. |  |
-| --- | --- |
+| :--- | :--- |
 | Do the documents match the information provided in the onboarding form?<br>For example, client name, ABN/ACN, addresses, directors/partners/individuals responsible for governance and executive decisions. | [ ]   Yes     [ ]   No<br>Differences: |
 | Does the unique identifier (if any) belong to the person?<br>You can verify this by searching the number in the [ABN Lookup](https://abr.business.gov.au/), another ASIC register or a foreign equivalent register. |  |
 | Date of expiry, issue or production of the documents (if any). |  |
@@ -268,14 +268,14 @@ If the trustee is a body corporate, fill out this table:
 This section verifies information provided at onboarding about the identity of the beneficiaries of the trust. Complete the relevant table below depending on whether the beneficiary is an individual, body corporate or another trust. Insert additional tables if there is more than one beneficiary.
 
 |  | You may be able to delay completing this part of the form. Refer to Section B. |
-| --- | --- |
+| :--- | :--- |
 
 #### D4.1 Low risk client
 
 Complete this section if the client is low risk and has not been referred to the AML/CTF compliance officer.
 
 | Do you have concerns that the information provided about any of the beneficiaries at onboarding is inaccurate or untrue?<br>If YES, go to D4.2<br>If NO, go to D5. | [ ]   Yes     [ ]   No |
-| --- | --- |
+| :--- | :--- |
 
 #### D4.2 All other clients
 
@@ -290,7 +290,7 @@ Complete D4.3 if there are more than 10 beneficiaries. If there are less than 10
 If the trust has any beneficiaries which are individuals, fill in this table:
 
 | Description of ID documents provided.<br>For example, passport, driver’s licence. |  |
-| --- | --- |
+| :--- | :--- |
 | Do the documents match the information provided in the onboarding form?<br>For example, name, date of birth, residential address. | [ ]   Yes     [ ]   No<br>Differences: |
 | For photographic identification, does the photograph match the individual?<br>Compare the photo in the document against the individual. |  |
 | Unique identifier (if any).<br>For example, passport or driver’s licence number. |  |
@@ -304,7 +304,7 @@ Reference if no photo identification provided
 If an individual can’t provide a photo ID, request a reference from a person who holds a position of trust in the community and has an existing relationship with the individual. Refer to Appendix A of the onboarding form for information about appropriate references. The referee must confirm the person is who they claim to be. Attach any references to this form.
 
 | Name of referee: |  |
-| --- | --- |
+| :--- | :--- |
 | Position in the community: |  |
 | What is the existing relationship with the individual? |  |
 | Does the information on the reference match details on the onboarding form? |  |
@@ -313,7 +313,7 @@ If an individual can’t provide a photo ID, request a reference from a person w
 If the trust has any beneficiaries which are body corporates, fill in this table:
 
 | Description of documents provided.<br>For example, ASIC companies and organisation register, business names register, ABN Lookup, certificate of incorporation or registration, constitution, partnership agreement. |  |
-| --- | --- |
+| :--- | :--- |
 | Do the documents match the information provided in the onboarding form?<br>For example, client name, ABN/ACN, addresses, directors/partners/individuals responsible for governance and executive decisions. | [ ]   Yes     [ ]   No<br>Differences: |
 | Does the unique identifier (if any) belong to the person?<br>You can verify this by searching the number in the [ABN Lookup](https://abr.business.gov.au/), another ASIC register or a foreign equivalent register. |  |
 | Date of expiry, issue or production of the documents (if any). |  |
@@ -322,8 +322,8 @@ If the trust has any beneficiaries which are body corporates, fill in this table
 
 If the trust has any beneficiaries which are also trusts, fill in this table:
 
-| Description of documents provided.<br>For example, trust deed, deeds of variation, a will, letter of administration, ABN Lookup or other government register.<br>Other examples of reliable and independent documents and data to verify this information include:<br>- letters or documents from the trust’s professional services firms (from a person who doesn’t play a role in the trust). For example, an independent professional service provider such as a lawyer or accountant for the trust, not the trustee<br>- information about foreign trusts from a foreign registration body, if applicable. |  |
-| --- | --- |
+| Description of documents provided.<br>For example, trust deed, deeds of variation, a will, letter of administration, ABN Lookup or other government register.<br>Other examples of reliable and independent documents and data to verify this information include:<br>  - letters or documents from the trust’s professional services firms (from a person who doesn’t play a role in the trust). For example, an independent professional service provider such as a lawyer or accountant for the trust, not the trustee<br>  - information about foreign trusts from a foreign registration body, if applicable. |  |
+| :--- | :--- |
 | Do the documents match the information provided in the onboarding form?<br>For example, name, ABN/ACN, addresses, individuals with defined roles and individuals responsible for governance and executive decisions. | [ ]   Yes     [ ]   No<br>Differences: |
 | Does the unique identifier (if any) belong to the person?<br>You can verify this by searching the number in the [ABN Lookup](https://abr.business.gov.au/), another ASIC register or a foreign equivalent register. |  |
 | Date of expiry, issue or production of the document (if any). |  |
@@ -337,8 +337,8 @@ This section verifies information provided at onboarding about the class of each
 - more than 10 beneficiaries
 - no named beneficiaries.
 
-| Description of documents provided.<br>For example, trust deed, evidence of trust activity such as disbursements to beneficiaries, deeds of variation, a will.<br>Other examples of reliable and independent data to verify this information include:<br>- letters or documents from the trust’s professional services firms (from a person who doesn’t play a role in the trust). For example, an independent professional service provider such as a lawyer or accountant for the trust, not the trustee<br>- information about foreign trusts from a foreign registration body, if applicable. |  |
-| --- | --- |
+| Description of documents provided.<br>For example, trust deed, evidence of trust activity such as disbursements to beneficiaries, deeds of variation, a will.<br>Other examples of reliable and independent data to verify this information include:<br>  - letters or documents from the trust’s professional services firms (from a person who doesn’t play a role in the trust). For example, an independent professional service provider such as a lawyer or accountant for the trust, not the trustee<br>  - information about foreign trusts from a foreign registration body, if applicable. |  |
+| :--- | :--- |
 | Do the documents match the information provided in the onboarding form?<br>For example, description of each class of beneficiaries. | [ ]   Yes     [ ]   No<br>Differences: |
 | Unique identifier of the documents (if any) |  |
 | Date of expiry, issue or production of the documents (if any) |  |
@@ -356,21 +356,21 @@ This section verifies the identity of any beneficial owners of the trust. Comple
 - other beneficial owners.
 
 |  | You may be able to delay completing this part of the form. Refer to Section B.<br>You may not need to complete this part of the form for certain kinds of clients. Refer to Section C. |
-| --- | --- |
+| :--- | :--- |
 
 If you have already verified the identity of the beneficial owner(s) in a different part of this form, you don't need to complete D5 in relation to that person. Complete this section for all other beneficial owners.
 
 Provide the name of any beneficial owner(s) you have already identified below.
 
 | Record details here: |
-| --- |
+| :--- |
 
 #### D5.1 Low risk client
 
 Complete this section if the client is low risk and has not been referred to the AML/CTF compliance officer.
 
 | Do you have concerns that the information provided about the beneficial owners at onboarding is inaccurate or untrue?<br>If YES, complete D5.2.<br>If NO, go to Section E. | [ ]   Yes     [ ]   No |
-| --- | --- |
+| :--- | :--- |
 
 #### D5.2 All other clients
 
@@ -383,7 +383,7 @@ Complete this section if any of the below apply:
 Complete the below table to verify the identity of beneficial owners. Insert additional tables if there is more than one beneficial owner.
 
 | Description of ID documents provided.<br>For example, passport, driver’s licence. |  |
-| --- | --- |
+| :--- | :--- |
 | Do the documents match the information provided in the onboarding form?<br>For example, name, date of birth, address. | [ ]   Yes     [ ]   No<br>Differences: |
 | For photographic identification, does the photograph match the individual?<br>Compare the photo against the individual. |  |
 | Unique identifier (if any).<br>For example, passport or driver’s licence number. |  |
@@ -397,14 +397,14 @@ Reference if no photo identification provided
 If an individual can’t provide a photo ID, request a reference from a person who holds a position of trust in the community and has an existing relationship with the individual. Refer to Appendix A of the onboarding form for information about appropriate references. The referee must confirm the person is who they claim to be. Attach any references to this form.
 
 | Name of referee: |  |
-| --- | --- |
+| :--- | :--- |
 | Position in the community: |  |
 | What is the existing relationship with the individual? |  |
 | Does the information on the reference match details on the onboarding form? |  |
 | Describe any steps you have taken, or will take, to resolve differences:<br>For example, requesting additional documents or references. |  |
 
-|  | Guidance<br>Steps you can take to manage and mitigate the ML/TF risks of using alternative identification could include (but aren’t limited to):<br>- gathering more alternative documents or data sources to resolve any difference<br>- for references, doing any of the following to confirm the authenticity of the reference:<br>- an internet search on the referee’s name and the organisation they work for<br>- if applicable, verify that the referee is a doctor (using the register of practitioners), legal professional (using the Australian Legal Profession Register) or financial advisor (using the financial advisors register)<br>- if you have doubts about the authenticity of a reference, contact the referee to confirm<br>- requiring the individual to provide further identification information and documents at a later date<br>- placing limitations on the higher risk services you may offer. |
-| --- | --- |
+|  | Guidance<br>Steps you can take to manage and mitigate the ML/TF risks of using alternative identification could include (but aren’t limited to):<br>  - gathering more alternative documents or data sources to resolve any difference<br>  - for references, doing any of the following to confirm the authenticity of the reference:<br>  - an internet search on the referee’s name and the organisation they work for<br>  - if applicable, verify that the referee is a doctor (using the register of practitioners), legal professional (using the Australian Legal Profession Register) or financial advisor (using the financial advisors register)<br>  - if you have doubts about the authenticity of a reference, contact the referee to confirm<br>  - requiring the individual to provide further identification information and documents at a later date<br>  - placing limitations on the higher risk services you may offer. |
+| :--- | :--- |
 
 ### Section E
 
@@ -413,22 +413,22 @@ This section confirms if the client, their representatives, any beneficial owner
 #### E1 Sanctions screening
 
 |  | Important: This section can't be delayed. It must be completed upon receiving the client onboarding form to avoid non-compliance with sanctions obligations.<br>See Sanctions check process to determine if a person is sanctioned.<br>If the person is sanctioned, stop engaging with them, don’t deal with their assets and, if you control their assets, don’t return them. Criminal penalties apply for non-compliance. Immediately escalate the matter to the AML/CTF compliance officer through an Unusual activity report information form. |
-| --- | --- |
+| :--- | :--- |
 
 #### E1.1 Client and representatives
 
 | Person | Name, address and other details searched | Date of the search | Is the person subject to sanctions? |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 | Client |  |  |  |
 | Client representative |  |  |  |
 
 #### E1.2 Beneficiaries and beneficial owners
 
-|  | You may not need to complete sanctions screening on the following persons for certain kinds of clients - refer to Section C:<br>- settlor<br>- appointor<br>- guardian<br>- protector<br>- other beneficial owners.<br>- You must still complete sanctions checks on beneficiaries. |
-| --- | --- |
+|  | You may not need to complete sanctions screening on the following persons for certain kinds of clients - refer to Section C:<br>  - settlor<br>  - appointor<br>  - guardian<br>  - protector<br>  - other beneficial owners.<br>  - You must still complete sanctions checks on beneficiaries. |
+| :--- | :--- |
 
 | Person | Name, address and other details searched | Date of the search | Is the person subject to sanctions? |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 | For example, trustee, beneficiary, settlor, appointor, guardian, protector, other beneficial owners |  |  |  |
 |  |  |  |  |
 |  |  |  |  |
@@ -438,28 +438,28 @@ This section confirms if the client, their representatives, any beneficial owner
 If the client, any of their representatives, beneficiaries or beneficial owners are subject to targeted financial sanctions, outline the steps you took to meet sanctions requirements.
 
 | Record details here: |
-| --- |
+| :--- |
 
 #### E2 Politically exposed person (PEP) check
 
 |  | You may be able to delay completing this part of the form. Refer to Section B. |
-| --- | --- |
+| :--- | :--- |
 
 See Politically exposed persons check process to identify how to conduct a PEP check. Attach screenshots of the search engine's page results, or verification results from a PEP screening software.
 
 #### E2.1 Client representatives
 
 | Individual | Steps taken: PEP check and search terms used | Date of check | Is the person a PEP? |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 | For example, client representative name |  |  | [ ]   Yes     [ ]   No<br>If YES:<br>[ ]   Domestic PEP<br>[ ]   Foreign PEP<br>[ ]   International organisation PEP<br>Description of role: |
 
 #### E2.2 Beneficiaries and beneficial owners
 
-|  | You may not need to complete PEP checks on the following persons for certain kinds of clients - refer to Section C:<br>- settlor<br>- appointor<br>- guardian<br>- protector<br>- other beneficial owners.<br>- You must still complete PEP checks on beneficiaries. |
-| --- | --- |
+|  | You may not need to complete PEP checks on the following persons for certain kinds of clients - refer to Section C:<br>  - settlor<br>  - appointor<br>  - guardian<br>  - protector<br>  - other beneficial owners.<br>  - You must still complete PEP checks on beneficiaries. |
+| :--- | :--- |
 
 | Individual | Steps taken PEP check and search terms used | Date of check | Is the person a PEP? |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 | For example, trustee, beneficiary, settlor, appointor, guardian, protector, other beneficial owners name |  |  | [ ]   Yes     [ ]   No<br>If YES:<br>[ ]   Domestic PEP<br>[ ]   Foreign PEP<br>[ ]   International organisation PEP<br>Description of role: |
 
 ### Section F
@@ -471,14 +471,14 @@ This section helps you consider the onboarding information provided about why th
 If you have doubts about this information, refer the client to the AML/CTF compliance officer to verify.
 
 | Do you believe the client provided truthful reasons for requesting your services? If NO, refer to compliance officer to verify.<br>For example, does it seem like the client is using your services for a legitimate purpose? Does it seem like the reasons for seeking the service don't align with their behaviour or the services being requested? | [ ]   Yes     [ ]   No<br>Details: |
-| --- | --- |
+| :--- | :--- |
 
 ### Section G
 
 #### G1. Final onboarding checks
 
 | Are you satisfied of the following matters? Do you have reason(s) for being satisfied? | Yes | No |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | The identity of the client | [ ] | [ ] |
 | The identity of any representative of the client and their authority to act | [ ] | [ ] |
 | The identity of the beneficial owners of the client | [ ] | [ ] |
@@ -493,12 +493,12 @@ If you’ve answered NO to any of the above matters, you must not provide the de
 Outline the additional steps you’ve taken to reach the required level of satisfaction.
 
 | Record details here: |
-| --- |
+| :--- |
 
 #### G2. Escalation check
 
 | Do matters in the Escalating matters to the AML/CTF compliance officer process need to be sent to the AML/CTF compliance officer? | [ ]   Yes     [ ]   No |
-| --- | --- |
+| :--- | :--- |
 | Why has the matter been escalated? |  |
 | When was it escalated? |  |
 | If the matter was escalated, have you received written approval to proceed with the transaction? | [ ]   Yes     [ ]   No<br>AML/CTF compliance officer / senior manager decision:<br>Date of decision: |
@@ -511,7 +511,7 @@ Proceed to G3 – Final risk rating if:
 #### G3. Final risk rating
 
 | Criteria | Yes | No |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | Since starting this form, have you become aware of circumstances that may change your assessment of the client’s risk at A1 and A2? | [ ] | [ ] |
 
 If YES, what is the new client risk rating? Indicate why the risk rating has changed below.
@@ -519,18 +519,18 @@ If YES, what is the new client risk rating? Indicate why the risk rating has cha
 Or, to complete initial CDD, confirm your final risk rating below.
 
 | Risk rating | Reasons |
-| --- | --- |
+| :--- | :--- |
 | [ ]   High<br>[ ]   Medium<br>[ ]   Low |  |
 
 |  | Reminder<br>If the client was initially rated as low risk and this risk has increased:<br>- complete Section D2.2: Establish client representative’s identity<br>- complete Section D4.2: Establish the identity of beneficiaries<br>- complete Section D5.2: Establish the identity of beneficial owners<br>- complete Section E1.2: Sanctions screening of beneficial owners<br>- complete Section E2.2: PEP screening of beneficial owners<br>- recomplete Section G1 to confirm you are satisfied you have established these matters.<br>If the client has been re-assessed as high risk, refer them to the AML/CTF compliance officer. Do not provide designated services until you receive their approval in line with the Escalation and enhanced customer due diligence policy. |
-| --- | --- |
+| :--- | :--- |
 
 ### Section H
 
 The person completing this form must provide their details below:
 
 | Name: |  |
-| --- | --- |
+| :--- | :--- |
 | Role: |  |
 | Signature: |  |
 | Date: |  |
@@ -541,19 +541,19 @@ The person completing this form must provide their details below:
 You can now start to provide the designated service. You can also start to provide the designated service if you are delaying components of this form.
 
 |  | Reminder<br>You must update this form once delayed components are completed and consider if the outcomes affect the client’s ML/TF risk. |
-| --- | --- |
+| :--- | :--- |
 
 ### Glossary
 
 High risk countries are the following countries:
 
 |  | This supports Step 4 in Part 3 of the Customise the program starter kit guide.<br>Add the high risk countries you identified in your risk assessment here.<br>Refer to the guide for full instructions. Delete this information box once you have customised this form. |
-| --- | --- |
+| :--- | :--- |
 
 Medium risk countries are the following countries:
 
 |  | This supports Step 4 in Part 3 of the Customise the program starter kit guide.<br>Add the medium risk countries you identified in your risk assessment here.<br>Refer to the guide for full instructions. Delete this information box once you have customised this form. |
-| --- | --- |
+| :--- | :--- |
 
 Politically exposed person is defined in the client onboarding form. It includes persons that hold certain positions or offices in Australia, overseas or in international organisations. It also includes family members or close business associates of these persons.
 

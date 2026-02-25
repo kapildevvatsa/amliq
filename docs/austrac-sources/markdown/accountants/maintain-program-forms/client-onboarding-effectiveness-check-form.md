@@ -5,16 +5,16 @@ Use this form to review the effectiveness of a sample of client onboarding and c
 #### Section 1: Review details
 
 | Review period (quarter/date range): |  |
-| --- | --- |
+| :--- | :--- |
 | Reviewed by: |  |
-| Date: |  |
+| Date: | Click or tap to enter a date. |
 
 #### Section 2: Review planning
 
 Select at least 3 onboarding files representing different risk levels and client types (if available).
 
 | Onboarding files selected: | [ ]   Low risk clients<br>[ ]   Medium risk clients<br>[ ]   High risk clients<br>[ ]   Foreign or complex clients |
-| --- | --- |
+| :--- | :--- |
 | List each reference/identification details of files selected: |  |
 | Selection rationale (for example, random sample, recent high risk onboarding or follow-up on previous issues): |  |
 
@@ -25,12 +25,12 @@ Use this template for each file reviewed and record your findings. This will hel
 File 1
 
 | File reference/client name: |  |
-| --- | --- |
+| :--- | :--- |
 | Client type: | [ ]   Individual     [ ]   Sole trader     [ ]   Corporate body     [ ]   Trust<br>[ ]   Government body |
 | Risk rating: | [ ]   Low     [ ]   Medium     [ ]   High |
 
 | Checkpoint | Result | Notes/details |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | Full name, date of birth and address recorded accurately: | [ ]   Yes<br>[ ]   No |  |
 | Identification documents valid and current: | [ ]   Yes<br>[ ]   No |  |
 | Verification done using acceptable documents: | [ ]   Yes<br>[ ]   No |  |
@@ -42,13 +42,13 @@ File 1
 | Discrepancies resolved before you start to provide designated services: | [ ]   Yes<br>[ ]   No |  |
 
 | Findings/issues identified: |  |
-| --- | --- |
+| :--- | :--- |
 | Corrective actions or recommendations: |  |
 
 #### Section 3: Summary of results
 
 | Common issues identified across files: |  |
-| --- | --- |
+| :--- | :--- |
 | Overall effectiveness assessment: | [ ]   Fully effective<br>[ ]   Partially effective<br>[ ]   Not effective |
 | Corrective actions needed: |  |
 | Recommendations for procedural or training improvements: |  |
@@ -56,7 +56,7 @@ File 1
 #### Section 4: Sign-off
 
 | Completed by (AML/CTF compliance officer): |  |
-| --- | --- |
+| :--- | :--- |
 | Date: |  |
 | Reviewed by (senior manager): |  |
 | Date: |  |

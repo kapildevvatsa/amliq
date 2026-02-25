@@ -7,7 +7,7 @@ An onboarding form must be completed for each person requesting the service. We 
 #### Section A: Customer details
 
 | Kind of trust: | [ ] Discretionary trust<br>[ ] Unit trust<br>[ ] Bare trust<br>[ ] Testamentary trust/deceased estate<br>[ ] Other kind of trust – provide details: |
-| --- | --- |
+| :--- | :--- |
 | Full name of the trust: |  |
 | Is the trust known by any other names or acronyms?<br>If YES, list those names. | [ ]   Yes     [ ]   No<br>Other names: |
 | Unique identifier (if any):<br>For example, ABN/ACN, ACNC registration number, or foreign equivalents. |  |
@@ -16,7 +16,7 @@ An onboarding form must be completed for each person requesting the service. We 
 | Nature of the trust’s activities:<br>For example, what is the trust used for, or what is its purpose? |  |
 | What powers bind or govern the trust?<br>For example, state and territory legislation which governs the functions of a trustee of a trust in that state. |  |
 | Is the trust one of, or otherwise controlled by: | [ ] A government body<br>Specify which body:<br>[ ] Subject to regulatory oversight by a prudential, insurance or investor protection regulator through registration or licencing requirements.<br>Specify which regulator:<br>Specify the capacity in which they’re registered or licenced:<br>Specify any unique licencing or registration number:<br>[ ] A corporation or association of homeowners in a strata title or community title scheme |
-| What service is the trust seeking and why?<br>For example:<br>- brokering services to help sell residential real estate I own<br>- purchasing real estate as an investment. |  |
+| What service is the trust seeking and why?<br>For example:<br>  - brokering services to help sell residential real estate I own<br>  - purchasing real estate as an investment. |  |
 | If the trust is buying a property, are they using a mortgage, loan or other finance from a bank or lender? | [ ]   Yes     [ ]   No<br>If YES, Bank/lender name: |
 | If the trust is buying a property, how are they paying for it?<br>If it is using a mortgage, loan, or other finance from a bank or lender, also indicate how it is paying the deposit.<br>Choose all that apply. | [ ]   Physical currency (cash) - specify amount to be paid:<br>[ ]   Virtual assets - specify amount to be paid:<br>[ ]   Electronic transfer<br>[ ]   Other (please specify): |
 
@@ -25,7 +25,7 @@ An onboarding form must be completed for each person requesting the service. We 
 Complete this section about a person acting on behalf of the customer. Add an additional table if there is more than one representative.
 
 | Legal name: |  |
-| --- | --- |
+| :--- | :--- |
 | Any other name the customer representative is known by: |  |
 | Date of birth: |  |
 | Residential address: |  |
@@ -40,15 +40,15 @@ Complete this section about a person acting on behalf of the customer. Add an ad
 
 Our business will need information so that we can identify the individuals that are the beneficial owners of the trust. These are the individuals who directly or indirectly either:
 
-- own 25% or more of the trust
-- control the trust.
+1. own 25% or more of the trust
+2. control the trust.
 
 Multiple individuals may own or control the trust through an ownership and control structure. For example, other companies or trusts may control or own 25% or more of the trust. Providing information about the trust's ownership and control structure will help us verify the trust's beneficial owners.
 
 Provide information about the following position holders in the table below. This includes whether they are individuals or non-individuals (for example, body corporates, partnerships, unincorporated associations, trusts, government bodies):
 
 | Position | Legal names | Other names (including business and trading names) | For individuals, date of birth (DD/MM/YY) | Addresses (including residential, principal place of business, registered address) | Occupations or business activities | For non-individuals, powers that bind or govern them | For individuals, are they or have they been in a position listed in Appendix B? | Identity documents to be provided |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | Trustees |  |  |  |  |  |  | [ ]   Yes     [ ]   No<br>Position:<br>Description of role: |  |
 | Appointors, guardians and protectors |  |  |  |  |  |  | [ ]   Yes     [ ]   No<br>Position:<br>Description of role: |  |
 | Settlors |  |  |  |  |  |  | [ ]   Yes     [ ]   No<br>Position:<br>Description of role: |  |
@@ -59,7 +59,7 @@ If there are any other beneficial owners not covered by the positions above, ple
 If any of the position holders above are not individuals (for example, a company trustee), provide details of the individual beneficial owners of those position holders in this table. Add more rows if needed:
 
 | Relationship to trust | Legal name | Any other names they are known by | Date of birth (DD/MM/YY) | Residential address | Occupation | Are they or have they been in a position listed in Annexure B? | Identity documents to be provided |
-| --- | --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | For example, majority shareholder or director of the trustee company |  |  |  |  |  | [ ]   Yes     [ ]   No<br>Position:<br>Description of role: |  |
 |  |  |  |  |  |  | [ ]   Yes     [ ]   No<br>Position:<br>Description of role: |  |
 
@@ -68,7 +68,7 @@ If any of the position holders above are not individuals (for example, a company
 I have provided the following documents as required by Appendix A:
 
 | Requirement | Documents provided |
-| --- | --- |
+| :--- | :--- |
 | Identity documents for the customer: |  |
 | Identity documents for all persons identified in Section C: |  |
 | Identity documents for the customer’s representative: |  |
@@ -80,7 +80,7 @@ I have provided the following documents as required by Appendix A:
 Is there any further information you want to provide in relation to the above questions?
 
 | Provide details here: |
-| --- |
+| :--- |
 
 #### Important information
 
@@ -94,7 +94,7 @@ It is an offence under sections 137 and 140 of the Anti-Money Laundering and Cou
 By completing and signing this form you confirm that the information provided is correct and accurate. You also consent to identities being verified electronically and to us disclosing your information to third parties to help us meet our obligations under the AML/CTF Act.
 
 | Customer name: |  |
-| --- | --- |
+| :--- | :--- |
 | Name of person completing this form: |  |
 | Date: |  |
 | Signature: |  |
@@ -108,14 +108,14 @@ For any of these documents, please provide an original or a reliable copy. This 
 Please provide one or more of the following:
 
 | - A copy of the trust deed, or foreign equivalent instrument<br>- A disclosure certificate that verifies information about the trust<br>- Letters or documents from the trust’s professional services firms<br>- A copy of recent trustee resolutions<br>- The memorandum of trust |
-| --- |
+| :--- |
 
 #### Identification documents for body corporates, partnerships or unincorporated associations
 
 Please provide one or more of the following:
 
 | - A copy of the customer’s constitution<br>- A copy of the customer’s charter<br>- A copy of the customer’s rules<br>- A copy of distribution(s) of member statements<br>- A copy of the partnership agreements<br>- Certificate of Incorporation<br>- Certificate of Good Standing<br>- Memorandum and articles of association<br>- Evidence of the source of funds/wealth. For example, bank statement, tax assessment etc. |
-| --- |
+| :--- |
 
 #### Identification documents for individuals
 
@@ -126,7 +126,7 @@ Provide one of the following for any representative and persons listed in Sectio
 - Option 3: one primary non-photographic identification document and a secondary identification document, along with a reference.
 
 | Document category | Examples of documents |
-| --- | --- |
+| :--- | :--- |
 | Primary photographic identification documents | - Australian passport<br>- Australian proof of age card<br>- Australian driver’s license<br>- Foreign passport<br>- Foreign identity card |
 | Primary non-photographic identification documents | - Australian birth certificate or birth extract<br>- Australian citizenship certificate<br>- Australian concession card (pensioner concession card, health care card, senior’s health card)<br>- Medicare card<br>- Veteran card<br>- Change of name certificate<br>- Marriage certificate<br>- Foreign birth certificate<br>- Foreign citizenship certificate |
 | Secondary identification documents | - Utility notice issued in the last 3 months<br>- Council rates notice issued in the last 3 months<br>- Australian bank statement issued in the last 3 months<br>- Notices issued by a Commonwealth, state, territory or local government body issued in the last 3 months<br>- Income tax assessment notice issued by the Australian Taxation Office (ATO) in the last 12 months<br>- Payslip or letter from employer containing the individual's name issued in the last 3 months |

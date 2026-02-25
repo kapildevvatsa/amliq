@@ -16,7 +16,7 @@ The obligations in the table below have already been marked with an 'X'. These p
 Add an X next to the column of any other role that will assist them with this obligation.
 
 | Responsibility | GB | CO | SM | CP |
-| --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- |
 | Oversee the risk assessment | X |  |  |  |
 | Oversee compliance with AML/CTF obligations and the program | X |  |  |  |
 | Take reasonable steps to ensure we are appropriately managing and mitigating the risks in our ML/TF risk assessment | X |  |  |  |
@@ -31,9 +31,9 @@ Add an X next to the column of any other role that will assist them with this ob
 | Report annually to the governing body and advise of changes to the AML/CTF program |  | X |  |  |
 | Assurance test AML/CTF policies to confirm effectiveness |  | X |  |  |
 | Approve the AML/CTF program, any updates to the risk assessment and any material updates to the rest of the program |  |  | X |  |
-| Approve the decision to start or continue providing brokering services to a customer where [enhanced CDD policy](#enhanced-customer-due-2) applies, including customers:<br>- that are a high ML/TF risk<br>- where a suspicious matter report needs to be submitted, and we decide to keep providing brokering services to the customer |  |  | X |  |
+| Approve the decision to start or continue providing brokering services to a customer where [enhanced CDD policy](#enhanced-customer-due-2) applies, including customers:<br>  - that are a high ML/TF risk<br>  - where a suspicious matter report needs to be submitted, and we decide to keep providing brokering services to the customer |  |  | X |  |
 | Approve all arrangements with third party providers to collect and verify customer due diligence information |  |  | X |  |
-| Monitor customers for reportable matters, including any suspicious activity and any of the following valued at $10,000 or more:<br>- a physical currency (such as bank notes or coins) transaction<br>- cross-border transfers of physical currency or bearer negotiable instruments, or a combination. | X | X | X | X |
+| Monitor customers for reportable matters, including any suspicious activity and any of the following valued at $10,000 or more:<br>  - a physical currency (such as bank notes or coins) transaction<br>  - cross-border transfers of physical currency or bearer negotiable instruments, or a combination. | X | X | X | X |
 | Monitor for circumstances not included in ML/TF risk assessment | X | X | X | X |
 | Complete AML/CTF training | X | X | X | X |
 
@@ -42,7 +42,7 @@ Document any split of responsibilities within each role.
 For example, you might have specific personnel members in the 'customer-facing personnel' category assist the compliance officer with overseeing and coordinating day to day compliance.
 
 | Provide details here: |
-| --- |
+| :--- |
 
 # Flexible responsibilities
 
@@ -53,7 +53,7 @@ We have added an X next to each column where we have made a suggestion as to whi
 Add an X next to the column of any role that will take on each responsibility.
 
 | Responsibility | GB | CO | SM | CP |
-| --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- |
 | Appoint AML/CTF compliance officer | X |  |  |  |
 | Appoint senior manager | X |  |  |  |
 | Complete personnel due diligence (PDD) on the AML/CTF compliance officer | X |  |  |  |
@@ -61,18 +61,18 @@ Add an X next to the column of any role that will take on each responsibility.
 | Manage enrolment and registration |  | X |  |  |
 | Provide AML/CTF training to personnel |  | X |  |  |
 | Complete PDD on customer-facing and any other personnel with an AML/CTF function |  | X |  |  |
-| Complete enhanced customer due diligence (CDD) on customers:<br>- that are a high ML/TF risk<br>- where a suspicious matter report needs to be submitted, and we decide to keep providing brokering services to the customer |  | X |  |  |
+| Complete enhanced customer due diligence (CDD) on customers:<br>  - that are a high ML/TF risk<br>  - where a suspicious matter report needs to be submitted, and we decide to keep providing brokering services to the customer |  | X |  |  |
 | Onboard customers and conduct initial customer due diligence checks on them |  | X |  | X |
 | Conduct periodic and trigger-based customer reviews |  | X |  |  |
 | Investigate potential suspicious matters and determine if you need to make a suspicious matter report to AUSTRAC |  | X |  |  |
 | Submit reports to AUSTRAC |  | X |  |  |
 | Organise independent evaluations |  | X |  |  |
 | Escalate complex and high risk customers to the AML/CTF compliance officer, along with any new kind of service, customer, delivery channel, country you deal with or ML/TF risk factor. | X |  | X | X |
-| Escalate reportable matters to the compliance officer, including any suspicious activity and any of the following valued at $10,000 or more:<br>- a physical currency (such as bank notes or coins) transaction<br>- cross-border transfers of physical currency or bearer negotiable instruments, or a combination. unusual transactions and behaviour to the AML/CTF compliance officer | X |  | X | X |
+| Escalate reportable matters to the compliance officer, including any suspicious activity and any of the following valued at $10,000 or more:<br>  - a physical currency (such as bank notes or coins) transaction<br>  - cross-border transfers of physical currency or bearer negotiable instruments, or a combination. unusual transactions and behaviour to the AML/CTF compliance officer | X |  | X | X |
 
 Document any split of responsibilities within each role type.
 
 For example, you might have specific personnel members in the 'customer-facing personnel' category that are responsible for on-boarding customers, instead of all personnel in that role.
 
 | Provide details here: |
-| --- |
+| :--- |

@@ -7,14 +7,14 @@ Ensure the details are accurate and complete. Once you have captured the details
 #### Details of personnel completing report
 
 | Name: |  |
-| --- | --- |
+| :--- | :--- |
 | Position/job title: |  |
 | Contact details (phone and email): |  |
 
 #### Details of unusual transactions or behaviour
 
 | Date and time it occurred: |  |
-| --- | --- |
+| :--- | :--- |
 | Detailed description of activity:<br>Include any indicators of unusual or potential criminal behaviour, or that a customer is not who they say they are<br>Refer to any indicators from your risk assessment that are present |  |
 | Names of all parties involved: |  |
 | Have you verified the customer's identity? | ​​☐​   Yes          ​☐​   No<br>If no, provide further details: |

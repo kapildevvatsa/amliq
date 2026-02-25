@@ -1,8 +1,8 @@
 ## Version control
 
 | Version | Date approved | Approved by | Summary of changes | Next review due |
-| --- | --- | --- | --- | --- |
-| 1.0 |  |  |  |  |
+| :--- | :--- | :--- | :--- | :--- |
+| 1.0 | Click or tap to enter a date. |  |  | Click or tap to enter a date. |
 |  |  |  |  |  |
 |  |  |  |  |  |
 |  |  |  |  |  |
@@ -18,9 +18,9 @@ Your practice needs to have a money laundering, terrorism financing and prolifer
 
 A risk assessment will help your practice identify and assess the ML/TF risks about the:
 
-- services you provide
-- clients and jurisdictions you deal with
-- delivery channels you use to provide services.
+1. services you provide
+2. clients and jurisdictions you deal with
+3. delivery channels you use to provide services.
 
 These inform how you develop other processes in your anti-money laundering and counter-terrorism financing (AML/CTF) program by ensuring that controls are proportionate to the level of risk you identify.
 
@@ -37,9 +37,9 @@ You will also need to update this risk assessment to reflect changes in ML/TF ri
 These ratings and descriptions are used throughout the risk assessment.
 
 | Rating | Description |
-| --- | --- |
-| High | Represents significant potential ML/TF impact, major damage or effect. Potentially involving serious money laundering, terrorism or proliferation activity. Requires strong and proactive controls. Controls include:<br>- enhanced client due diligence (CDD)<br>- gathering more information about the client at onboarding (as simplified CDD can’t be used)<br>- ongoing monitoring<br>- more frequent periodic reviews (every year). |
-| Medium | Represents moderate potential ML/TF impact with a potential for adverse outcomes if controls do not appropriately manage and mitigate the risk. Controls include:<br>- gathering more information about the client at onboarding (as simplified CDD can’t be used)<br>- ongoing monitoring<br>- periodic reviews every 2 years. |
+| :--- | :--- |
+| High | Represents significant potential ML/TF impact, major damage or effect. Potentially involving serious money laundering, terrorism or proliferation activity. Requires strong and proactive controls. Controls include:<br>  - enhanced client due diligence (CDD)<br>  - gathering more information about the client at onboarding (as simplified CDD can’t be used)<br>  - ongoing monitoring<br>  - more frequent periodic reviews (every year). |
+| Medium | Represents moderate potential ML/TF impact with a potential for adverse outcomes if controls do not appropriately manage and mitigate the risk. Controls include:<br>  - gathering more information about the client at onboarding (as simplified CDD can’t be used)<br>  - ongoing monitoring<br>  - periodic reviews every 2 years. |
 | Low | Represents minor or negligible potential ML/TF impact, with limited inherent exposure which can be easily contained. Can be managed effectively through standard policies including simplified CDD on onboarding, monitoring and periodic reviews every 3 years. |
 
 The ratings have been reached by considering different risk factors which may make your practice vulnerable to exploitation. This is how easily criminals could exploit your designated services to launder money, finance terrorist acts or obtain weapons of mass destruction.
@@ -60,7 +60,7 @@ Other elements of the program will draw directly on these risk factors to sort y
 ### Money laundering: Inherent risk
 
 |  | The 2024 money laundering national risk assessment assesses money laundering vulnerabilities for both accountants and trust and company service providers. As the vulnerabilities for both groups apply to the designated services in this risk assessment, inherent risks for both groups have been provided here. |
-| --- | --- |
+| :--- | :--- |
 
 Australia’s 2024 money laundering national risk assessment assesses:
 
@@ -86,7 +86,7 @@ Accountants’ vulnerability to money laundering is elevated by the risk profile
 Accountants can assist in crimes such as tax evasion and fraud that create illicit funds, as well as enabling the laundering of these proceeds. This is because accountants and tax agents don’t have the same obligations as legal professionals to audit and reconcile client-trust accounts. Although, accountants who are members of professional bodies are required by accounting standards to follow strict rules when handling money from clients, including audits of that account.
 
 | Risk rating | Rationale |
-| --- | --- |
+| :--- | :--- |
 | High | The accounting sector is highly vulnerable to money laundering when providing particular high-risk services. |
 
 #### Trust and company service providers
@@ -110,7 +110,7 @@ Many of the established methodologies used to conceal wealth, circumvent financi
 - providing loans secured by client funds.
 
 | Risk rating | Rationale |
-| --- | --- |
+| :--- | :--- |
 | Medium | Trust and company service providers are vulnerable to money laundering due to the services they provide and their attractiveness to criminals. |
 
 ### Terrorism financing: Inherent risk
@@ -127,7 +127,7 @@ Accountants may be involved in either:
 Registered charities and legitimate NPOs provide an attractive channel for terrorism financing. This is because donations can be solicited from many individuals, witting and unwitting, and diverted for illicit purposes.
 
 | Risk rating | Rationale |
-| --- | --- |
+| :--- | :--- |
 | Low | The use of accountants to facilitate terrorism financing is believed to be uncommon but can occur when assisting exploited NPOs or providing trust and company services. |
 
 ### Proliferation financing: Inherent risk
@@ -139,17 +139,17 @@ The 2024 proliferation financing (PF) national risk assessment found that crimin
 
 While the extent of criminal exploitation for these purposes is likely low, accountants remain exposed to the risk of being taken advantage of by criminals for proliferation financing.
 
-| Risk rating | Risk rating | Rationale |
-| --- | --- | --- |
-| Medium | Accountants are vulnerable to exploitation by criminals engaging in proliferation activities when helping create corporate structures which distance them from illicit funds. | Accountants are vulnerable to exploitation by criminals engaging in proliferation activities when helping create corporate structures which distance them from illicit funds. |
+| Risk rating |  | Rationale |
+| :--- | :--- | :--- |
+| Medium | Accountants are vulnerable to exploitation by criminals engaging in proliferation activities when helping create corporate structures which distance them from illicit funds. |  |
 
 ### Designated services: Inherent risk
 
 |  | This table supports Step 1 in Part 1 of the Customise the program starter kit guide.<br>Refer to the customise guide for full instructions on completing the table. |
-| --- | --- |
+| :--- | :--- |
 
 | Designated service | Description | Vulnerabilities to ML/TF risk | Risk appetite - would you provide this service? |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 | Assisting a person in the planning or execution of a transaction to buy, sell or transfer a body corporate or legal arrangement.<br>This includes acting on their behalf in a transaction.<br>This only applies where the sale, purchase or transfer relates to a controlling interest in the body corporate or legal arrangement.<br>(Item 2 of table 6 of the AML/CTF Act) | Accountants are routinely asked to help with transactions to buy, sell or transfer a body corporate or legal arrangement. This typically involves:<br>- preparing and reviewing contracts<br>- conducting due diligence<br>- obtaining relevant government approvals<br>- preparing financial settlements or documents.<br>This doesn’t include transactions following, or resulting from, an order of a court or tribunal.<br>A body corporate can include a person, association or group of persons incorporated into a corporation.<br>A legal arrangement can include a structured agreement or setup recognised by law. It often involves trusts, contracts, or similar frameworks that define rights, duties, or relationships between parties. | Criminals can exploit both body corporates such as companies, and legal arrangements such as trusts. This can include:<br>- using complex ownership structures or rapid ownership transfers to obscure ownership<br>- as vehicles to conceal beneficiaries and source of funds<br>- to assist in integrating illicit funds into the legitimate economy (for example, laundering proceeds of crime through a cash-intensive business)<br>- to move proceeds of crime overseas. | [ ]   Yes<br>[ ]   No |
 | Receiving, holding, controlling or managing a person’s money, accounts, securities or securities accounts, virtual assets, or other property as part of assisting the person in the planning or execution of a transaction.<br>This includes acting for or on behalf of a person in a transaction.<br>(Item 3 of table 6 of the AML/CTF Act) | This may include:<br>- managing sale proceeds or purchase funds for a client on escrow<br>- money or property being held by an accountant prior to being settled as trust property on the creation of an express trust<br>- having authority to make payments over a client’s bank or securities account on behalf of the client, including under a power of attorney.<br>Accountants operating trust accounts in the absence of any other designated services aren’t covered. | Criminals can exploit accountants in several ways, including to:<br>- hide behind their accountants by using them to manage illegally gained funds for purchases and expenses on their behalf<br>- integrate illegal funds into the legitimate economy<br>- store value from criminal proceeds<br>- obscure the origin of the money, accounts, and assets through a complex transaction. | [ ]   Yes<br>[ ]   No |
 | Assisting in organising, planning or executing a transaction for equity or debt financing relating to a body corporate or legal arrangement.<br>This includes acting on the person’s behalf in a transaction.<br>(Item 4 of table 6 of the AML/CTF Act) | Helping with equity or debt financing can typically include:<br>- supporting a business to raise capital or debt through various methods, such as initial public offerings, venture capital, share purchase plans, debt financing, bonds, asset financing, loans and debentures<br>- services directly advancing a transaction to secure equity and debt financing for the company relating to negotiating, structuring and executing a financing deal or the drafting of debt or equity finance documents. | Criminals can exploit accountants for equity and debt financing in several ways, including using them to:<br>- manage illegally gained funds<br>- purchase equity in a business<br>- assist in complex debt financing applications (often commingling them with legitimately sourced funds to pay back the debt)<br>- manipulate the value of shares to quickly launder money<br>- create loan back schemes to launder money. | [ ]   Yes<br>[ ]   No |
@@ -162,11 +162,11 @@ While the extent of criminal exploitation for these purposes is likely low, acco
 ### Designated services: Risk factors
 
 |  | This table supports Step 2 in Part 1 of the Customise the program starter kit guide.<br>Refer to the customise guide for full instructions on completing the table. |
-| --- | --- |
+| :--- | :--- |
 
 | Risk factor | Description of risk | Why it creates ML/TF vulnerability | Inherent risk rating | Risk appetite – would you accept this risk? | If NO, how will you avoid this risk? |
-| --- | --- | --- | --- | --- | --- |
-| High value transactions | Accountants can facilitate or assist with high-value transactions across a range of business areas, including:<br>- acquiring new companies<br>- obtaining financing<br>- purchase of property, plant and equipment.<br>They’re also involved in business cash management, investments, and financial markets. | Accountants often facilitate high value transactions on behalf of their clients, making them attractive for laundering significant amounts of illicit funds without drawing attention from law enforcement.<br>Some transactions can occur very quickly, including those in commercial matters. This speed of transactions, along with their high value, can allow criminals to move significant amounts of illicit funds in a single transaction. | Medium | [ ]   Yes<br>[ ]   No |  |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| High value transactions | Accountants can facilitate or assist with high-value transactions across a range of business areas, including:<br>  - acquiring new companies<br>  - obtaining financing<br>  - purchase of property, plant and equipment.<br>They’re also involved in business cash management, investments, and financial markets. | Accountants often facilitate high value transactions on behalf of their clients, making them attractive for laundering significant amounts of illicit funds without drawing attention from law enforcement.<br>Some transactions can occur very quickly, including those in commercial matters. This speed of transactions, along with their high value, can allow criminals to move significant amounts of illicit funds in a single transaction. | Medium | [ ]   Yes<br>[ ]   No |  |
 | Unusual physical transactions | Any physical currency transaction (for example, in A$ notes and coins or a foreign currency equivalent) that’s unusual in the circumstances.<br>Whether a physical currency transaction is unusual will often depend on:<br>- the size and complexity of the transaction<br>- if it has an apparent economic or lawful purpose<br>- if it’s consistent with what you know about the client and their industry. | Physical currency is anonymous and hard to trace, making it difficult to verify the source of funds. In Australia, it’s one of the most restrained, forfeited or frozen asset types in criminal asset confiscation matters. It’s exploited for its accessibility, widespread acceptance and availability. Its use also requires minimal skills, knowledge and expertise.<br>Criminals may give the cash directly to your practice or deposit it into your statutory trust account directly. | High | [ ]   Yes<br>[ ]   No |  |
 | Unusual virtual asset transactions | Any transaction involving a virtual asset (for example, digital currencies such as Bitcoin or Ethereum).<br>Whether a virtual asset transaction is unusual will often depend on:<br>- whether the use of virtual assets is common in the circumstances<br>- if there is any apparent economic or lawful purpose for using virtual assets over fiat currency (this is government-issued currency, such as $A)<br>- if it’s consistent with what you know about the client and their industry. | Criminals are attracted to virtual assets because they:<br>- offer speed and global reach – transactions are almost instant and irreversible, making it challenging to detect and stop illicit use<br>- allow movement of value with low visibility of the identity of the individual who owns or controls it.<br>After someone exchanges fiat currency for virtual assets, their payments completely bypass oversight from financial institutions. | High | [ ]   Yes<br>[ ]   No |  |
 | Effective anonymity | Accountants can help their clients create legal structures which make it hard to determine who owns or controls their property or money. This often involves creating layers of companies, trusts and other entities between the individual and the property or money they’re trying to hide.<br>Of note, there are many legitimate uses of complex legal structures. Whether this is unusual depends on if the requested services could be used for an illegitimate purpose.<br>If you can clearly identify all individuals who control and benefit from the trust, this reduces and/or removes anonymity. | Complex legal structures and arrangements are attractive to criminals as they can provide anonymity and legitimacy when seeking to obscure their activities.<br>Where a person’s ownership and control structure is highly complex or unusual, it can be very difficult to analyse each layer and identify the beneficial owners. This makes the beneficial ownership ‘effectively anonymous’.<br>Although there are legitimate reasons to use complex ownership and control structures, these structures are often used by criminals to distance themselves from transactions and activity which may attract attention from law enforcement. | High | [ ]   Yes<br>[ ]   No |  |
@@ -175,21 +175,21 @@ While the extent of criminal exploitation for these purposes is likely low, acco
 ### Designated services: New and emerging technologies
 
 |  | This table supports Step 1 in Part 1 of the Customise the program starter kit guide.<br>Refer to the customise guide for full instructions on completing the table. |
-| --- | --- |
+| :--- | :--- |
 
 New and emerging technologies may affect the ML/TF risks associated with services you provide to clients and the channels you use when providing services. Some examples of technologies which may be vulnerable to exploitation by clients are provided below.
 
 | Kind of technology | Description | Why it creates ML/TF vulnerabilities |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | Artificial intelligence (AI) | Accountants are often required to conduct a high volume of enquiries using various software programs and technological options, including artificial intelligence (AI). Additionally, virtual assistants and chatbots powered by AI are also being used to engage first-time clients.<br>AI and machine learning are being adopted by practices to:<br>- enhance data analysis and decision making<br>- automate repetitive work through robotic process automation.<br>AI and machine learning can be used specifically relating to their AML/CTF processes. For example:<br>- Encrypted apps and AI work management platforms are being increasingly used by practices to deal with and communicate with their clients.<br>- Digital identity solutions can be used by practices to remotely identify and verify clients during onboarding. These solutions use AI to perform micro expression analysis, anti-spoofing checks, fake image detection, and human face attributes analysis. | Leveraging emerging technologies, criminals can hide their identities using techniques such as:<br>- impersonating phone numbers and email addresses (spoofing)<br>- using deepfake images and videos to impersonate another person through digital channels. |
 
 ### Clients: Inherent risk
 
 |  | This table supports Step 1 in Part 1 of the Customise the program starter kit guide.<br>Refer to the customise guide for full instructions on completing the table. |
-| --- | --- |
+| :--- | :--- |
 
 | Kinds of client | Description | Vulnerabilities to ML/TF risk | Risk appetite - would you deal with these clients? |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 | Individuals and sole traders | An individual client, other than a sole trader, is a human being with legal capacity to enter into contracts and conduct transactions.<br>A sole trader is an individual client who owns and operates a business alone, with no legal separation between the owner and the business. Like individuals, sole traders have the legal capacity to enter into contracts and conduct transactions. | The risk level varies based on personal, transactional and contextual factors.<br>Individual clients can have risk factors that increase their ML/TF risk. This includes:<br>- their personal background and occupation<br>- their business activities<br>- their source of funds<br>- their financial behaviour<br>- any potential connections to high-risk activities or jurisdictions. | [ ]   Yes<br>[ ]   No |
 | Bodies corporate | A body corporate is a tyle of legal structure with a separate legal identity from their owners or members. A body corporate is recognised by law as having its own rights and obligations.<br>The most common forms of companies are:<br>- private companies (Proprietary Limited)<br>- public companies (Limited)<br>- unlisted public companies (Limited)<br>- owner’s strata corporations<br>- cooperatives<br>- incorporated partnerships | Bodies corporate may be attractive to money launderers as they're easy to set up or purchase with limited knowledge, skills or expertise. They also provide criminals with the capacity to launder high volumes of funds without the activity being directly linked to their own identity.<br>Australian authorities report that bodies corporate are often exploited alongside other types of entities to create complex and opaque legal and group structures.<br>The absence of public information about the beneficial owners of companies can make it difficult to verify if you’re indirectly engaging with a criminal entity. It often requires manual analysis and information gathering. | [ ]   Yes<br>[ ]   No |
 | Partnerships | A partnership refers to where 2 or more individuals or other legal entities share ownership. A partnership isn't a separate legal entity from its owners.<br>The most common forms of partnerships are:<br>- general partnerships (simpler)<br>- limited partnerships (more complex). | The level of risk will vary based on a range of factors.<br>Partnership clients can have risk factors that increase the ML/TF risk including the:<br>- backgrounds of the partners<br>- nature of their business activities<br>- ownership and control structure<br>- geographic location of the partners<br>- source of partnership funds. | [ ]   Yes<br>[ ]   No |
@@ -200,7 +200,7 @@ New and emerging technologies may affect the ML/TF risks associated with service
 ### Clients: Risk factors
 
 |  | This table supports Step 2 in Part 1 of the Customise the program starter kit guide.<br>Refer to the customise guide for full instructions on completing the table. |
-| --- | --- |
+| :--- | :--- |
 
 It’s important to note that the following risk factors will arise if they’re present in any person involved in the designated service, including:
 
@@ -210,7 +210,7 @@ It’s important to note that the following risk factors will arise if they’re
 - any beneficial owner of the client.
 
 | Risk factor | Description of risk | Why it creates ML/TF vulnerability | Inherent risk rating | Risk appetite – would you accept this risk? | If NO, how will you avoid this risk? |
-| --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | Individuals that you suspect have committed profit-generating offences | An individual may be involved in crime and use criminal proceeds to buy property.<br>Not all criminal offences generate ML/TF risks. Offences that can be used to generate illicit profits include, but aren't limited to:<br>- money laundering<br>- terrorism financing<br>- fraud and other financial crimes<br>- tax evasion<br>- corruption<br>- drug trafficking<br>- people smuggling. | Criminals who have profited from serious crimes are highly likely to try and obtain professional assistance when laundering their illicit funds. They’re likely to continue doing so until their behaviour is detected. | High | [ ]   Yes<br>[ ]   No |  |
 | Politically exposed persons (PEPs) (domestic) | Individuals who hold, or have held, senior roles in an Australian government body. This includes their family members and close associates, even if those people haven't held such roles themselves.<br>To establish if a former PEP may still present ML/TF risk, you should consider factors such as:<br>- if the person still has influence over government decisions<br>- the time that has elapsed since the person was a PEP<br>- if the person is still prominent and politically connected. | PEPs often have a public profile and may be vulnerable to corruption and bribery.<br>For example, they may be able to influence any of the following:<br>- government spending and budgets<br>- procurement processes<br>- development approvals and grants. | Medium | [ ]   Yes<br>[ ]   No |  |
 | PEPs (international organisations) | Individuals who hold, or have held, senior roles in an international organisation. This also includes their family members and close associates, even if those people haven’t held such roles themselves.<br>To establish if a former PEP may still present ML/TF risk, you should consider factors, such as:<br>- if the person still has influence over international organisation decisions<br>- the time that has elapsed since the person was a PEP<br>- if the person is still prominent and internationally connected. | PEPs often have a public profile and may be vulnerable to corruption and bribery. | Medium | [ ]   Yes<br>[ ]   No |  |
@@ -224,10 +224,10 @@ It’s important to note that the following risk factors will arise if they’re
 ### Delivery channels: Inherent risks
 
 |  | This table supports Step 1 in Part 1 of the Customise the program starter kit guide.<br>Refer to the customise guide for full instructions on completing the table. |
-| --- | --- |
+| :--- | :--- |
 
 | Channel type | Description | Vulnerabilities to ML/TF risk | Risk appetite - would you provide services using these delivery channels? |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 | In person | The client is engaged or provided access to a service through direct, face-to-face interactions. | Risk factors include:<br>- Exploitation through personal relationships and manipulation.<br>- Ability to detect fake or stolen IDs in person. | [ ]   Yes<br>[ ]   No |
 | Email | The client is engaged or provided access to a service through emails. | Risk factors include:<br>- Higher risk of fraud and scams due to fake or stolen IDs.<br>- Challenges in identifying suspicious behaviour or inconsistencies.<br>- Email address spoofing.<br>- Lack of encryption for document transfer.<br>- Reliance on third-party technologies. | [ ]   Yes<br>[ ]   No |
 | Telephone | The client is engaged or provided access to a service through the telephone (including calls and text messages). | Risk factors include:<br>- Challenges in identifying suspicious behaviour or inconsistencies.<br>- Phone number spoofing and voice manipulation. | [ ]   Yes<br>[ ]   No |
@@ -237,36 +237,36 @@ It’s important to note that the following risk factors will arise if they’re
 ### Delivery channels: Risk factors
 
 |  | This table supports Step 2 in Part 1 of the Customise the program starter kit guide.<br>Refer to the customise guide for full instructions on completing the table. |
-| --- | --- |
+| :--- | :--- |
 
-| Risk factor | Description of risk | Why it creates ML/TF vulnerability | Inherent risk rating | Risk appetite – would you accept this risk? | Risk appetite – would you accept this risk? | If NO, how will you avoid this risk? |
-| --- | --- | --- | --- | --- | --- | --- |
-| Suspected false and fraudulent identities | Criminals can use false identities to obtain services from practices without disclosing their real identity to them.<br>False identities can involve using fake identification documents, lying on documentation about personal details, or using technology to impersonate another person. | Using a false identity allow criminals to get services which may have otherwise been out of reach, avoiding detection by those practices and affecting their ability to correctly assess ML/TF risk.<br>Leveraging emerging technologies, criminals can more easily hide their identities than ever before. Using techniques such as spoofing (impersonating phone numbers and email addresses) or using deepfake images and videos, criminals can take advantage of remote and digital channels more easily than ever before.<br>You should consider how their delivery channels may allow for false identities and how you will detect if your customer and other related parties are who they claim to be. | High | High | [ ]   Yes<br>[ ]   No |  |
+| Risk factor | Description of risk | Why it creates ML/TF vulnerability | Inherent risk rating | Risk appetite – would you accept this risk? |  | If NO, how will you avoid this risk? |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Suspected false and fraudulent identities | Criminals can use false identities to obtain services from practices without disclosing their real identity to them.<br>False identities can involve using fake identification documents, lying on documentation about personal details, or using technology to impersonate another person. | Using a false identity allow criminals to get services which may have otherwise been out of reach, avoiding detection by those practices and affecting their ability to correctly assess ML/TF risk.<br>Leveraging emerging technologies, criminals can more easily hide their identities than ever before. Using techniques such as spoofing (impersonating phone numbers and email addresses) or using deepfake images and videos, criminals can take advantage of remote and digital channels more easily than ever before.<br>You should consider how their delivery channels may allow for false identities and how you will detect if your customer and other related parties are who they claim to be. | High |  | [ ]   Yes<br>[ ]   No |  |
 
 ### Countries: Risk assessment
 
 |  | This table supports Step 3 in Part 1 of the Customise the program starter kit guide.<br>Refer to the customise guide for full instructions on completing the table. |
-| --- | --- |
+| :--- | :--- |
 
 | Country | Basel AML risk rating | Listed in high-risk country list? | Final country risk rating | Risk appetite – would you deal with these clients? | If NO, how will you avoid this risk? |
-| --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | Australia | Low | [ ]   Yes<br>[x]   No | Low | [ ]   Yes<br>[ ]   No |  |
-|  | [ ]   Yes<br>[ ]   No | [ ]   Yes<br>[ ]   No |  |  |  |
-|  | [ ]   Yes<br>[ ]   No | [ ]   Yes<br>[ ]   No |  |  |  |
-|  | [ ]   Yes<br>[ ]   No | [ ]   Yes<br>[ ]   No |  |  |  |
-|  | [ ]   Yes<br>[ ]   No | [ ]   Yes<br>[ ]   No |  |  |  |
+|  | Choose an item. | [ ]   Yes<br>[ ]   No | Choose an item. | [ ]   Yes<br>[ ]   No |  |
+|  | Choose an item. | [ ]   Yes<br>[ ]   No | Choose an item. | [ ]   Yes<br>[ ]   No |  |
+|  | Choose an item. | [ ]   Yes<br>[ ]   No | Choose an item. | [ ]   Yes<br>[ ]   No |  |
+|  | Choose an item. | [ ]   Yes<br>[ ]   No | Choose an item. | [ ]   Yes<br>[ ]   No |  |
 
 ## Common ML/TF methods
 
 |  | ML/TF methods refer to publicly known trends in how criminals launder money and finance terrorism or the proliferation of weapons of mass destruction. Identifying trends and patterns in criminal behaviours will help you to:<br>- understand the nature of existing and emerging ML/TF threats<br>- detect where criminals may try to use these methods when attempting to exploit your services. |
-| --- | --- |
+| :--- | :--- |
 
 The table below shows typical industry-specific ML/TF methods for you to look out for. Note that your practice may encounter other methods used by criminals which aren’t listed here.
 
 Use this information as a reference during your daily monitoring and when reviewing client activity. If you aren’t sure if something is suspicious, escalate it so the AML/CTF compliance officer can make the assessment and determine next steps.
 
 | Method | Description | How it creates ML/TF risk | Possible red flags/indicators |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 | Misuse of client accounts (including trust accounts) | Using client accounts to transfer funds without providing an underlying designated service.<br>This can include unknown transactions made by the client or other professionals on their behalf. | Criminals can misuse trust accounts to move illicit money while hiding its origin from the beneficiary.<br>Criminal proceeds can also be commingled with legitimate client funds, making it difficult for law enforcement to detect suspicious activity. | - There is no legitimate reason why the transfer is made through your trust account, rather than their personal bank account.<br>- Uses trust account to purchase services or products that have no reasonable connection to services typically provided by your firm. |
 | Misuse of bodies corporate or legal arrangements | Bodies corporate and legal arrangements can hide the ownership, purpose, activities and financing relating to criminal activity, serving as a source of income. | Makes it more challenging to monitor and perform client due diligence and verify the source of funds. | - Structure of body corporate or legal arrangements can effectively ensure anonymity of individuals who own, control or benefit from property or money.<br>- Structure is unnecessarily complex, and complexity cannot be explained by economic or legitimate reasons. |
 | Use of specialised skills to use complexity to hide criminal activity | Specialised skills can be used to benefit criminal activity. The skills include the creation of company and trust formation, performing financial transactions and providing financial advice. | Skillsets held by professional service providers can be used for methods of concealing and transferring criminal funds, obscuring ownership and criminal activity.<br>The reputation and status of an accounting practice creates an air of legitimacy that can be used to obscure the illicit use of services and skills. | - Requests or uses unnecessarily complex business ownership structures, including nominee shareholders or bearer shares.<br>- Asks to buy aged shelf companies, rather than set up new ones.<br>- Requests the creation of a trust where it’s unlikely to be appropriate or necessary |
@@ -297,7 +297,7 @@ Go to:
 ### Client behaviour
 
 | Theme | Indicators |
-| --- | --- |
+| :--- | :--- |
 | The client provides unusual instructions or requests | The client or other parties involved:<br>- asks for limited or no interaction with regulatory agencies and shows an understanding of reporting thresholds<br>- is prepared to pay much higher fees than usual without clear reasons<br>- makes unusual requests with no clear economic reason<br>- changes instructions multiple times or in a short period of time without good reason<br>- asks for shortcuts or speedy transactions, or other activities without a clear reason<br>- wants to take risks to reduce tax bills, or is open to avoiding tax. |
 | The client requests high risk or unusual professional services | The client or other parties involved:<br>- requests or uses unnecessarily complex business ownership structures, including nominee shareholders or bearer shares<br>- asks to buy aged shelf companies, rather than set up new ones<br>- buys companies in liquidation with no economic reason<br>- requests the creation of a trust where it’s unlikely to be appropriate or necessary<br>- requests your practice to form or act for a legal person or arrangement against advice on the appropriateness of the structure or related matters<br>- provides instructions for a series of complicated transfers which appear to be an attempt to hide the fund’s source and intended use.<br>- directs transfers of funds for no reasonable economic benefit. |
 | The client exhibits unusual behaviours or avoids direct contact | The client or other parties involved:<br>- requests undue secrecy, or is reluctant to provide further information or documentation when asked<br>- requests services with no face-to-face interaction<br>- ends the relationship quickly and unexpectedly<br>- appears nervous or defensive when questioned<br>- has multiple accounts in their name or the names of family members or corporate entities with no clear business or other purpose<br>- is involved in transactions or account activities that are suspicious but refuses/is unable to answer questions related to those activities |
@@ -306,7 +306,7 @@ Go to:
 ### Client profile
 
 | Theme | Indicators |
-| --- | --- |
+| :--- | :--- |
 | The client’s request appears inconsistent with their profile | The client:<br>- has a lifestyle and/or transactions which are inconsistent with their known business and personal information<br>- takes on work/employment that’s outside their normal range of goods and services<br>- has records that consistently show business sales losses, but they continue operating without a reasonable explanation<br>- has no employees, which is unusual for their business type<br>- is suspected of using personal accounts for business or vice-versa<br>- recently established a series of new relationships with different financial entities<br>- has changed professional advisers often without legitimate reasons, or was refused service by other professional advisors. |
 | The client provides unusual information during CDD | The client or other parties involved:<br>- provides identity or other verification documents that appear fraudulent or cannot be authenticated<br>- provides identity documents with inconsistencies or differences in details like their name, address, date or birth or phone number<br>- has common identifiers that are used by multiple other people who don’t appear to be related, or are carrying out similar transactions<br>- gives only a post office box address, or pretends it’s a residential or business address to hide their real address<br>- refuses to identify their source of funds or provides information that’s false, misleading or substantially incorrect. |
 | The client is subject to adverse information and potential criminal links | The client, or a person closely linked to the client, has:<br>- been subject to negative media reports or other adverse information from a reliable source, connecting them to profit-generating criminal activity.<br>- ties to industries with known ML/TF risks, including those identified in Australia’s national risk assessments. |
@@ -315,7 +315,7 @@ Go to:
 ### Unusual transactions and behaviours
 
 | Theme | Indicators |
-| --- | --- |
+| :--- | :--- |
 | Transactions between the client and your practice are unusual | The client or other parties involved:<br>- pays you by a method not in line with their profile<br>- unnecessarily splits or structures transactions to avoid identification or reporting thresholds for other financial services<br>- aborts activities or transactions after receiving funds, with a request to refund, or an unexplained request to send funds to a third party<br>- provides confusing details about a transaction, or knows little about its purpose<br>- uses trust accounts for transactions that are more appropriately conducted from their bank account<br>- uses cryptocurrency or other virtual assets inconsistent with their client profile<br>- makes transactions in rounded sum values, not typical of what would be expected<br>- makes transactions consistent with a publicly known trend in criminal activity. |
 | Your client’s transactions are outside of normal patterns | The client or other parties involved:<br>- engages in transactions related to high-value assets with an unclear source of funds<br>- makes transactions involving a disproportionate amount of private funding or physical currency inconsistent with their socio-economic profile<br>- has transaction activity inconsistent with their apparent financial standing, usual activities or employment status (for example, they may be a student, unemployed or on social assistance)<br>- has transaction activity far exceeding the projected activity at the start of the relationship<br>- conducts transactions inconsistent with what’s expected from their declared business (for example, no payroll payments)<br>- makes frequent overseas transfers inconsistent with their financial profile<br>- receives payments from unrelated or unknown third parties without legitimate explanation<br>- has accounts that appear to be used for pass-through activities (for example, to receive and forward funds to others)<br>- is involved in transactions or requests for financial services (for example, loans) that don’t make commercial sense, or with early settlement<br>- has a sudden change in their financial profile, activity or transactions<br>- has transactions with financial connections between individuals or entities that aren’t usually connected (for example, a food importer dealing with an automobile parts exporter)<br>- has a rapid turnover or transactions or activities (for example, they may trade for a short time, close, then start up as a new company)<br>- makes large payments to subsidiaries or similarly-controller companies that are outside the normal course of business<br>- conducts transaction(s) involving a suspected shell entity that appears to have no economic or logical reason to exist<br>- has funds transferred in and out of an account on the same day or in a relatively short period of time without explanation<br>- makes or requests wire transfers to or from multiple beneficiaries that are inconsistent with the expected use of their account type. |
 | Unusual third-party involvement in transactions with your practice | The client:<br>directs funds to a third-party or asks that costs or invoices be paid by someone else<br>brings in a third party to cover costs, repayments, or to received proceeds without a clear reason<br>uses third parties to distance themselves from the transaction. |
@@ -323,19 +323,19 @@ Go to:
 ### Foreign jurisdiction indicators
 
 | Theme | Indicators |
-| --- | --- |
+| :--- | :--- |
 | The client is linked to a high-risk foreign jurisdiction | The client, or a person closely linked to the client:<br>- is based in or is residing in a high-risk jurisdiction<br>- has a company owned or controlled by another company based in a high-risk jurisdiction<br>- transfers funds to or from a country that has no clear connection to them<br>- transfers funds to or from entities in high-risk countries. |
 
 ### Terrorism financing indicators
 
 | Theme | Indicators |
-| --- | --- |
+| :--- | :--- |
 | The client has known links to activities with high terrorism financing risk | The client, or a person closely linked to the client:<br>is known to be involved or suspected of involvement with terrorist or terrorist financing-related activities<br>is based in or linked to countries or regions identified by credible sources as providing funding or support for terrorist activities or that have [listed terrorist organisations](https://www.nationalsecurity.gov.au/what-australia-is-doing/terrorist-organisations/listed-terrorist-organisations) operating within them<br>appears in media or online as fundraising for causes which may be directly or indirectly linked to terrorism or violent extremism<br>is linked to unregistered non-profit organisations or other unlicensed fundraising. |
 
 ### Proliferation financing (PF) indicators
 
 | Theme | Indicators |
-| --- | --- |
+| :--- | :--- |
 | The client is linked to regions or other persons subject to high PF risk | The client or parties involved:<br>are linked to countries of proliferation or sanctions concern (for example, the Democratic People’s Republic of Korea or Iran).<br>share addresses, employment or other details with sanctioned individuals or organisations. |
 | The client deals in goods subject to high PF risk | The client or parties involved:<br>- deal in goods or technical controlled goods listed on the [Defence and Strategic Goods List](https://www.defence.gov.au/business-industry/exporting/export-controls-framework/defence-strategic-goods-list). |
 
@@ -354,10 +354,10 @@ The following sources have been used to produce the ratings for inherent risks, 
 - Financial, criminal and other intelligence holdings.
 
 |  | Record any other materials which you use to review and update this risk assessment in the table below. |
-| --- | --- |
+| :--- | :--- |
 
 | Author | Name of material | Date published | Location of material |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 | e.g. AUSTRAC | e.g. New national risk assessments | e.g. 1 January 2028 | e.g. website URL |
 |  |  |  |  |
 |  |  |  |  |

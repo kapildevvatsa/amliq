@@ -24,7 +24,7 @@ Typical candidate:
 #### Who will hold this role in your practice?
 
 | Name | Position |
-| --- | --- |
+| :--- | :--- |
 |  |  |
 
 ### Senior manager
@@ -45,7 +45,7 @@ Typical candidate:
 #### Who will hold this role in your practice?
 
 | Name | Position |
-| --- | --- |
+| :--- | :--- |
 |  |  |
 
 ### AML/CTF compliance officer
@@ -68,7 +68,7 @@ Typical candidate:
 #### Who will hold this role in your practice?
 
 | Name | Position |
-| --- | --- |
+| :--- | :--- |
 |  |  |
 
 ### Other AML/CTF roles, including client facing personnel
@@ -92,5 +92,5 @@ Typical candidate:
 #### Who will hold this role in your practice?
 
 | Name | Position |
-| --- | --- |
+| :--- | :--- |
 |  |  |

@@ -1,19 +1,19 @@
 ## Version control
 
 | Version | Date approved | Approved by | Summary of changes | Next review due |
-| --- | --- | --- | --- | --- |
-| 1.0 |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
+| :--- | :--- | :--- | :--- | :--- |
+| 1.0 | Click or tap to enter a date. |  |  | Click or tap to enter a date. |
+|  | Click or tap to enter a date. |  |  | Click or tap to enter a date. |
+|  | Click or tap to enter a date. |  |  | Click or tap to enter a date. |
+|  | Click or tap to enter a date. |  |  | Click or tap to enter a date. |
+|  | Click or tap to enter a date. |  |  | Click or tap to enter a date. |
 
 When we update this Policy, we keep the previous version for 7 years.
 
 ## Policy
 
 |  | Before you use these policies<br>Use the Customise the program starter kit guide to customise the personnel and customer sections of the policy document. |
-| --- | --- |
+| :--- | :--- |
 
 Our business has anti-money laundering and counter-terrorism financing (AML/CTF) obligations. These obligations apply when we broker the purchase, sale or transfer of real estate. We call this regulated service 'brokering services' throughout this document, although AUSTRAC calls them a 'designated service'.
 
@@ -73,13 +73,13 @@ Where we refer to escalating something to an AML/CTF compliance officer, we mean
 
 - the compliance officer - they action the matter themselves
 - other personnel - they escalate it to the compliance officer using either the:
-- Unusual activity report information form (for potential suspicious matters)
-- Escalation form (for all other matters).
+1. Unusual activity report information form (for potential suspicious matters)
+2. Escalation form (for all other matters).
 
 #### Timeframes
 
 |  | We include a timeframe for completion for most actions, processes and forms.<br>Where there isn't a timeframe, we need to complete the action, process or form as soon as practicable. This means we need to do it at the earliest time that is possible and practical, considering the facts and circumstances in the individual case. |
-| --- | --- |
+| :--- | :--- |
 
 ## Part 1: Personnel
 
@@ -90,8 +90,8 @@ This section details how we'll appoint, support and manage the people responsibl
 This part has 3 sections. This table summarises the sections and the corresponding policies.
 
 | Section | Actions | Policy, tools and guidance |
-| --- | --- | --- |
-| - Align personnel to roles | Identify who will hold each key role:<br>- governing body<br>- senior manager<br>- AML/CTF compliance officer<br>- customer-facing personnel.<br>Assign responsibility for meeting the AML/CTF obligations to each role we've identified. | [Fill key AML/CTF roles policy](#1-fill-key-amlctf-roles)<br>Processes and forms:<br>- AML/CTF roles form<br>- Assign responsibilities form<br>Guidance:<br>- [Governance](https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/develop-your-amlctf-program-reform/step-1-establish-your-governance-framework-reform) |
+| :--- | :--- | :--- |
+| - Align personnel to roles | Identify who will hold each key role:<br>  - governing body<br>  - senior manager<br>  - AML/CTF compliance officer<br>  - customer-facing personnel.<br>Assign responsibility for meeting the AML/CTF obligations to each role we've identified. | [Fill key AML/CTF roles policy](#1-fill-key-amlctf-roles)<br>Processes and forms:<br>- AML/CTF roles form<br>- Assign responsibilities form<br>Guidance:<br>- [Governance](https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/develop-your-amlctf-program-reform/step-1-establish-your-governance-framework-reform) |
 | - Conduct personnel due diligence | Before confirming appointment, make sure individuals are suitable and meet the requirements for their roles.<br>Make sure they remain suitable by conducting ongoing personnel due diligence.<br>If a person in an AML/CTF role is no longer suitable, take appropriate action. | [Personnel due diligence policy](#2-personnel-due-diligence)<br>Processes and forms:<br>- Personnel due diligence form<br>- Personnel due diligence for AML/CTF compliance officer form<br>- Personnel due diligence where the compliance officer and governing body are the same person form (for single employee businesses to meet the policy).<br>Guidance:<br>- [Governance](https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/develop-your-amlctf-program-reform/step-1-establish-your-governance-framework-reform)<br>- [Personnel due diligence](https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/personnel-due-diligence-and-training-reform/personnel-due-diligence-reform) |
 | - Deliver personnel training | Plan and deliver training to make sure our personnel understand their AML/CTF obligations and can apply the program in their day-to-day work. | [Personnel training policy](#3-personnel-training) |
 
@@ -152,7 +152,7 @@ when there's a change in circumstance that may affect the suitability of personn
 We complete initial PDD by filling out the following forms for the following roles:
 
 | Role | Relevant form |
-| --- | --- |
+| :--- | :--- |
 | Single employee business, or<br>Governing body is also our AML/CTF compliance officer | Personnel due diligence where the compliance officer and governing body are the same person form |
 | AML/CTF compliance officer who isn't also the governing body | Personnel due diligence for AML/CTF compliance officer form |
 | For all other AML/CTF roles | Personnel due diligence form |
@@ -176,7 +176,7 @@ When personnel aren't suitable
 Where we've assessed a person as not being suitable for a role, we take one or more of the following actions, as appropriate:
 
 | Issue | Treatment |
-| --- | --- |
+| :--- | :--- |
 | Minor integrity concern | Take action to lower the risk this person will be exploited by criminal networks or reassign to a less important AML/CTF role |
 | Significant integrity concern | Remove from AML/CTF-related duties |
 | Minor competency issues | Correct through targeted training, formal warnings, disciplinary actions or reassign to a less difficult AML/CTF role |
@@ -266,7 +266,7 @@ A 'customer' includes both the buyer and seller of real estate. This means we co
 This part has 7 sections. This table summarises the sections and the corresponding policies.
 
 | Section | Actions | Policy, tools and guidance |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | - Initial customer due diligence | Conduct initial CDD before starting to provide a customer with a brokering service.<br>Follow the policy and:<br>- Identify the kind of customer - if they're an individual, trust, body corporate or government body. This determines the customer forms we use.<br>- Use the Onboarding form to collect information from a customer.<br>- Use the Initial CDD form to complete initial CDD. We'll complete more checks for complex and high-risk customers.<br>- If we want to work with another conveyancer or real estate agent to verify customer information, use the Request to verify information form. | [Initial customer due diligence policy](#1-initial-customer-due-diligence)<br>Processes and forms:<br>- Onboarding form<br>- Initial customer due diligence form<br>- Request to verify information form<br>Guidance:<br>- [Initial customer due diligence](https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/customer-due-diligence-reform/initial-customer-due-diligence-reform) |
 | - Ongoing customer due diligence | Follow the policy to:<br>- monitor our customer's activity and changes in their information or ML/TF risk throughout our relationship<br>- take appropriate action to mitigate and manage their ML/TF risks.<br>- Use the customer forms to record the results of:<br>- reviews triggered by changes in customer information or ML/TF risk factors<br>- periodic reviews of customer information and ML/TF risk.<br>We must conduct periodic reviews if we still have a business relationship with the customer every:<br>- year for high-risk customers<br>- 2 years for medium-risk customers<br>- 3 years for low-risk customers. | [Ongoing customer due diligence policy](#2-ongoing-customer-due-diligence)<br>Processes and forms:<br>- Trigger event review and update form<br>- Periodic review and update form<br>Guidance:<br>- [Ongoing customer due diligence](https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/customer-due-diligence-reform/ongoing-customer-due-diligence-reform) |
 | - Pre-commencement customer due diligence | Complete appropriate due diligence on all customers we were providing a brokering service to on 1 July 2026. | [Pre-commencement customer due diligence policy](#3-pre-commencement-customer-due-diligence) |
@@ -293,8 +293,8 @@ For a counterparty – before exchange of contracts
 
 To ensure we meet this deadline, we can start completing initial CDD from the moment it is reasonable to conclude that an engagement may involve providing a brokering service.
 
-|  | Under the Privacy Act 1988 (Cth), we can collect personal information when it is reasonably necessary for our functions and activities, including to meet our legal obligations (Australian Privacy Principle 3.2).<br>To comply with our obligations as set out in paragraph 1.1, we can complete initial CDD in the window between:<br>- reasonably concluding that an engagement may involve providing a brokering service<br>- the deadline at paragraph 1.1.<br>For example, for a direct customer, we can reasonably conclude that they are seeking brokering services form the moment they approach us for these services. This means we complete initial CDD between this approach and signing the brokering agreement.<br>For a counterparty, however, this window is often only between:<br>- agreement being reached on the price for real estate - either through the buyer being successful at auction or the parties agreeing to a price under private tender<br>- the exchange of contracts.<br>This often will not be enough time for us to complete initial CDD. For these counterparties, we will often used the delayed initial CDD parts of the Initial CDD form to complete initial CDD on them after exchange of contracts.<br>This will allow us to delay initial CDD until the earlier of: as soon as practicable, 15 days after exchange of contracts or before settlement. |
-| --- | --- |
+|  | Under the Privacy Act 1988 (Cth), we can collect personal information when it is reasonably necessary for our functions and activities, including to meet our legal obligations (Australian Privacy Principle 3.2).<br>To comply with our obligations as set out in paragraph 1.1, we can complete initial CDD in the window between:<br>  - reasonably concluding that an engagement may involve providing a brokering service<br>  - the deadline at paragraph 1.1.<br>For example, for a direct customer, we can reasonably conclude that they are seeking brokering services form the moment they approach us for these services. This means we complete initial CDD between this approach and signing the brokering agreement.<br>For a counterparty, however, this window is often only between:<br>  - agreement being reached on the price for real estate - either through the buyer being successful at auction or the parties agreeing to a price under private tender<br>  - the exchange of contracts.<br>This often will not be enough time for us to complete initial CDD. For these counterparties, we will often used the delayed initial CDD parts of the Initial CDD form to complete initial CDD on them after exchange of contracts.<br>This will allow us to delay initial CDD until the earlier of: as soon as practicable, 15 days after exchange of contracts or before settlement. |
+| :--- | :--- |
 
 When we can delay initial CDD
 
@@ -452,7 +452,7 @@ What we escalate and action
 We escalate the following to our AML/CTF compliance officer to action. We stop providing brokering services unless the compliance officer informs us, we can continue.
 
 | Event | AML/CTF compliance officer action |
-| --- | --- |
+| :--- | :--- |
 | Potential suspicious matter detected | Complete the Unusual activity report review form and report the suspicious matter to AUSTRAC if required.<br>If there are no reasonable grounds for the suspicion, we can tell personnel to resume providing brokering services.<br>If there are reasonable grounds for the suspicion, report the suspicion within the timeframes in the reporting policy and proceed to the 'suspicious matter report will be made' event below. |
 | Customer is high risk, and/or a suspicious matter report will be made and we decide to continue providing brokering services to the customer | Follow the steps in the Enhanced CDD form.<br>Obtain senior manager approval before telling our personnel they can resume providing brokering services. |
 | A new customer, designated service, delivery channel, country or ML/TF risk factor, method or indicator is detected that either:<br>- isn't in our risk assessment<br>- outside our risk appetite, as stated in our risk assessment. | Review and update the program by following the steps in the Maintain your program form.<br>Complete these steps before telling personnel they can resume providing brokering services. |
@@ -462,7 +462,7 @@ We escalate the following to our AML/CTF compliance officer to action. We stop p
 We escalate the following to our AML/CTF compliance officer to report. We don't stop providing brokering services if we escalate any of these:
 
 | Situation | Action |
-| --- | --- |
+| :--- | :--- |
 | A brokering service involves any physical currency transaction valued at $10,000 or more, or the foreign currency equivalent | Make a threshold transaction report via AUSTRAC Online within 10 days of the transaction by following the reporting policy |
 | Any cross-border movement of physical currency and/or bearer negotiable instruments valued at $10,000 or more, or the foreign currency equivalent | Make a cross-border movement report via AUSTRAC Online within the timeframes outlined under the reporting policy |
 
@@ -697,7 +697,7 @@ This section details how we'll keep our AML/CTF program up to date and continue 
 This part has 5 sections:
 
 | Section | Actions | Policy, tools and guidance |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | - Maintain the program | Make sure our AML/CTF program stays up to date as ML/TF risks change.<br>Follow the policy to review and update our program in response to triggers. This includes significant changes to our services, delivery channels, customers or countries we deal with.<br>Respond to new risks:<br>- if personnel detect a new ML/TF risk, method or indicator of criminal activity they'll use the Escalation checklist process – factors not addressed in risk assessment.<br>- When a review and update is triggered, the AML/CTF compliance officer will use the:<br>- Maintain the AML/CTF program form to record this and get senior manager approval for updates<br>- Inherent risk rating and country risk rating processes to assess the new ML/TF risks that arise. | [Maintain the AML/CTF program policy](#1-maintain-our-amlctf-program)<br>Processes and forms:<br>- Escalation checklist process – factors not addressed in risk assessment<br>- AUSTRAC communications process<br>- Maintain the AML/CTF program form<br>- Inherent risk rating and country risk rating processes<br>Guidance:<br>- [Review and update your AML/CTF program](https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/develop-your-amlctf-program-reform/step-4-review-and-update-your-amlctf-program-reform) |
 | - Conduct periodic effectiveness checks and reports | Make sure our AML/CTF compliance officer:<br>- periodically checks if our program is working as intended and being followed<br>- reports annually to our governing body on key compliance activities, the results of effectiveness checks and recommendations for improvement. | [Periodic effectiveness checks policy](#2-periodic-effectiveness-checks)<br>[Reporting policy](#5-reporting)<br>Processes and forms:<br>- Effectiveness check forms<br>- Annual report to the governing body process<br>- Annual report to the governing body form |
 | - Independent evaluations | Conduct and respond to independent evaluations of our AML/CTF program.<br>Conduct an independent evaluation of our AML/CTF program at least once every 3 years.<br>Record how we responded to any findings from the independent evaluation, particularly adverse findings. | [Independent evaluations policy](#3-independent-evaluations)<br>Processes and forms:<br>- Independent evaluation process<br>- Independent evaluation response form<br>Guidance:<br>- [Conduct an independent evaluation](https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/develop-your-amlctf-program-reform/step-5-conduct-independent-evaluation-reform) |
@@ -717,12 +717,12 @@ We keep our program up to date
 Where an event below occurs, we escalate this to the AML/CTF compliance officer to review and, if necessary, update the program to make sure it addresses our ML/TF risks and meets our obligations.
 
 | Event | When we update the program | How we update the program |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | A significant change to any of the following:<br>- kinds of designated (regulated) services we provide (currently, only our brokering services are regulated)<br>- delivery channels we use to provide those services<br>- new or emerging technologies for those services or delivery channels<br>- kinds of customers we provide these services to<br>- the countries we deal with in providing these services. | If the change is within our control, before we provide the brokering service.<br>If the change isn't within our control, as soon as practicable. | For new country risks: use the Update country risk and risk ratings process.<br>For all other risks: use the Update inherent risk and risk ratings process.<br>For deficiencies with policies, procedures, systems and controls: by acting to effectively correct these deficiencies.<br>Use the Maintain your AML/CTF program form to record any updates made within 14 days of the update.<br>Obtain senior manager approval for any:<br>- update to the risk assessment<br>- material change to our policies, procedures, systems and controls. |
-| Any event that shows us our program isn't compliant with our obligations or doesn't address our ML/TF risks | If the event is within our control, before we provide the brokering service.<br>If the event isn't within our control, as soon as practicable. | For new country risks: use the Update country risk and risk ratings process.<br>For all other risks: use the Update inherent risk and risk ratings process.<br>For deficiencies with policies, procedures, systems and controls: by acting to effectively correct these deficiencies.<br>Use the Maintain your AML/CTF program form to record any updates made within 14 days of the update.<br>Obtain senior manager approval for any:<br>- update to the risk assessment<br>- material change to our policies, procedures, systems and controls. |
-| AUSTRAC communicates with us about relevant ML/TF risks or the real estate program starter kit. See [AUSTRAC communications policy](#2-periodic-effectiveness-checks). | As soon as practicable | For new country risks: use the Update country risk and risk ratings process.<br>For all other risks: use the Update inherent risk and risk ratings process.<br>For deficiencies with policies, procedures, systems and controls: by acting to effectively correct these deficiencies.<br>Use the Maintain your AML/CTF program form to record any updates made within 14 days of the update.<br>Obtain senior manager approval for any:<br>- update to the risk assessment<br>- material change to our policies, procedures, systems and controls. |
-| An independent evaluation makes an adverse finding about our program | As soon as practicable | For new country risks: use the Update country risk and risk ratings process.<br>For all other risks: use the Update inherent risk and risk ratings process.<br>For deficiencies with policies, procedures, systems and controls: by acting to effectively correct these deficiencies.<br>Use the Maintain your AML/CTF program form to record any updates made within 14 days of the update.<br>Obtain senior manager approval for any:<br>- update to the risk assessment<br>- material change to our policies, procedures, systems and controls. |
-| If a periodic review and update of our program is due | Once every 3 years | For new country risks: use the Update country risk and risk ratings process.<br>For all other risks: use the Update inherent risk and risk ratings process.<br>For deficiencies with policies, procedures, systems and controls: by acting to effectively correct these deficiencies.<br>Use the Maintain your AML/CTF program form to record any updates made within 14 days of the update.<br>Obtain senior manager approval for any:<br>- update to the risk assessment<br>- material change to our policies, procedures, systems and controls. |
+| Any event that shows us our program isn't compliant with our obligations or doesn't address our ML/TF risks | If the event is within our control, before we provide the brokering service.<br>If the event isn't within our control, as soon as practicable. |  |
+| AUSTRAC communicates with us about relevant ML/TF risks or the real estate program starter kit. See [AUSTRAC communications policy](#2-periodic-effectiveness-checks). | As soon as practicable |  |
+| An independent evaluation makes an adverse finding about our program | As soon as practicable |  |
+| If a periodic review and update of our program is due | Once every 3 years |  |
 
 AUSTRAC communications
 

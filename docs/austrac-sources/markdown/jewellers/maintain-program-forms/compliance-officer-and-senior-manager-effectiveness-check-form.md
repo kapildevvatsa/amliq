@@ -5,7 +5,7 @@ This form helps the governing body assess the effectiveness of the AML/CTF compl
 #### Section 1: Review planning
 
 | Period of review (quarter/date range): |  |
-| --- | --- |
+| :--- | :--- |
 | Files and records selected for review (select all that apply): | [ ]   Suspicious matter report (SMR)<br>[ ]   Threshold transaction report (TTR)<br>[ ]   Enhanced customer due diligence (CDD) records<br>[ ]   AML/CTF program approvals<br>[ ]   High risk customer approvals |
 | File identification/references: |  |
 | Selection rationale:<br>For example, recent incidents, random sample or governance cycle. |  |
@@ -15,7 +15,7 @@ This form helps the governing body assess the effectiveness of the AML/CTF compl
 Choose at least 3 files or activities to check the compliance officer’s performance in implementing the AML/CTF program.
 
 | File or activity reviewed | Area (SMR, TTR, CDD etc) | Test performed | Findings/comments |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 |  |  |  |  |
 |  |  |  |  |
 |  |  |  |  |
@@ -23,7 +23,7 @@ Choose at least 3 files or activities to check the compliance officer’s perfor
 Performance criteria
 
 | Checkpoint | Yes/No | Notes |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | Processes followed correctly: | [ ]   Yes<br>[ ]   No |  |
 | Non-compliance and incidents escalated within timeframes: | [ ]   Yes<br>[ ]   No |  |
 | Appropriate corrective actions implemented: | [ ]   Yes<br>[ ]   No |  |
@@ -32,14 +32,14 @@ Performance criteria
 | Effectiveness checks completed when required: | [ ]   Yes<br>[ ]   No |  |
 
 | List any observations or corrective actions needed: |
-| --- |
+| :--- |
 
 #### Section 3: Senior manager performance
 
 Choose a minimum of 3 records or approvals to test the effectiveness of the senior manager’s oversight and approval activities.
 
 | Record/approval reviewed | Area (program updates, politically exposed persons onboarding, etc) | Test performed | Findings/comments |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 |  |  |  |  |
 |  |  |  |  |
 |  |  |  |  |
@@ -47,19 +47,19 @@ Choose a minimum of 3 records or approvals to test the effectiveness of the seni
 Performance criteria
 
 | Checkpoint | Result | Notes |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | AML/CTF program updates approved before implementation: | [ ]   Yes<br>[ ]   No |  |
 | Onboarding approvals for high risk and politically exposed persons (PEP) customers are documented: | [ ]   Yes<br>[ ]   No |  |
 | Decisions to continue relationships with high risk customers are documented and have been reviewed and approved: | [ ]   Yes<br>[ ]   No |  |
 | Escalated compliance issues reviewed and addressed: | [ ]   Yes<br>[ ]   No |  |
 
 | List any observations or corrective actions needed: |
-| --- |
+| :--- |
 
 #### Section 4: Summary and sign-off
 
 | Overall assessment: | [ ]   Fully effective<br>[ ]   Partially effective<br>[ ]   Not effective |
-| --- | --- |
+| :--- | :--- |
 | Summary of key findings: |  |
 | Recommendations: |  |
 | Completed by: |  |

@@ -3,7 +3,7 @@
 Use this form to consolidate results from periodic testing.
 
 | Reporting period (quarter/date range): |  |
-| --- | --- |
+| :--- | :--- |
 | Reporting frequency: |  |
 | Name of AML/CTF compliance officer completing report: |  |
 | Tests done (select all that apply): | [ ]   Customer-facing personnel performance<br>[ ]   AML/CTF compliance officer and senior manager performance<br>[ ]   Customer onboarding<br>[ ]   Suspicious matter reports (SMRs)<br>[ ]   Threshold transaction reports (TTRs)<br>[ ]   Cross border movement (CBM) reports<br>[ ]   Monitoring/alerts<br>[ ]   Enhanced customer due diligence (CDD)<br>[ ]    Pre-commencement customers |
@@ -17,7 +17,7 @@ Use this form to consolidate results from periodic testing.
 #### Review of failed assessments
 
 | Date failure identified: |  |
-| --- | --- |
+| :--- | :--- |
 | Which assessment failed? Select all that apply: | [ ]   Customer-facing personnel performance<br>[ ]   Customer onboarding<br>[ ]   SMRs<br>[ ]   TTRs<br>[ ]   CBM reports<br>[ ]   AML/CTF compliance officer and senior manager performance<br>[ ]   Monitoring/alerts<br>[ ]   Enhanced CDD<br>[ ]    Pre-commencement customers |
 | Summary of findings: |  |
 | Date of review: |  |

@@ -13,7 +13,7 @@ Complete this form whenever you:
 Complete this section for every activity. Attach any supporting material, such as AUSTRAC communications, internal monitoring results or evaluation reports.
 
 | Date of activity: |  |
-| --- | --- |
+| :--- | :--- |
 | Activity type: | [ ]   Review/update risk assessment<br>[ ]   Review/update policy<br>[ ]   Review/update process<br>[ ]   Review/update forms and systems<br>[ ]   Escalation/approval<br>[ ]   Communication/training<br>[ ]   Record keeping |
 | AML/CTF compliance officer conducting review: |  |
 | Reason for review: | [ ]  Scheduled review<br>[ ]  Regulatory change<br>[ ]  Business change<br>[ ]  Trigger event<br>[ ]  Other (specify): |
@@ -27,12 +27,12 @@ Identify any changes in your kinds of customers, designated services, delivery c
 Record clear findings and submit for senior manager approval before implementation.
 
 | Review completed by: |  |
-| --- | --- |
+| :--- | :--- |
 | Date completed: |  |
 | Key findings:<br>Summarise new or emerging ML/TF risks and how they were identified. |  |
 | Changes required (if any):<br>List updates to the risk assessment or criminal/unusual activity indicators. Attach revised sections. |  |
 | Senior manager approval required:<br>Any material changes need approval. | [ ]   Yes     [ ]   No |
-| Date submitted for approval: |  |
+| Date submitted for approval: | Click or tap to enter a date. |
 | Approval outcome: | [ ]   Approved     [ ]   Rejected |
 | Approval date: |  |
 | Date written update of changes provided to governing body: |  |
@@ -51,7 +51,7 @@ When completing this section:
 - submit all proposed updates to the senior manager for approval before implementation.
 
 | Review completed by: |  |
-| --- | --- |
+| :--- | :--- |
 | Date completed: |  |
 | Document/s reviewed: | [ ]   Policy document<br>[ ]   Process document<br>[ ]   Personnel forms and systems<br>[ ]   Customer forms and systems<br>[ ]   Maintain program forms and systems |
 | Summary of findings:<br>Describe what was reviewed and why changes are needed. |  |
@@ -72,7 +72,7 @@ If a material update isn’t approved by the senior manager or raises material M
 Where updates relate to high risk clients, apply interim controls while you wait for a decision. This could include restricting onboarding of new high risk customers or limiting these transactions.
 
 | Escalated by: |  |
-| --- | --- |
+| :--- | :--- |
 | Date escalated: |  |
 | Escalated to: |  |
 | Reason for escalation: |  |
@@ -89,7 +89,7 @@ Where updates relate to high risk clients, apply interim controls while you wait
 Once approved, communicate updates to all affected personnel and provide training if needed. Make sure updates are integrated into operations and any required training is completed as soon as practicable.
 
 | Date personnel notified: |  |
-| --- | --- |
+| :--- | :--- |
 | Notification method (tick all that apply): | [ ]   Email<br>[ ]   Meeting<br>[ ]   Training session<br>[ ]   Other (specify): |
 | Implementation completed on: |  |
 | Summarise how updates were integrated into business operations: |  |

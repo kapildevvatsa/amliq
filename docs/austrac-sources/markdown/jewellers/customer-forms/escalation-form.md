@@ -3,7 +3,7 @@
 This form is for customer-facing personnel to escalate triggers to the AML/CTF compliance officer.
 
 | Date escalation sent: |  |
-| --- | --- |
+| :--- | :--- |
 | Name of personnel member: |  |
 | Name of customer: |  |
 | Escalation trigger (select all that apply): | [ ]   Enhanced customer due diligence (CDD) – high risk customer<br>[ ]   Positive sanctions check<br>[ ]   Threshold transaction reports (TTRs)<br>[ ]   Unusual activity reports (UARs) or suspicious matter reports (SMRs)<br>[ ]   Cross-border movement (CBM) reports<br>[ ]   Identified ML/TF risk factors, methods and indicators of unusual or criminal behaviour not in risk assessment |
@@ -18,14 +18,14 @@ This form is for customer-facing personnel to escalate triggers to the AML/CTF c
 #### For review by AML/CTF compliance officer:
 
 | Date escalation received from personnel: |  |
-| --- | --- |
+| :--- | :--- |
 | Action taken and rationale: |  |
 | Any additional information (if required): |  |
 
 Complete below if escalation relates to TTR reporting.
 
 | Is all information in the TTR accurate, complete and free of unauthorised alterations? | [ ]   Yes     [ ]   No<br>If NO, what actions were taken to address this? |
-| --- | --- |
+| :--- | :--- |
 | Value of the threshold transaction: | $ |
 | Date TTR submitted: |  |
 | Was the TTR submitted within 10 days after the threshold transaction took place? | [ ]   Yes     [ ]   No |
@@ -34,7 +34,7 @@ Complete below if escalation relates to TTR reporting.
 Complete below if escalation relates to CBM reporting.
 
 | Is all information in the CBM report accurate, complete and free of alterations? | [ ]   Yes     [ ]   No<br>If NO, what actions were taken to address this? |
-| --- | --- |
+| :--- | :--- |
 | Does the information in the CBM report look like it has been altered/changed? | [ ]   Yes     [ ]   No<br>If YES, what actions were taken to address this? |
 | Value of physical currency or bearer negotiable instruments (BNIs) moved: | $ |
 | Date CBM report submitted: |  |

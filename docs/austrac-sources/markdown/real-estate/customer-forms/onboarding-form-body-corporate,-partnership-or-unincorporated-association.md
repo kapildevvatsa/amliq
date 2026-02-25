@@ -7,7 +7,7 @@ An onboarding form must be completed for each person requesting the service. We 
 #### Section A: Customer details
 
 | What kind of entity is the customer? | [ ] Body corporate (including company and incorporated association)<br>[ ] Partnership<br>[ ] Unincorporated association |
-| --- | --- |
+| :--- | :--- |
 | Customer's legal name:<br>For companies, this is the name registered on a government company register (e.g. ASIC).<br>For a partnership or unincorporated association that doesn’t operate under an ABN, this is the names of all the partners of a partnership or members of an unincorporated association. |  |
 | Is the customer known by any other business names, trading names or acronyms?<br>If YES, list those names. | [ ]   Yes     [ ]   No<br>Other names: |
 | Customer's ABN/ACN or foreign equivalent (if any): |  |
@@ -27,7 +27,7 @@ An onboarding form must be completed for each person requesting the service. We 
 Complete this section about a person acting on behalf of the customer. Add an additional table if there is more than one representative.
 
 | Legal name: |  |
-| --- | --- |
+| :--- | :--- |
 | Any other name the customer representative is known by: |  |
 | Date of birth: |  |
 | Residential address: |  |
@@ -44,18 +44,18 @@ Our business will need information so that we can identify the individuals that 
 
 A beneficial owner is an individual who directly or indirectly either:
 
-- owns 25% or more of the customer
-- controls the customer.
+1. owns 25% or more of the customer
+2. controls the customer.
 
 Multiple individuals may own or control the customer through an ownership and control structure. For example, other companies or trusts may control or own 25% or more of the company. Providing information about the company's ownership and control structure will help us verify beneficial owners.
 
 |  | If there are no beneficial owners, provide details of the CEO or equivalent senior staff member.<br>If the company is a publicly listed company subject to public disclosure requirements (for example, a company listed on the ASX), you do not need to fill out beneficial owner information below. |
-| --- | --- |
+| :--- | :--- |
 
 Please provide information about the company's beneficial owners in the following table (add more rows if required):
 
 | Relationship to customer | Legal name | Any other names they are known by | Date of birth (DD/MM/YY) | Residential address (including country of residence) | Occupation | Are they or have they been a person in a position listed in Annexure B? | Identity document to be provided |
-| --- | --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | For example, sole shareholder, majority shareholder, director, partner, president, board member, CEO |  |  |  |  |  | [ ]   Yes     [ ]   No<br>Position:<br>Description of role: |  |
 |  |  |  |  |  |  | [ ]   Yes     [ ]   No<br>Position:<br>Description of role: |  |
 |  |  |  |  |  |  | [ ]   Yes     [ ]   No<br>Position:<br>Description of role: |  |
@@ -65,7 +65,7 @@ Please provide information about the company's beneficial owners in the followin
 I have provided the following documents as required by Appendix A:
 
 | Requirement | Documents provided |
-| --- | --- |
+| :--- | :--- |
 | Identity documents for the customer: |  |
 | Identity documents for all persons identified in Section C: |  |
 | Identity documents for the customer’s representative: |  |
@@ -78,7 +78,7 @@ I have provided the following documents as required by Appendix A:
 Is there any further information you want to provide in relation to the above questions?
 
 | Provide details here: |
-| --- |
+| :--- |
 
 #### Important information
 
@@ -92,7 +92,7 @@ It is an offence under sections 137 and 140 of the Anti-Money Laundering and Cou
 By completing and signing this form you confirm that the information provided is correct and accurate. You also consent to identities being verified electronically and to us disclosing your information to third parties to help us meet our obligations under the AML/CTF Act.
 
 | Customer name: |  |
-| --- | --- |
+| :--- | :--- |
 | Name of person completing this form: |  |
 | Date: |  |
 | Signature: |  |
@@ -106,7 +106,7 @@ For any of these documents, please provide an original or a reliable copy. This 
 Please provide one or more of the following:
 
 | - A copy of the customer’s constitution<br>- A copy of the customer’s charter<br>- A copy of the customer’s rules<br>- A copy of distribution(s) of member statements<br>- A copy of the partnership agreements<br>- Certificate of Incorporation<br>- Certificate of Good Standing<br>- Memorandum and articles of association<br>- Evidence of the source of funds/wealth. For example, bank statement, tax assessment etc. |
-| --- |
+| :--- |
 
 #### Identification documents for individuals
 
@@ -117,7 +117,7 @@ Provide one of the following any representative and beneficial owners:
 - Option 3: one primary non-photographic identification document and a secondary identification document, along with a reference.
 
 | Document category | Examples of documents |
-| --- | --- |
+| :--- | :--- |
 | Primary photographic identification documents | - Australian passport<br>- Australian proof of age card<br>- Australian driver’s license<br>- Foreign passport<br>- Foreign identity card |
 | Primary non-photographic identification documents | - Australian birth certificate or birth extract<br>- Australian citizenship certificate<br>- Australian concession card (pensioner concession card, health care card, senior’s health card)<br>- Medicare card<br>- Veteran card<br>- Change of name certificate<br>- Marriage certificate<br>- Foreign birth certificate<br>- Foreign citizenship certificate |
 | Secondary identification documents | - Utility notice issued in the last 3 months<br>- Council rates notice issued in the last 3 months<br>- Australian bank statement issued in the last 3 months<br>- Notices issued by a Commonwealth, state, territory or local government body issued in the last 3 months<br>- Income tax assessment notice issued by the Australian Taxation Office (ATO) in the last 12 months<br>- Payslip or letter from employer containing the individual's name issued in the last 3 months |

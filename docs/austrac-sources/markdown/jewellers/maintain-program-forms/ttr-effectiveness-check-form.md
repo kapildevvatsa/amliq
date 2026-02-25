@@ -9,7 +9,7 @@ For each report selected, include the selection rationale.
 For example, recent errors or random sample.
 
 | Files selected (list file ID/reference) | Selection rationale | Period reviewed (quarter/timeframe) |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 |  |  |  |
 |  |  |  |
 |  |  |  |
@@ -19,7 +19,7 @@ For example, recent errors or random sample.
 For each report selected, confirm the following details:
 
 | File identification/reference | Transaction date | Value | Customer name | Jurisdiction (domestic/international) | Notes |
-| --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 |  |  |  |  |  |  |
 |  |  |  |  |  |  |
 |  |  |  |  |  |  |
@@ -29,7 +29,7 @@ For each report selected, confirm the following details:
 Review each report and confirm the required information has been recorded and reported.
 
 | Checkpoint | Complete and accurate? | Comments/missing information |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | Name and details of all parties involved: | [ ]   Yes     [ ]   No |  |
 | Transaction type and amount: | [ ]   Yes     [ ]   No |  |
 | Transaction date and time: | [ ]   Yes     [ ]   No |  |
@@ -38,7 +38,7 @@ Review each report and confirm the required information has been recorded and re
 | Supporting documentation (for example, receipts) retained: | [ ]   Yes     [ ]   No |  |
 
 | If any issues are identified, list corrective actions required: |
-| --- |
+| :--- |
 
 #### Section 4: Timeliness review
 
@@ -47,7 +47,7 @@ Review the report and confirm all required information has been submitted within
 Note: The timeframes are within 10 business days after the transaction takes place.
 
 | Record identification | Date of report | Submission date | Within timeframe? | Comments/reasons for delay |
-| --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- |
 |  |  |  | [ ]   Yes<br>[ ]   No |  |
 |  |  |  | [ ]   Yes<br>[ ]   No |  |
 |  |  |  | [ ]   Yes<br>[ ]   No |  |

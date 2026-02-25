@@ -7,13 +7,13 @@ An onboarding form must be completed for each person requesting the service. We 
 #### Section A: Client details
 
 | Legal name: |  |
-| --- | --- |
+| :--- | :--- |
 | Is the client known by any other names?<br>If YES, list those names. | [ ]   Yes     [ ]   No<br>Other names: |
 | Date of birth: |  |
 | Residential address: |  |
 | Country of residence: |  |
 | Occupation: |  |
-| What service are you seeking and why?<br>For example:<br>- setting up a corporate structure<br>- assisting in the purchase of a company |  |
+| What service are you seeking and why?<br>For example:<br>  - setting up a corporate structure<br>  - assisting in the purchase of a company |  |
 | Will the service you're seeking involve the handling of physical cash or virtual assets?<br>Choose all that apply. | [ ]   Physical currency (cash) - specify amount:<br>[ ]   Virtual assets - specify amount:<br>[ ]   None of the above |
 | Are you or have you been a member of a parliament, high ranking member of a government body, a member of a court or other position listed in Appendix B? | [ ]   Yes     [ ]   No<br>If YES, position and role description: |
 | Do you have a family member or a close business associate that is or has been a member of a parliament, high ranking member of a government body, a member of a court or other position listed in Appendix B? | [ ]   Yes     [ ]   No<br>If YES, position and role description: |
@@ -23,7 +23,7 @@ An onboarding form must be completed for each person requesting the service. We 
 Complete this section if you are a sole trader and are requesting services from us for your practice’s purposes.
 
 | Trading name: |  |
-| --- | --- |
+| :--- | :--- |
 | ABN or foreign equivalent (if applicable): |  |
 | Address of principal place of business: |  |
 | Nature and purpose of the business:<br>For example, what sector does it operate in, and what services does it provide? If it’s not a commercial activity, what is its purpose? |  |
@@ -33,7 +33,7 @@ Complete this section if you are a sole trader and are requesting services from 
 Complete this section if a person is acting on behalf of the client.
 
 | Legal name: |  |
-| --- | --- |
+| :--- | :--- |
 | Any other name the client representative is known by: |  |
 | Date of birth: |  |
 | Residential address: |  |
@@ -48,7 +48,7 @@ Complete this section if a person is acting on behalf of the client.
 I have provided the following documents as required by Appendix A:
 
 | Requirement | Document provided |
-| --- | --- |
+| :--- | :--- |
 | Identity documents for the client: |  |
 | Identity documents for the client’s representative: |  |
 | Authority for any client’s representative to act: |  |
@@ -57,7 +57,7 @@ I have provided the following documents as required by Appendix A:
 Is there any further information you want to provide in relation to the above questions?
 
 | Provide details here: |
-| --- |
+| :--- |
 
 #### Important information
 
@@ -71,7 +71,7 @@ It is an offence under sections 137 and 140 of the Anti-Money Laundering and Cou
 By completing and signing this form you confirm that the information provided is correct and accurate. You also consent to your and any representative's identification being verified electronically and to us disclosing your information to third parties to help us meet our obligations under the AML/CTF Act.
 
 | Client or client representative name: |  |
-| --- | --- |
+| :--- | :--- |
 | Date: |  |
 | Signature: |  |
 
@@ -88,7 +88,7 @@ If you are the client's representative, provide the above documents for yourself
 For any of these documents, please provide an original or a reliable copy. This includes physical copies or electronic sources.
 
 | Document category | Examples of documents |
-| --- | --- |
+| :--- | :--- |
 | Primary photographic identification documents | - Australian passport<br>- Australian proof of age card<br>- Australian driver’s license<br>- Foreign passport<br>- Foreign identity card |
 | Primary non-photographic identification documents | - Australian birth certificate or birth extract<br>- Australian citizenship certificate<br>- Australian concession card (pensioner concession card, health care card, senior’s health card)<br>- Medicare card<br>- Veteran card<br>- Change of name certificate<br>- Marriage certificate<br>- Foreign birth certificate<br>- Foreign citizenship certificate |
 | Secondary identification documents | - Utility notice issued in the last 3 months<br>- Council rates notice issued in the last 3 months<br>- Australian bank statement issued in the last 3 months<br>- Notices issued by a Commonwealth, state, territory or local government body issued in the last 3 months<br>- Income tax assessment notice issued by the Australian Taxation Office (ATO) in the last 12 months<br>- Payslip or letter from employer containing the individual's name issued in the last 3 months |

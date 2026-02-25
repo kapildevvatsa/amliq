@@ -7,7 +7,7 @@ An onboarding form must be completed for each person requesting the service. We 
 #### Section A: Client details
 
 | Government body’s full name: |  |
-| --- | --- |
+| :--- | :--- |
 | Is this body commonly known by any other names or acronyms?<br>If YES, list those names and acronyms. | [ ]   Yes     [ ]   No<br>Other names: |
 | ABN/ACN or foreign equivalent (if any): |  |
 | Is the government body registered with ASIC or another relevant domestic or foreign registration body? | [ ]   Yes     [ ]   No<br>Details: |
@@ -22,7 +22,7 @@ An onboarding form must be completed for each person requesting the service. We 
 Complete this section about a person acting on behalf of the client. Add an additional table if there is more than one representative.
 
 | Legal name: |  |
-| --- | --- |
+| :--- | :--- |
 | Any other name the client representative is known by: |  |
 | Date of birth: |  |
 | Residential address: |  |
@@ -38,7 +38,7 @@ Complete this section about a person acting on behalf of the client. Add an addi
 I have provided the following documents as required by Appendix A:
 
 | Requirement | Documents provided |
-| --- | --- |
+| :--- | :--- |
 | Identity documents for the client: |  |
 | Identity documents for the client’s representative: |  |
 | Authority for any client’s representative to act: |  |
@@ -48,7 +48,7 @@ I have provided the following documents as required by Appendix A:
 Is there any further information you want to provide in relation to the above questions?
 
 | Provide details here: |
-| --- |
+| :--- |
 
 #### Important information
 
@@ -62,7 +62,7 @@ It is an offence under sections 137 and 140 of the Anti-Money Laundering and Cou
 By completing and signing this form you confirm that the information provided is correct and accurate. You also consent to identities being verified electronically and to us disclosing your information to third parties to help us meet our obligations under the AML/CTF Act.
 
 | Client name: |  |
-| --- | --- |
+| :--- | :--- |
 | Name of person completing this form: |  |
 | Date: |  |
 | Signature: |  |
@@ -80,7 +80,7 @@ Provide one of the following for any representative:
 - Option 3: one primary non-photographic identification document and a secondary identification document, along with a reference.
 
 | Document category | Examples of documents |
-| --- | --- |
+| :--- | :--- |
 | Primary photographic identification documents | - Australian passport<br>- Australian proof of age card<br>- Australian driver’s license<br>- Foreign passport<br>- Foreign identity card |
 | Primary non-photographic identification documents | - Australian birth certificate or birth extract<br>- Australian citizenship certificate<br>- Australian concession card (pensioner concession card, health care card, senior’s health card)<br>- Medicare card<br>- Veteran card<br>- Change of name certificate<br>- Marriage certificate<br>- Foreign birth certificate<br>- Foreign citizenship certificate |
 | Secondary identification documents | - Utility notice issued in the last 3 months<br>- Council rates notice issued in the last 3 months<br>- Australian bank statement issued in the last 3 months<br>- Notices issued by a Commonwealth, state, territory or local government body issued in the last 3 months<br>- Income tax assessment notice issued by the Australian Taxation Office (ATO) in the last 12 months<br>- Payslip or letter from employer containing the individual's name issued in the last 3 months |
