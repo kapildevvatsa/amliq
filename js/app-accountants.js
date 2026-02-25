@@ -328,6 +328,7 @@ const App = {
 
     const phaseKeys = [
       [],
+      [],
       ['enrolment', 'riskAssessment', 'governance', 'seniorApproval'],
       ['cddProcedures', 'monitoring', 'reporting', 'recordKeeping', 'training'],
       ['programReview', 'evaluation']

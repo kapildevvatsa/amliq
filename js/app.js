@@ -340,6 +340,7 @@ const App = {
     // Phase percentages
     const phaseKeys = [
       [],
+      [],
       ['enrolment', 'riskAssessment', 'governance'],
       ['cddProcedures', 'monitoring', 'reporting', 'recordKeeping', 'training'],
       ['programReview', 'evaluation']
