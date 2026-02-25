@@ -175,15 +175,15 @@ const Subscription = {
   // ─── POST-CHECKOUT ACTIVATION ──────────────────────────────────────────────
 
   /**
-   * Call on page load. If ?checkout_success=1 is in URL, poll the
-   * check-subscription API to wait for the webhook to update Cognito.
+   * Call on page load. If ?checkout_success=1 is in URL or the checkout
+   * pending flag is set, show a spinner and poll. Returns true if handled.
    */
   handlePostCheckout() {
     var params = new URLSearchParams(window.location.search);
     var fromUrl = params.get('checkout_success') === '1';
     var fromFlag = sessionStorage.getItem('amliq_checkout_pending') === '1';
 
-    if (!fromUrl && !fromFlag) return;
+    if (!fromUrl && !fromFlag) return false;
 
     // Clean up both signals
     sessionStorage.removeItem('amliq_checkout_pending');
@@ -195,11 +195,55 @@ const Subscription = {
     // If tier is already pro (JWT was fresh), skip polling
     if (this.isPro()) {
       this._showActivationSuccess();
-      return;
+      return true;
     }
 
     this._showActivationSpinner();
     this._pollSubscription(0);
+    return true;
+  },
+
+  /**
+   * Background sync: if the user is logged in but on the free tier, check
+   * the API to see if Cognito has been updated (e.g. after a Stripe checkout
+   * that redirected to a different domain). This removes any dependency on
+   * Stripe redirect URLs or sessionStorage flags.
+   */
+  _syncSubscriptionStatus() {
+    if (!window.T2C_USER_ID || this.isPro()) return;
+
+    var token = sessionStorage.getItem('amliq_id_token');
+    if (!token) return;
+
+    var self = this;
+
+    fetch(this.API_BASE_URL + '/subscription', {
+      method: 'GET',
+      headers: { 'Authorization': 'Bearer ' + token },
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      if (data.tier === 'pro' || data.pdf_purchased === true) {
+        if (data.tier === 'pro') window.T2C_TIER = 'pro';
+        if (data.pdf_purchased) window.T2C_PDF_PURCHASED = true;
+
+        var refreshDone = (typeof window.amliqRefreshTokens === 'function')
+          ? window.amliqRefreshTokens()
+          : Promise.resolve();
+
+        Promise.resolve(refreshDone).then(function () {
+          self._showActivationSuccess();
+          if (typeof App !== 'undefined') {
+            App.renderAllSections();
+            self.enhanceSidebar();
+            App.navigateTo(App.currentSection);
+          }
+        });
+      }
+    })
+    .catch(function () {
+      // Silent failure — background check, no user impact
+    });
   },
 
   _showActivationSpinner() {
@@ -318,6 +362,11 @@ const Subscription = {
    */
   init() {
     this.enhanceSidebar();
-    this.handlePostCheckout();
+    var checkoutHandled = this.handlePostCheckout();
+    // If no explicit checkout signal was detected, do a background sync
+    // to catch cases where Stripe redirected to a different domain
+    if (!checkoutHandled) {
+      this._syncSubscriptionStatus();
+    }
   },
 };
