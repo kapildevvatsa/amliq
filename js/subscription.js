@@ -71,6 +71,9 @@ const Subscription = {
     if (typeof Analytics !== 'undefined') {
       Analytics.track('Checkout_Started', { purchase_type: priceType });
     }
+    // Flag that a checkout is in progress so we can detect the return
+    // even if the Stripe redirect URL lacks ?checkout_success=1
+    sessionStorage.setItem('amliq_checkout_pending', '1');
     window.open(this.getCheckoutUrl(priceType), '_self');
   },
 
@@ -177,11 +180,17 @@ const Subscription = {
    */
   handlePostCheckout() {
     var params = new URLSearchParams(window.location.search);
-    if (params.get('checkout_success') !== '1') return;
+    var fromUrl = params.get('checkout_success') === '1';
+    var fromFlag = sessionStorage.getItem('amliq_checkout_pending') === '1';
 
-    // Clean the URL
-    var cleanUrl = window.location.pathname;
-    history.replaceState(null, '', cleanUrl);
+    if (!fromUrl && !fromFlag) return;
+
+    // Clean up both signals
+    sessionStorage.removeItem('amliq_checkout_pending');
+    if (fromUrl) {
+      var cleanUrl = window.location.pathname;
+      history.replaceState(null, '', cleanUrl);
+    }
 
     // If tier is already pro (JWT was fresh), skip polling
     if (this.isPro()) {
@@ -274,18 +283,21 @@ const Subscription = {
         if (data.pdf_purchased) window.T2C_PDF_PURCHASED = true;
 
         // Force token refresh so the JWT has updated claims for future page loads
-        if (typeof window.amliqRefreshTokens === 'function') {
-          window.amliqRefreshTokens();
-        }
+        // Await the refresh before re-rendering to ensure the new token is saved
+        var refreshDone = (typeof window.amliqRefreshTokens === 'function')
+          ? window.amliqRefreshTokens()
+          : Promise.resolve();
 
-        self._showActivationSuccess();
+        Promise.resolve(refreshDone).then(function () {
+          self._showActivationSuccess();
 
-        // Re-render the page with updated tier
-        if (typeof App !== 'undefined') {
-          App.renderAllSections();
-          self.enhanceSidebar();
-          App.navigateTo(App.currentSection);
-        }
+          // Re-render the page with updated tier
+          if (typeof App !== 'undefined') {
+            App.renderAllSections();
+            self.enhanceSidebar();
+            App.navigateTo(App.currentSection);
+          }
+        });
       } else {
         setTimeout(function () {
           self._pollSubscription(attempt + 1);
