@@ -6,11 +6,15 @@ const AMLiqData = {
   // ─── GLOSSARY ──────────────────────────────────────────────────────────────
   glossary: [
     { term: 'AML', definition: 'Anti-Money Laundering — laws and processes to prevent criminals from disguising illegal money as legitimate income.' },
+    { term: 'ACR', definition: 'Annual Compliance Report — a report submitted to AUSTRAC by 31 March each year covering the previous calendar year. A copy must also be provided to the governing body.' },
     { term: 'AML/CTF Act', definition: 'The Anti-Money Laundering and Counter-Terrorism Financing Act 2006 (Cth) — the primary Australian legislation governing AML/CTF obligations for reporting entities.' },
     { term: 'AML/CTF Program', definition: 'A documented set of policies, procedures, and controls a reporting entity must adopt to identify, mitigate, and manage ML/TF/PF risks. Consists of a risk assessment, policy document, and process document.' },
     { term: 'AML/CTF Rules', definition: 'The Anti-Money Laundering and Counter-Terrorism Financing Rules 2025 — delegated legislation made under the AML/CTF Act that sets out detailed requirements.' },
     { term: 'AUSTRAC', definition: 'Australian Transaction Reports and Analysis Centre — Australia\'s financial intelligence agency and AML/CTF regulator.' },
+    { term: 'Basel AML Index', definition: 'A country risk scoring tool maintained by the Basel Institute on Governance that ranks countries according to their risk of money laundering and terrorism financing. Referenced in AUSTRAC\'s country risk methodology.' },
     { term: 'Beneficial Owner', definition: 'The natural person (individual) who ultimately owns or controls a company, trust, partnership, or other entity — directly or indirectly. Generally anyone owning or controlling 25%+ of a company.' },
+    { term: 'BNI', definition: 'Bearer Negotiable Instrument — includes cheques, money orders, promissory notes, and traveller\'s cheques that are payable to bearer. Cross-border movements of BNIs valued at $10,000 or more require a CBM report.' },
+    { term: 'CBM', definition: 'Cross-Border Movement report — filed with AUSTRAC when you accept or receive the cross-border transfer of physical currency and/or bearer negotiable instruments (BNIs) valued at $10,000 or more. Must be filed before customs (if carrying), before mailing/shipping, or within 5 business days of receipt.' },
     { term: 'CDD', definition: 'Customer Due Diligence — the process of identifying, verifying, and assessing the risk of your clients before providing designated services. Also known as KYC (Know Your Customer).' },
     { term: 'CTF', definition: 'Counter-Terrorism Financing — laws and processes to prevent money being used to fund terrorism.' },
     { term: 'Designated Service', definition: 'A specific type of service captured by the AML/CTF Act. For accountants, there are 8 designated services including entity creation, M&A assistance, nominee roles, registered office provision, and more.' },
@@ -21,12 +25,14 @@ const AMLiqData = {
     { term: 'FATF Grey List', definition: 'Countries with strategic deficiencies in their AML/CTF frameworks that are under increased monitoring by FATF.' },
     { term: 'Gatekeeper', definition: 'A professional (such as an accountant or lawyer) whose expertise in structuring transactions, creating entities, and managing funds makes them attractive targets for criminal exploitation. Accountants are internationally recognised as gatekeeper professionals.' },
     { term: 'Governing Body', definition: 'The board of directors, partners, trustees, or senior management responsible for oversight and governance of the practice. Must exercise ongoing oversight of ML/TF/PF risk.' },
-    { term: 'IFTI', definition: 'International Fund Transfer Instruction — a report required when you are involved in sending or receiving international electronic fund transfers.' },
+    { term: 'IFTI', definition: 'International Fund Transfer Instruction — a report for international electronic fund transfers. IFTIs do NOT apply to accountants. IFTIs are a financial institution obligation. For accountants, the relevant cross-border report is a CBM (Cross-Border Movement) report for physical currency/BNIs >= $10,000.' },
     { term: 'Independent Evaluation', definition: 'A review of the AML/CTF program by someone independent of the program (i.e., not the compliance officer or program designer). Required at least once every 3 years.' },
     { term: 'KYC', definition: 'Know Your Customer — another term for Customer Due Diligence (CDD). The process of verifying who your clients are.' },
     { term: 'ML/TF/PF', definition: 'Money Laundering / Terrorism Financing / Proliferation Financing — the three primary risks that the AML/CTF regime is designed to address.' },
     { term: 'Money Laundering', definition: 'The process by which criminals disguise the origins of illegally obtained money to make it appear legitimate. Accountants may unknowingly assist through entity creation, financing advice, and transaction structuring.' },
+    { term: 'Offboarding', definition: 'The process of declining or ceasing to provide professional services to a client who falls outside the practice\'s risk appetite or where continuing would cause the practice to fail to meet its AML/CTF obligations.' },
     { term: 'PEP', definition: 'Politically Exposed Person — someone who holds or has held a prominent public position (domestically or internationally), or is a family member or close associate of such a person.' },
+    { term: 'Pre-commencement CDD', definition: 'Lighter due diligence conducted on clients who were already receiving professional services on 1 July 2026. These clients are monitored for triggers that require full initial CDD, such as an SMR submission or a request for a new professional service.' },
     { term: 'PF', definition: 'Proliferation Financing — the act of providing funds or financial services to support the development, production, or acquisition of weapons of mass destruction.' },
     { term: 'Reporting Entity', definition: 'A business that provides designated services under the AML/CTF Act and therefore has compliance obligations including enrolment, CDD, and reporting.' },
     { term: 'Reporting Group', definition: 'Two or more reporting entities under common ownership or control that may adopt a joint AML/CTF program. A lead entity is nominated to be responsible for the joint program.' },
@@ -195,6 +201,11 @@ const AMLiqData = {
     { id: 'rf28', category: 'jurisdiction', severity: 'red', title: 'Foreign national seeking Australian entity with no Australian connection', detail: 'No business, family, or residency ties to Australia. Cannot explain why they need an Australian company, trust, or structure.' },
     { id: 'rf29', category: 'jurisdiction', severity: 'red', title: 'Cross-border transactions with no commercial rationale', detail: 'Money flowing between jurisdictions without business justification. Complex transfer paths through multiple countries.' },
     { id: 'rf30', category: 'jurisdiction', severity: 'red', title: 'Foreign nominees used to hold Australian assets', detail: 'Overseas individuals acting as nominee directors, shareholders, or trustees for Australian entities with no clear reason.' },
+
+    // Category 5: Terrorism / Proliferation Financing Indicators
+    { id: 'rf31', category: 'terrorism', severity: 'red', title: 'Client linked to terrorism financing activities', detail: 'The client or a closely linked person is known or suspected to be involved with terrorist or terrorism financing-related activities, is based in or linked to countries identified as providing funding or support for terrorist activities, or appears in media fundraising for causes linked to terrorism or violent extremism.' },
+    { id: 'rf32', category: 'terrorism', severity: 'red', title: 'Client linked to unregistered NPO or unlicensed fundraising', detail: 'The client is linked to unregistered non-profit organisations or other unlicensed fundraising activities. Charities and NPOs can be exploited as a channel for terrorism financing through witting or unwitting donations diverted for illicit purposes.' },
+    { id: 'rf33', category: 'terrorism', severity: 'red', title: 'Client linked to proliferation financing risk', detail: 'The client or parties involved are linked to countries of proliferation or sanctions concern (e.g., North Korea, Iran), share addresses, employment, or other details with sanctioned individuals or organisations, or deal in goods listed on the Defence and Strategic Goods List.' },
   ],
 
   // ─── QUIZ QUESTIONS ───────────────────────────────────────────────────────
@@ -419,7 +430,7 @@ const AMLiqData = {
       { id: 'rep2', text: 'Define SMR timeframes (24 hours for terrorism, 3 business days for other)', detail: 'Ensure staff know the filing deadlines: 24 hours for terrorism financing suspicions; 3 business days for all other suspicious matters.' },
       { id: 'rep3', text: 'Establish procedure for Threshold Transaction Reports (TTRs) — $10,000+ physical cash', detail: 'Document the process for identifying and filing TTRs for any physical cash receipt of $10,000 or more.' },
       { id: 'rep4', text: 'Define TTR timeframe (10 business days)', detail: 'TTRs must be filed within 10 business days of the transaction.' },
-      { id: 'rep5', text: 'Establish procedure for IFTI reports (if applicable)', detail: 'Document when IFTIs apply — mainly if you hold client funds in trust and receive international wire transfers.' },
+      { id: 'rep5', text: 'Establish procedure for Cross-Border Movement (CBM) reports', detail: 'Document when CBM reports apply — when you accept or receive cross-border transfers of physical currency and/or bearer negotiable instruments (BNIs) valued at $10,000 or more. Note: IFTIs (electronic international transfers) do NOT apply to accountants.' },
       { id: 'rep6', text: 'Establish procedure for annual AML/CTF compliance report', detail: 'Document the process for preparing and submitting the annual compliance report to AUSTRAC.' },
       { id: 'rep7', text: 'Document the tipping-off prohibition and train staff on it', detail: 'Ensure all staff understand they must not disclose an SMR to the client. This is a criminal offence (up to 2 years imprisonment).' },
       { id: 'rep8', text: 'Set up access to AUSTRAC Online for report filing', detail: 'Ensure your compliance officer has access to AUSTRAC Online (online.austrac.gov.au) to file reports.' },
@@ -431,6 +442,7 @@ const AMLiqData = {
       { id: 'rk3', text: 'Define secure storage method (digital and/or physical)', detail: 'Specify how records will be stored securely, with protection against unauthorised access, loss, or damage.' },
       { id: 'rk4', text: 'Ensure records are retrievable within a reasonable timeframe', detail: 'Records must be accessible if AUSTRAC requests them. Your storage system must allow for timely retrieval.' },
       { id: 'rk5', text: 'Confirm storage complies with privacy obligations (APPs)', detail: 'Ensure your record storage complies with the Australian Privacy Principles (APP) under the Privacy Act 1988.' },
+      { id: 'rk6', text: 'Include CBM report copies in record keeping procedures', detail: 'If your practice receives cross-border movements of physical currency or BNIs >= $10,000, retain copies of CBM reports for 7 years.' },
     ],
     training: [
       { id: 'tr1', text: 'Develop AML/CTF training content for staff', detail: 'Create training materials covering ML/TF/PF awareness, the gatekeeper role, your AML/CTF program, CDD procedures, red flags, reporting, tipping-off, and record keeping.' },
@@ -506,7 +518,7 @@ const AMLiqData = {
     { num: 6, title: 'Conduct initial CDD for designated service clients', icon: '🪪', summary: 'Identify and verify clients before providing any designated service. CDD only applies to designated service engagements, not exempt services.', section: 'cdd' },
     { num: 7, title: 'Conduct ongoing CDD', icon: '🔄', summary: 'Monitor client relationships throughout the engagement. Keep client information up to date and re-assess risk as circumstances change.', section: 'cdd' },
     { num: 8, title: 'Screen for PEPs and sanctions', icon: '🔎', summary: 'Screen all designated service clients against PEP lists and the DFAT Consolidated Sanctions List as part of initial and ongoing CDD.', section: 'cdd' },
-    { num: 9, title: 'Report to AUSTRAC', icon: '📤', summary: 'File SMRs, TTRs, IFTIs (if applicable), and an annual compliance report. Never tip off clients about reports.', section: 'reporting' },
+    { num: 9, title: 'Report to AUSTRAC', icon: '📤', summary: 'File SMRs, TTRs, CBM reports (if applicable), and an annual compliance report. Never tip off clients about reports.', section: 'reporting' },
     { num: 10, title: 'Keep records, train staff, plan evaluation', icon: '🗂️', summary: 'Retain all records for 7 years. Conduct initial and annual staff training. Plan an independent evaluation at least every 3 years.', section: 'record-keeping' },
   ],
 
@@ -545,7 +557,7 @@ const AMLiqData = {
     { category: 'Reporting', title: 'Suspicious Matter Reports (Reform)', url: 'https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/reporting-austrac-reform/suspicious-matter-reports-reform', desc: 'When and how to file Suspicious Matter Reports.' },
     { category: 'Reporting', title: 'Threshold Transaction Reports (Reform)', url: 'https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/reporting-austrac-reform/threshold-transaction-reports-reform', desc: 'When and how to file Threshold Transaction Reports for physical cash.' },
     { category: 'Reporting', title: 'Tipping Off', url: 'https://www.austrac.gov.au/about-us/amlctf-reform/current-reporting-entities/tipping-off', desc: 'AUSTRAC guidance on the tipping-off prohibition — what you must not disclose.' },
-    { category: 'Reporting', title: 'AUSTRAC Online (Enrolment & Reporting)', url: 'https://online.austrac.gov.au', desc: 'The AUSTRAC Online portal — where you enrol and file reports (SMRs, TTRs, IFTIs, Annual Reports).' },
+    { category: 'Reporting', title: 'AUSTRAC Online (Enrolment & Reporting)', url: 'https://online.austrac.gov.au', desc: 'The AUSTRAC Online portal — where you enrol and file reports (SMRs, TTRs, CBM reports, Annual Reports).' },
     // External References
     { category: 'External References', title: 'DFAT Consolidated Sanctions List', url: 'https://www.dfat.gov.au/international-relations/security/sanctions/consolidated-list', desc: 'The Australian Government\'s list of persons and entities subject to targeted financial sanctions. Check this for every client.' },
     { category: 'External References', title: 'Money Laundering National Risk Assessment 2024', url: 'https://www.austrac.gov.au/business/how-comply-guidance-and-resources/guidance-resources/money-laundering-australia-national-risk-assessment-2024', desc: 'AUSTRAC\'s 2024 national risk assessment — identifies accounting as a HIGH risk sector for money laundering.' },
@@ -565,6 +577,7 @@ const AMLiqData = {
       { id: 'rc7', text: 'Do you have clients who are reluctant to provide identification or business information?', risk: 'high', reason: 'Reluctance to provide ID may indicate identity concealment.' },
       { id: 'rc8', text: 'Do you have many one-off or short-term client engagements (e.g., entity setup with no ongoing relationship)?', risk: 'high', reason: 'Transactional relationships reduce ongoing monitoring ability.' },
       { id: 'rc9', text: 'Do you act for clients who have been refused services by other professionals?', risk: 'high', reason: 'Prior refusal suggests other firms identified red flags.' },
+      { id: 'rc10', text: 'Do you deal with charities, non-profit organisations, or unregistered associations?', risk: 'medium', reason: 'NPOs can be exploited for terrorism financing through witting or unwitting donations diverted for illicit purposes.' },
     ],
     service: [
       { id: 'rs1', text: 'Do you create or restructure companies, trusts, or other entities? (Service 6)', risk: 'high', reason: 'Entity creation is a key ML vector — criminals need structures to layer funds.' },
@@ -576,6 +589,7 @@ const AMLiqData = {
       { id: 'rs7', text: 'Do you assist with financing arrangements? (Service 4)', risk: 'medium', reason: 'Financial complexity creates layering opportunities.' },
       { id: 'rs8', text: 'Do you assist with property transactions? (Service 1)', risk: 'medium', reason: 'Real estate is a high-risk ML vector identified by AUSTRAC.' },
       { id: 'rs9', text: 'Do you set up Self-Managed Super Funds (SMSFs)?', risk: 'medium', reason: 'SMSFs are legal arrangements (trusts) with inherent opacity risk.' },
+      { id: 'rs10', text: 'Have you been asked to structure transactions involving virtual assets (e.g., cryptocurrency)?', risk: 'high', reason: 'Virtual assets bypass traditional financial institution oversight and create additional ML/TF risk exposure.' },
     ],
     delivery: [
       { id: 'rd1', text: 'Do you provide services to clients you\'ve never met face-to-face?', risk: 'high', reason: 'Identity verification is more challenging for non-face-to-face clients.' },
