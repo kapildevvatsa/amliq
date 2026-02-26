@@ -6,12 +6,16 @@ const AMLiqData = {
 
   // ─── GLOSSARY ──────────────────────────────────────────────────────────────
   glossary: [
+    { term: 'ACR', definition: 'Annual Compliance Report — a report submitted to AUSTRAC by 31 March each year covering the previous calendar year. A copy must also be provided to the governing body.' },
     { term: 'AML', definition: 'Anti-Money Laundering — laws and processes to prevent criminals from disguising illegal money as legitimate income.' },
     { term: 'AML/CTF Act', definition: 'The Anti-Money Laundering and Counter-Terrorism Financing Act 2006 (Cth) — the primary Australian legislation governing AML/CTF obligations for reporting entities.' },
     { term: 'AML/CTF Program', definition: 'A documented set of policies, procedures, and controls a reporting entity must adopt to identify, mitigate, and manage ML/TF/PF risks.' },
     { term: 'AML/CTF Rules', definition: 'The Anti-Money Laundering and Counter-Terrorism Financing Rules 2025 — delegated legislation made under the AML/CTF Act that sets out detailed requirements.' },
     { term: 'AUSTRAC', definition: 'Australian Transaction Reports and Analysis Centre — Australia\'s financial intelligence agency and AML/CTF regulator.' },
+    { term: 'Basel AML Index', definition: 'A country risk scoring tool maintained by the Basel Institute on Governance that ranks countries according to their risk of money laundering and terrorism financing. Referenced in AUSTRAC\'s country risk methodology.' },
     { term: 'Beneficial Owner', definition: 'The natural person (individual) who ultimately owns or controls a company, trust, partnership, or other entity — directly or indirectly.' },
+    { term: 'BNI', definition: 'Bearer Negotiable Instrument — includes cheques, money orders, promissory notes, and traveller\'s cheques that are payable to bearer. Cross-border movements of BNIs valued at $10,000 or more require a CBM report.' },
+    { term: 'CBM', definition: 'Cross-Border Movement report — filed with AUSTRAC when you accept or receive the cross-border transfer of physical currency and/or bearer negotiable instruments (BNIs) valued at $10,000 or more. Must be filed before customs (if carrying), before mailing/shipping, or within 5 business days of receipt.' },
     { term: 'CDD', definition: 'Customer Due Diligence — the process of identifying, verifying, and assessing the risk of your customers before providing services. Also known as KYC (Know Your Customer).' },
     { term: 'CTF', definition: 'Counter-Terrorism Financing — laws and processes to prevent money being used to fund terrorism.' },
     { term: 'Designated Service', definition: 'A specific type of service captured by the AML/CTF Act. For jewellers, this is buying or selling precious metals, stones, or products for $10,000 or more in physical currency or virtual assets.' },
@@ -22,15 +26,17 @@ const AMLiqData = {
     { term: 'FATF Grey List', definition: 'Countries with strategic deficiencies in their AML/CTF frameworks that are under increased monitoring by FATF.' },
     { term: 'Gemstone Pipeline', definition: 'The journey a gemstone takes from extraction to final product — can hide origin, value, and ownership at each stage.' },
     { term: 'Governing Body', definition: 'The board of directors, partners, trustees, or senior management responsible for oversight and governance of the business.' },
-    { term: 'IFTI', definition: 'International Fund Transfer Instruction — a report required when you are involved in sending or receiving international electronic fund transfers.' },
+    { term: 'IFTI', definition: 'International Fund Transfer Instruction — a report for international electronic fund transfers. IFTIs do NOT apply to jewellers. IFTIs are a financial institution obligation. For jewellers, the relevant cross-border report is a CBM (Cross-Border Movement) report for physical currency/BNIs >= $10,000.' },
     { term: 'Independent Evaluation', definition: 'A review of the AML/CTF program by someone independent of the program (i.e., not the compliance officer or program designer). Required at least once every 3 years.' },
     { term: 'KYC', definition: 'Know Your Customer — another term for Customer Due Diligence (CDD). The process of verifying who your customers are.' },
     { term: 'Linked Transactions', definition: 'Multiple transactions that are connected (e.g., by customer, invoice, date, or purpose) and counted together towards the $10,000 threshold. Includes lay-by, instalments, and same-day cumulative purchases.' },
     { term: 'ML/TF/PF', definition: 'Money Laundering / Terrorism Financing / Proliferation Financing — the three primary risks that the AML/CTF regime is designed to address.' },
     { term: 'Money Laundering', definition: 'The process by which criminals disguise the origins of illegally obtained money to make it appear legitimate.' },
+    { term: 'Offboarding', definition: 'The process of declining or ceasing to provide services to a customer who falls outside the business\'s risk appetite or where continuing would cause the business to fail to meet its AML/CTF obligations.' },
     { term: 'PEP', definition: 'Politically Exposed Person — someone who holds or has held a prominent public position (domestically or internationally), or is a family member or close associate of such a person.' },
     { term: 'PF', definition: 'Proliferation Financing — the act of providing funds or financial services to support the development, production, or acquisition of weapons of mass destruction.' },
     { term: 'Physical Currency', definition: 'Banknotes and coins (Australian or foreign). Does NOT include electronic transfers, cheques, or card payments.' },
+    { term: 'Pre-commencement CDD', definition: 'Lighter due diligence conducted on customers who were already transacting with the business on 1 July 2026. These customers are monitored for triggers that require full initial CDD, such as an SMR submission or a request for a new designated service.' },
     { term: 'Precious Metals', definition: 'Gold, silver, platinum, iridium, osmium, palladium, rhodium, ruthenium, or an alloy with at least 2% weight of any of these (manufactured or unmanufactured).' },
     { term: 'Precious Products', definition: 'Items made of, containing, or having attached precious metals or stones: jewellery, watches, items of personal adornment, goldsmith/silversmith wares.' },
     { term: 'Precious Stones', definition: 'Substances of gem quality with market-recognised beauty, rarity and value — including beryl, corundum, diamond, garnet, jadeite jade, opal, pearl, topaz (natural, synthetic, or man-made).' },
@@ -200,6 +206,11 @@ const AMLiqData = {
     { id: 'rf30', category: 'foreignJurisdictionRisk', severity: 'amber', title: 'Customer lives or works far from the jeweller\'s location', detail: 'No apparent connection to the area. Cannot explain why they specifically want to purchase from this particular business.' },
     { id: 'rf31', category: 'foreignJurisdictionRisk', severity: 'amber', title: 'Imported scrap material with unclear origin', detail: 'Difficult to trace the true source of imported scrap jewellery or precious metals. May be stolen or linked to criminal activity.' },
     { id: 'rf32', category: 'foreignJurisdictionRisk', severity: 'red', title: 'Gemstone pipeline complexity', detail: 'Multiple intermediaries across countries hide origin, owner, and value of precious stones at each stage of the pipeline.' },
+
+    // Category 6: Terrorism/Proliferation Financing
+    { id: 'rf33', category: 'terrorismPF', severity: 'red', title: 'Customer linked to terrorism financing activities', detail: 'The customer or a closely linked person is known or suspected to be involved with terrorist or terrorism financing-related activities, is based in or linked to countries identified as providing funding or support for terrorist activities, or appears in media fundraising for causes linked to terrorism or violent extremism.' },
+    { id: 'rf34', category: 'terrorismPF', severity: 'red', title: 'Customer linked to unregistered NPO or unlicensed fundraising', detail: 'The customer is linked to unregistered non-profit organisations or other unlicensed fundraising activities. Charities and NPOs can be exploited as a channel for terrorism financing through witting or unwitting donations diverted for illicit purposes.' },
+    { id: 'rf35', category: 'terrorismPF', severity: 'red', title: 'Customer linked to proliferation financing risk', detail: 'The customer or parties involved are linked to countries of proliferation or sanctions concern (e.g., North Korea, Iran), share addresses, employment, or other details with sanctioned individuals or organisations, or deal in goods listed on the Defence and Strategic Goods List.' },
   ],
 
   // ─── QUIZ QUESTIONS ────────────────────────────────────────────────────────
@@ -429,6 +440,7 @@ const AMLiqData = {
       { id: 'rep5', text: 'Document the tipping-off prohibition and train staff on it', detail: 'All staff must understand they must not disclose an SMR to the customer. This is a criminal offence.' },
       { id: 'rep6', text: 'Set up access to AUSTRAC Online for report filing', detail: 'Ensure your compliance officer has access to AUSTRAC Online (online.austrac.gov.au).' },
       { id: 'rep7', text: 'Establish internal escalation flowchart', detail: 'Visual diagram showing the path from staff observation to compliance officer to AUSTRAC report.' },
+      { id: 'rep8', text: 'Establish procedure for Cross-Border Movement (CBM) reports', detail: 'Document when CBM reports apply — when you accept or receive cross-border transfers of physical currency and/or bearer negotiable instruments (BNIs) valued at $10,000 or more. Note: IFTIs (electronic international transfers) do NOT apply to jewellers.' },
     ],
     recordKeeping: [
       { id: 'rk1', text: 'Define what records to keep (CDD, transactions, program, training, reports)', detail: 'Comprehensive list of all records to retain under the AML/CTF Act.' },
@@ -436,6 +448,7 @@ const AMLiqData = {
       { id: 'rk3', text: 'Define secure storage method (digital and/or physical)', detail: 'Specify how records will be stored with protection against unauthorised access, loss, or damage.' },
       { id: 'rk4', text: 'Ensure records are retrievable within a reasonable timeframe', detail: 'Records must be accessible if AUSTRAC requests them.' },
       { id: 'rk5', text: 'Confirm storage complies with privacy obligations', detail: 'Ensure record storage complies with the Australian Privacy Principles.' },
+      { id: 'rk6', text: 'Include CBM report copies in record keeping procedures', detail: 'If your business receives cross-border movements of physical currency or BNIs >= $10,000, retain copies of CBM reports for 7 years.' },
     ],
     training: [
       { id: 'tr1', text: 'Develop AML/CTF training content for staff', detail: 'Cover ML/TF/PF awareness, transaction detection, CDD, red flags, reporting, tipping-off, record keeping, and payment diversion.' },
@@ -471,6 +484,7 @@ const AMLiqData = {
       { id: 'rc8', text: 'Do you have customers who are reluctant to provide identification?', risk: 'high', reason: 'Reluctance to provide ID may indicate identity concealment.' },
       { id: 'rc9', text: 'Do you have customers who make high-volume purchases?', risk: 'high', reason: 'Unusual buying patterns may indicate money laundering activity.' },
       { id: 'rc10', text: 'Do you deal with customers who don\'t appear to understand precious goods?', risk: 'high', reason: 'May be buying to store value rather than for legitimate purpose.' },
+      { id: 'rc11', text: 'Do you deal with charities, non-profit organisations, or unregistered associations?', risk: 'medium', reason: 'NPOs can be exploited for terrorism financing through witting or unwitting donations diverted for illicit purposes.' },
     ],
     service: [
       { id: 'rs1', text: 'Do you sell precious stones (especially loose diamonds)?', risk: 'high', reason: 'Easily transportable, difficult to trace, retain value — AUSTRAC identifies as particularly high-risk.' },
@@ -547,7 +561,7 @@ const AMLiqData = {
     { category: 'Reporting', title: 'Suspicious Matter Reports (Reform)', url: 'https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/reporting-austrac-reform/suspicious-matter-reports-reform', desc: 'When and how to file Suspicious Matter Reports.' },
     { category: 'Reporting', title: 'Threshold Transaction Reports (Reform)', url: 'https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/reporting-austrac-reform/threshold-transaction-reports-reform', desc: 'When and how to file Threshold Transaction Reports.' },
     { category: 'Reporting', title: 'Structuring', url: 'https://www.austrac.gov.au/business/core-guidance/reporting/transactions-10000-or-more-ttrs/reporting-structuring', desc: 'Guidance on recognising and reporting structuring activity.' },
-    { category: 'Reporting', title: 'AUSTRAC Online (Enrolment & Reporting)', url: 'https://online.austrac.gov.au', desc: 'The AUSTRAC Online portal — enrol and file reports (SMRs, TTRs, Annual Reports).' },
+    { category: 'Reporting', title: 'AUSTRAC Online (Enrolment & Reporting)', url: 'https://online.austrac.gov.au', desc: 'The AUSTRAC Online portal — enrol and file reports (SMRs, TTRs, CBM reports, Annual Reports).' },
     // External References
     { category: 'External References', title: 'DFAT Consolidated Sanctions List', url: 'https://www.dfat.gov.au/international-relations/security/sanctions/consolidated-list', desc: 'Australian Government list of sanctioned persons and entities. Check this for every customer.' },
     { category: 'External References', title: 'FATF High-Risk Jurisdictions', url: 'https://www.fatf-gafi.org/en/topics/high-risk-and-other-monitored-jurisdictions.html', desc: 'Current FATF grey-listed and blacklisted countries.' },

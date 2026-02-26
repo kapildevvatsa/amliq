@@ -153,31 +153,36 @@ const RiskWizard = {
     const results = {};
     this.categories.forEach(cat => {
       const questions = AMLiqData.riskQuestions[cat];
-      let score = 0;
-      let max = 0;
+      let highCount = 0;
+      let mediumCount = 0;
       questions.forEach(q => {
-        const w = q.risk === 'high' ? 2 : 1;
-        max += w;
-        if (this.answers[q.id] === 'yes') score += w;
+        if (this.answers[q.id] === 'yes') {
+          if (q.risk === 'high') highCount++;
+          else mediumCount++;
+        }
       });
-      const pct = max > 0 ? score / max : 0;
+      // AUSTRAC deterministic model:
+      // High = at least 1 high risk factor present
+      // Medium = at least 2 medium risk factors (no high)
+      // Low = neither high nor medium criteria met
       let level = 'low';
-      if (pct >= 0.7) level = 'very-high';
-      else if (pct >= 0.5) level = 'high';
-      else if (pct >= 0.3) level = 'medium';
-      results[cat] = { score, max, pct, level };
+      if (highCount >= 1) level = 'high';
+      else if (mediumCount >= 2) level = 'medium';
+      const total = questions.length;
+      const yesCount = highCount + mediumCount;
+      const pct = total > 0 ? yesCount / total : 0;
+      results[cat] = { highCount, mediumCount, total, pct, level };
     });
     return results;
   },
 
-  riskLabel: { low: 'Low', medium: 'Medium', high: 'High', 'very-high': 'Very High' },
+  riskLabel: { low: 'Low', medium: 'Medium', high: 'High' },
   riskColor: {
     low: 'bg-green-100 text-green-800',
     medium: 'bg-yellow-100 text-yellow-800',
-    high: 'bg-orange-100 text-orange-800',
-    'very-high': 'bg-red-100 text-red-800',
+    high: 'bg-red-100 text-red-800',
   },
-  riskBarColor: { low: 'bg-green-400', medium: 'bg-yellow-400', high: 'bg-orange-500', 'very-high': 'bg-red-500' },
+  riskBarColor: { low: 'bg-green-400', medium: 'bg-yellow-400', high: 'bg-red-500' },
 
   showResults() {
     const results = this.calculateRisk();
@@ -186,11 +191,10 @@ const RiskWizard = {
     // Generate tailored recommendations
     const recs = this.generateRecommendations(results);
 
-    // Overall level
-    const levels = ['low', 'medium', 'high', 'very-high'];
-    const catLevels = this.categories.map(c => levels.indexOf(results[c].level));
-    const avgLevel = Math.round(catLevels.reduce((a, b) => a + b, 0) / catLevels.length);
-    const overallLevel = levels[Math.min(avgLevel, 3)];
+    // Overall level = highest category level (conservative, per AUSTRAC intent)
+    const levelOrder = { low: 0, medium: 1, high: 2 };
+    const maxLevel = Math.max(...this.categories.map(c => levelOrder[results[c].level]));
+    const overallLevel = ['low', 'medium', 'high'][maxLevel];
 
     container.innerHTML = `
       <div class="space-y-4">
@@ -236,7 +240,18 @@ const RiskWizard = {
 
         <!-- AUSTRAC Callout -->
         <div class="austrac-callout">
-          <strong class="text-blue-800">AUSTRAC says:</strong> <span class="text-sm text-slate-700">The real estate sector is rated as HIGH risk for money laundering nationally. Your individual risk profile helps determine what controls are most important for your business. Even lower-risk agencies must maintain a full AML/CTF program.</span>
+          <strong class="text-blue-800">AUSTRAC says:</strong> <span class="text-sm text-slate-700">${this.getSectorCallout()}</span>
+        </div>
+
+        <!-- Scoring Model Explanation -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 text-sm text-slate-600">
+          <strong class="text-slate-800">How risk ratings are calculated (AUSTRAC model):</strong>
+          <ul class="list-disc list-inside mt-1 space-y-1">
+            <li><strong>High</strong> — at least 1 high-risk factor is present</li>
+            <li><strong>Medium</strong> — at least 2 medium-risk factors are present (and no high-risk factors)</li>
+            <li><strong>Low</strong> — neither high nor medium criteria are met</li>
+          </ul>
+          <p class="mt-2 text-xs text-slate-500">Your overall rating is the highest rating across all four categories. Source: AUSTRAC ${this.getSectorStarterKitName()} — Risk Assessment.</p>
         </div>
 
         <!-- Actions -->
@@ -249,19 +264,53 @@ const RiskWizard = {
     `;
   },
 
+  getSectorPage() {
+    const path = window.location.pathname.split('/').pop() || '';
+    if (path.includes('jewellers')) return 'jewellers';
+    if (path.includes('accountants')) return 'accountants';
+    return 'real-estate';
+  },
+
+  getSectorCallout() {
+    const sector = this.getSectorPage();
+    if (sector === 'jewellers') return 'The precious goods sector is rated as HIGH risk for money laundering and LOW for terrorism financing nationally. Your individual risk profile helps determine what controls are most important for your business. Even lower-risk businesses must maintain a full AML/CTF program.';
+    if (sector === 'accountants') return 'The accounting/tax agent sector faces significant ML risks through professional services that can create, manage, and move funds. Your individual risk profile helps determine what controls are most important for your practice. Even lower-risk practices must maintain a full AML/CTF program.';
+    return 'The real estate sector is rated as HIGH risk for money laundering nationally. Your individual risk profile helps determine what controls are most important for your business. Even lower-risk agencies must maintain a full AML/CTF program.';
+  },
+
+  getSectorStarterKitName() {
+    const sector = this.getSectorPage();
+    if (sector === 'jewellers') return 'Jeweller Program Starter Kit';
+    if (sector === 'accountants') return 'Accounting/Tax Agent Program Starter Kit';
+    return 'Real Estate Program Starter Kit';
+  },
+
   generateRecommendations(results) {
     const recs = [];
     const yes = id => this.answers[id] === 'yes';
+    const sector = this.getSectorPage();
 
+    // Common recommendations (question IDs shared across all sectors)
     if (yes('rc2')) recs.push({ trigger: 'Foreign customers', action: 'Apply Enhanced Due Diligence (EDD) for customers with links to foreign jurisdictions. Verify source of funds and check FATF risk lists.' });
     if (yes('rc3')) recs.push({ trigger: 'Complex structures (trusts/companies)', action: 'Ensure you identify all beneficial owners — including settlors, appointors, and protectors of trusts. Use the Trust CDD form.' });
     if (yes('rc4')) recs.push({ trigger: 'PEPs', action: 'Implement a documented PEP screening procedure. Apply EDD to all PEPs and their associates.' });
     if (yes('rc1')) recs.push({ trigger: 'Non-face-to-face customers', action: 'Implement additional identity verification controls for online and remote transactions.' });
-    if (yes('rs5')) recs.push({ trigger: 'High-value property ($5M+)', action: 'Apply enhanced scrutiny to large transactions. Verify source of funds thoroughly and document your rationale.' });
-    if (yes('rs3')) recs.push({ trigger: 'Off-the-plan sales', action: 'Consider the time gap between contract and settlement as a layering risk. Conduct CDD at contract stage and consider re-verification at settlement.' });
     if (yes('rd2')) recs.push({ trigger: 'Third-party referrals', action: 'Establish documented reliance arrangements with any third parties you rely on for CDD. Remember: you remain responsible.' });
     if (yes('rg1')) recs.push({ trigger: 'FATF high-risk jurisdictions', action: 'Apply EDD for any customer or funds from FATF grey/blacklisted countries. Check the FATF list regularly.' });
-    if (yes('rg2')) recs.push({ trigger: 'International fund flows', action: 'Verify the source of overseas funds. Consider whether an IFTI report may be required if you are directly involved in the transfer.' });
+    if (yes('rg2')) recs.push({ trigger: 'International fund flows', action: 'Verify the source of overseas funds. Consider whether a Cross-Border Movement (CBM) report may be required if you accept or receive physical currency or bearer negotiable instruments from overseas valued at $10,000 or more.' });
+
+    // Sector-specific recommendations
+    if (sector === 'real-estate') {
+      if (yes('rs5')) recs.push({ trigger: 'High-value property ($5M+)', action: 'Apply enhanced scrutiny to large transactions. Verify source of funds thoroughly and document your rationale.' });
+      if (yes('rs3')) recs.push({ trigger: 'Off-the-plan sales', action: 'Consider the time gap between contract and settlement as a layering risk. Conduct CDD at contract stage and consider re-verification at settlement.' });
+    } else if (sector === 'jewellers') {
+      if (yes('rs5')) recs.push({ trigger: 'Large cash payments ($50K+)', action: 'This is an automatic high-risk trigger per AUSTRAC. Apply EDD, verify source of funds and wealth, and obtain senior manager approval.' });
+      if (yes('rs1')) recs.push({ trigger: 'Loose precious stones (diamonds)', action: 'Easily transportable and difficult to trace. Apply enhanced scrutiny, verify customer purpose, and document source of funds.' });
+      if (yes('rs4')) recs.push({ trigger: 'Scrap jewellery transactions', action: 'Source is difficult to trace. Apply EDD for scrap metal dealers. Verify the origin of scrap precious metals and stones.' });
+    } else if (sector === 'accountants') {
+      if (yes('rs1')) recs.push({ trigger: 'Trust creation/management', action: 'Trusts are high-risk structures. Ensure you identify all beneficial owners, settlors, appointors, and beneficiaries. Apply EDD where structures are complex.' });
+      if (yes('rs2')) recs.push({ trigger: 'Company formation services', action: 'Verify the purpose of company formation. Identify all directors and beneficial owners. Be alert to shell company risks.' });
+    }
 
     return recs;
   },

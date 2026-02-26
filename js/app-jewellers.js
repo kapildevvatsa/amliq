@@ -964,6 +964,17 @@ const App = {
           <strong class="text-blue-800">Overarching principle:</strong> You must conduct initial CDD <em>before</em> providing a designated service (i.e., before completing a purchase or sale for $10,000+ in cash/virtual assets). If CDD cannot be completed satisfactorily, consider whether to decline or cease providing the service.
         </div>
 
+        <!-- CDD Timing Clarification -->
+        <div class="bg-white rounded-xl border border-blue-200 p-5 mb-5">
+          <h3 class="font-bold text-blue-800 mb-2">When Must You Complete Initial CDD?</h3>
+          <div class="space-y-2 text-sm text-slate-700">
+            <div class="flex items-start gap-2"><span class="text-blue-600 font-bold mt-0.5">1.</span><span><strong>Before</strong> providing a designated service (buying/selling precious goods for $10,000+ in cash/virtual assets).</span></div>
+            <div class="flex items-start gap-2"><span class="text-blue-600 font-bold mt-0.5">2.</span><span>CDD can start from the moment it is <strong>reasonable to conclude</strong> a transaction may be regulated — e.g., a customer discusses a large cash purchase of jewellery.</span></div>
+            <div class="flex items-start gap-2"><span class="text-blue-600 font-bold mt-0.5">3.</span><span><strong>Delayed CDD</strong> only permitted when there is low additional ML/TF/PF risk and delay is essential to avoid interrupting the ordinary course of business.</span></div>
+          </div>
+          <div class="mt-3 text-xs text-slate-500">Source: AUSTRAC Policy Document — Initial Customer Due Diligence policy</div>
+        </div>
+
         <!-- Customer Risk Rating Table -->
         <div class="bg-white rounded-xl border border-slate-200 p-5 mb-5">
           <h3 class="font-semibold text-slate-700 mb-3">Customer Risk Rating Table <span class="text-xs font-normal text-slate-400 ml-1">(AUSTRAC Starter Kit)</span></h3>
@@ -1018,7 +1029,7 @@ const App = {
 
         <!-- CDD Tabs -->
         <div class="flex gap-2 mb-5 overflow-x-auto border-b border-slate-200">
-          ${['Individual', 'Company', 'Trust', 'Partnership', 'Foreign', 'EDD', 'Ongoing CDD', 'PEP/Sanctions', 'Delayed CDD', '3rd Party Reliance', 'CDD Outcome'].map((tab, i) => `
+          ${['Individual', 'Company', 'Trust', 'Partnership', 'Gov. Body', 'Association', 'Foreign', 'EDD', 'Ongoing CDD', 'PEP/Sanctions', 'Delayed CDD', '3rd Party Reliance', 'Pre-Commencement', 'CDD Outcome'].map((tab, i) => `
             <button onclick="App.switchTab('cdd-tab', ${i})"
               class="cdd-tab pb-2 px-2 text-sm font-medium whitespace-nowrap ${i === 0 ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-500 hover:text-slate-700'}" data-tab="${i}">
               ${tab}
@@ -1029,13 +1040,130 @@ const App = {
         <div id="cdd-tab-1" class="hidden">${Forms.renderCDDCompany()}</div>
         <div id="cdd-tab-2" class="hidden">${Forms.renderCDDTrust()}</div>
         <div id="cdd-tab-3" class="hidden">${Forms.renderCDDPartnership()}</div>
-        <div id="cdd-tab-4" class="hidden">${Forms.renderCDDForeign()}</div>
-        <div id="cdd-tab-5" class="hidden">${Forms.renderEDD()}</div>
-        <div id="cdd-tab-6" class="hidden">${Forms.renderOngoingCDD()}</div>
-        <div id="cdd-tab-7" class="hidden">${Forms.renderPEPScreening()}</div>
-        <div id="cdd-tab-8" class="hidden">${this.renderDelayedCDD()}</div>
-        <div id="cdd-tab-9" class="hidden">${this.renderThirdPartyReliance()}</div>
-        <div id="cdd-tab-10" class="hidden">${this.renderCDDOutcome()}</div>
+        <div id="cdd-tab-4" class="hidden">${this.renderCDDGovernmentBody()}</div>
+        <div id="cdd-tab-5" class="hidden">${this.renderCDDAssociation()}</div>
+        <div id="cdd-tab-6" class="hidden">${Forms.renderCDDForeign()}</div>
+        <div id="cdd-tab-7" class="hidden">${Forms.renderEDD()}</div>
+        <div id="cdd-tab-8" class="hidden">${Forms.renderOngoingCDD()}</div>
+        <div id="cdd-tab-9" class="hidden">${Forms.renderPEPScreening()}</div>
+        <div id="cdd-tab-10" class="hidden">${this.renderDelayedCDD()}</div>
+        <div id="cdd-tab-11" class="hidden">${this.renderThirdPartyReliance()}</div>
+        <div id="cdd-tab-12" class="hidden">${this.renderPreCommencementCDD()}</div>
+        <div id="cdd-tab-13" class="hidden">${this.renderCDDOutcome()}</div>
+      </div>
+    `;
+  },
+
+  renderCDDGovernmentBody() {
+    return `
+      <div class="space-y-4">
+        <div class="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-green-800">
+          <strong>Inherent Risk: Low</strong> — Government bodies are generally considered low inherent risk due to their public accountability, regulatory oversight, and transparent governance structures.
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">Government Body — Simplified CDD</h3>
+          <p class="text-sm text-slate-600 mb-3">When your customer is a government body (Commonwealth, state/territory, or local government), simplified CDD may be applied.</p>
+          <h4 class="font-semibold text-slate-700 mb-2 text-sm">Identification Requirements:</h4>
+          <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside mb-4">
+            <li>Full legal name of the government body</li>
+            <li>ABN or other unique identifier</li>
+            <li>Nature of the government body (Commonwealth, state/territory, local)</li>
+            <li>Identity of the authorised representative engaging your services</li>
+          </ul>
+          <h4 class="font-semibold text-slate-700 mb-2 text-sm">Verification:</h4>
+          <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside mb-4">
+            <li>Verify via public records, government directories, or official documentation</li>
+            <li>Confirm the representative's authority (e.g., delegation letter, appointment record)</li>
+            <li>ABN lookup via the Australian Business Register</li>
+          </ul>
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-800">
+            <strong>Note:</strong> Even though government bodies are low risk, you must still conduct sanctions screening and remain alert to any unusual features of the transaction.
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  renderCDDAssociation() {
+    return `
+      <div class="space-y-4">
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
+          <strong>Inherent Risk: Medium</strong> — Associations may present higher risk depending on whether they are incorporated or unincorporated, and the transparency of their governance and funding.
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">Association — CDD Requirements</h3>
+          <p class="text-sm text-slate-600 mb-3">An unincorporated association is a customer type recognised by AUSTRAC. CDD requirements differ based on whether the association is incorporated or unincorporated.</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div class="bg-white border border-slate-200 rounded-lg p-4">
+              <div class="font-semibold text-slate-700 mb-2 text-sm">Incorporated Association</div>
+              <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside">
+                <li>Full legal name and incorporation number</li>
+                <li>Registered office address</li>
+                <li>Identity of office bearers (president, secretary, treasurer)</li>
+                <li>Verify via state/territory register of associations</li>
+              </ul>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-lg p-4">
+              <div class="font-semibold text-slate-700 mb-2 text-sm">Unincorporated Association</div>
+              <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside">
+                <li>Name commonly used by the association</li>
+                <li>Principal place of operations</li>
+                <li>Identity of office bearers or persons authorised to act</li>
+                <li>Nature and purpose of the association</li>
+                <li>Verify using constitution, rules, or meeting minutes</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-800">
+            <strong>Higher Risk Indicators:</strong> Unregistered NPOs, religious or cultural organisations with opaque funding, associations with overseas links, and associations that cannot provide governance documentation should be treated as higher risk and may require EDD.
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  renderPreCommencementCDD() {
+    return `
+      <div class="space-y-4">
+        <div class="austrac-callout text-sm">
+          <strong class="text-blue-800">AUSTRAC Source:</strong> AUSTRAC Policy Document — Pre-commencement Customer Due Diligence policy
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">Pre-Commencement CDD</h3>
+          <p class="text-sm text-slate-600 mb-3">Lighter due diligence applies to customers who were <strong>already transacting with your business on 1 July 2026</strong>. These are called <strong>pre-commencement customers</strong>.</p>
+
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4 text-sm text-blue-800">
+            <strong>Key Principle:</strong> Pre-commencement CDD is a simplified, transitional arrangement. It does not exempt you from CDD — it recognises that you already have an established relationship with these customers.
+          </div>
+
+          <h4 class="font-semibold text-slate-700 mb-2 text-sm">What You Must Do:</h4>
+          <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside mb-4">
+            <li><strong>Monitor</strong> these customers for changes in the nature and purpose of the business relationship that may trigger escalation</li>
+            <li>If a <strong>suspicious matter report is submitted</strong> about the customer, complete full initial CDD</li>
+            <li>If the customer requests a <strong>new designated service after 1 July 2026</strong>, complete full initial CDD before providing the new service</li>
+          </ul>
+
+          <h4 class="font-semibold text-slate-700 mb-2 text-sm">Triggers That Require Full Initial CDD:</h4>
+          <div class="space-y-2 mb-4">
+            ${[
+              'An SMR is filed about the customer',
+              'The customer requests a new designated service you have not previously provided to them',
+              'A trigger event under the escalation and enhanced CDD policy is detected',
+              'Your periodic review identifies that customer information or risk rating needs updating',
+            ].map(t => `
+              <div class="flex items-start gap-2 text-sm text-slate-700">
+                <span class="text-amber-500 font-bold mt-0.5">&#x25CF;</span>
+                <span>${t}</span>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-800">
+            <strong>Note:</strong> This is a simplified pre-commencement policy. Businesses with long-standing customer relationships may adopt a more tailored approach — see <a href="https://www.austrac.gov.au/amlctf-reform/reforms-guidance/amlctf-program-reform/customer-due-diligence-reform/transitioning-existing-customers-reform" target="_blank" class="underline text-blue-600">AUSTRAC guidance on pre-commencement customers</a>.
+          </div>
+        </div>
       </div>
     `;
   },
@@ -1134,6 +1262,7 @@ const App = {
       { id: 'serviceTransactionRisk', label: 'Service/Transaction' },
       { id: 'deliveryChannelRisk', label: 'Delivery Channel' },
       { id: 'foreignJurisdictionRisk', label: 'Jurisdiction Risk' },
+      { id: 'terrorismPF', label: 'Terrorism/PF' },
     ];
     const categoryLabels = {
       customerBehaviour: 'Customer Behaviour',
@@ -1141,6 +1270,7 @@ const App = {
       serviceTransactionRisk: 'Service/Transaction Risk',
       deliveryChannelRisk: 'Delivery Channel Risk',
       foreignJurisdictionRisk: 'Foreign Jurisdiction Risk',
+      terrorismPF: 'Terrorism/Proliferation Financing',
     };
     el.innerHTML = `
       <div class="p-6 max-w-4xl mx-auto">
@@ -1150,7 +1280,18 @@ const App = {
           <div class="flex items-center gap-2 mb-2">
             <span class="text-red-600 font-bold text-lg">🚫 TIPPING-OFF PROHIBITION</span>
           </div>
-          <p class="text-sm text-red-800"><strong>If you identify a red flag, DO NOT tell the customer about your concerns.</strong> Disclosing that you have filed or intend to file a Suspicious Matter Report (SMR) is a criminal offence known as "tipping off." Document, escalate, and report — in silence.</p>
+          <p class="text-sm text-red-800 mb-3"><strong>If you identify a red flag, DO NOT tell the customer about your concerns.</strong> Disclosing that you have filed or intend to file a Suspicious Matter Report (SMR) is a criminal offence known as "tipping off." Document, escalate, and report — in silence.</p>
+          <div class="bg-green-50 border border-green-200 rounded-lg p-3 text-sm">
+            <div class="font-semibold text-green-800 mb-2">Safe Language Patterns</div>
+            <div class="space-y-2 text-green-700">
+              <div class="flex items-start gap-2"><span class="text-green-600 font-bold mt-0.5">&#x2713;</span><span><strong>When asked why info is needed:</strong> "It is needed to meet our AML/CTF obligations and/or store policies."</span></div>
+              <div class="flex items-start gap-2"><span class="text-green-600 font-bold mt-0.5">&#x2713;</span><span><strong>When offboarding:</strong> "The customer's conduct or ML/TF risk wasn't consistent with our store policy" or "We can't proceed due to insurance requirements."</span></div>
+              <div class="flex items-start gap-2"><span class="text-green-600 font-bold mt-0.5">&#x2713;</span><span><strong>Dissuading from offences:</strong> Staff may dissuade customers from potential offences in good faith — focus on how activities "could break the law and possible penalties."</span></div>
+            </div>
+            <div class="mt-2 pt-2 border-t border-green-200 text-red-700">
+              <div class="flex items-start gap-2"><span class="text-red-600 font-bold mt-0.5">&#x2717;</span><span><strong>MUST NOT say:</strong> "We've filed a report about you" or "We suspect you of money laundering" or disclose the existence of any SMR, notice, or investigation.</span></div>
+            </div>
+          </div>
         </div>
 
         <!-- Action Guidance -->
@@ -1238,15 +1379,26 @@ const App = {
     const el = document.getElementById('section-reporting');
     el.innerHTML = `
       <div class="p-6 max-w-4xl mx-auto">
-        ${this.pageHeader('Reporting to AUSTRAC', 'When and how to file Suspicious Matter Reports (SMRs), Threshold Transaction Reports (TTRs), and Annual Compliance Reports.', '📤')}
+        ${this.pageHeader('Reporting to AUSTRAC', 'When and how to file Suspicious Matter Reports (SMRs), Threshold Transaction Reports (TTRs), Cross-Border Movement (CBM) reports, and Annual Compliance Reports.', '📤')}
 
         <div class="tipping-off-warning mb-5">
           <div class="flex items-center gap-2 mb-2"><span class="text-red-600 font-bold">🚫 TIPPING-OFF PROHIBITION — APPLIES TO ALL REPORTING</span></div>
-          <p class="text-sm text-red-800">You MUST NOT tell the customer, or any other person who doesn't need to know, that you have filed or intend to file an SMR, or that you have any suspicion about them. <strong>This is a criminal offence.</strong></p>
+          <p class="text-sm text-red-800 mb-3">You MUST NOT tell the customer, or any other person who doesn't need to know, that you have filed or intend to file an SMR, or that you have any suspicion about them. This is a <strong>criminal offence</strong>.</p>
+          <div class="bg-green-50 border border-green-200 rounded-lg p-3 text-sm">
+            <div class="font-semibold text-green-800 mb-2">Safe Language Patterns</div>
+            <div class="space-y-2 text-green-700">
+              <div class="flex items-start gap-2"><span class="text-green-600 font-bold mt-0.5">&#x2713;</span><span><strong>When asked why info is needed:</strong> "It is needed to meet our AML/CTF obligations and/or store policies."</span></div>
+              <div class="flex items-start gap-2"><span class="text-green-600 font-bold mt-0.5">&#x2713;</span><span><strong>When offboarding:</strong> "The customer's conduct or ML/TF risk wasn't consistent with our store policy" or "We can't proceed due to insurance requirements."</span></div>
+              <div class="flex items-start gap-2"><span class="text-green-600 font-bold mt-0.5">&#x2713;</span><span><strong>Dissuading from offences:</strong> Staff may dissuade customers from potential offences in good faith — focus on how activities "could break the law and possible penalties."</span></div>
+            </div>
+            <div class="mt-2 pt-2 border-t border-green-200 text-red-700">
+              <div class="flex items-start gap-2"><span class="text-red-600 font-bold mt-0.5">&#x2717;</span><span><strong>MUST NOT say:</strong> "We've filed a report about you" or "We suspect you of money laundering" or disclose the existence of any SMR, notice, or investigation.</span></div>
+            </div>
+          </div>
         </div>
 
         <div class="flex gap-2 mb-5 border-b border-slate-200 flex-wrap">
-          ${['SMRs', 'TTRs', 'Annual Report', 'Escalation Guide'].map((tab, i) => `
+          ${['SMRs', 'TTRs', 'CBM Reports', 'Annual Report', 'Escalation Guide'].map((tab, i) => `
             <button onclick="App.switchTab('rep-tab', ${i})"
               class="rep-tab pb-2 px-2 text-sm font-medium ${i === 0 ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-500 hover:text-slate-700'}" data-tab="${i}">
               ${tab}
@@ -1255,8 +1407,9 @@ const App = {
         </div>
         <div id="rep-tab-0">${this.renderSMRGuide()}</div>
         <div id="rep-tab-1" class="hidden">${this.renderTTRGuide()}</div>
-        <div id="rep-tab-2" class="hidden">${this.renderAnnualComplianceReport()}</div>
-        <div id="rep-tab-3" class="hidden">${this.renderEscalationGuide()}</div>
+        <div id="rep-tab-2" class="hidden">${this.renderCBMGuide()}</div>
+        <div id="rep-tab-3" class="hidden">${this.renderAnnualComplianceReport()}</div>
+        <div id="rep-tab-4" class="hidden">${this.renderEscalationGuide()}</div>
 
         ${Checklist.renderSection('reporting', 'Reporting Procedures Checklist')}
       </div>
@@ -1481,6 +1634,51 @@ const App = {
     `;
   },
 
+  renderCBMGuide() {
+    return `
+      <div class="space-y-4">
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">Cross-Border Movement (CBM) Reports</h3>
+          <p class="text-sm text-slate-600 mb-3">A CBM report must be filed with AUSTRAC when you accept or receive the <strong>cross-border transfer of physical currency and/or bearer negotiable instruments (BNIs)</strong> valued at <strong>$10,000 or more</strong> (or foreign currency equivalent).</p>
+          <div class="bg-red-50 border border-red-200 rounded-xl p-4 mb-4 text-center">
+            <div class="text-sm text-red-700 font-semibold">Physical currency and/or BNIs crossing Australian borders</div>
+            <div class="text-3xl font-black text-red-600 my-1">$10,000 or more</div>
+            <div class="text-sm text-red-700">banknotes, coins, cheques, money orders, traveller's cheques payable to bearer</div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">Filing Deadlines</h3>
+          <div class="space-y-2">
+            ${[
+              { scenario: 'Physically carrying currency/BNIs in or out of Australia', deadline: 'Before passing through customs' },
+              { scenario: 'Mailing or shipping currency/BNIs in or out of Australia', deadline: 'Before mailing or shipping' },
+              { scenario: 'Receiving currency/BNIs from outside Australia', deadline: 'Within 5 business days of receipt' },
+            ].map(d => `
+              <div class="flex items-start gap-3 text-sm">
+                <span class="text-amber-500 font-bold mt-0.5">&#x25CF;</span>
+                <div class="flex-1"><strong class="text-slate-700">${d.scenario}:</strong> <span class="text-slate-600">${d.deadline}</span></div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
+          <strong>Note for Most Small Jewellers:</strong> Most small jewellers will <strong>not</strong> encounter CBM obligations. CBM reports apply only when your business directly receives or facilitates cross-border movements of physical currency or BNIs >= $10,000.
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
+          <strong>IFTIs Do NOT Apply to Jewellers:</strong> International Fund Transfer Instructions (IFTIs) are a reporting obligation for <strong>financial institutions</strong> handling electronic international fund transfers. Jewellers are not financial institutions and do not have IFTI obligations. The correct cross-border report type for jewellers is the <strong>CBM report</strong>.
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-2">How to File</h3>
+          <p class="text-sm text-slate-600">File CBM reports via <a href="https://online.austrac.gov.au" target="_blank" class="underline text-blue-600">AUSTRAC Online</a>. Retain a copy of each CBM report for 7 years.</p>
+        </div>
+      </div>
+    `;
+  },
+
   // ─── RECORD KEEPING ───────────────────────────────────────────────────────
   renderRecordKeeping() {
     const el = document.getElementById('section-record-keeping');
@@ -1488,7 +1686,7 @@ const App = {
       { cat: 'Customer ID records', examples: 'CDD forms, copies of ID documents, beneficial owner records, PEP/TFS screening results' },
       { cat: 'Transaction records', examples: 'Sales receipts, invoices, payment records, transaction detection records, linked transaction records' },
       { cat: 'AML/CTF program documentation', examples: 'Risk assessment, policy document, process document, governance records' },
-      { cat: 'Reporting records', examples: 'Internal copies of SMRs, TTRs filed; internal escalation records' },
+      { cat: 'Reporting records', examples: 'Internal copies of SMRs, TTRs, CBM reports filed; internal escalation records' },
       { cat: 'Training records', examples: 'Attendance records, training materials, quiz results, training dates' },
       { cat: 'Personnel records', examples: 'Due diligence records for AML/CTF roles, compliance officer appointment records' },
       { cat: 'Review and evaluation records', examples: 'Program review records, independent evaluation reports, change logs' },
@@ -1586,7 +1784,7 @@ const App = {
       { n: 6, title: 'Streamlined CDD Process', content: 'When and how to use the simplified process for low/medium risk individual customers (Option 3).', audience: 'Store owners/managers' },
       { n: 7, title: 'PEP & Sanctions Screening', content: 'What PEPs and TFS are. How to screen customers. Foreign PEPs always high-risk.', audience: 'Sales staff, compliance officer' },
       { n: 8, title: 'Red Flags & Suspicious Activity', content: "AUSTRAC's precious goods red flag indicators across all 5 categories. How to recognise suspicious behaviour.", audience: 'All staff' },
-      { n: 9, title: 'Reporting Obligations', content: 'When and how to file SMRs and TTRs. Internal escalation process. Filing timeframes.', audience: 'All staff' },
+      { n: 9, title: 'Reporting Obligations', content: 'When and how to file SMRs, TTRs, and CBM reports. Internal escalation process. Filing timeframes.', audience: 'All staff' },
       { n: 10, title: 'Tipping-Off Prohibition', content: 'What you must not disclose. Penalties for tipping off. What you CAN do when you have concerns.', audience: 'All staff' },
       { n: 11, title: 'Record Keeping', content: 'What to keep, how to store it, for how long. Privacy obligations.', audience: 'Admin staff, compliance officer' },
       { n: 12, title: 'Payment Diversion Warning', content: 'Why redirecting a suspicious customer to bank transfer does NOT resolve your reporting obligations.', audience: 'All staff' },
@@ -1615,7 +1813,7 @@ const App = {
         ${this.pageHeader('Program Review & Maintenance', 'Your AML/CTF program must remain current as risks, operations, and regulatory expectations change.', '🔄')}
 
         <div class="flex gap-2 mb-5 border-b border-slate-200">
-          ${['Review Triggers', 'Review Checklist', 'Change Log'].map((tab, i) => `
+          ${['Review Triggers', 'Review Checklist', 'Change Log', 'Effectiveness Checks'].map((tab, i) => `
             <button onclick="App.switchTab('rev-tab', ${i})"
               class="rev-tab pb-2 px-2 text-sm font-medium ${i === 0 ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-500 hover:text-slate-700'}" data-tab="${i}">
               ${tab}
@@ -1625,13 +1823,14 @@ const App = {
         <div id="rev-tab-0">${this.renderReviewTriggers()}</div>
         <div id="rev-tab-1" class="hidden">${Forms.renderProgramReviewForm()}</div>
         <div id="rev-tab-2" class="hidden">${Forms.renderChangeLog()}</div>
+        <div id="rev-tab-3" class="hidden">${this.renderEffectivenessChecks()}</div>
       </div>
     `;
   },
 
   renderReviewTriggers() {
     const triggers = [
-      { trigger: 'Scheduled periodic review', example: 'Reviews every 6 or 12 months' },
+      { trigger: 'Scheduled periodic review', example: 'Minimum every 3 years (independent evaluation), plus trigger-based reviews as needed' },
       { trigger: 'Changes to designated services', example: 'You start accepting virtual assets, or change cash acceptance policies' },
       { trigger: 'Changes to customer types', example: 'You begin dealing with entities, foreign customers, scrap dealers' },
       { trigger: 'Changes to countries', example: 'New high-risk jurisdiction customers' },
@@ -1653,6 +1852,92 @@ const App = {
             </div>
           </div>
         `).join('')}
+      </div>
+    `;
+  },
+
+  renderEffectivenessChecks() {
+    return `
+      <div class="space-y-4">
+        <div class="austrac-callout text-sm">
+          <strong class="text-blue-800">AUSTRAC Source:</strong> AUSTRAC Policy Document — Periodic Effectiveness Checks (Section 2, Part 2)
+        </div>
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">Periodic Effectiveness Checks</h3>
+          <p class="text-sm text-slate-600 mb-3">Your AML/CTF compliance officer must periodically check whether the program is operating effectively and report annually to the governing body.</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 text-center">
+              <div class="text-xs text-blue-600 mb-1">Default Frequency</div>
+              <div class="text-xl font-bold text-blue-700">Quarterly</div>
+              <div class="text-xs text-blue-600 mt-1">Can reduce to annually when compliance officer and governing body are satisfied</div>
+            </div>
+            <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-center">
+              <div class="text-xs text-amber-600 mb-1">Minimum</div>
+              <div class="text-xl font-bold text-amber-700">Annually</div>
+              <div class="text-xs text-amber-600 mt-1">To inform the compliance officer's report to the governing body</div>
+            </div>
+          </div>
+
+          <h4 class="font-semibold text-slate-700 mb-2 text-sm">Areas Covered:</h4>
+          <div class="space-y-2 mb-4">
+            ${[
+              'Suspicious Matter Reports (SMRs) — are suspicions being identified and reported correctly?',
+              'Threshold Transaction Reports (TTRs) — are physical cash transactions being reported?',
+              'CBM reports — are cross-border movements being identified and reported?',
+              'Enhanced CDD — is EDD being applied when required?',
+              'AML/CTF compliance officer and senior manager functions — are duties being fulfilled?',
+              'Customer onboarding, monitoring alerts, and all CDD processes (initial, ongoing, enhanced, pre-commencement)',
+            ].map(a => `
+              <div class="flex items-start gap-2 text-sm text-slate-700">
+                <span class="text-blue-500 font-bold mt-0.5">&#x25CF;</span>
+                <span>${a}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">Effectiveness Check Forms</h3>
+          <p class="text-sm text-slate-600 mb-3">AUSTRAC's starter kit includes specific forms for each area:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            ${[
+              'Periodic effectiveness testing summary',
+              'SMR effectiveness check',
+              'TTR effectiveness check',
+              'CBM report effectiveness check',
+              'Compliance officer and senior manager effectiveness check',
+              'Enhanced CDD effectiveness check',
+            ].map(f => `
+              <div class="bg-slate-50 rounded-lg p-2 text-sm text-slate-700 flex items-center gap-2">
+                <span class="text-slate-400">&#x2022;</span>
+                ${f}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">Corrective Actions</h3>
+          <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+            <li>All corrective actions must be <strong>approved by a senior manager</strong> before implementation</li>
+            <li>Where corrective actions aren't approved, the compliance officer must follow the escalation process in the "Maintain your AML/CTF program" form</li>
+            <li>If a corrective action fails to resolve the issue, new corrective actions must be developed and implemented</li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-xl border border-slate-200 p-5">
+          <h3 class="font-bold text-slate-800 mb-3">Additional Checks Required When:</h3>
+          <ul class="text-sm text-slate-600 space-y-1 list-disc list-inside">
+            <li>Independent evaluation produces findings (particularly adverse findings)</li>
+            <li>Unusual personnel activity is identified</li>
+            <li>Other compliance issues emerge</li>
+          </ul>
+        </div>
+
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-800">
+          <strong>Reporting:</strong> Effectiveness check outcomes must be available to the senior manager, governing body, and AUSTRAC on request. The governing body must review reports and direct additional action where deficiencies remain unresolved.
+        </div>
       </div>
     `;
   },
@@ -1701,29 +1986,32 @@ const App = {
       { n: 2, name: 'CDD — Company', section: 'cdd', tab: 1 },
       { n: 3, name: 'CDD — Trust', section: 'cdd', tab: 2 },
       { n: 4, name: 'CDD — Partnership', section: 'cdd', tab: 3 },
-      { n: 5, name: 'CDD — Foreign Customer', section: 'cdd', tab: 4 },
-      { n: 6, name: 'Enhanced Due Diligence Record', section: 'cdd', tab: 5 },
-      { n: 7, name: 'Ongoing CDD Review', section: 'cdd', tab: 6 },
-      { n: 8, name: 'PEP/TFS Screening Record', section: 'cdd', tab: 7 },
-      { n: 9, name: 'Delayed CDD Record', section: 'cdd', tab: 8 },
-      { n: 10, name: 'Third-Party Reliance Record', section: 'cdd', tab: 9 },
-      { n: 11, name: 'CDD Outcome Record', section: 'cdd', tab: 10 },
-      { n: 12, name: 'Compliance Officer Appointment', section: 'governance', tab: 0 },
-      { n: 13, name: 'AML/CTF Roles Assignment', section: 'governance', tab: 1 },
-      { n: 14, name: 'Personnel Due Diligence Record', section: 'governance', tab: 2 },
-      { n: 15, name: 'Training Plan', section: 'training', tab: 0 },
-      { n: 16, name: 'Training Attendance Record', section: 'training', tab: 2 },
-      { n: 17, name: 'Program Review Record', section: 'program-review', tab: 1 },
-      { n: 18, name: 'Change Log', section: 'program-review', tab: 2 },
-      { n: 19, name: 'Independent Evaluation Plan', section: 'evaluation', tab: 0 },
-      { n: 20, name: 'Suspicious Activity Log', section: 'red-flags', tab: 0 },
-      { n: 21, name: 'SMR Decision Record', section: 'reporting', tab: 0 },
-      { n: 22, name: 'Enrolment Checklist', section: 'enrolment', tab: 0 },
-      { n: 23, name: 'Risk Assessment Summary', section: 'risk-assessment', tab: 0 },
-      { n: 24, name: 'Transaction Detection Record', section: 'program-builder', tab: 0 },
-      { n: 25, name: 'Regulation Option Assessment', section: 'am-i-regulated', tab: 0 },
-      { n: 26, name: 'Precious Goods Valuation Record', section: 'program-builder', tab: 0 },
-      { n: 27, name: 'Import/Export Documentation Tracker', section: 'record-keeping', tab: 0 },
+      { n: 5, name: 'CDD — Government Body', section: 'cdd', tab: 4 },
+      { n: 6, name: 'CDD — Association', section: 'cdd', tab: 5 },
+      { n: 7, name: 'CDD — Foreign Customer', section: 'cdd', tab: 6 },
+      { n: 8, name: 'Enhanced Due Diligence Record', section: 'cdd', tab: 7 },
+      { n: 9, name: 'Ongoing CDD Review', section: 'cdd', tab: 8 },
+      { n: 10, name: 'PEP/TFS Screening Record', section: 'cdd', tab: 9 },
+      { n: 11, name: 'Delayed CDD Record', section: 'cdd', tab: 10 },
+      { n: 12, name: 'Third-Party Reliance Record', section: 'cdd', tab: 11 },
+      { n: 13, name: 'Pre-Commencement CDD', section: 'cdd', tab: 12 },
+      { n: 14, name: 'CDD Outcome Record', section: 'cdd', tab: 13 },
+      { n: 15, name: 'Compliance Officer Appointment', section: 'governance', tab: 0 },
+      { n: 16, name: 'AML/CTF Roles Assignment', section: 'governance', tab: 1 },
+      { n: 17, name: 'Personnel Due Diligence Record', section: 'governance', tab: 2 },
+      { n: 18, name: 'Training Plan', section: 'training', tab: 0 },
+      { n: 19, name: 'Training Attendance Record', section: 'training', tab: 2 },
+      { n: 20, name: 'Program Review Record', section: 'program-review', tab: 1 },
+      { n: 21, name: 'Change Log', section: 'program-review', tab: 2 },
+      { n: 22, name: 'Independent Evaluation Plan', section: 'evaluation', tab: 0 },
+      { n: 23, name: 'Suspicious Activity Log', section: 'red-flags', tab: 0 },
+      { n: 24, name: 'SMR Decision Record', section: 'reporting', tab: 0 },
+      { n: 25, name: 'Enrolment Checklist', section: 'enrolment', tab: 0 },
+      { n: 26, name: 'Risk Assessment Summary', section: 'risk-assessment', tab: 0 },
+      { n: 27, name: 'Transaction Detection Record', section: 'program-builder', tab: 0 },
+      { n: 28, name: 'Regulation Option Assessment', section: 'am-i-regulated', tab: 0 },
+      { n: 29, name: 'Precious Goods Valuation Record', section: 'program-builder', tab: 0 },
+      { n: 30, name: 'Import/Export Documentation Tracker', section: 'record-keeping', tab: 0 },
     ];
 
     el.innerHTML = `
@@ -1763,17 +2051,17 @@ const App = {
       { austrac: 'Onboarding form — Entity', purpose: 'Collect initial information for entity customers', amliq: 'CDD — Company/Trust/Partnership (#2–#4)' },
       { austrac: 'Initial CDD form — Individual or sole trader', purpose: 'Verify identity, assess risk, complete CDD checks', amliq: 'CDD — Individual (#1)' },
       { austrac: 'Initial CDD form — Entity', purpose: 'Verify entity identity, beneficial owners', amliq: 'CDD — Company/Trust/Partnership (#2–#4)' },
-      { austrac: 'Escalation form', purpose: 'Document escalation to compliance officer', amliq: 'Suspicious Activity Log (#20)' },
-      { austrac: 'Enhanced CDD form', purpose: 'Document enhanced due diligence measures', amliq: 'Enhanced Due Diligence Record (#6)' },
-      { austrac: 'Sanctions check process', purpose: 'Step-by-step sanctions screening', amliq: 'PEP/TFS Screening Record (#8)' },
-      { austrac: 'PEP check process', purpose: 'Step-by-step PEP screening', amliq: 'PEP/TFS Screening Record (#8)' },
-      { austrac: 'Source of funds/wealth check process', purpose: 'Verify fund origins', amliq: 'Part of EDD Record (#6)' },
-      { austrac: 'Adverse media check process', purpose: 'Open-source background checks', amliq: 'Part of EDD Record (#6)' },
-      { austrac: 'Periodic review and update form', purpose: 'Ongoing CDD review', amliq: 'Ongoing CDD Review (#7)' },
-      { austrac: 'Escalation checklist', purpose: 'Quick-reference escalation triggers', amliq: 'Part of Suspicious Activity Log (#20)' },
+      { austrac: 'Escalation form', purpose: 'Document escalation to compliance officer', amliq: 'Suspicious Activity Log (#23)' },
+      { austrac: 'Enhanced CDD form', purpose: 'Document enhanced due diligence measures', amliq: 'Enhanced Due Diligence Record (#8)' },
+      { austrac: 'Sanctions check process', purpose: 'Step-by-step sanctions screening', amliq: 'PEP/TFS Screening Record (#10)' },
+      { austrac: 'PEP check process', purpose: 'Step-by-step PEP screening', amliq: 'PEP/TFS Screening Record (#10)' },
+      { austrac: 'Source of funds/wealth check process', purpose: 'Verify fund origins', amliq: 'Part of EDD Record (#8)' },
+      { austrac: 'Adverse media check process', purpose: 'Open-source background checks', amliq: 'Part of EDD Record (#8)' },
+      { austrac: 'Periodic review and update form', purpose: 'Ongoing CDD review', amliq: 'Ongoing CDD Review (#9)' },
+      { austrac: 'Escalation checklist', purpose: 'Quick-reference escalation triggers', amliq: 'Part of Suspicious Activity Log (#23)' },
       { austrac: 'Streamlined CDD for low/medium risk individuals', purpose: 'Simplified CDD for Option 3 jewellers', amliq: 'CDD — Individual Streamlined (#1)' },
-      { austrac: 'Determine if a transaction is regulated', purpose: 'Assess if $10K threshold is met', amliq: 'Transaction Detection Record (#24)' },
-      { austrac: 'Personnel due diligence forms', purpose: 'Staff suitability assessment', amliq: 'Personnel Due Diligence Record (#14)' },
+      { austrac: 'Determine if a transaction is regulated', purpose: 'Assess if $10K threshold is met', amliq: 'Transaction Detection Record (#27)' },
+      { austrac: 'Personnel due diligence forms', purpose: 'Staff suitability assessment', amliq: 'Personnel Due Diligence Record (#17)' },
     ];
 
     el.innerHTML = `
