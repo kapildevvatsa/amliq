@@ -3,6 +3,7 @@ import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 
 const ses = new SESClient({ region: 'ap-southeast-2' });
 const FROM_EMAIL = process.env.SES_FROM_EMAIL || 'noreply@tranche2compliance.com.au';
+const TRIAL_DAYS = process.env.TRIAL_DAYS || '14';
 
 export const handler: PostConfirmationTriggerHandler = async (event) => {
   // Only send on user confirmation (not forgot password, etc.)
@@ -86,7 +87,7 @@ function getWelcomeEmailHTML(email: string): string {
       </p>
 
       <h2>Want to Build Your Full Compliance Program?</h2>
-      <p>Upgrade to <strong>Pro</strong> to access risk assessment tools, fillable CDD forms, program builder, PDF document generation, and more — starting at just $29/month with a 14-day free trial.</p>
+      <p>Upgrade to <strong>Pro</strong> to access risk assessment tools, fillable CDD forms, program builder, PDF document generation, and more — starting at just $29/month with a ${TRIAL_DAYS}-day free trial.</p>
       <p><a href="https://www.tranche2compliance.com.au/pricing.html" style="color:#1e3a5f;font-weight:600;">View Pricing &rarr;</a></p>
     </div>
     <div class="footer">
@@ -112,7 +113,7 @@ GETTING STARTED:
 Go to your dashboard: https://www.tranche2compliance.com.au/
 
 WANT THE FULL COMPLIANCE TOOLKIT?
-Upgrade to Pro for risk assessment, CDD forms, program builder, PDF generation, and more — starting at $29/month with a 14-day free trial.
+Upgrade to Pro for risk assessment, CDD forms, program builder, PDF generation, and more — starting at $29/month with a ${TRIAL_DAYS}-day free trial.
 View pricing: https://www.tranche2compliance.com.au/pricing.html
 
 ---

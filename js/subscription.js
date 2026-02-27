@@ -20,6 +20,9 @@ const Subscription = {
   // (see MANUAL-SETUP-GUIDE.md Section 12).
   API_BASE_URL: 'https://hl2mufk857.execute-api.ap-southeast-2.amazonaws.com/prod',
 
+  // Trial period (default; overwritten by /pricing fetch)
+  _trialDays: 14,
+
   // ─── PRO SECTIONS ──────────────────────────────────────────────────────────
   // Sections that require a Pro subscription. Everything else is free.
   PRO_SECTIONS: new Set([
@@ -53,6 +56,30 @@ const Subscription = {
 
   isPro() {
     return window.T2C_TIER === 'pro';
+  },
+
+  getTrialLabel() {
+    return this._trialDays + '-day free trial';
+  },
+
+  fetchPricing() {
+    var self = this;
+    var cached = sessionStorage.getItem('t2c_trial_days');
+    if (cached) {
+      self._trialDays = parseInt(cached, 10) || 14;
+      return Promise.resolve();
+    }
+    return fetch(self.API_BASE_URL + '/pricing')
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        if (data.trial_days) {
+          self._trialDays = data.trial_days;
+          sessionStorage.setItem('t2c_trial_days', String(data.trial_days));
+        }
+      })
+      .catch(function(err) {
+        console.warn('[T2C] fetchPricing failed, using default', err);
+      });
   },
 
   // ─── PAYMENT LINK URLS ─────────────────────────────────────────────────────
@@ -111,7 +138,7 @@ const Subscription = {
       + 'Or <button onclick="Subscription.openCheckout(\'pdf_onetime\')" '
       + 'class="text-blue-600 underline hover:text-blue-800">buy just the Program PDF for $149</button> (one-time)'
       + '</p>'
-      + '<p class="text-xs text-slate-400 mt-2">14-day free trial on all subscriptions. Cancel anytime.</p>'
+      + '<p class="text-xs text-slate-400 mt-2">' + this.getTrialLabel() + ' on all subscriptions. Cancel anytime.</p>'
       + '</div>'
       + '</div>';
   },
@@ -159,7 +186,7 @@ const Subscription = {
       container.innerHTML = '<button onclick="Subscription.openCheckout(\'pro_monthly\')" '
         + 'class="sidebar-upgrade-btn">'
         + '<span>Upgrade to Pro</span>'
-        + '<span class="text-xs opacity-80">14-day free trial</span>'
+        + '<span class="text-xs opacity-80">' + this.getTrialLabel() + '</span>'
         + '</button>';
     }
 
@@ -364,14 +391,17 @@ const Subscription = {
    * Call after auth.js has run and App has initialized.
    */
   init() {
-    console.log('[T2C] Subscription.init v4 — tier=' + this.getTier());
-    this.enhanceSidebar();
-    var checkoutHandled = this.handlePostCheckout();
-    console.log('[T2C] handlePostCheckout returned ' + checkoutHandled);
-    // If no explicit checkout signal was detected, do a background sync
-    // to catch cases where Stripe redirected to a different domain
-    if (!checkoutHandled) {
-      this._syncSubscriptionStatus();
-    }
+    console.log('[T2C] Subscription.init v5 — tier=' + this.getTier());
+    var self = this;
+    this.fetchPricing().then(function() {
+      self.enhanceSidebar();
+      var checkoutHandled = self.handlePostCheckout();
+      console.log('[T2C] handlePostCheckout returned ' + checkoutHandled);
+      // If no explicit checkout signal was detected, do a background sync
+      // to catch cases where Stripe redirected to a different domain
+      if (!checkoutHandled) {
+        self._syncSubscriptionStatus();
+      }
+    });
   },
 };

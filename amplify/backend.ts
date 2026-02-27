@@ -112,3 +112,11 @@ subscriptionResource.addMethod(
     authorizer: cognitoAuthorizer,
   }
 );
+
+// GET /pricing — no auth (public pricing info)
+const pricingResource = api.root.addResource('pricing');
+pricingResource.addMethod(
+  'GET',
+  new LambdaIntegration(backend.checkSubscription.resources.lambda),
+  { authorizationType: AuthorizationType.NONE }
+);

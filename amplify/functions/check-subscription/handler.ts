@@ -28,6 +28,17 @@ function getCorsHeaders(event: { headers: Record<string, string | undefined> }) 
 
 export const handler: APIGatewayProxyHandler = async (event) => {
   const CORS_HEADERS = getCorsHeaders(event);
+
+  // Unauthenticated /pricing endpoint — returns public pricing config
+  if (event.resource === '/pricing' || event.path === '/pricing') {
+    const trialDays = parseInt(process.env.TRIAL_DAYS || '14', 10);
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
+      body: JSON.stringify({ trial_days: trialDays }),
+    };
+  }
+
   // User ID comes from Cognito JWT validated by API Gateway authorizer
   const userId =
     event.requestContext.authorizer?.claims?.sub ||

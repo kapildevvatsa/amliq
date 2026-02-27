@@ -48,7 +48,7 @@
       <h1 class="text-3xl sm:text-4xl font-bold mb-3">Simple, Affordable Pricing</h1>
       <p class="text-lg text-blue-100 max-w-2xl mx-auto">
         Everything you need to build and maintain your AML/CTF compliance program.
-        Start with a 14-day free trial — no credit card required upfront.
+        Start with a <span id="trial-hero">14-day free trial</span> — no credit card required upfront.
       </p>
     </div>
   </section>
@@ -107,7 +107,7 @@
           <li class="flex gap-2"><span class="text-green-500">&#10003;</span> Data export (JSON backup)</li>
         </ul>
         <button id="pro-cta" onclick="startProCheckout()" class="block w-full text-center py-2.5 px-4 rounded-lg bg-brand text-white font-medium hover:bg-brand-light">
-          Start 14-Day Free Trial
+          <span id="trial-cta">Start 14-Day Free Trial</span>
         </button>
         <p class="text-xs text-slate-400 text-center mt-2">No credit card required to start trial</p>
       </div>
@@ -176,7 +176,7 @@
     <div class="space-y-4">
       <details class="bg-white rounded-lg border border-slate-200 p-4">
         <summary class="font-medium text-slate-800 cursor-pointer">Can I try Pro for free?</summary>
-        <p class="text-sm text-slate-600 mt-2">Yes! All Pro subscriptions start with a 14-day free trial. You won't be charged until the trial ends. Cancel anytime during the trial at no cost.</p>
+        <p class="text-sm text-slate-600 mt-2">Yes! All Pro subscriptions start with a <span id="trial-faq">14-day free trial</span>. You won't be charged until the trial ends. Cancel anytime during the trial at no cost.</p>
       </details>
       <details class="bg-white rounded-lg border border-slate-200 p-4">
         <summary class="font-medium text-slate-800 cursor-pointer">Can my team share one account?</summary>
@@ -283,6 +283,20 @@
         }, 500);
       }
     })();
+
+    // Fetch trial period and update display
+    if (typeof Subscription !== 'undefined') {
+      Subscription.fetchPricing().then(function() {
+        var days = Subscription._trialDays;
+        var label = days + '-day free trial';
+        var heroEl = document.getElementById('trial-hero');
+        var ctaEl = document.getElementById('trial-cta');
+        var faqEl = document.getElementById('trial-faq');
+        if (heroEl) heroEl.textContent = label;
+        if (ctaEl) ctaEl.textContent = 'Start ' + days + '-Day Free Trial';
+        if (faqEl) faqEl.textContent = label;
+      });
+    }
   </script>
 
 </body>

@@ -9,5 +9,6 @@ export const postConfirmation = defineFunction({
   resourceGroupName: 'auth',
   environment: {
     SES_FROM_EMAIL: 'noreply@tranche2compliance.com.au',
+    TRIAL_DAYS: '14',
   },
 });
